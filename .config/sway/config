@@ -77,6 +77,9 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
        natural_scroll enabled
        #middle_emulation enabled
    }
+   input "2:10:TPPS/2_IBM_TrackPoint" {
+       natural_scroll enabled
+   }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -307,7 +310,12 @@ bindsym XF86AudioLowerVolume exec amixer -D default -q set $(amixer -D default s
 #bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86Display output HDMI* disable
+bindsym XF86AudioMicMute reload
+bindsym XF86Display reload
+bindsym XF86Tools reload
+bindsym XF86Search reload
+bindsym XF86LaunchA reload
+bindsym XF86Explorer reload
 # output eDP-1 res 1366x768 pos 1920,180
 
 
