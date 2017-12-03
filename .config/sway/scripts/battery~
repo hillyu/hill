@@ -29,10 +29,10 @@ open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
 $acpi = <ACPI>;
 close(ACPI);
 
-# fail on unexpected output
-if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
-}
+ #fail on unexpected output
+ if ($acpi !~ /: (\w+), (\d+)%/) {
+     die "$acpi\n";
+ }
 
 $status = $1;
 $percent = $2;
@@ -98,8 +98,16 @@ if ($status eq 'Discharging') {
 			$full_text = " $full_text";
             print "$full_text\n";
             print "$short_text\n";
+            if ($percent < 10) {
+                print "#FF0000\n";
+            }
 		}
-	}
+	} elsif($status eq 'Full'){
+        print " ";
+        print "$full_text\n";
+        print "$short_text\n";
+        
+    }
 }
 
 

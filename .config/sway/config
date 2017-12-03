@@ -3,11 +3,13 @@ exec fcitx-autostart
 exec nice -12 ~/.dropbox-dist/dropboxd
 exec xrdb $HOME/.Xresources && urxvtd -q -f -o && urxvtc -name ncmpcpp -e ncmpcpp
 exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
-#exec udiskie &
+exec udiskie  --no-notify 
 #exec $term -e tmux
-exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
-exec nice -12 slack 
+# exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
+# exec nice -12 slack 
 exec google-chrome-stable --app="https://paper.dropbox.com/"
+# exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
+# exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 
 # Default config for sway
 output eDP-1 res 1366x768 pos 1920,180 
@@ -201,7 +203,9 @@ for_window [class="(?i)gimp*"] floating disable
 assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
 #assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
+for_window [title="(?i)paper"]   move scratchpad
 assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
+assign [title="(?i)officemail"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)Word"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)ics-ml-gpu"]   $workspace5
@@ -291,7 +295,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    #tray_output primary
+    tray_output primary
     status_command i3blocks -c /home/hill/.config/sway/i3blocks.conf
     position top
     colors {

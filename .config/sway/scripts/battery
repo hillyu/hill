@@ -29,10 +29,10 @@ open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
 $acpi = <ACPI>;
 close(ACPI);
 
-# fail on unexpected output
-if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
-}
+ #fail on unexpected output
+ if ($acpi !~ /: (\w+), (\d+)%/) {
+     die "$acpi\n";
+ }
 
 $status = $1;
 $percent = $2;
@@ -79,7 +79,7 @@ if ($status eq 'Discharging') {
         exit(33);
     }
 } elsif ($status eq 'Charging') {
-	$full_text .= ' ';
+    print ' ';
     print "$full_text\n";
     print "$short_text\n";
 } elsif ($status eq 'Unknown') {
@@ -91,18 +91,24 @@ if ($status eq 'Discharging') {
 		$ac_adapt = $1;
 
 		if ($ac_adapt eq 'on-line') {
-			$full_text .= ' ';
-            print "$full_text\n";
-            print "$short_text\n";
+                        print ' ';
+                        print "$full_text\n";
+                        print "$short_text\n";
 		} elsif ($ac_adapt eq 'off-line') {
-			$full_text = " $full_text";
-            print "$full_text\n";
-            print "$short_text\n";
-            if ($percent < 10) {
-                print "#FF0000\n";
-            }
-		}
-	}
+                    print " ";
+                    print "$full_text\n";
+                    print "$short_text\n";
+                    if ($percent < 10) {
+                    print "#FF0000\n";
+                }
+        }
+} 
+
+} elsif($status eq 'Full'){
+    print " ";
+    print "$full_text\n";
+    print "$short_text\n";
+        
 }
 
 
