@@ -2,6 +2,7 @@
 exec fcitx-autostart
 exec nice -12 ~/.dropbox-dist/dropboxd
 exec xrdb $HOME/.Xresources && urxvtd -q -f -o && urxvtc -name ncmpcpp -e ncmpcpp
+# exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
 exec udiskie  --no-notify 
 #exec $term -e tmux
@@ -14,7 +15,7 @@ exec google-chrome-stable --app="https://paper.dropbox.com/"
 # Default config for sway
 output eDP-1 res 1366x768 pos 1920,180 
 output HDMI-A-2 res 1920x1080 pos 0,0
-#output DP-1 resolution 1024x768 position 3286,0
+output DP-1 resolution 1024x768 position 3286,0
 #output DP-1 resolution 1920x1080 position 3286,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 #
@@ -40,6 +41,7 @@ set $term env WAYLAND_DISPLAY= alacritty
 #set $me
 #bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i -fn ProFont-11 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term urxvtc
 bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc -g 105x30+3+30"
+# bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
 #set $menu sway-dmenu-desktop
 #color workspace name etc.
 
@@ -89,6 +91,7 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
 
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
+for_window [title="(?i)launcher"] floating enable
 for_window [class="(?i)urxvt"] floating enable, move down 80px
 for_window [class="(?i)keyring"] floating enable
 for_window [class="(?i)gimp*"] floating disable
@@ -201,6 +204,7 @@ for_window [class="(?i)gimp*"] floating disable
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
+assign [class="(?i)qutebrowser"]   $workspace1
 #assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
 for_window [title="(?i)paper"]   move scratchpad
