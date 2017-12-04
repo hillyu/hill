@@ -1,6 +1,7 @@
 ## Basic configuration
 
 source "~/.config/mutt/user"
+source "~/.config/mutt/vim-keys.rc"
 
 ### Advanced configuration
 ### YOU SHOULD NOT MODIFY THIS UNLESS YOU KNOW WHAT YOU'RE DOING
@@ -81,6 +82,7 @@ unset collapse_unread
 set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 
 ## Key bindings
+# bind    index    g  noop
 
 # Mailboxes
 #bind    index   G  imap-fetch-mail
@@ -90,30 +92,14 @@ set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 #macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
 
 # Index
-bind    index   <up>        previous-entry
-bind    index   <down>      next-entry
-bind    index   <delete>    delete-message
-bind    index   n           next-entry
-bind    index   p           previous-entry
 macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
-bind    index   C           noop
-bind    index   -           collapse-thread
-bind    index   _           collapse-all
+# bind    index   -           collapse-thread
+# bind    index   _           collapse-all
 
 # Pager
-bind    pager   <up>        previous-line
-bind    pager   <down>      next-line
-bind    pager   <left>      previous-entry
-bind    pager   <right>     next-entry
-bind    pager   <delete>    delete-message
-bind    pager   k           previous-line
-bind    pager   j           next-line
-bind    pager   n           next-entry
-bind    pager   p           previous-entry
-bind    pager   w           previous-page
 
 # Colors
-source "~/.config/mutt/muttcol
+source "~/.config/mutt/muttcol"
 mono bold bold
 mono underline underline
 mono indicator reverse

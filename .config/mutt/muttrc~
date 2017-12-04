@@ -1,13 +1,13 @@
 ## Basic configuration
 
-source "~/.mutt/user"
+source "~/.config/mutt/user"
 
 ### Advanced configuration
 ### YOU SHOULD NOT MODIFY THIS UNLESS YOU KNOW WHAT YOU'RE DOING
 
 # Loading language properties
 
-source "~/.mutt/lang/$my_lang"
+source "~/.config/mutt/lang/$my_lang"
 ## mailcap settings
 set mailcap_path = ~/.config/mutt/mailcap
 
@@ -46,10 +46,10 @@ set smtp_authenticators = "login"
 
 # File storage settings
 
-set signature="~/.mutt/signature"
-set message_cachedir="~/.mutt/message_cache"
-set header_cache="~/.mutt/header_cache"
-set tmpdir="~/.mutt/tmp"
+set signature="~/.config/mutt/signature"
+set message_cachedir="~/.config/mutt/message_cache"
+set header_cache="~/.config/mutt/header_cache"
+set tmpdir="~/.config/mutt/tmp"
 
 # Text view first
 set pager_stop="yes"
@@ -68,10 +68,10 @@ set editor="e"
 # Adress book handling
 set sort_alias=alias
 set reverse_alias=yes
-set alias_file="~/.mutt/aliases"
-source "~/.mutt/gal"
-source "~/.mutt/aliases"
-source "~/.mutt/mailing_lists"
+set alias_file="~/.config/mutt/aliases"
+source "~/.config/mutt/gal"
+source "~/.config/mutt/aliases"
+source "~/.config/mutt/mailing_lists"
 
 # Thread ordering
 set sort = 'threads'
@@ -81,6 +81,7 @@ unset collapse_unread
 set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 
 ## Key bindings
+# bind    index    g  noop
 
 # Mailboxes
 #bind    index   G  imap-fetch-mail
@@ -90,30 +91,15 @@ set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 #macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
 
 # Index
-bind    index   <up>        previous-entry
-bind    index   <down>      next-entry
-bind    index   <delete>    delete-message
-bind    index   n           next-entry
-bind    index   p           previous-entry
+#source "~/.config/mutt/vim-keys.rc"
 macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
-bind    index   C           noop
-bind    index   -           collapse-thread
-bind    index   _           collapse-all
+# bind    index   -           collapse-thread
+# bind    index   _           collapse-all
 
 # Pager
-bind    pager   <up>        previous-line
-bind    pager   <down>      next-line
-bind    pager   <left>      previous-entry
-bind    pager   <right>     next-entry
-bind    pager   <delete>    delete-message
-bind    pager   k           previous-line
-bind    pager   j           next-line
-bind    pager   n           next-entry
-bind    pager   p           previous-entry
-bind    pager   w           previous-page
 
 # Colors
-source "~/.mutt/muttcol
+source "~/.config/mutt/muttcol"
 mono bold bold
 mono underline underline
 mono indicator reverse

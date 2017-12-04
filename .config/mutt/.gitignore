@@ -1,1 +1,19 @@
 header_cache
+aliases
+gal
+header_cache
+lang
+# mailcap
+mailing_lists
+message_cache
+# muttcol
+# muttrc
+muttrc~
+README.md
+request.xml
+signature
+tmp
+user
+user~
+# vim-keys.rc
+vim-keys.rc~
