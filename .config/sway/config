@@ -94,7 +94,7 @@ for_window [class="(?i)mpv"] floating enable
 for_window [title="(?i)launcher"] floating enable
 for_window [class="(?i)urxvt"] floating enable, move down 80px
 for_window [class="(?i)keyring"] floating enable
-for_window [class="(?i)gimp*"] floating disable
+# for_window [class="(?i)gimp*"] floating disable
 
 ### Key bindings
 #
