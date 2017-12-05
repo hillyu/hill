@@ -222,6 +222,7 @@ nil 0.5)))
 (org-indent-mode t)))
 ;; enalbe company completion in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
+(set-display-table-slot standard-display-table 'wrap ?\ )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
