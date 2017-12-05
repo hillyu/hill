@@ -23,7 +23,7 @@ output DP-1 resolution 1024x768 position 3286,0
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-font pango:SFNS Display 10
+font SFNS Display 10
 
 ### Variables
 #
