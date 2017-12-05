@@ -54,8 +54,8 @@
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
-URxvt.font: xft:SF Mono:size=12,xft
-!!URxvt.font: xft:FontAwesome:size=12
+! URxvt.font: xft:Dejavu Sans Mono:pixelsize=14,xft:Noto Sans CJK Mono SC:pixelsize=14,xft:FontAwesome:size=14
+URxvt.font: xft:Ubuntu Mono:size=14,xft:WenQuanYi Micro Hei Mono Light:size=14
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1

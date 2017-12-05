@@ -40,7 +40,7 @@ set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
 #bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i -fn ProFont-11 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term urxvtc
-bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc -g 105x30+3+30"
+bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc -g 300x30+3+30"
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
 #set $menu sway-dmenu-desktop
 #color workspace name etc.
