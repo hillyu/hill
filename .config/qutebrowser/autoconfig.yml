@@ -4,8 +4,11 @@
 config_version: 1
 global:
   backend: webengine
+  new_instance_open_target: window
   qt.force_platform: xcb
+  tabs.tabs_are_windows: true
+  tabs.title.alignment: left
   url.default_page: about:blank
   url.searchengines:
-    DEFAULT: https://www.google.com/?q={}
+    DEFAULT: https://www.google.com/search?hl=en&q={}
   url.start_pages: https://www.google.com

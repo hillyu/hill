@@ -31,8 +31,9 @@ set timeout=15
 set mail_check=90
 set imap_keepalive=180
 set imap_idle
+set imap_peek=yes
 unset mark_old
-set ssl_use_sslv3=yes
+# set ssl_use_sslv4=yes
 
 # SMTP config
 set realname = $my_realname
@@ -42,6 +43,8 @@ set hostname = $my_domain
 set smtp_url = "smtp://$my_username@$my_domain@outlook.office365.com:587/"
 set ssl_force_tls = yes
 set smtp_authenticators = "login"
+set ssl_starttls=yes
+set certificate_file=$HOME/.config/mutt/outlook.office365.com.pem
 
 ## More settings
 
