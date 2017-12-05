@@ -95,12 +95,13 @@ if ($status eq 'Discharging') {
                         print "$full_text\n";
                         print "$short_text\n";
 		} elsif ($ac_adapt eq 'off-line') {
-                    print " ";
-                    print "$full_text\n";
-                    print "$short_text\n";
-                    if ($percent < 10) {
-                    print "#FF0000\n";
-                }
+                    exit(33);
+                    # print " ";
+                    # print "$full_text\n";
+                    # print "$short_text\n";
+                    # if ($percent < 10) {
+                    # print "#FF0000\n";
+                # }
         }
 } 
 
