@@ -88,5 +88,5 @@ source $ZSH/oh-my-zsh.sh
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   exec sway
 fi
-alias e="emacsclient -t"   
+alias vi="emacsclient -t"   
 alias umd="udiskie-umount -d"   

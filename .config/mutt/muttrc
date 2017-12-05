@@ -86,10 +86,10 @@ set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 
 # Mailboxes
 #bind    index   G  imap-fetch-mail
-#macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
-#macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
-#macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
-#macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
+macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
+macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
+macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
+macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
 
 # Index
 macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
