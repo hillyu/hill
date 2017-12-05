@@ -5,3 +5,7 @@ config_version: 1
 global:
   backend: webengine
   qt.force_platform: xcb
+  url.default_page: about:blank
+  url.searchengines:
+    DEFAULT: https://www.google.com/?q={}
+  url.start_pages: https://www.google.com
