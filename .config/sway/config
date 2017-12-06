@@ -1,7 +1,7 @@
 #Auto start services
 exec fcitx-autostart
 exec nice -12 ~/.dropbox-dist/dropboxd
-exec xrdb $HOME/.Xresources && urxvtd -q -f -o && urxvtc -name ncmpcpp -e ncmpcpp
+exec xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
 exec udiskie  --no-notify 
@@ -40,7 +40,7 @@ set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
 #bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i -fn ProFont-11 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term urxvtc
-bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc -g 300x30+3+30"
+bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
 #set $menu sway-dmenu-desktop
 #color workspace name etc.
@@ -311,8 +311,8 @@ bar {
         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
 }
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 5%-
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1%
 bindsym XF86AudioRaiseVolume exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB- unmute
 #bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
