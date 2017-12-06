@@ -26,14 +26,14 @@ dimensions:
 # Units are physical pixels; this is not DPI aware.
 # (change requires restart)
 padding:
-  x: 2
-  y: 2
+  x: 0
+  y: 0
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
+#draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 #
@@ -63,13 +63,13 @@ font:
 
   # The bold font face
   bold:
-    family: Mono # should be "Menlo" or something on macOS.
+    family: SF Mono # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: Mono # should be "Menlo" or something on macOS.
+    family: SF Mono # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Italic
 
@@ -87,7 +87,7 @@ font:
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0.0
-    y: 0.0
+    y: -1.8
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -104,8 +104,10 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
-    background: '0x002b36'
-    foreground: '0x839496'
+    # background: '0x002b36'
+    # foreground: '0x839496'
+    background: '0x262626'
+    foreground: '0xb2b2b2'
 
   # Normal colors
   normal:

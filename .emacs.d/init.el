@@ -25,10 +25,12 @@
 (defvar myPackages
   '(evil
     better-defaults
+    ivy
     spacemacs-theme
     elpy
     exec-path-from-shell
     flycheck
+    xclip
     ;py-autopep8
     ein
     yaml-mode
@@ -36,6 +38,7 @@
     evil-magit
     evil-leader
     evil-nerd-commenter
+    evil-surround
     powerline-evil))
 
 (mapc #'(lambda (package)
@@ -44,12 +47,20 @@
       myPackages)
 ;; load better-defaults
 (require 'better-defaults) 
+;; ivy
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
 ;; solve mac env path not defined in non-term emacs
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
 ;; by default c-u is reserved in evil mode so we need to enable it, needs to be called before (require evil)
 (setq evil-want-C-u-scroll t)
+;; c-c c-v copy in emacs gui, terminal emacs is fine as it is provied by terminal
+(cua-mode t)
+    (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+    (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 (require 'powerline-evil)
 (require 'evil)
 ;; Evil Magit
@@ -60,10 +71,24 @@
 (elpy-enable)
 (elpy-use-ipython)
 
+;;Share clipboard when in term.
+
+(defun noct:conditionally-turn-on-xclip-mode (_)
+  (unless (display-graphic-p)
+    (xclip-mode)))
+
+(noct:conditionally-turn-on-xclip-mode nil)
+
+(add-hook 'after-make-frame-functions
+          #'noct:conditionally-turn-on-xclip-mode)
 ;; flycheck for real time syntax checking
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
+  (add-hook 'elpy-mode-hook
+            (lambda ()
+              (flyspell-prog-mode)
+              (flycheck-mode)
+              )))
 ;pep8 enforcing while on saving, removing trailing line etc.
 ;(require 'py-autopep8)
 ;(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
@@ -85,6 +110,65 @@
         company-echo-metadata-frontend))
   
   )
+;; set super to ctrl
+(define-key key-translation-map (kbd "s-w") (kbd "C-w"))
+(define-key key-translation-map (kbd "s-g") (kbd "C-g"))
+(define-key key-translation-map (kbd "s-h") (kbd "C-h"))
+(define-key key-translation-map (kbd "s-a") (kbd "C-a"))
+(define-key key-translation-map (kbd "s-e") (kbd "C-e"))
+(define-key key-translation-map (kbd "s-x") (kbd "C-x"))
+;; (define-key key-translation-map (kbd "s-c") (kbd "C-c"))
+;; flyspell-mode for spell checking in text-mode
+(dolist (hook '(text-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode 1))))
+(dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode -1))))
+;; rerun spell check on current buffer upon personal dict changes
+(defun flyspell-buffer-after-pdict-save (&rest _)
+  (flyspell-buffer))
+
+(advice-add 'ispell-pdict-save :after #'flyspell-buffer-after-pdict-save)
+
+;;flyspell autochoose menu method, gui: natvie term: popup
+
+
+(defun flyspell-emacs-popup-textual (event poss word)
+      "A textual flyspell popup menu."
+      (require 'popup)
+      (let* ((corrects (if flyspell-sort-corrections
+                           (sort (car (cdr (cdr poss))) 'string<)
+                         (car (cdr (cdr poss)))))
+             (cor-menu (if (consp corrects)
+                           (mapcar (lambda (correct)
+                                     (list correct correct))
+                                   corrects)
+                         '()))
+             (affix (car (cdr (cdr (cdr poss)))))
+             show-affix-info
+             (base-menu  (let ((save (if (and (consp affix) show-affix-info)
+                                         (list
+                                          (list (concat "Save affix: " (car affix))
+                                                'save)
+                                          '("Accept (session)" session)
+                                          '("Accept (buffer)" buffer))
+                                       '(("Save word" save)
+                                         ("Accept (session)" session)
+                                         ("Accept (buffer)" buffer)))))
+                           (if (consp cor-menu)
+                               (append cor-menu (cons "" save))
+                             save)))
+             (menu (mapcar
+                    (lambda (arg) (if (consp arg) (car arg) arg))
+                    base-menu)))
+        (cadr (assoc (popup-menu* menu :scroll-bar t) base-menu))))
+(defun flyspell-emacs-popup-choose (org-fun event poss word)
+    (if (window-system)
+        (funcall org-fun event poss word)
+      (flyspell-emacs-popup-textual event poss word)))
+(eval-after-load "flyspell"
+      '(progn
+          (advice-add 'flyspell-emacs-popup :around #'flyspell-emacs-popup-choose)))
+
 ;;-----------------------------------------------------------------------
 ;;Theme related
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
@@ -92,6 +176,8 @@
 ;; (load-theme 'solarized t)
 ;; disable toolbar, mac/linux x
 (tool-bar-mode -1)
+;;
+;;-----------------------------------------------------------------------
 ;;You should enable global-evil-leader-mode before you enable evil-mode
 (global-evil-leader-mode)
 (evil-leader/set-leader ";")
@@ -111,6 +197,16 @@
   "js" 'ein:jupyter-server-start
   "jl" 'ein:notebooklist-login
   "jo" 'ein:notebooklist-open
+  ;; text related,
+  ;;1. spell.
+  ;; call selection window == mid click in gui
+  ;; "ss" 'flyspell-correct-word-before-point'
+  "ss" 'flyspell-popup-correct
+  ;; 
+  "sw" 'ispell-word
+  "sa" 'flyspell-buffer
+  "sf" 'flyspell-mode
+  "s SPC" 'flyspell-goto-next-error
 )
 (evil-leader/set-key-for-mode 'ein:notebook-multilang-mode 
   ;; evil ein 
@@ -118,14 +214,14 @@
   "xc" 'ein:worksheet-execute-cell
   "xa" 'ein:worksheet-execute-all-cell
   "l" 'ein:worksheet-clear-output
-  "sl" 'ein:worksheet-clear-all-output
+  ;;"sl" 'ein:worksheet-clear-all-output
   "d" 'ein:worksheet-kill-cell
   "a" 'ein:worksheet-insert-cell-above
   "b" 'ein:worksheet-insert-cell-below
   "tc" 'ein:worksheet-toggle-cell-type
   "ts" 'ein:worksheet-toggle-slide-type
   "u" 'ein:worksheet-change-cell-type
-  "s" 'ein:worksheet-merge-cell
+  ;;"s" 'ein:worksheet-merge-cell
   "<up>" 'ein:worksheet-move-cell-up
   "<down>" 'ein:worksheet-move-cell-down
   "f" 'ein:pytools-request-tooltip-or-help
@@ -213,33 +309,41 @@ nil 0.5)))
 (t (setq unread-command-events (append unread-command-events
 (list evt))))))))
 
+;;-----------------------------------------------------------------------
+;;-----------------------------------------------------------------------
 ;; ORG MODE
 ;; auto-indent an org-mode file
 (add-hook 'org-mode-hook
-(lambda()
-(local-set-key (kbd "C-c C-c") 'org-table-align)
-(local-set-key (kbd "C-c C-f") 'org-table-calc-current-TBLFM)
-(org-indent-mode t)))
+          (lambda()
+            (local-set-key (kbd "C-c C-c") 'org-table-align)
+            (local-set-key (kbd "C-c C-f") 'org-table-calc-current-TBLFM)
+            (org-indent-mode t)))
 ;; enalbe company completion in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
 (set-display-table-slot standard-display-table 'wrap ?\ )
+;;-----------------------------------------------------------------------
+;;Emacs-Lisp
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (flyspell-prog-mode)
+            ))
+
+;;-----------------------------------------------------------------------
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(ein:jupyter-default-server-command "/usr/local/bin/jupyter")
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (evil-leader exec-path-from-shell powerline-evil elpy))))
+    (evil-leader exec-path-from-shell powerline-evil elpy)))
+ '(x-select-enable-clipboard-manager nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
