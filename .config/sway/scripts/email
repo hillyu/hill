@@ -124,8 +124,8 @@ def serf():
 
 def printer(new_count):
     if new_count > 0:
-        print("<span font='FontAwesome'></span>",  new_count)
-        print("<span font='FontAwesome'></span>",  new_count)
+        print("",  new_count)
+        print("",  new_count)
         print('#00ff00')
     else:
         print("",  new_count)

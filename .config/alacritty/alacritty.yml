@@ -74,7 +74,7 @@ font:
     style: Italic
 
   # Point size of the font
-  size: 12
+  size: 11.5
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -104,10 +104,10 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
-    # background: '0x002b36'
-    # foreground: '0x839496'
-    background: '0x262626'
-    foreground: '0xb2b2b2'
+    background: '0x002b36'
+    foreground: '0x839496'
+    # background: '0x262626'
+    # foreground: '0xb2b2b2'
 
   # Normal colors
   normal:

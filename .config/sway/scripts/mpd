@@ -6,7 +6,8 @@ if [[ -n $BLOCK_INSTANCE ]]; then
 fi
 
 filter() {
-    echo -n "<span font='FontAwesome'></span> -"
+    # echo -n "<span font='FontAwesome'></span> -"
+    echo -n " -"
     tr '\n' ' ' | grep -Po '.*(?= \[playing\])|paused'|sed 's/paused//g' | tr -d '\n'
     #echo -n ''
 }
