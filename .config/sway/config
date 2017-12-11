@@ -94,6 +94,7 @@ for_window [class="(?i)mpv"] floating enable
 for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable, move down
+for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
 
