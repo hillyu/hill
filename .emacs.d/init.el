@@ -89,13 +89,28 @@
 ;;                    "d ")
 ;;            line)
 ;;    'face 'linum)))
-;; load solarized in terminal mode
-(if (not (display-graphic-p))
-  (progn
-  (load-theme 'solarized t))
-  (load-theme 'doom-one t)
-)
 
+;; load solarized in terminal mode
+  ;; last t is for NO-ENABLE
+(load-theme 'solarized t t)
+(load-theme 'doom-peacock t t)
+(add-hook 'after-make-frame-functions
+;;   (select-frame frame)
+          (lambda(frame)
+            (if (window-system frame)
+                (progn
+                  (disable-theme 'solarized) ; in case it was active
+                  (enable-theme 'doom-peacock))
+              (progn
+                (disable-theme 'doom-peacock) ; in case it was active
+                (enable-theme 'solarized))))
+
+          )
+
+;; For when started with emacs or emacs -nw rather than emacs --daemon
+(if window-system
+    (enable-theme 'doom-one)
+  (enable-theme 'solarized))
 ;;------------------------------------------------------------------------------------------
 ;; End of General Settings
 ;;------------------------------------------------------------------------------------------
@@ -145,16 +160,27 @@
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook
             (lambda ()
-              (flyspell-prog-mode)
               (flycheck-mode)
               ))
   )
-(use-package xclip :ensure t)
+(use-package xclip :ensure t
+  ;;Share clipboard when in term.
+  :config
+  (defun noct:conditionally-turn-on-xclip-mode (_)
+    (unless (display-graphic-p)
+      (xclip-mode)))
+  (noct:conditionally-turn-on-xclip-mode nil)
+  (add-hook 'after-make-frame-functions
+            #'noct:conditionally-turn-on-xclip-mode))
+(use-package rainbow-delimiters :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  )
 (use-package ein :ensure t
   :config
   ;;load theme for better visual aid in ein notebook
-  (when (display-graphic-p)
-    (load-theme 'doom-peacock))
+  ;; (when (display-graphic-p)
+    ;; (load-theme 'doom-peacock))
 
   (evil-leader/set-key-for-mode 'ein:notebook-multilang-mode
     ;; evil ein
@@ -220,13 +246,7 @@
   :defer t
   )
 ;;_______________________________________________________
-;;Share clipboard when in term.
-(defun noct:conditionally-turn-on-xclip-mode (_)
-  (unless (display-graphic-p)
-    (xclip-mode)))
-(noct:conditionally-turn-on-xclip-mode nil)
-(add-hook 'after-make-frame-functions
-          #'noct:conditionally-turn-on-xclip-mode)
+
 ;;flyspell
 ;; flyspell-mode for spell checking in text-mode
 (dolist (hook '(text-mode-hook))
@@ -278,7 +298,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "31e64af34ba56d5a3e85e4bebefe2fb8d9d431d4244c6e6d95369a643786a40e" "4b207752aa69c0b182c6c3b8e810bbf3afa429ff06f274c8ca52f8df7623eb60" "ba3dc5b711a58e65dbf677ab5307dd5735fe56e5d3f08abd584ca73b15abdd07" "0fd8c1b09c6c9e7116054f3fe5929775d9e9d5e49b9d1bf62dfdd5283416168e" "4a7abcca7cfa2ccdf4d7804f1162dd0353ce766b1277e8ee2ac7ee27bfbb408f" "10e3d04d524c42b71496e6c2e770c8e18b153fcfcc838947094dad8e5aa02cef" "d2c61aa11872e2977a07969f92630a49e30975220a079cd39bec361b773b4eb3" default)))
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "31e64af34ba56d5a3e85e4bebefe2fb8d9d431d4244c6e6d95369a643786a40e" "4b207752aa69c0b182c6c3b8e810bbf3afa429ff06f274c8ca52f8df7623eb60" "ba3dc5b711a58e65dbf677ab5307dd5735fe56e5d3f08abd584ca73b15abdd07" "0fd8c1b09c6c9e7116054f3fe5929775d9e9d5e49b9d1bf62dfdd5283416168e" "4a7abcca7cfa2ccdf4d7804f1162dd0353ce766b1277e8ee2ac7ee27bfbb408f" "10e3d04d524c42b71496e6c2e770c8e18b153fcfcc838947094dad8e5aa02cef" "d2c61aa11872e2977a07969f92630a49e30975220a079cd39bec361b773b4eb3" default)))
  '(ein:jupyter-default-server-command "/usr/local/bin/jupyter")
  '(frame-background-mode (quote dark))
  '(package-selected-packages

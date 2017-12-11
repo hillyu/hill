@@ -1,7 +1,8 @@
 # User configuration
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export GDK_BACKEND=wayland
 export CLUTTER_BACKEND=wayland
-#export QT_QPA_PLATFORM=wayland-egl
+# export QT_QPA_PLATFORM=wayland-egl
 export QT_DISABLE_WINDOWDECORATION=1
 export ECORE_EVAS_ENGINE=wayland_egl
 export ELM_ENGINE=wayland_egl

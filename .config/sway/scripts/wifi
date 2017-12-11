@@ -45,3 +45,10 @@ elif [[ $QUALITY -ge 40 ]]; then
 else
     echo "#FF0000"
 fi
+
+case $BLOCK_BUTTON in
+    3)
+        wpa_gui
+        ;;
+
+esac

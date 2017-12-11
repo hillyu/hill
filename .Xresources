@@ -55,13 +55,65 @@
 *color7:                S_base2
 *color15:               S_base3
 ! URxvt.font: xft:Dejavu Sans Mono:pixelsize=14,xft:Noto Sans CJK Mono SC:pixelsize=14,xft:FontAwesome:size=14
-URxvt.font: xft:Ubuntu Mono:size=14,xft:WenQuanYi Micro Hei Mono Light:size=14
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-URxvt.scrollBar: false
+URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=15,xft:WenQuanYi Micro Hei Mono Light:pixelsize=15
+URxvt.letterSpace: -2
+URxvt.lineSpace: -1
 
 !! yeah transparency!
 URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0200/c800
 ! URxvt.geometry: 130x37
+URxvt.keysym.Mod4-z:         \032
+URxvt.keysym.Mod4-y:         \031
+URxvt.keysym.Mod4-x:         \030
+URxvt.keysym.Mod4-w:         \027
+URxvt.keysym.Mod4-v:         \026
+URxvt.keysym.Mod4-u:         \025
+URxvt.keysym.Mod4-t:         \024
+URxvt.keysym.Mod4-s:         \023
+URxvt.keysym.Mod4-r:         \022
+URxvt.keysym.Mod4-q:         \021
+URxvt.keysym.Mod4-p:         \020
+URxvt.keysym.Mod4-o:         \017
+URxvt.keysym.Mod4-n:         \016
+URxvt.keysym.Mod4-m:         \015
+URxvt.keysym.Mod4-l:         \014
+URxvt.keysym.Mod4-k:         \013
+URxvt.keysym.Mod4-j:         \012
+URxvt.keysym.Mod4-i:         \011
+URxvt.keysym.Mod4-h:         \010
+URxvt.keysym.Mod4-g:         \007
+URxvt.keysym.Mod4-f:         \006
+URxvt.keysym.Mod4-e:         \005
+URxvt.keysym.Mod4-d:         \004
+URxvt.keysym.Mod4-c:         \003
+URxvt.keysym.Mod4-b:         \002
+URxvt.keysym.Mod4-a:         \001
+!perl-exts
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,font-size
+URxvt.keysym.C-u: perl:url-select:select_next
+URxvt.url-select.launcher: xdg-open
+URxvt.url-select.underline: true
+URxvt.url-launcher: xdg-open
+URxvt.matcher.button: 1
+URxvt.keysym.M-Escape:       perl:keyboard-select:activate
+URxvt.scrollBar: false
+!! Copy-Paste
+URxvt.clipboard.autocopy:    true
+URxvt.keysym.C-c:            perl:clipboard:copy
+URxvt.keysym.C-v:            perl:clipboard:paste
+URxvt.keysym.C-M-v:          perl:clipboard:paste_escaped
+! URxvt.copyCommand: xsel -ib
+! URxvt.pasteCommand: xsel -ob
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! `font-size` plugin
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-equal: perl:font-size:increase
+! The default font increase step size is 1. This is for portability across all
+! fonts (some fonts do not support particular font sizes). Because changing font
+! size only really makes sense for anti-aliased fonts (Terminus is bitmapped),
+! and because anti-aliased fonts support any size, it makes sense to just use a
+! size step of 4 for faster transitions between font size changes.
+URxvt.font-size.step: 1

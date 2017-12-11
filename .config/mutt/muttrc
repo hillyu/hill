@@ -11,7 +11,8 @@ source "~/.config/mutt/vim-keys.rc"
 source "~/.config/mutt/lang/$my_lang"
 ## mailcap settings
 set mailcap_path = ~/.config/mutt/mailcap
-
+#set displayfilter for mutt get alias
+set display_filter = '$HOME/.config/mutt/aliases.sh'
 ## Server config
 
 # IMAP config
@@ -72,9 +73,9 @@ set editor="emacsclient -c -a emacs"
 # Adress book handling
 set sort_alias=alias
 set reverse_alias=yes
-set alias_file="~/.config/mutt/aliases"
+set alias_file="~/.config/mutt/aliases.txt"
 source "~/.config/mutt/gal"
-source "~/.config/mutt/aliases"
+source $alias_file
 source "~/.config/mutt/mailing_lists"
 
 # Thread ordering

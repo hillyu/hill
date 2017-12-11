@@ -30,7 +30,7 @@
                   ;; call selection window == mid click in gui
                   ;; "ss" 'flyspell-correct-word-before-point
                   "ss" 'flyspell-popup-correct
-                  ;; 
+                  ;;
                   "sw" 'ispell-word
                   "sa" 'flyspell-buffer
                   "sf" 'flyspell-mode
@@ -42,8 +42,8 @@
                   )
 
                 ;; mode specific key-bindings
-                (evil-leader/set-key-for-mode 'ein:notebook-multilang-mode 
-                  ;; evil ein 
+                (evil-leader/set-key-for-mode 'ein:notebook-multilang-mode
+                  ;; evil ein
                   "SPC" 'ein:worksheet-execute-cell-and-goto-next
                   "xc" 'ein:worksheet-execute-cell
                   "xa" 'ein:worksheet-execute-all-cell
@@ -99,13 +99,20 @@
      evil-cross-lines t)
 
      ;; esc should always quit: http://stackoverflow.com/a/10166400/61435
-     (define-key evil-normal-state-map [escape] 'keyboard-quit)
-     (define-key evil-visual-state-map [escape] 'keyboard-quit)
-     (define-key minibuffer-local-map [escape] 'abort-recursive-edit)
-     (define-key minibuffer-local-ns-map [escape] 'abort-recursive-edit)
-     (define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
-     (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
-     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+     ;; (define-key evil-normal-state-map [escape] 'keyboard-quit)
+     ;; (define-key evil-visual-state-map [escape] 'keyboard-quit)
+     ;; (define-key minibuffer-local-map [escape] 'abort-recursive-edit)
+     ;; (define-key minibuffer-local-ns-map [escape] 'abort-recursive-edit)
+     ;; (define-key minibuffer-local-completion-map [escape] 'keyboard-quit)
+     ;; (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
+     ;; (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+    (define-key evil-normal-state-map [escape] 'keyboard-quit)
+    (define-key evil-visual-state-map [escape] 'keyboard-quit)
+    (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
      ;; modes to map to different default states
      (dolist (mode-map '((comint-mode . emacs)

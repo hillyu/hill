@@ -4,16 +4,16 @@ exec nice -12 ~/.dropbox-dist/dropboxd
 exec xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
-exec udiskie  --no-notify 
+exec udiskie  --no-notify
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
-# exec nice -12 slack 
+# exec nice -12 slack
 exec google-chrome-stable --app="https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 
 # Default config for sway
-output eDP-1 res 1366x768 pos 1920,180 
+output eDP-1 res 1366x768 pos 1920,180
 output HDMI-A-2 res 1920x1080 pos 0,0
 output DP-1 resolution 1024x768 position 3286,0
 #output DP-1 resolution 1920x1080 position 3286,0
@@ -35,8 +35,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-#set $term urxvtc
-set $term env WAYLAND_DISPLAY= alacritty
+set $term urxvtc
+# set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
 #bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i -fn ProFont-11 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term urxvtc
@@ -92,7 +92,8 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
 for_window [title="(?i)launcher"] floating enable
-for_window [class="(?i)urxvt"] floating enable, move down 80px
+# for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
+for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable, move down
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
 
@@ -200,7 +201,7 @@ for_window [class="(?i)keyring"] floating enable
  workspace $workspace4 output eDP-1
  workspace $workspace5 output HDMI-A-2
  workspace $workspace6 output HDMI-A-2
-    
+
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
@@ -317,7 +318,8 @@ bindsym XF86AudioRaiseVolume exec amixer -D default -q set $(amixer -D default s
 bindsym XF86AudioLowerVolume exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB- unmute
 #bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) toggle
+# bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioMicMute reload
 bindsym XF86Display reload
 bindsym XF86Tools reload
