@@ -321,16 +321,18 @@ bindsym XF86AudioLowerVolume exec amixer -D default -q set $(amixer -D default s
 #bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
 bindsym XF86AudioMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) toggle
 # bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioMicMute reload
+bindsym XF86AudioMicMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
 bindsym XF86Display reload
 bindsym XF86Tools reload
-bindsym XF86Search reload
-bindsym XF86LaunchA reload
-bindsym XF86Explorer reload
+bindsym XF86Search output eDP-1 scale 1
+bindsym XF86LaunchA gaps inner workspace minus 4
+bindsym XF86Explorer gaps inner workspace plus  4
 # output eDP-1 res 1366x768 pos 1920,180
 
 
 #gaps 5
 default_border pixel
+#If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
+smart_gaps on
 
 include /etc/sway/config.d/*
