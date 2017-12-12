@@ -92,25 +92,44 @@
 
 ;; load solarized in terminal mode
   ;; last t is for NO-ENABLE
-(load-theme 'solarized t t)
-(load-theme 'doom-peacock t t)
+(load-theme 'solarized t)
+;; (load-theme 'solarized t)
+;; (load-theme 'doom-peacock t t)
+;; (load-theme 'spacemacs-light t t)
 (add-hook 'after-make-frame-functions
 ;;   (select-frame frame)
           (lambda(frame)
             (if (window-system frame)
                 (progn
-                  (disable-theme 'solarized) ; in case it was active
-                  (enable-theme 'doom-peacock))
+                  ;; (disable-theme 'solarized) ; in case it was active
+                  (set-frame-parameter frame 'background-mode 'light)
+                  (set-terminal-parameter frame 'background-mode 'light))
+                  ;; (enable-theme 'spacemacs-light))
+                  ;; (enable-theme 'solarized))
               (progn
-                (disable-theme 'doom-peacock) ; in case it was active
-                (enable-theme 'solarized))))
-
+                ;; (disable-theme 'spacemacs-light) ; in case it was active
+                (set-terminal-parameter frame 'background-mode 'dark)
+                (set-frame-parameter frame 'background-mode 'dark))))
+                ;; (enable-theme 'solarized))))
+            ;; (enable-theme 'solarized)
           )
 
 ;; For when started with emacs or emacs -nw rather than emacs --daemon
 (if window-system
-    (enable-theme 'doom-one)
-  (enable-theme 'solarized))
+  (progn
+    (set-frame-parameter nil 'background-mode 'light)
+    (set-terminal-parameter nil 'background-mode 'light)
+    (setq frame-background-mode 'light)
+    ;; (enable-theme 'doom-peacock))
+    (enable-theme 'solarized)
+    )
+  (progn
+    (set-frame-parameter nil 'background-mode 'dark)
+    (set-terminal-parameter nil 'background-mode 'dark)
+    (setq frame-background-mode 'dark)
+    ;; (set-terminal-parameter nil 'background-mode 'dark)
+    ;; (enable-theme 'solarized)
+    ))
 ;;------------------------------------------------------------------------------------------
 ;; End of General Settings
 ;;------------------------------------------------------------------------------------------
@@ -298,9 +317,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "31e64af34ba56d5a3e85e4bebefe2fb8d9d431d4244c6e6d95369a643786a40e" "4b207752aa69c0b182c6c3b8e810bbf3afa429ff06f274c8ca52f8df7623eb60" "ba3dc5b711a58e65dbf677ab5307dd5735fe56e5d3f08abd584ca73b15abdd07" "0fd8c1b09c6c9e7116054f3fe5929775d9e9d5e49b9d1bf62dfdd5283416168e" "4a7abcca7cfa2ccdf4d7804f1162dd0353ce766b1277e8ee2ac7ee27bfbb408f" "10e3d04d524c42b71496e6c2e770c8e18b153fcfcc838947094dad8e5aa02cef" "d2c61aa11872e2977a07969f92630a49e30975220a079cd39bec361b773b4eb3" default)))
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "31e64af34ba56d5a3e85e4bebefe2fb8d9d431d4244c6e6d95369a643786a40e" "4b207752aa69c0b182c6c3b8e810bbf3afa429ff06f274c8ca52f8df7623eb60" "ba3dc5b711a58e65dbf677ab5307dd5735fe56e5d3f08abd584ca73b15abdd07" "0fd8c1b09c6c9e7116054f3fe5929775d9e9d5e49b9d1bf62dfdd5283416168e" "4a7abcca7cfa2ccdf4d7804f1162dd0353ce766b1277e8ee2ac7ee27bfbb408f" "10e3d04d524c42b71496e6c2e770c8e18b153fcfcc838947094dad8e5aa02cef" "d2c61aa11872e2977a07969f92630a49e30975220a079cd39bec361b773b4eb3" default)))
  '(ein:jupyter-default-server-command "/usr/local/bin/jupyter")
- '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
     (magit powerline-evil evil-surround evil-nerd-commenter evil-leader yaml-mode ein xclip flycheck exec-path-from-shell elpy spacemacs-theme ivy evil better-defaults use-package)))
@@ -311,4 +329,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(ein:cell-input-area ((t (:background "old lace")))))
