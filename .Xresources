@@ -1,3 +1,4 @@
+!!colors solarized
 #define S_base03        #002b36
 #define S_base02        #073642
 #define S_base01        #586e75
@@ -54,15 +55,18 @@
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
-! URxvt.font: xft:Dejavu Sans Mono:pixelsize=14,xft:Noto Sans CJK Mono SC:pixelsize=14,xft:FontAwesome:size=14
-URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=15,xft:WenQuanYi Micro Hei Mono Light:pixelsize=15
-URxvt.letterSpace: -2
-URxvt.lineSpace: -1
+
+! URxvt.font: xft:Dejavu Sans Mono:pixelsize=14,xft:WenquanYi Micro Hei Mono Light:pixelsize=14,xft:Pomodoro:size=14
+! URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=15,xft:WenQuanYi Micro Hei Mono Light:pixelsize=15
+URxvt.font: xft:xos4 Terminess Powerline:antialias=false:size=12,xft:WenQuanYi WenQuanYi Bitmap Song:antialias=false:size=10
+! URxvt.letterSpace: -2
+! URxvt.lineSpace: -1
 
 !! yeah transparency!
 URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0200/c800
-! URxvt.geometry: 130x37
+URxvt.geometry: 135x37
+!! swap ctrl and super for mac experience
 URxvt.keysym.Mod4-z:         \032
 URxvt.keysym.Mod4-y:         \031
 URxvt.keysym.Mod4-x:         \030
@@ -89,6 +93,7 @@ URxvt.keysym.Mod4-d:         \004
 URxvt.keysym.Mod4-c:         \003
 URxvt.keysym.Mod4-b:         \002
 URxvt.keysym.Mod4-a:         \001
+
 !perl-exts
 URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,font-size
 URxvt.keysym.C-u: perl:url-select:select_next
@@ -98,11 +103,13 @@ URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 URxvt.keysym.M-Escape:       perl:keyboard-select:activate
 URxvt.scrollBar: false
+
 !! Copy-Paste
 URxvt.clipboard.autocopy:    true
 URxvt.keysym.C-c:            perl:clipboard:copy
 URxvt.keysym.C-v:            perl:clipboard:paste
 URxvt.keysym.C-M-v:          perl:clipboard:paste_escaped
+
 ! URxvt.copyCommand: xsel -ib
 ! URxvt.pasteCommand: xsel -ob
 URxvt.iso14755: false

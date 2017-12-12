@@ -67,9 +67,6 @@ set $workspace10 "10 "
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
 output "*" background ~/Pictures/wallpapers/lake.png fill
 #output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
 
 ### Input configuration
 #
@@ -83,6 +80,7 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
    }
    input "2:10:TPPS/2_IBM_TrackPoint" {
        natural_scroll enabled
+       accel_profile flat
    }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -93,8 +91,9 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
 for_window [class="(?i)mpv"] floating enable
 for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
-for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable, move down
-for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down
+for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
+# for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
+for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 30
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
 
@@ -334,5 +333,8 @@ bindsym XF86Explorer gaps inner workspace plus  4
 default_border pixel
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
 smart_gaps on
+floating_maximum_size -1 x -1
+# seems not working
+floating_minimum_size 90 x 55
 
 include /etc/sway/config.d/*
