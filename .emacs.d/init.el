@@ -92,43 +92,44 @@
 
 ;; load solarized in terminal mode
   ;; last t is for NO-ENABLE
-(load-theme 'solarized t)
+(load-theme 'solarized t t)
 ;; (load-theme 'solarized t)
 ;; (load-theme 'doom-peacock t t)
 ;; (load-theme 'spacemacs-light t t)
 (add-hook 'after-make-frame-functions
-;;   (select-frame frame)
+  ;(select-frame frame)
           (lambda(frame)
             (if (window-system frame)
                 (progn
                   ;; (disable-theme 'solarized) ; in case it was active
+                  (set-terminal-parameter frame 'background-mode 'light)
                   (set-frame-parameter frame 'background-mode 'light)
-                  (set-terminal-parameter frame 'background-mode 'light))
-                  ;; (enable-theme 'spacemacs-light))
-                  ;; (enable-theme 'solarized))
+                  (setq frame-background-mode 'light)
+                  (frame-set-background-mode frame)
+                  (enable-theme 'solarized)
+                  )
               (progn
-                ;; (disable-theme 'spacemacs-light) ; in case it was active
+                (disable-theme 'solarized) ; in case it was active
                 (set-terminal-parameter frame 'background-mode 'dark)
-                (set-frame-parameter frame 'background-mode 'dark))))
-                ;; (enable-theme 'solarized))))
-            ;; (enable-theme 'solarized)
-          )
+                (set-frame-parameter frame 'background-mode 'dark)
+                (setq frame-background-mode 'dark)
+                (frame-set-background-mode frame)
+                (enable-theme 'solarized)
+            ))))
 
 ;; For when started with emacs or emacs -nw rather than emacs --daemon
 (if window-system
   (progn
-    (set-frame-parameter nil 'background-mode 'light)
     (set-terminal-parameter nil 'background-mode 'light)
+    (set-frame-parameter nil 'background-mode 'light)
     (setq frame-background-mode 'light)
-    ;; (enable-theme 'doom-peacock))
     (enable-theme 'solarized)
     )
   (progn
-    (set-frame-parameter nil 'background-mode 'dark)
     (set-terminal-parameter nil 'background-mode 'dark)
+    (set-frame-parameter nil 'background-mode 'dark)
     (setq frame-background-mode 'dark)
-    ;; (set-terminal-parameter nil 'background-mode 'dark)
-    ;; (enable-theme 'solarized)
+    (enable-theme 'solarized)
     ))
 ;;------------------------------------------------------------------------------------------
 ;; End of General Settings
@@ -145,6 +146,14 @@
   :config
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
+  (setq ivy-wrap t)
+  (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-next-line)
+  (define-key ivy-minibuffer-map (kbd "<tab>") 'ivy-next-line)
+  (define-key ivy-minibuffer-map (kbd "S-TAB") 'ivy-previous-line)
+  (define-key ivy-minibuffer-map (kbd "<backtab>") 'ivy-previous-line)
+  (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "C-RET") 'ivy-immediate-done)
+  (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
   )
 ;; (use-package spacemacs-theme :ensure t
   ;; :defer t
@@ -259,6 +268,7 @@
   )
 (use-package powerline-evil :ensure t
   :config (powerline-evil-center-color-theme)
+  (setq powerline-evil-tag-style 'verbose)
   )
 (use-package org
   :ensure t
@@ -296,13 +306,36 @@
         company-echo-metadata-frontend))
 
   )
-;; set super to ctrl
-(define-key key-translation-map (kbd "s-w") (kbd "C-w"))
-(define-key key-translation-map (kbd "s-g") (kbd "C-g"))
-(define-key key-translation-map (kbd "s-h") (kbd "C-h"))
-(define-key key-translation-map (kbd "s-a") (kbd "C-a"))
-(define-key key-translation-map (kbd "s-e") (kbd "C-e"))
-(define-key key-translation-map (kbd "s-x") (kbd "C-x"))
+;; set super to ctrl on non darwin system.
+(if (not (eq system-type 'darwin))
+    (progn
+    (define-key key-translation-map (kbd "s-a") (kbd "C-a"))
+    (define-key key-translation-map (kbd "s-b") (kbd "C-b"))
+    (define-key key-translation-map (kbd "s-c") (kbd "C-c"))
+    (define-key key-translation-map (kbd "s-d") (kbd "C-d"))
+    (define-key key-translation-map (kbd "s-e") (kbd "C-e"))
+    (define-key key-translation-map (kbd "s-f") (kbd "C-f"))
+    (define-key key-translation-map (kbd "s-g") (kbd "C-g"))
+    (define-key key-translation-map (kbd "s-h") (kbd "C-h"))
+    (define-key key-translation-map (kbd "s-i") (kbd "C-i"))
+    (define-key key-translation-map (kbd "s-j") (kbd "C-j"))
+    (define-key key-translation-map (kbd "s-k") (kbd "C-k"))
+    (define-key key-translation-map (kbd "s-l") (kbd "C-l"))
+    (define-key key-translation-map (kbd "s-m") (kbd "C-m"))
+    (define-key key-translation-map (kbd "s-n") (kbd "C-n"))
+    (define-key key-translation-map (kbd "s-o") (kbd "C-o"))
+    (define-key key-translation-map (kbd "s-p") (kbd "C-p"))
+    (define-key key-translation-map (kbd "s-q") (kbd "C-q"))
+    (define-key key-translation-map (kbd "s-r") (kbd "C-r"))
+    (define-key key-translation-map (kbd "s-s") (kbd "C-s"))
+    (define-key key-translation-map (kbd "s-t") (kbd "C-t"))
+    (define-key key-translation-map (kbd "s-u") (kbd "C-u"))
+    (define-key key-translation-map (kbd "s-v") (kbd "C-v"))
+    (define-key key-translation-map (kbd "s-w") (kbd "C-w"))
+    (define-key key-translation-map (kbd "s-x") (kbd "C-x"))
+    (define-key key-translation-map (kbd "s-y") (kbd "C-y"))
+    (define-key key-translation-map (kbd "s-z") (kbd "C-z"))
+    ))
 ;; enalbe company completion in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
 (set-display-table-slot standard-display-table 'wrap ?\ )
@@ -323,7 +356,7 @@
    (quote
     (magit powerline-evil evil-surround evil-nerd-commenter evil-leader yaml-mode ein xclip flycheck exec-path-from-shell elpy spacemacs-theme ivy evil better-defaults use-package)))
  '(solarized-termcolors 256)
- '(xclip-select-enable-clipboard nil))
+ '(x-select-enable-clipboard-manager nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

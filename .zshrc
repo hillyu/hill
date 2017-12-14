@@ -52,7 +52,8 @@ ZSH_THEME="nicoulaj"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo grc tmux python npm docker git zsh-dircolors-solarized zsh-syntax-highlighting)
+plugins=(sudo tmux python npm docker git warhol zsh-dircolors-solarized fast-syntax-highlighting)
+# plugins=(sudo, zsh-dircolors-solarized)
 
 source $ZSH/oh-my-zsh.sh
 

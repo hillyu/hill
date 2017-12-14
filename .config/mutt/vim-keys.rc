@@ -2,6 +2,8 @@
 # Vi Key Bindings
 #------------------------------------------------------------
 
+#search
+bind browser,pager,index        N   search-opposite
 # Moving around
 bind attach,browser,index       g   noop
 bind attach,browser,index       gg  first-entry
@@ -30,7 +32,6 @@ bind pager,index                dd  delete-message
 bind pager,index                gr  group-reply
 
 # Threads
-#bind browser,pager,index        N   search-opposite
 #bind pager,index                dT  delete-thread
 #bind pager,index                dt  delete-subthread
 #bind pager,index                gt  next-thread

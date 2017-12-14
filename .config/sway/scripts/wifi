@@ -47,7 +47,7 @@ else
 fi
 
 case $BLOCK_BUTTON in
-    3)
+    1)
         wpa_gui
         ;;
 

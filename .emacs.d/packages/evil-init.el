@@ -91,8 +91,11 @@
   :config
   (progn
     ;; use ido to open files TODO: use ivy
-    ;; (define-key evil-ex-map "e " 'ido-find-file)
-    ;; (define-key evil-ex-map "b " 'ido-switch-buffer)
+    (define-key evil-ex-map "e " 'find-file)
+    (define-key evil-ex-map "sp " 'find-file)
+    ;; (define-key evil-ex-map "vsp " 'ido-find-file)
+    (define-key evil-ex-map "vsp " 'find-file)
+    (define-key evil-ex-map "b " 'switch-to-buffer)
 
     (setq
      ;; h/l wrap around to next lines
