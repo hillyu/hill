@@ -1,6 +1,6 @@
 #Auto start services
 exec fcitx-autostart
-exec nice -12 ~/.dropbox-dist/dropboxd
+exec QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
 exec xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
@@ -8,7 +8,7 @@ exec udiskie  --no-notify
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 # exec nice -12 slack
-exec google-chrome-stable --app="https://paper.dropbox.com/"
+# exec google-chrome-stable --app="https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 
@@ -39,12 +39,11 @@ set $term urxvtc
 # set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
-#bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i -fn ProFont-11 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term urxvtc
-bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
+# bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
 #set $menu sway-dmenu-desktop
 #color workspace name etc.
-
+set $menu-font "5x7"
 set $base00 #101218
 set $frame-color #2e9ef4
 set $bg-color            #2f343f
@@ -62,6 +61,9 @@ set $workspace7 "7 "
 set $workspace8 "8 "
 set $workspace9 "9 "
 set $workspace10 "10 "
+##
+# bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
+bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)

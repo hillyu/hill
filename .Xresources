@@ -58,14 +58,14 @@
 
 ! URxvt.font: xft:Dejavu Sans Mono:pixelsize=14,xft:WenquanYi Micro Hei Mono Light:pixelsize=14,xft:Pomodoro:size=14
 ! URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=15,xft:WenQuanYi Micro Hei Mono Light:pixelsize=15
-URxvt.font: xft:xos4 Terminess Powerline:antialias=false:size=12,xft:WenQuanYi WenQuanYi Bitmap Song:antialias=false:size=10
+URxvt.font: xft:xos4 Terminess Powerline:antialias=false:style=Bold:size=12,xft:WenQuanYi WenQuanYi Bitmap Song:antialias=false:size=10
 ! URxvt.letterSpace: -2
 ! URxvt.lineSpace: -1
 
 !! yeah transparency!
 URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0200/c800
-URxvt.geometry: 135x37
+URxvt.geometry: 130x37+10+10
 !! swap ctrl and super for mac experience
 URxvt.keysym.Mod4-z:         \032
 URxvt.keysym.Mod4-y:         \031
