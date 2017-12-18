@@ -63,7 +63,7 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
+bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -89,15 +89,6 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
 # Read `man 5 sway-input` for more information about this section.
 #
 
-### enable floating on certain windows
-for_window [class="(?i)mpv"] floating enable
-for_window [title="(?i)launcher"] floating enable
-# for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
-for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
-# for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
-for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 30
-for_window [class="(?i)keyring"] floating enable
-# for_window [class="(?i)gimp*"] floating disable
 
 ### Key bindings
 #
@@ -195,6 +186,8 @@ for_window [class="(?i)keyring"] floating enable
      bindsym $mod+8 workspace $workspace8
      bindsym $mod+9 workspace $workspace9
      bindsym $mod+0 workspace $workspace10
+     # bindsym $mod+, workspace next
+     # bindsym $mod+. workspace prev
 
  #workspace default monitors
  workspace $workspace10 output eDP-1
@@ -215,14 +208,33 @@ assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $wor
 assign [title="(?i)officemail"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)Word"]   $workspace3
+#only title works for native wayland window
+assign [title="(?i)zathura"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)ics-ml-gpu"]   $workspace5
 assign [class="Emacs"]   $workspace5
 assign [class="(?i)Slack"]   $workspace3
 assign [class="(?i)Rhythmbox"]   $workspace10
 assign [class="(?i)gimp*"]   $workspace8
+assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
-# for_window [title="GIMP Startup"] move workspace $workspace7
-# for_window [class="Gimp.*"] move workspace $workspace7
+assign [instance="(?i)ranger"]   $workspace7
+# assign [instance="(?i)neomutt"]   $workspace9
+# for_window [title="GIMP Startup"]  move workspace $workspace7
+## enable tabbed layout on certain window
+######## i like my graphic processing tools tabbed
+for_window [class="(?i)gimp*"] layout tabbed
+for_window [class="(?i)inkscape*"] layout tabbed
+
+### enable floating on certain windows
+for_window [class="(?i)mpv"] floating enable
+for_window [title="(?i)launcher"] floating enable
+# for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
+# for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
+# for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
+for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 50
+for_window [class="(?i)keyring"] floating enable
+# for_window [class="(?i)gimp*"] floating disable
+##
 #assign [title="(?i)Untitled"]   $workspace3
 #
 # Layout stuff:
@@ -338,5 +350,7 @@ smart_gaps on
 floating_maximum_size -1 x -1
 # seems not working
 floating_minimum_size 90 x 55
+#work_space backandforth
+workspace_auto_back_and_forth yes
 
 include /etc/sway/config.d/*

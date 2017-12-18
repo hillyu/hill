@@ -1,7 +1,10 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# text/html; w3m -I %{charset} -s -X -F -T text/html -o auto_image=TRUE; copiousoutput
+text/html; pandoc --wrap=none --reference-links -f html -i %s -t plain; copiousoutput
+# text/html; qutebrowser %s; nametemplate=%s.html
+# text/html; w3m -v -F -T text/html %s; nametemplate=%s.html; copiousoutput;
 application/pdf; mv %s %s.pdf && mupdf %s.pdf > /dev/null; needsterminal;
 
 image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
 
-#application/pdf; pdftotext '%s' -; copiousoutput; description=PDF Document;
+application/pdf; pdftotext '%s' -; copiousoutput; description=PDF Documen;
 #nametemplate=%s.pdf

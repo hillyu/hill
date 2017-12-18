@@ -5,6 +5,8 @@
     (setq evil-default-cursor t)
     ;;enable c-u but need to be before evil-mode
     (setq evil-want-C-u-scroll t)
+    ;; enable tab for org-cycle
+    (setq evil-want-C-i-jump nil)
     ;; leader shortcuts
     ;; This has to be before we invoke evil-mode due to:
     ;; https://github.com/cofi/evil-leader/issues/10
@@ -15,7 +17,7 @@
                 (evil-leader/set-leader ";")
                 ;;vim mode leader /key binding for nerdCommenter
                 (evil-leader/set-key
-                  ;; evil nerd comment
+                  ;; EVIL nerd comment
                   "c SPC" 'evilnc-comment-or-uncomment-lines
                   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
                                         ;"ll" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -86,16 +88,27 @@
                   (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next
                   "gj" 'ein:worksheet-goto-next-input
                   "gk" 'ein:worksheet-goto-prev-input))
+      (evil-leader/set-key-for-mode 'org-mode
+        "t"  'org-show-todo-tree
+        "a"  'org-agenda
+        "c"  'org-archive-subtree
+        "j"  'org-metadown
+        "h"  'org-metaleft
+        "k"  'org-metaup
+        "l"  'org-metaright
+        ;; "l"  'evil-org-open-links
+        ;; "o"  'evil-org-recompute-clocks
+        )
       )
     (evil-mode 1))
   :config
   (progn
     ;; use ido to open files TODO: use ivy
-    (define-key evil-ex-map "e " 'find-file)
-    (define-key evil-ex-map "sp " 'find-file)
+    ;; (define-key evil-ex-map "e TAB" 'find-file)
+    ;; (define-key evil-ex-map "sp TAB" 'find-file)
     ;; (define-key evil-ex-map "vsp " 'ido-find-file)
-    (define-key evil-ex-map "vsp " 'find-file)
-    (define-key evil-ex-map "b " 'switch-to-buffer)
+    ;; (define-key evil-ex-map "vsp TAB" 'find-file)
+    ;; (define-key evil-ex-map "b TAB" 'switch-to-buffer)
 
     (setq
      ;; h/l wrap around to next lines

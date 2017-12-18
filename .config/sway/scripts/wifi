@@ -34,6 +34,12 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 
 echo "$(iw dev ${INTERFACE} link | grep SSID | cut -d " " -f 2-) $QUALITY%" # full text
 echo $QUALITY% # short text
+case $BLOCK_BUTTON in
+    3)
+        /usr/bin/wpa_gui
+        ;;
+
+esac
 
 # color
 if [[ $QUALITY -ge 80 ]]; then
@@ -45,10 +51,3 @@ elif [[ $QUALITY -ge 40 ]]; then
 else
     echo "#FF0000"
 fi
-
-case $BLOCK_BUTTON in
-    1)
-        wpa_gui
-        ;;
-
-esac

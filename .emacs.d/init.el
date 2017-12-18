@@ -53,6 +53,8 @@
 
 ;; always add a trailing newline - it's POSIX
 (setq require-final-newline t)
+;; mutt mail support auto mail mode
+(setq auto-mode-alist (append '(("/home/hill/.config/mutt/tmp/neomutt*" . mail-mode)) auto-mode-alist))
 ;; enable hl-line-mode for prog-mode
 ;; (add-hook 'prog-mode-hook 'hl-line-mode)
 ;;-----------------------------------------------------------------------------------------
@@ -152,7 +154,7 @@
   (define-key ivy-minibuffer-map (kbd "S-TAB") 'ivy-previous-line)
   (define-key ivy-minibuffer-map (kbd "<backtab>") 'ivy-previous-line)
   (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "C-RET") 'ivy-immediate-done)
+  (define-key ivy-minibuffer-map (kbd "<S-return>") 'ivy-immediate-done)
   (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
   )
 ;; (use-package spacemacs-theme :ensure t

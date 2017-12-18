@@ -88,7 +88,7 @@ case "$extension" in
     odt|ods|odp|sxw)
         try odt2txt "$path" && { dump | trim; exit 5; } || exit 1;;
     # DOCX Files
-    doc|docx)
+    docx)
         try docx2txt < "$path" && { dump | trim; exit 5; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml)
