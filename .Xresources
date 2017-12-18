@@ -65,8 +65,14 @@ URxvt.font: xft:xos4 Terminess Powerline:antialias=false:style=Bold:size=12,xft:
 !! yeah transparency!
 URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0200/c800
-URxvt.geometry: 130x37+10+10
+URxvt.geometry: 150x45+10+10
 !! swap ctrl and super for mac experience
+URxvt.keysym.Mod4-question:         \177
+URxvt.keysym.Mod4-underscore:         \037
+URxvt.keysym.Mod4-sciicircum:         \036
+URxvt.keysym.Mod4-bracketright:          \035
+URxvt.keysym.Mod4-backslash:         \034
+URxvt.keysym.Mod4-bracketleft:         \033
 URxvt.keysym.Mod4-z:         \032
 URxvt.keysym.Mod4-y:         \031
 URxvt.keysym.Mod4-x:         \030
@@ -93,6 +99,7 @@ URxvt.keysym.Mod4-d:         \004
 URxvt.keysym.Mod4-c:         \003
 URxvt.keysym.Mod4-b:         \002
 URxvt.keysym.Mod4-a:         \001
+URxvt.keysym.Mod4-at:         \000
 
 !perl-exts
 URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,font-size

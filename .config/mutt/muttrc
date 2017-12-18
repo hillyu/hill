@@ -60,6 +60,7 @@ set tmpdir="~/.config/mutt/tmp"
 set pager_stop="yes"
 set smart_wrap="yes"
 # alternative_order text/plain
+set text_flowed = yes
 auto_view text/html
 auto_view application/pdf
 alternative_order text/plain text/enriched text/html
@@ -68,7 +69,7 @@ set reverse_realname=yes
 
 # Text editor
 #set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
-set editor="emacsclient -t"
+set editor="emacsclient -a \"\" -t"
 set sort_alias=alias
 set reverse_alias=yes
 set alias_file="~/.config/mutt/aliases.txt"
@@ -115,5 +116,5 @@ color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 
 # For better looks
-#set markers=no # don't put '+' at the beginning of wrapped lines
+set markers=no # don't put '+' at the beginning of wrapped lines
 #set pager_index_lines= 5 # how large is the index window?
