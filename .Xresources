@@ -59,6 +59,7 @@
 ! URxvt.font: xft:Dejavu Sans Mono:pixelsize=14,xft:WenquanYi Micro Hei Mono Light:pixelsize=14,xft:Pomodoro:size=14
 ! URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=15,xft:WenQuanYi Micro Hei Mono Light:pixelsize=15
 URxvt.font: xft:xos4 Terminess Powerline:antialias=false:style=Bold:size=12,xft:WenQuanYi WenQuanYi Bitmap Song:antialias=false:size=10
+emacs.font: xos4 Terminess Powerline-12:bold
 ! URxvt.letterSpace: -2
 ! URxvt.lineSpace: -1
 

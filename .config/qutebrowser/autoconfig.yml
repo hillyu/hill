@@ -3,6 +3,10 @@
 
 config_version: 1
 global:
+  aliases:
+    q: quit
+    w: session-save
+    wq: quit --save
   backend: webengine
   fonts.completion.category: bold 8pt monospace
   fonts.completion.entry: 8pt monospace
