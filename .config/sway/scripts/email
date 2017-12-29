@@ -107,11 +107,13 @@ def block_event():
         event = '0'
     if event == '1':
         NULL = open(os.devnull, 'w')
-        subprocess.Popen(['urxvtc -name neomutt -e neomutt'], shell=True, stdout=NULL)
+        subprocess.Popen(['urxvt -name neomutt -e neomutt'], shell=True, stdout=NULL)
+        # subprocess.Popen(['neomutt'], shell=True, stdout=NULL)
     if event == '3':
         NULL = open(os.devnull, 'w')
         # subprocess.Popen(['xdg-open', config['URL']], stdout=NULL)
-        subprocess.Popen(['urxvtc -name neomutt -e neomutt'], shell=True, stdout=NULL)
+        subprocess.Popen(['neomutt'], shell=True, stdout=NULL)
+        subprocess.Popen(['urxvt -name neomutt -e neomutt'], shell=True, stdout=NULL)
 
 def serf():
     box = imaplib.IMAP4_SSL(host=config['HOST'], port=config['PORT'])

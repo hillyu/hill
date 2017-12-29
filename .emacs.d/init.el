@@ -41,10 +41,13 @@
  tab-width 4)
 
 ;; UTF-8 please!
+(setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-
+(when (display-graphic-p)
+   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 ;; Don't clobber things in the system clipboard when killing
 (setq save-interprogram-paste-before-kill t)
 
@@ -94,45 +97,46 @@
 
 ;; load solarized in terminal mode
   ;; last t is for NO-ENABLE
-(load-theme 'solarized t t)
-;; (load-theme 'solarized t)
+;; (load-theme 'solarized t t)
+(load-theme 'solarized t)
+(set-terminal-parameter nil 'background-mode 'dark)
+(set-frame-parameter nil 'background-mode 'dark)
+(setq frame-background-mode 'dark)
 ;; (load-theme 'doom-peacock t t)
 ;; (load-theme 'spacemacs-light t t)
-(add-hook 'after-make-frame-functions
-  ;(select-frame frame)
-          (lambda(frame)
-            (if (window-system frame)
-                (progn
-                  ;; (disable-theme 'solarized) ; in case it was active
-                  (set-terminal-parameter frame 'background-mode 'light)
-                  (set-frame-parameter frame 'background-mode 'light)
-                  (setq frame-background-mode 'light)
-                  (frame-set-background-mode frame)
-                  (enable-theme 'solarized)
-                  )
-              (progn
-                (disable-theme 'solarized) ; in case it was active
-                (set-terminal-parameter frame 'background-mode 'dark)
-                (set-frame-parameter frame 'background-mode 'dark)
-                (setq frame-background-mode 'dark)
-                (frame-set-background-mode frame)
-                (enable-theme 'solarized)
-            ))))
+;; (add-hook 'after-make-frame-functions
+;;           (lambda(frame)
+;;             (if (window-system frame)
+;;                 (progn
+;;                   (set-terminal-parameter frame 'background-mode 'light)
+;;                   (set-frame-parameter frame 'background-mode 'light)
+;;                   (setq frame-background-mode 'light)
+;;                   (frame-set-background-mode frame)
+;;                   (enable-theme 'solarized)
+;;                   )
+;;               (progn
+;;                 (disable-theme 'solarized) ; in case it was active
+;;                 (set-terminal-parameter frame 'background-mode 'dark)
+;;                 (set-frame-parameter frame 'background-mode 'dark)
+;;                 (setq frame-background-mode 'dark)
+;;                 (frame-set-background-mode frame)
+;;                 (enable-theme 'solarized)
+;;             ))))
 
-;; For when started with emacs or emacs -nw rather than emacs --daemon
-(if window-system
-  (progn
-    (set-terminal-parameter nil 'background-mode 'light)
-    (set-frame-parameter nil 'background-mode 'light)
-    (setq frame-background-mode 'light)
-    (enable-theme 'solarized)
-    )
-  (progn
-    (set-terminal-parameter nil 'background-mode 'dark)
-    (set-frame-parameter nil 'background-mode 'dark)
-    (setq frame-background-mode 'dark)
-    (enable-theme 'solarized)
-    ))
+;; ;; For when started with emacs or emacs -nw rather than emacs --daemon
+;; (if window-system
+;;   (progn
+;;     (set-terminal-parameter nil 'background-mode 'light)
+;;     (set-frame-parameter nil 'background-mode 'light)
+;;     (setq frame-background-mode 'light)
+;;     (enable-theme 'solarized)
+;;     )
+;;   (progn
+;;     (set-terminal-parameter nil 'background-mode 'dark)
+;;     (set-frame-parameter nil 'background-mode 'dark)
+;;     (setq frame-background-mode 'dark)
+;;     (enable-theme 'solarized)
+;;     ))
 ;;------------------------------------------------------------------------------------------
 ;; End of General Settings
 ;;------------------------------------------------------------------------------------------
@@ -207,57 +211,6 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   )
 (use-package ein :ensure t
-  :config
-  ;;load theme for better visual aid in ein notebook
-  ;; (when (display-graphic-p)
-    ;; (load-theme 'doom-peacock))
-
-  (evil-leader/set-key-for-mode 'ein:notebook-multilang-mode
-    ;; evil ein
-    "SPC" 'ein:worksheet-execute-cell-and-goto-next
-    "xc" 'ein:worksheet-execute-cell
-    "xa" 'ein:worksheet-execute-all-cell
-    "l" 'ein:worksheet-clear-output
-    ;;"sl" 'ein:worksheet-clear-all-output
-    "d" 'ein:worksheet-kill-cell
-    "a" 'ein:worksheet-insert-cell-above
-    "b" 'ein:worksheet-insert-cell-below
-    "tc" 'ein:worksheet-toggle-cell-type
-    "ts" 'ein:worksheet-toggle-slide-type
-    "u" 'ein:worksheet-change-cell-type
-    ;;"s" 'ein:worksheet-merge-cell
-    "<up>" 'ein:worksheet-move-cell-up
-    "<down>" 'ein:worksheet-move-cell-down
-    "f" 'ein:pytools-request-tooltip-or-help
-    "i" 'ein:completer-complete
-    "r" 'ein:notebook-restart-kernel-command
-    "z" 'ein:notebook-kernel-interrupt-command
-    "q" 'ein:notebook-kill-kernel-then-close-command
-    "#" 'ein:notebook-close
-    "y" 'ein:worksheet-copy-cell
-    "p" 'ein:worksheet-yank-cell
-    "j" 'ein:worksheet-goto-next-input
-    "k" 'ein:worksheet-goto-prev-input
-    )
-  ;; keybindings for ipython notebook traceback mode
-  (evil-leader/set-key-for-mode 'ein:traceback-mode
-    "RET" 'ein:tb-jump-to-source-at-point-command
-    "n" 'ein:tb-next-item
-    "p" 'ein:tb-prev-item
-    "q" 'bury-buffer
-    )
-  ;; keybindings mirror ipython web interface behavior
-  (evil-define-key 'insert ein:notebook-multilang-mode-map
-    (kbd "<C-return>") 'ein:worksheet-execute-cell
-    (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next)
-
-  (evil-define-key 'normal ein:notebook-multilang-mode-map
-    ;; keybindings mirror ipython web interface behavior
-    (kbd "<C-return>") 'ein:worksheet-execute-cell
-    (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next
-    "gj" 'ein:worksheet-goto-next-input
-    "gk" 'ein:worksheet-goto-prev-input)
-                                        ;(evil-leader/set-key-for-mode 'ein:connect-mode
   )
 (use-package yaml-mode :ensure t)
 ;; (use-package magit :ensure t)
@@ -275,6 +228,15 @@
 (use-package org
   :ensure t
   :defer t
+  :config
+  (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
+                            (sequence "⚑ WAITING(w)" "|")
+                            (sequence "|" "✘ CANCELED(c)")))
+  )
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   )
 ;;_______________________________________________________
 
@@ -364,4 +326,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ein:cell-input-area ((t (:background "old lace")))))
+ '(ein:cell-input-area ((t (:background "brblack")))))
