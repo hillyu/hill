@@ -97,46 +97,46 @@
 
 ;; load solarized in terminal mode
   ;; last t is for NO-ENABLE
-;; (load-theme 'solarized t t)
-(load-theme 'solarized t)
+(load-theme 'solarized t t)
+;; (load-theme 'solarized t)
 (set-terminal-parameter nil 'background-mode 'dark)
 (set-frame-parameter nil 'background-mode 'dark)
 (setq frame-background-mode 'dark)
 ;; (load-theme 'doom-peacock t t)
 ;; (load-theme 'spacemacs-light t t)
-;; (add-hook 'after-make-frame-functions
-;;           (lambda(frame)
-;;             (if (window-system frame)
-;;                 (progn
-;;                   (set-terminal-parameter frame 'background-mode 'light)
-;;                   (set-frame-parameter frame 'background-mode 'light)
-;;                   (setq frame-background-mode 'light)
-;;                   (frame-set-background-mode frame)
-;;                   (enable-theme 'solarized)
-;;                   )
-;;               (progn
-;;                 (disable-theme 'solarized) ; in case it was active
-;;                 (set-terminal-parameter frame 'background-mode 'dark)
-;;                 (set-frame-parameter frame 'background-mode 'dark)
-;;                 (setq frame-background-mode 'dark)
-;;                 (frame-set-background-mode frame)
-;;                 (enable-theme 'solarized)
-;;             ))))
+(add-hook 'after-make-frame-functions
+          (lambda(frame)
+            (if (window-system frame)
+                (progn
+                  ;; (set-terminal-parameter frame 'background-mode 'light)
+                  (set-frame-parameter frame 'background-mode 'light)
+                  (setq frame-background-mode 'light)
+                  (frame-set-background-mode frame)
+                  (enable-theme 'solarized)
+                  )
+              (progn
+                ;; (disable-theme 'solarized) ; in case it was active
+                (set-terminal-parameter frame 'background-mode 'dark)
+                ;; (set-frame-parameter frame 'background-mode 'dark)
+                (setq frame-background-mode 'dark)
+                (frame-set-background-mode frame)
+                (enable-theme 'solarized)
+            ))))
 
-;; ;; For when started with emacs or emacs -nw rather than emacs --daemon
-;; (if window-system
-;;   (progn
-;;     (set-terminal-parameter nil 'background-mode 'light)
-;;     (set-frame-parameter nil 'background-mode 'light)
-;;     (setq frame-background-mode 'light)
-;;     (enable-theme 'solarized)
-;;     )
-;;   (progn
-;;     (set-terminal-parameter nil 'background-mode 'dark)
-;;     (set-frame-parameter nil 'background-mode 'dark)
-;;     (setq frame-background-mode 'dark)
-;;     (enable-theme 'solarized)
-;;     ))
+;; For when started with emacs or emacs -nw rather than emacs --daemon
+(if window-system
+  (progn
+    (set-terminal-parameter nil 'background-mode 'light)
+    (set-frame-parameter nil 'background-mode 'light)
+    (setq frame-background-mode 'light)
+    (enable-theme 'solarized)
+    )
+  (progn
+    (set-terminal-parameter nil 'background-mode 'dark)
+    (set-frame-parameter nil 'background-mode 'dark)
+    (setq frame-background-mode 'dark)
+    (enable-theme 'solarized)
+    ))
 ;;------------------------------------------------------------------------------------------
 ;; End of General Settings
 ;;------------------------------------------------------------------------------------------

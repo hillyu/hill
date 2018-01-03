@@ -225,6 +225,7 @@ assign [instance="(?i)ranger"]   $workspace7
 ######## i like my graphic processing tools tabbed
 for_window [class="(?i)gimp*"] layout tabbed
 for_window [class="(?i)inkscape*"] layout tabbed
+for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
 
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
@@ -232,7 +233,7 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
-for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 50
+for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 2, move left 20
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
 ##
