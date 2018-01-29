@@ -64,7 +64,8 @@
 ;;interface settings
 ;;-----------------------------------------------------------------------------------------
 ;;; global interface changes
-
+;; vim like sentence ending
+(setf sentence-end-double-space nil)
 ;; always highlight syntax
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
