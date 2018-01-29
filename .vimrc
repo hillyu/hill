@@ -1,6 +1,6 @@
 "doing the pathogenTrick
 "call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()
+"cal pathogen#helptags()
 "using vundle instead of pathogen
 set nocompatible              " required
 filetype off                  " required
@@ -211,9 +211,16 @@ set cursorline
 "set laststatus=2
 "set t_Co=256
 colorscheme solarized
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='simple'
+let g:airline_powerline_fonts =1
+let g:airline_symbols.linenr = 'Ξ'
+
 set background=dark
+hi SpellBad cterm=underline
 "set tags+=~/.vim/tags/gcc
 set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags,~/.vim/tags/std,~/.vim/tags/inet,~/.vim/tags/omnet
 "let g:easytags_dynamic_files = 1
@@ -375,3 +382,4 @@ let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
+
