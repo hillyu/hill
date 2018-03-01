@@ -46,6 +46,8 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" set directory for swp files //fixed a bug of E303 Error
+set directory=.,$TEMP
 "from dereks vimrc
 "Why is this not a default
 set hidden
