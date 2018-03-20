@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=卸载 阴阳师
+Exec=env WINEPREFIX="/home/hill/.wine" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/hill/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/阴阳师/卸载\\ 阴阳师.lnk
+Type=Application
+StartupNotify=true
+Path=/home/hill/.wine/dosdevices/c:/Program Files (x86)/Onmyoji
+Icon=BC02_unins000.0
+StartupWMClass=unins000.exe

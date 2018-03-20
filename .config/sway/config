@@ -194,10 +194,14 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
  #workspace default monitors
  workspace $workspace10 output eDP-1
  workspace $workspace1 output HDMI-A-2
+ workspace $workspace2 output DP-1
  workspace $workspace3 output HDMI-A-2
  workspace $workspace4 output eDP-1
  workspace $workspace5 output HDMI-A-2
- workspace $workspace6 output HDMI-A-2
+ workspace $workspace6 output DP-1
+ workspace $workspace7 output HDMI-A-2
+ workspace $workspace8 output DP-1
+ workspace $workspace9 output DP-1
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.

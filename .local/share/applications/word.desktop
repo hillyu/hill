@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=word
+GenericName=Microsoft Word
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app="https://office.live.com/start/Word.aspx?auth=2&nf=1"
+StartupNotify=false
+Icon=chrome-fahmaaghhglfmonjliepjlchgpgfmobi-Default

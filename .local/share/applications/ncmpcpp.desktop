@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=ncmpcpp
+Type=Application
+Comment=ncurse mpd client
+Terminal=true
+Exec=urxvtc -name ncmpcpp -e ncmpcpp

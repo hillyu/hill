@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=ranger
+Comment=Launches the ranger file manager
+Icon=utilities-terminal
+Terminal=true
+Exec=urxvtc -name ranger -e /usr/bin/ranger --selectfile %f
+#Exec=ranger
+Categories=ConsoleOnly;System;FileTools;FileManager
+MimeType=inode/directory;

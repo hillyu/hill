@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=neomutt
+Comment=Mail Client in Terminal
+Icon=utilities-terminal
+Terminal=true
+Exec=urxvtc -name neomutt -e neomutt
+#Exec=ranger
+Categories=ConsoleOnly;System;FileTools;FileManager
+MimeType=inode/directory;
