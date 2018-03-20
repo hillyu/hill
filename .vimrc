@@ -123,6 +123,7 @@ else
     let g:main_font = "Monospace\\ 9"
     let g:small_font = "Monospace\\ 2"
 endif
+set spell spelllang=en_us
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
 "-----------------------------------------------------------------------------
