@@ -208,8 +208,8 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
 assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
 assign [class="(?i)qutebrowser"]   $workspace1
 #assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
-for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
-for_window [title="(?i)paper"]   move scratchpad
+#for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
+#for_window [title="(?i)paper"]   move scratchpad
 assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
 assign [title="(?i)officemail"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
@@ -224,13 +224,16 @@ assign [class="(?i)gimp*"]   $workspace8
 assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
 assign [instance="(?i)ranger"]   $workspace7
+assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
+assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
+assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9
 # for_window [title="GIMP Startup"]  move workspace $workspace7
 ## enable tabbed layout on certain window
 ######## i like my graphic processing tools tabbed
 for_window [class="(?i)gimp*"] layout tabbed
 for_window [class="(?i)inkscape*"] layout tabbed
-for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
+#for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
 
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
