@@ -25,7 +25,8 @@ export GTK_CSD=0
    export EDITOR='vim'
  else
    export ALTERNATE_EDITOR=""
-   export EDITOR="emacsclient -c -a emacs"
+   #export EDITOR="emacsclient -c -a emacs"
+   export EDITOR="vim"
    export VISUAL="emacsclient -c -a emacs"
  fi
 # hack to skip wayland check on qute browser, it actually supports wayland(not wayland-egl) backend
