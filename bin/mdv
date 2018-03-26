@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -n "$1" ]
+then 
+    pandoc $1 > /tmp/pdtmp.html && qutebrowser /tmp/pdtmp.html
+else
+    echo "please set input file"
+fi

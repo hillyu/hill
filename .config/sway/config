@@ -227,6 +227,7 @@ assign [instance="(?i)ranger"]   $workspace7
 assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
+assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9
 # for_window [title="GIMP Startup"]  move workspace $workspace7
 ## enable tabbed layout on certain window
