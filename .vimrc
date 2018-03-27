@@ -45,6 +45,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
 
+" You complete me blacklist clear:
+let g:ycm_filetype_blacklist = {}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " set directory for swp files //fixed a bug of E303 Error
