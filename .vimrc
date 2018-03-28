@@ -322,7 +322,7 @@ let Tlist_Close_On_Select = 1
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
 " (via http://stackoverflow.com/a/22253548/1626737)
 let g:SuperTabDefaultCompletionType    = '<C-n>'
-let g:SuperTabCrMapping                = 0
+"let g:SuperTabCrMapping                = 0
 let g:UltiSnipsExpandTrigger           = '<cr>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
