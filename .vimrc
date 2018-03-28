@@ -44,12 +44,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
-Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " You complete me blacklist clear:
-let g:ycm_filetype_blacklist = {}
+"let g:ycm_filetype_blacklist = {}
 " set directory for swp files //fixed a bug of E303 Error
 set directory=.,$TEMP
 "from dereks vimrc
@@ -321,9 +320,7 @@ let Tlist_Close_On_Select = 1
 "####################################################################################################
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
 " (via http://stackoverflow.com/a/22253548/1626737)
-let g:SuperTabDefaultCompletionType    = '<C-n>'
-"let g:SuperTabCrMapping                = 0
-let g:UltiSnipsExpandTrigger           = '<cr>'
+let g:UltiSnipsExpandTrigger           = '<nop>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 "let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -342,7 +339,17 @@ function ExpandSnippetOrCarriageReturn()
         return "\<CR>"
     endif
 endfunction
+function ExpandSnippetOrTab()
+    let snippet = UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res > 0
+        return snippet
+    else
+        return "\<tab>"
+    endif
+endfunction
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
+inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>" 
+inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>" 
 "let g:UltiSnipsExpandTrigger="<CR>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            html indentation                             "
