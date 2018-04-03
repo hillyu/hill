@@ -48,7 +48,7 @@ Plugin 'tpope/vim-surround'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " You complete me blacklist clear:
-"let g:ycm_filetype_blacklist = {}
+let g:ycm_filetype_blacklist = {}
 " set directory for swp files //fixed a bug of E303 Error
 set directory=.,$TEMP
 "from dereks vimrc
