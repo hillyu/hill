@@ -3,7 +3,7 @@ text/html; qutebrowser %s; nametemplate=%s.html; needsterminal
 text/html; elinks -dump-width 72 -dump %s; copiousoutput
 # text/html; iconv -f %{charset} -t utf-8 %s | pandoc --wrap=none --reference-links -f html -t plain; copiousoutput
 # text/html; w3m -v -F -T text/html %s; nametemplate=%s.html; copiousoutput;
-application/pdf; mv %s %s.pdf && mupdf %s.pdf > /dev/null; needsterminal;
+#application/pdf; mv %s %s.pdf && zathura %s.pdf > /dev/null; needsterminal;
 
 image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
 
