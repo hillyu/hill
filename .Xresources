@@ -70,7 +70,8 @@ URxvt.geometry: 150x45+10+10
 !! swap ctrl and super for mac experience
 URxvt.keysym.Mod4-question:         \177
 URxvt.keysym.Mod4-underscore:         \037
-URxvt.keysym.Mod4-sciicircum:         \036
+!URxvt.keysym.Mod4-asciicircum:         \036
+URxvt.keysym.Mod4-6:         \036
 URxvt.keysym.Mod4-bracketright:          \035
 URxvt.keysym.Mod4-backslash:         \034
 URxvt.keysym.Mod4-bracketleft:         \033
@@ -132,3 +133,6 @@ URxvt.keysym.C-equal: perl:font-size:increase
 ! and because anti-aliased fonts support any size, it makes sense to just use a
 ! size step of 4 for faster transitions between font size changes.
 URxvt.font-size.step: 1
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
