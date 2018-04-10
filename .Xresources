@@ -70,7 +70,8 @@ URxvt.geometry: 150x45+10+10
 !! swap ctrl and super for mac experience
 URxvt.keysym.Mod4-question:         \177
 URxvt.keysym.Mod4-underscore:         \037
-URxvt.keysym.Mod4-sciicircum:         \036
+!URxvt.keysym.Mod4-asciicircum:         \036
+URxvt.keysym.Mod4-6:         \036
 URxvt.keysym.Mod4-bracketright:          \035
 URxvt.keysym.Mod4-backslash:         \034
 URxvt.keysym.Mod4-bracketleft:         \033
