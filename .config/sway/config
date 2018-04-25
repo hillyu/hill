@@ -243,6 +243,8 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
 for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 2, move left 20
+for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable, move down 2, move left 20
+for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
 ##
