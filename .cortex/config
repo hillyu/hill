@@ -1,0 +1,11 @@
+[config]
+browser-background=0
+frontpage=https://www.reddit.com/.json?feed=9b0f86ffe4dce26268cc90e6859abf7b6579572b&user=hilltruange
+
+[color]
+title=red,black
+entry-selected=black,white
+entry-bottom-selected=brightyellow,black
+entry-data-selected=brightyellow,black
+entry-bottom-data-selected=brightyellow,black
+
