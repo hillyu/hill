@@ -85,9 +85,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#export GDK_BACKEND=wayland
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  exec sway
+  exec startx
 fi
 alias vi="vim"
 #alias vi="emacsclient -t"

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Pass the password in the block instance
+if [[ -n $BLOCK_INSTANCE ]]; then
+    password=("-h" "$BLOCK_INSTANCE@localhost")
+fi
+
+filter() {
+    # echo -n "<span font='FontAwesome'></span> -"
+    echo -n " -"
+    tr '\n' ' ' | grep -Po '.*(?= \[playing\])|paused'|sed 's/paused//g' | tr -d '\n'
+    #echo -n ''
+}
+
+case $BLOCK_BUTTON in
+    1) mpc $passwrod status | filter && urxvtc -name ncmpcpp -e ncmpcpp & disown ;;
+    3) mpc $password toggle | filter ;;  # right click, pause/unpause
+    4) mpc $password prev   | filter ;;  # scroll up, previous
+    5) mpc $password next   | filter ;;  # scroll down, next
+    *) mpc $password status | filter ;;
+esac
