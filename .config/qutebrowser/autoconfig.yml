@@ -29,16 +29,37 @@ settings:
     global: 8pt monospace
   fonts.debug_console:
     global: 8pt monospace
+  fonts.hints:
+    global: bold 10pt monospace
   fonts.monospace:
     global: '"xos4 Terminess Powerline", Terminus, Monospace, "DejaVu Sans Mono",
       Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation
       Mono", monospace, Fixed, Consolas, Terminal'
   fonts.statusbar:
     global: 9pt monospace
+  fonts.web.family.cursive:
+    global: z003
+  fonts.web.family.fantasy:
+    global: z003
+  fonts.web.family.fixed:
+    global: monospace
+  fonts.web.family.sans_serif:
+    global: sans
+  fonts.web.family.serif:
+    global: serif
+  fonts.web.family.standard:
+    global: Noto Serif
+  hints.prev_regexes:
+    global:
+    - \bprev(ious)?\b
+    - \bback\b
+    - \bolder\b
+    - \b[<←≪]\b
+    - \b(<<|«)\b
   new_instance_open_target:
     global: window
   qt.force_platform:
-    global: xcb
+    global: null
   session.default_name:
     global: null
   tabs.tabs_are_windows:

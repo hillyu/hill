@@ -1,17 +1,16 @@
 # User configuration
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export GDK_BACKEND=wayland
-export CLUTTER_BACKEND=wayland
-export QT_QPA_PLATFORM=wayland
+#export GDK_BACKEND=wayland
+#export CLUTTER_BACKEND=wayland
+#export QT_QPA_PLATFORM=wayland
 #export QT_QPA_PLATFORM=wayland-egl
-export QT_DISABLE_WINDOWDECORATION=1
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+#export QT_DISABLE_WINDOWDECORATION=1
+#export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-export ECORE_EVAS_ENGINE=wayland_egl
-export ELM_ENGINE=wayland_egl
-export SDL_VIDEODRIVER=wayland
-export SDL_VIDEODRIVER=wayland
-export PATH=~/bin:$PATH
+#export ECORE_EVAS_ENGINE=wayland_egl
+#export ELM_ENGINE=wayland_egl
+#export SDL_VIDEODRIVER=wayland
+export PATH=~/.local/bin:~/bin:$PATH
 export GTK_CSD=0
 #export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0
 
