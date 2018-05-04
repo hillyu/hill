@@ -32,9 +32,9 @@ settings:
   fonts.hints:
     global: bold 10pt monospace
   fonts.monospace:
-    global: '"xos4 Terminess Powerline", Terminus, Monospace, "DejaVu Sans Mono",
-      Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation
-      Mono", monospace, Fixed, Consolas, Terminal'
+    global: '"xos4 Terminess Powerline", WenQuanYi WenQuanYi Bitmap Song, Terminus,
+      Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono",
+      "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
   fonts.statusbar:
     global: 9pt monospace
   fonts.web.family.cursive:
