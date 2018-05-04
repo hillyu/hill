@@ -11,10 +11,14 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 #export ELM_ENGINE=wayland_egl
 #export SDL_VIDEODRIVER=wayland
 export PATH=~/.local/bin:~/bin:$PATH
+#set qt theme font to stay consistent with gtk
+export QT_STYLE_OVERRIDE=GTK+
 export GTK_CSD=0
 #export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0
 
 # export MANPATH="/usr/local/man:$MANPATH"
+# # pager set to vim
+export PAGER=/bin/sh\ -c\ \"unset\ PAGER\;col\ -b\ -x\ \|\ vim\ -c\ \'set\ ft=man\ nomod\ nolist\'\ -\"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

@@ -1,16 +1,21 @@
+# i3 config file (v4)
+#
 #Auto start services
-exec fcitx
-#exec QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
-exec xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
+exec --no-startup-id nice -10 fcitx
+exec --no-startup-id wpa_gui -t
+exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
+exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
-exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
-exec udiskie  --no-notify
+#exec --no-startup-id LC_CTYPE=zh_CN.UTF-8 emacs --daemon
+exec --no-startup-id udiskie  --no-notify
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 # exec nice -12 slack
 # exec google-chrome-stable --app="https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
+exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
+exec --no-startup-id compton --xrender-sync-fence
 
 # Default config for sway
 # output eDP-1 res 1366x768 pos 1920,180
@@ -20,8 +25,8 @@ exec udiskie  --no-notify
 # output DP-1 resolution 1024x768 position 3286,0
 #output DP-1 resolution 1920x1080 position 3286,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-#exec xrandr --output HDMI-2 --auto  --right-of eDP-1
-#exec xrandr --output DP-1 --auto  --right-of HDMI-2
+#exec --no-startup-id xrandr --output HDMI-2 --auto  --right-of eDP-1 --output DP-1 --auto  --right-of HDMI-2
+
 
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -65,7 +70,7 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+space exec "j4-dmenu-desktop --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
+bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -302,6 +307,21 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output DP-1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI-2 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
 #also use upper row for shrink
 bindsym $mod+y resize shrink width 10 px or 10 ppt
 bindsym $mod+u resize grow height 10 px or 10 ppt
@@ -321,7 +341,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 bar {
     #output HDMI-2
     #output eDP-1
-    status_command i3blocks -c /home/hill/.config/i3/i3blocks.conf
+    height 22
+    status_command i3blocks  -c /home/hill/.config/i3/i3blocks.conf
     position top
     colors {
         background $bg-color
@@ -341,7 +362,7 @@ bindsym XF86AudioLowerVolume exec "amixer -D default -q set $(amixer -D default 
 bindsym XF86AudioMute exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
 # bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioMicMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
-bindsym XF86Display reload
+bindsym XF86Display mode "$mode_display"
 bindsym XF86Tools reload
 #bindsym XF86Search output eDP-1 scale 1
 bindsym XF86LaunchA gaps inner current minus 4
@@ -349,9 +370,14 @@ bindsym XF86Explorer gaps inner current plus  4
 # output eDP-1 res 1366x768 pos 1920,180
 # focus always on new opend window
 focus_on_window_activation focus
+for_window [urgent=latest] focus
 
 #gaps 5
+workspace $workspace9 gaps inner 10
+workspace $workspace9 gaps outer 22
 default_border pixel
+# disable even the pixel border when there is only one container on tcurrent workspace.
+smart_borders on
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
 #smart_gaps on
 floating_maximum_size -1 x -1
@@ -361,5 +387,3 @@ floating_maximum_size -1 x -1
 workspace_auto_back_and_forth yes
 #exec i3-msg workspace $workspace1
 #include /etc/sway/config.d/*
-exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
-exec --no-startup-id compton --xrender-sync-fence
