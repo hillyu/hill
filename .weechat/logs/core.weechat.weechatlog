@@ -1,0 +1,219 @@
+2018-05-07 20:38:48		New key binding (context "default"): meta-meta-OQ => /bar scroll buflist * e
+2018-05-07 20:38:48		New key binding (context "default"): meta-meta-OP => /bar scroll buflist * b
+2018-05-07 20:38:48		New key binding (context "default"): meta-OQ => /bar scroll buflist * +100%
+2018-05-07 20:38:48		New key binding (context "default"): meta-OP => /bar scroll buflist * -100%
+2018-05-07 20:38:49		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-07 20:38:58	=!=	You can not write text in this buffer
+2018-05-07 20:38:59	=!=	You can not write text in this buffer
+2018-05-07 20:39:10	=!=	You can not write text in this buffer
+2018-05-07 20:39:24	=!=	You can not write text in this buffer
+2018-05-07 20:39:31		[core]
+2018-05-07 20:39:31		  away     debug    key      proxy    set      window 
+2018-05-07 20:39:31		  bar      eval     layout   quit     unset  
+2018-05-07 20:39:31		  buffer   filter   mouse    reload   upgrade
+2018-05-07 20:39:31		  color    help     mute     repeat   uptime 
+2018-05-07 20:39:31		  command  history  plugin   save     version
+2018-05-07 20:39:31		  cursor   input    print    secure   wait   
+2018-05-07 20:39:31		[perl]
+2018-05-07 20:39:31		  perl
+2018-05-07 20:39:31		[fifo]
+2018-05-07 20:39:31		  fifo
+2018-05-07 20:39:31		[relay]
+2018-05-07 20:39:31		  relay
+2018-05-07 20:39:31		[python]
+2018-05-07 20:39:31		  python
+2018-05-07 20:39:31		[lua]
+2018-05-07 20:39:31		  lua
+2018-05-07 20:39:31		[irc]
+2018-05-07 20:39:31		  admin       ison        part        squit     
+2018-05-07 20:39:31		  allchan     join        ping        stats     
+2018-05-07 20:39:31		  allpv       kick        pong        summon    
+2018-05-07 20:39:31		  allserv     kickban     query       time      
+2018-05-07 20:39:31		  ban         kill        quiet       topic     
+2018-05-07 20:39:31		  cap         links       quote       trace     
+2018-05-07 20:39:31		  connect     list        reconnect   unban     
+2018-05-07 20:39:31		  ctcp        lusers      rehash      unquiet   
+2018-05-07 20:39:31		  cycle       map         remove      userhost  
+2018-05-07 20:39:31		  dcc         me          restart     users     
+2018-05-07 20:39:31		  dehalfop    mode        sajoin      version   
+2018-05-07 20:39:31		  deop        motd        samode      voice     
+2018-05-07 20:39:31		  devoice     msg         sanick      wallchops 
+2018-05-07 20:39:31		  die         names       sapart      wallops   
+2018-05-07 20:39:31		  disconnect  nick        saquit      who       
+2018-05-07 20:39:31		  halfop      notice      server      whois     
+2018-05-07 20:39:31		  ignore      notify      service     whowas    
+2018-05-07 20:39:31		  info        op          servlist  
+2018-05-07 20:39:31		  invite      oper        squery    
+2018-05-07 20:39:31		[alias]
+2018-05-07 20:39:31		  AAWAY    BYE      IG       MSGBUF   SIGNOFF  WC     
+2018-05-07 20:39:31		  alias    C        J        MUB      T        WI     
+2018-05-07 20:39:31		  AME      CHAT     K        N        UB       WII    
+2018-05-07 20:39:31		  AMSG     CL       KB       Q        UMODE    WW     
+2018-05-07 20:39:31		  ANICK    CLOSE    LEAVE    REDRAW   V      
+2018-05-07 20:39:31		  BEEP     EXIT     M        SAY      W      
+2018-05-07 20:39:31		[trigger]
+2018-05-07 20:39:31		  trigger
+2018-05-07 20:39:31		[guile]
+2018-05-07 20:39:31		  guile
+2018-05-07 20:39:31		[ruby]
+2018-05-07 20:39:31		  ruby
+2018-05-07 20:39:31		[logger]
+2018-05-07 20:39:31		  logger
+2018-05-07 20:39:31		[script]
+2018-05-07 20:39:31		  script
+2018-05-07 20:39:31		[tcl]
+2018-05-07 20:39:31		  tcl
+2018-05-07 20:39:31		[xfer]
+2018-05-07 20:39:31		  me  xfer
+2018-05-07 20:39:31		[exec]
+2018-05-07 20:39:31		  exec
+2018-05-07 20:39:31		[aspell]
+2018-05-07 20:39:31		  aspell
+2018-05-07 20:39:31		[charset]
+2018-05-07 20:39:31		  charset
+2018-05-07 20:39:31		[buflist]
+2018-05-07 20:39:31		  buflist
+2018-05-07 20:39:59	=!=	You can not write text in this buffer
+2018-05-07 20:40:05	=!=	You can not write text in this buffer
+2018-05-07 20:40:06	=!=	You can not write text in this buffer
+2018-05-07 20:40:07	=!=	You can not write text in this buffer
+2018-05-07 20:40:09	=!=	You can not write text in this buffer
+2018-05-07 20:40:11	=!=	You can not write text in this buffer
+2018-05-07 20:40:13	=!=	You can not write text in this buffer
+2018-05-07 20:40:17	=!=	You can not write text in this buffer
+2018-05-07 20:40:19	=!=	You can not write text in this buffer
+2018-05-07 20:48:24		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-07 20:49:44		Option changed: weechat.bar.status.color_bg = 0  (default: blue)
+2018-05-07 20:49:51		Option changed: weechat.bar.title.color_bg = 0  (default: blue)
+2018-05-07 20:49:59		Option changed: weechat.color.chat_nick_colors = "1,2,3,4,5,6"  (default: "cyan,magenta,green,brown,lightblue,default,lightcyan,lightmagenta,lightgreen,blue")
+2018-05-07 20:50:53		Option changed: buflist.format.hotlist_message = "${color:7}"  (default: "${color:brown}")
+2018-05-07 20:51:00		Option changed: buflist.format.buffer_current = "${color:,7}${format_buffer}"  (default: "${color:,blue}${format_buffer}")
+2018-05-07 20:51:27		Option changed: weechat.bar.buflist.position = top  (default: left)
+2018-05-07 20:51:39		Option changed: weechat.bar.buflist.position = right  (default: left)
+2018-05-07 20:51:45		Option changed: weechat.bar.buflist.position = left
+2018-05-07 20:52:00		Option changed: weechat.color.chat_highlight = 7  (default: yellow)
+2018-05-07 20:52:13		Option changed: weechat.bar.buflist.items = "buflist"  (default: "")
+2018-05-07 20:53:50	=!=	irc: unable to add temporary server "irc.freenode.net" because the addition of temporary servers with command /connect is currently disabled
+2018-05-07 20:53:50	=!=	irc: if you want to add a standard server, use the command "/server add" (see /help server); if you really want to add a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2018-05-07 20:54:11	=!=	Too few arguments for command "/server add" (help on command: /help server)
+2018-05-07 20:54:19	=!=	Too few arguments for command "/server add" (help on command: /help server)
+2018-05-07 20:54:26		[irc]  /server  list|listfull [<server>]
+2018-05-07 20:54:26		                add <server> <hostname>[/<port>] [-temp] [-<option>[=<value>]] [-no<option>]
+2018-05-07 20:54:26		                copy|rename <server> <new_name>
+2018-05-07 20:54:26		                reorder <server> [<server>...]
+2018-05-07 20:54:26		                open <server>|-all [<server>...]
+2018-05-07 20:54:26		                del|keep <server>
+2018-05-07 20:54:26		                deloutq|jump|raw
+2018-05-07 20:54:26		list, add or remove IRC servers
+2018-05-07 20:54:26		    list: list servers (without argument, this list is displayed)
+2018-05-07 20:54:26		listfull: list servers with detailed info for each server
+2018-05-07 20:54:26		     add: add a new server
+2018-05-07 20:54:26		  server: server name, for internal and display use
+2018-05-07 20:54:26		hostname: name or IP address of server, with optional port (default: 6667), many addresses can be separated by a comma
+2018-05-07 20:54:26		   -temp: add a temporary server (not saved)
+2018-05-07 20:54:26		  option: set option for server (for boolean option, value can be omitted)
+2018-05-07 20:54:26		nooption: set boolean option to 'off' (for example: -nossl)
+2018-05-07 20:54:26		    copy: duplicate a server
+2018-05-07 20:54:26		  rename: rename a server
+2018-05-07 20:54:26		 reorder: reorder list of servers
+2018-05-07 20:54:26		    open: open the server buffer without connecting
+2018-05-07 20:54:26		    keep: keep server in config file (for temporary servers only)
+2018-05-07 20:54:26		     del: delete a server
+2018-05-07 20:54:26		 deloutq: delete messages out queue for all servers (all messages WeeChat is currently sending)
+2018-05-07 20:54:26		    jump: jump to server buffer
+2018-05-07 20:54:26		     raw: open buffer with raw IRC data
+2018-05-07 20:54:26		Examples:
+2018-05-07 20:54:26		  /server listfull
+2018-05-07 20:54:26		  /server add freenode chat.freenode.net
+2018-05-07 20:54:26		  /server add freenode chat.freenode.net/6697 -ssl -autoconnect
+2018-05-07 20:54:26		  /server add chatspike irc.chatspike.net/6667,irc.duckspike.net/6667
+2018-05-07 20:54:26		  /server copy freenode freenode-test
+2018-05-07 20:54:26		  /server rename freenode-test freenode2
+2018-05-07 20:54:26		  /server reorder freenode2 freenode
+2018-05-07 20:54:26		  /server del freenode
+2018-05-07 20:54:26		  /server deloutq
+2018-05-07 20:54:42		irc: server freenode added
+2018-05-07 20:55:33	=!=	irc: server "freenode" already exists, can't add it!
+2018-05-07 20:55:42	=!=	Error with command "/server remove freenode" (help on command: /help server)
+2018-05-07 20:55:49		[irc]  /server  list|listfull [<server>]
+2018-05-07 20:55:49		                add <server> <hostname>[/<port>] [-temp] [-<option>[=<value>]] [-no<option>]
+2018-05-07 20:55:49		                copy|rename <server> <new_name>
+2018-05-07 20:55:49		                reorder <server> [<server>...]
+2018-05-07 20:55:49		                open <server>|-all [<server>...]
+2018-05-07 20:55:49		                del|keep <server>
+2018-05-07 20:55:49		                deloutq|jump|raw
+2018-05-07 20:55:49		list, add or remove IRC servers
+2018-05-07 20:55:49		    list: list servers (without argument, this list is displayed)
+2018-05-07 20:55:49		listfull: list servers with detailed info for each server
+2018-05-07 20:55:49		     add: add a new server
+2018-05-07 20:55:49		  server: server name, for internal and display use
+2018-05-07 20:55:49		hostname: name or IP address of server, with optional port (default: 6667), many addresses can be separated by a comma
+2018-05-07 20:55:49		   -temp: add a temporary server (not saved)
+2018-05-07 20:55:49		  option: set option for server (for boolean option, value can be omitted)
+2018-05-07 20:55:49		nooption: set boolean option to 'off' (for example: -nossl)
+2018-05-07 20:55:49		    copy: duplicate a server
+2018-05-07 20:55:49		  rename: rename a server
+2018-05-07 20:55:49		 reorder: reorder list of servers
+2018-05-07 20:55:49		    open: open the server buffer without connecting
+2018-05-07 20:55:49		    keep: keep server in config file (for temporary servers only)
+2018-05-07 20:55:49		     del: delete a server
+2018-05-07 20:55:49		 deloutq: delete messages out queue for all servers (all messages WeeChat is currently sending)
+2018-05-07 20:55:49		    jump: jump to server buffer
+2018-05-07 20:55:49		     raw: open buffer with raw IRC data
+2018-05-07 20:55:49		Examples:
+2018-05-07 20:55:49		  /server listfull
+2018-05-07 20:55:49		  /server add freenode chat.freenode.net
+2018-05-07 20:55:49		  /server add freenode chat.freenode.net/6697 -ssl -autoconnect
+2018-05-07 20:55:49		  /server add chatspike irc.chatspike.net/6667,irc.duckspike.net/6667
+2018-05-07 20:55:49		  /server copy freenode freenode-test
+2018-05-07 20:55:49		  /server rename freenode-test freenode2
+2018-05-07 20:55:49		  /server reorder freenode2 freenode
+2018-05-07 20:55:49		  /server del freenode
+2018-05-07 20:55:49		  /server deloutq
+2018-05-07 20:55:57		irc: server freenode has been deleted
+2018-05-07 20:56:25		irc: server freenode added
+2018-05-07 21:01:05		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-07 21:01:51		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-07 21:02:29		Option changed: weechat.bar.buflist.position = top  (default: left)
+2018-05-07 21:02:36		Option changed: weechat.bar.buflist.items = "buflist"  (default: "")
+2018-05-07 21:07:23		Notify changed for "core.weechat": "all" to "message"
+2018-05-07 21:07:23		Notify changed for "irc.server.freenode": "all" to "message"
+2018-05-07 21:07:23		Notify changed for "irc.freenode.#i3wm": "all" to "message"
+2018-05-07 21:07:23		Notify changed for "irc.freenode.#ubuntu": "all" to "message"
+2018-05-07 21:07:23		Notify changed for "irc.freenode.#archlinux-unregistered": "all" to "message"
+2018-05-07 21:07:23		Notify changed for "irc.freenode.#wayland": "all" to "message"
+2018-05-07 21:07:23		Option changed: weechat.look.buffer_notify_default = message  (default: all)
+2018-05-07 21:07:32		Option changed: irc.look.smart_filter = on
+2018-05-07 21:07:39		Filter "irc_smart" added:
+2018-05-07 21:07:39		  [irc_smart] buffer: * / tags: irc_smart_filter / regex: * 
+2018-05-07 21:07:48		Filter "irc_join_names" added:
+2018-05-07 21:07:48		  [irc_join_names] buffer: * / tags: irc_366,irc_332,irc_333,irc_329,irc_324 / regex: * 
+2018-05-08 10:12:29		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, fset, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-08 10:13:24	=!=	Error with command "/join" (help on command: /help join)
+2018-05-08 10:16:57		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, fset, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-08 10:32:28		script: downloading list of scripts...
+2018-05-08 10:32:34		script: 347 scripts for WeeChat 2.1
+2018-05-08 10:32:38		perl: loading script "/home/hill/.weechat/perl/buffers.pl"
+2018-05-08 10:32:38		perl: registered script "buffers", version 5.6 (Sidebar with list of buffers)
+2018-05-08 10:32:38		New key binding (context "mouse"): @bar(buffers):ctrl-wheeldown => hsignal:buffers_mouse
+2018-05-08 10:32:38		New key binding (context "mouse"): @bar(buffers):ctrl-wheelup => hsignal:buffers_mouse
+2018-05-08 10:32:38		New key binding (context "mouse"): @item(buffers):button2* => hsignal:buffers_mouse
+2018-05-08 10:32:38		New key binding (context "mouse"): @item(buffers):button1* => hsignal:buffers_mouse
+2018-05-08 10:32:38	=!=	buflist: warning: the script buffers.pl is loaded and provides a bar with list of buffers similar to the buflist plugin; you may want to uninstall the script buffers.pl (/script remove buffers.pl) or disable/unload the buflist plugin; see WeeChat release notes for more information
+2018-05-08 10:33:30	=!=	Error with command "/script uninstall bufflist" (help on command: /help script)
+2018-05-08 10:33:42		script: script "bufflist" not found
+2018-05-08 10:33:49		script: script "bufflist.pl" not found
+2018-05-08 10:33:52		script: script "bufflist.py" not found
+2018-05-08 10:34:06		perl: unloading script "buffers"
+2018-05-08 10:34:06		perl: script removed: /home/hill/.weechat/perl/autoload/buffers.pl
+2018-05-08 10:34:06		perl: script removed: /home/hill/.weechat/perl/buffers.pl
+2018-05-08 10:34:26		perl: loading script "/home/hill/.weechat/perl/buffers.pl"
+2018-05-08 10:34:26		perl: registered script "buffers", version 5.6 (Sidebar with list of buffers)
+2018-05-08 10:34:26	=!=	buflist: warning: the script buffers.pl is loaded and provides a bar with list of buffers similar to the buflist plugin; you may want to uninstall the script buffers.pl (/script remove buffers.pl) or disable/unload the buflist plugin; see WeeChat release notes for more information
+2018-05-08 10:34:50	=!=	Error with command "/script disable bufflist" (help on command: /help script)
+2018-05-08 10:35:03		Mouse enabled
+2018-05-08 10:35:31	=!=	Error with command "/script uninstall buffers.pl" (help on command: /help script)
+2018-05-08 10:35:38	=!=	Error with command "/script uninstall buffers.pl" (help on command: /help script)
+2018-05-08 10:35:47		perl: unloading script "buffers"
+2018-05-08 10:35:47		perl: script removed: /home/hill/.weechat/perl/autoload/buffers.pl
+2018-05-08 10:35:47		perl: script removed: /home/hill/.weechat/perl/buffers.pl
