@@ -1,9 +1,12 @@
 #!/bin/bash
 
 
-PRIMARY="eDP-1"
-EXT1="HDMI-2"
-EXT2="DP-1"
+#PRIMARY="eDP-1"
+PRIMARY="eDP1"
+EXT1="HDMI2"
+#EXT1="HDMI-2"
+#EXT2="DP-1"
+EXT2="DP1"
 INFO=$(xrandr)
 
 xrandr --output $PRIMARY --primary --auto

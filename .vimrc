@@ -67,7 +67,7 @@ set wildmenu
 " Add ignorance of whitespace to diff
 set diffopt+=iwhite
 " Add the unnamed register to the clipboard
-set clipboard+=unnamed
+set clipboard=unnamedplus
 " Automatically read a file that has changed on disk
 set autoread
 "-----------------------------------------------------------------------------
@@ -213,7 +213,13 @@ set nocp
 set textwidth=0
 set wrapmargin=0
 set number
+set relativenumber
 set cursorline
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 "set laststatus=2
 "set t_Co=256
 colorscheme solarized
