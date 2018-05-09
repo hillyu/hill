@@ -390,7 +390,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<cr>
 nmap <silent><leader>sv :so $MYVIMRC<cr>
 ":noremap <leader>p ::NERDTreeToggle<CR>
 " build tags of your own project with Ctrl-F12
-map <leader>tt :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"map <leader>tt :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "nmap<leader>ec :e ~/.vim/bundle/EasyColor/colors/desert_thl.txt<CR>
 " If the current buffer has never been saved, it will have no name,
 " " call the file browser to save it, otherwise just save it.
@@ -407,7 +407,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "youcompleteme autocompletion support
 let g:ycm_python_binary_path = 'python'
 let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
 
