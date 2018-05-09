@@ -18,14 +18,14 @@ exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
 exec --no-startup-id compton --xrender-sync-fence
 
 # Default config for sway
-# output eDP-1 res 1366x768 pos 1920,180
-#output eDP-1 res 1366x768 pos 0,0
+# output eDP1 res 1366x768 pos 1920,180
+#output eDP1 res 1366x768 pos 0,0
 #output HDMI-A-2 res 1920x1080 pos 1366,0
 # output HDMI-A-2 res 3840x2160 pos 1366,0
-# output DP-1 resolution 1024x768 position 3286,0
-#output DP-1 resolution 1920x1080 position 3286,0
+# output DP1 resolution 1024x768 position 3286,0
+#output DP1 resolution 1920x1080 position 3286,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-#exec --no-startup-id xrandr --output HDMI-2 --auto  --right-of eDP-1 --output DP-1 --auto  --right-of HDMI-2
+#exec --no-startup-id xrandr --output HDMI2 --auto  --right-of eDP1 --output DP1 --auto  --right-of HDMI2
 
 
 #
@@ -189,16 +189,16 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
      # bindsym $mod+. workspace prev
 
  #workspace default monitors
- workspace $workspace1 output HDMI-2
- workspace $workspace2 output DP-1
- workspace $workspace3 output HDMI-2
- workspace $workspace4 output eDP-1
- workspace $workspace5 output HDMI-2
- workspace $workspace6 output DP-1
- workspace $workspace7 output HDMI-2
- workspace $workspace8 output DP-1
- workspace $workspace9 output DP-1
- workspace $workspace10 output eDP-1
+ workspace $workspace1 output HDMI2
+ workspace $workspace2 output DP1
+ workspace $workspace3 output HDMI2
+ workspace $workspace4 output eDP1
+ workspace $workspace5 output HDMI2
+ workspace $workspace6 output DP1
+ workspace $workspace7 output HDMI2
+ workspace $workspace8 output DP1
+ workspace $workspace9 output DP1
+ workspace $workspace10 output eDP1
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
@@ -311,10 +311,10 @@ bindsym $mod+r mode "resize"
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
 mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output DP-1 --auto --off, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI-2 --auto --off, mode "default"
+    bindsym v exec --no-startup-id xrandr --output DP1 --auto --right-of HDMI2, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output DP1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI2 --auto --off, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -339,8 +339,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    #output HDMI-2
-    #output eDP-1
+    #output HDMI2
+    #output eDP1
     height 22
     status_command i3blocks  -c /home/hill/.config/i3/i3blocks.conf
     position top
@@ -364,10 +364,10 @@ bindsym XF86AudioMute exec "amixer -D default -q set $(amixer -D default scontro
 bindsym XF86AudioMicMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
 bindsym XF86Display mode "$mode_display"
 bindsym XF86Tools reload
-#bindsym XF86Search output eDP-1 scale 1
+#bindsym XF86Search output eDP1 scale 1
 bindsym XF86LaunchA gaps inner current minus 4
 bindsym XF86Explorer gaps inner current plus  4
-# output eDP-1 res 1366x768 pos 1920,180
+# output eDP1 res 1366x768 pos 1920,180
 # focus always on new opend window
 focus_on_window_activation focus
 for_window [urgent=latest] focus

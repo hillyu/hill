@@ -213,7 +213,13 @@ set nocp
 set textwidth=0
 set wrapmargin=0
 set number
+set relativenumber
 set cursorline
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 "set laststatus=2
 "set t_Co=256
 colorscheme solarized
