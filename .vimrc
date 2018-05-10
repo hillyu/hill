@@ -67,7 +67,11 @@ set wildmenu
 " Add ignorance of whitespace to diff
 set diffopt+=iwhite
 " Add the unnamed register to the clipboard
-set clipboard=unnamedplus
+if has("unnamedplus")
+    set clipboard=unnamedplus
+else
+    set clipboard=unnamed
+endif
 " Automatically read a file that has changed on disk
 set autoread
 "-----------------------------------------------------------------------------
