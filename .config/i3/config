@@ -1,21 +1,22 @@
 # i3 config file (v4)
 #
 #Auto start services
+exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
+exec --no-startup-id compton --xrender-sync-fence
 exec --no-startup-id nice -10 fcitx
-exec --no-startup-id wpa_gui -t
 exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
-exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
+exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o 
+exec --no-startup-id udiskie  --no-notify
+#exec --no-startup-id wpa_gui -t
+#exec --no-startup-id urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 #exec --no-startup-id LC_CTYPE=zh_CN.UTF-8 emacs --daemon
-exec --no-startup-id udiskie  --no-notify
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 # exec nice -12 slack
 # exec google-chrome-stable --app="https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
-exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
-exec --no-startup-id compton --xrender-sync-fence
 
 # Default config for sway
 # output eDP1 res 1366x768 pos 1920,180
@@ -70,7 +71,7 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
+bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -222,6 +223,7 @@ assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
 assign [instance="(?i)ranger"]   $workspace7
 assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
+assign [class="(?i)Google-chrome" instance="(?i)kanbanflow.com"]   $workspace6
 assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3

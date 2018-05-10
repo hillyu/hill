@@ -35,8 +35,11 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 echo "$(iw dev ${INTERFACE} link | grep SSID | cut -d " " -f 2-) $QUALITY%" # full text
 echo $QUALITY% # short text
 case $BLOCK_BUTTON in
+    1)
+        wpa_cli status | dmenu -p "AP Info:" -i -fn fixed-12 
+        ;;
     3)
-        /usr/bin/wpa_gui
+        /home/hill/bin/wifi
         ;;
 
 esac

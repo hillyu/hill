@@ -18,7 +18,7 @@ export GTK_CSD=0
 
 # export MANPATH="/usr/local/man:$MANPATH"
 # # pager set to vim
-export MANPAGER=/bin/sh\ -c\ \"unset\ PAGER\;col\ -b\ -x\ \|\ vim\ -c\ \'set\ ft=man\ nomod\ nolist\'\ -\"
+export MANPAGER=/bin/sh\ -c\ \"unset\ MANPAGER\;col\ -b\ -x\ \|\ vim\ -R\ -c\ \'set\ ft=man\ nonumber\ norelativenumber\ nomod\ nolist\'\ -\"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
