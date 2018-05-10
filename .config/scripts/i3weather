@@ -8,5 +8,5 @@ weatherreport=$(curl -s wttr.in)
 
 precipitation=$(echo "$weatherreport"|sed -n 16p | sed -e 's/[^m]*m//g' | grep -o "[0-9]*%" | sort -n | sed -e '$!d' |sed -e 's/\n//g')
 precipitation=" $precipitation"
-temperature=$(echo "$weatherreport" | sed -n 13p | sed -e 's/[^m]*m//g;s/[^0-9]/ /g;s/ /\n/g;/^s*$/d' | grep "[0-9]" | sort -n | sed -e 1b -e '$!d' | tr '\n' ' ' | awk '{print "H: ",$1 "°","L: ",$2 "°"}')
+temperature=$(echo "$weatherreport" | sed -n 13p | sed -e 's/[^m]*m//g;s/[^0-9]/ /g;s/ /\n/g;/^s*$/d' | grep "[0-9]" | sort -n | sed -e 1b -e '$!d' | tr '\n' ' ' | awk '{print "L: ",$1 "°","H: ",$2 "°"}')
 echo $precipitation $temperature
