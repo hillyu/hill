@@ -75,6 +75,9 @@ set_default(){
 }
 #------------------------------------------------------------------------
 case $BLOCK_BUTTON in
+    2)
+        urxvtc -geometry 150x45 -name floating -e alsamixer & disown
+        ;;
     3) 
         INDEX=$((($CURRENT_INDEX +1) % ${#array_s[@]}))
         set_default

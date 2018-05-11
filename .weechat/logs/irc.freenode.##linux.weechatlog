@@ -2097,3 +2097,31 @@
 2018-05-08 17:44:49	--	fstd_ is now known as fstd
 2018-05-08 17:45:33	<--	gef3233 (~gef3233@84.121.229.82.dyn.user.ono.com) has quit (Quit: Leaving)
 2018-05-08 17:46:12	-->	padarc (~padarc@ipbcc30368.dynamic.kabel-deutschland.de) has joined ##linux
+2018-05-11 20:44:41	-->	hill (~hill@123202001066.ctinets.com) has joined ##linux
+2018-05-11 20:44:41	--	Topic for ##linux is "Channel website: https://freenode.linux.community | Pastebin: https://paste.linux.community | Spammers or trolls? use !ops <troll's nick> <reason>". | For op assistance, join ##linux-ops | Set /umode +R if you're getting tons of nonsensical PMs | Feel at home and enjoy your stay!"
+2018-05-11 20:44:41	--	Topic set by bocaneri on Sun, 04 Dec 2016 15:21:22
+2018-05-11 20:44:41	--	Channel ##linux: 2217 nicks (0 ops, 0 voices, 2217 normals)
+2018-05-11 20:44:41	--	PvNotice(ChanServ): Please see https://freenode.linux.community/how-to-connect/ on how to register or identify your nick. By joining this channel you agree to abide by the channel rules and guidelines laid out at https://freenode.linux.community/channel-rules/.
+2018-05-11 20:44:41	--	URL for ##linux: http://linux.chat
+2018-05-11 20:44:42	--	Channel created on Sat, 10 Feb 2001 07:16:24
+2018-05-11 20:45:09	<--	dreamcat4 (uid157427@gateway/web/irccloud.com/x-gybggrxpzhjnjvaz) has quit (Quit: Connection closed for inactivity)
+2018-05-11 20:45:14	-->	fabco (~fabco@bergson4.camara.gov.br) has joined ##linux
+2018-05-11 20:45:19	<--	stevos (~s@ip68-5-150-86.oc.oc.cox.net) has quit (Disconnected by services)
+2018-05-11 20:45:19	-->	stevos (~s@ip68-5-150-86.oc.oc.cox.net) has joined ##linux
+2018-05-11 20:45:32	-->	trekkie1701c (trekkie170@ec2-52-15-173-116.us-east-2.compute.amazonaws.com) has joined ##linux
+2018-05-11 20:46:22	-->	giaur (~quassel@188.146.167.192.nat.umts.dynamic.t-mobile.pl) has joined ##linux
+2018-05-11 20:46:50	-->	oleo (~oleo@unaffiliated/oleo) has joined ##linux
+2018-05-11 20:46:52	<--	ozymandias (~ozymandia@gateway/tor-sasl/ozymandias/x-23014519) has quit (Remote host closed the connection)
+2018-05-11 20:47:06	anddam	rascul: yes, I figured I'd place those near files from linux-firmware
+2018-05-11 20:47:11	-->	amirpro (~amirpro@41.236.128.79) has joined ##linux
+2018-05-11 20:47:14	anddam	(and call update-initramfs after)
+2018-05-11 20:47:17	anddam	thanks
+2018-05-11 20:47:20	<--	davr0s (~textual@host81-155-64-238.range81-155.btcentralplus.com) has quit (Quit: My MacBook Pro has gone to sleep. ZZZzzz…)
+2018-05-11 20:47:33	-->	ozymandias (~ozymandia@gateway/tor-sasl/ozymandias/x-23014519) has joined ##linux
+2018-05-11 20:47:54	-->	btf (~btf@185.83.12.68) has joined ##linux
+2018-05-11 20:48:28	<--	d0048 (~Thunderbi@unaffiliated/d0048) has quit (Ping timeout: 248 seconds)
+2018-05-11 20:48:39	<--	TheDcoder (~TheDcoder@unaffiliated/thedcoder) has quit (Ping timeout: 250 seconds)
+2018-05-11 20:49:00	-->	sdoherty (sdoherty@nat/redhat/x-xrapgzlutucisaki) has joined ##linux
+2018-05-11 20:49:30	-->	davr0s (~textual@host81-155-64-238.range81-155.btcentralplus.com) has joined ##linux
+2018-05-11 20:49:34	<--	gzuh0 (~gzuh@172.58.105.126) has quit (Remote host closed the connection)
+2018-05-11 20:49:38	<--	giaur (~quassel@188.146.167.192.nat.umts.dynamic.t-mobile.pl) has quit (Client Quit)

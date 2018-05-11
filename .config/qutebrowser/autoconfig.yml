@@ -21,8 +21,8 @@ settings:
         <Meta+d>: scroll-page 0 0.5
         <Meta+f>: scroll-page 0 1
         <Meta+u>: scroll-page 0 -0.5
-        M: hint links spawn mpv {hint-url}
-        m: spawn mpv {url}
+        M: hint links spawn -d mpv {hint-url}
+        m: spawn -d mpv {url}
   fonts.completion.category:
     global: bold 8pt monospace
   fonts.completion.entry:

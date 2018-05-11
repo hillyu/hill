@@ -217,3 +217,10 @@
 2018-05-08 10:35:47		perl: unloading script "buffers"
 2018-05-08 10:35:47		perl: script removed: /home/hill/.weechat/perl/autoload/buffers.pl
 2018-05-08 10:35:47		perl: script removed: /home/hill/.weechat/perl/buffers.pl
+2018-05-11 20:42:46		script: downloading list of scripts...
+2018-05-11 20:42:46		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, fset, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-11 20:42:56		script: downloading list of scripts...
+2018-05-11 20:42:56		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, fset, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2018-05-11 20:42:57		script: 347 scripts for WeeChat 2.1
+2018-05-11 20:44:15		script: 347 scripts for WeeChat 2.1
+2018-05-11 20:44:15		Plugins loaded: alias, aspell, buflist, charset, exec, fifo, fset, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
