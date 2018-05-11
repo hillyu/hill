@@ -118,6 +118,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
 
     # reload the configuration file
     bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r restart
     bindsym $mod+Shift+s exec systemctl suspend
     # lock
     bindsym $mod+Shift+x exec i3lock --color 475263
@@ -364,9 +365,9 @@ bindsym XF86AudioLowerVolume exec "amixer -D default -q set $(amixer -D default 
 bindsym XF86AudioMute exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
 # bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioMicMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
-bindsym XF86Display mode "$mode_display"
-bindsym XF86Tools reload
-#bindsym XF86Search output eDP1 scale 1
+bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
+bindsym XF86Tools mode "$mode_display"
+bindsym XF86Search exec --no-startup-id arandr
 bindsym XF86LaunchA gaps inner current minus 4
 bindsym XF86Explorer gaps inner current plus  4
 # output eDP1 res 1366x768 pos 1920,180
