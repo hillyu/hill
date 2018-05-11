@@ -88,6 +88,9 @@ source $ZSH/oh-my-zsh.sh
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   exec startx
 fi
+if [[ `uname` == "Linux" ]]; then
+    alias open="xdg-open"
+    alias umd="udiskie-umount -d"
+fi
 alias vi="vim"
 #alias vi="emacsclient -t"
-alias umd="udiskie-umount -d"
