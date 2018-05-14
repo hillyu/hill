@@ -104,13 +104,14 @@ URxvt.keysym.Mod4-a:         \001
 URxvt.keysym.Mod4-at:         \000
 
 !perl-exts
-URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,font-size
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,font-size,-searchable-scrollback
 URxvt.keysym.C-u: perl:url-select:select_next
 URxvt.url-select.launcher: xdg-open
 URxvt.url-select.underline: true
 URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
-URxvt.keysym.M-Escape:       perl:keyboard-select:activate
+URxvt.keysym.Mod5-Escape:       perl:keyboard-select:activate
+URxvt.keysym.C-f: perl:keyboard-select:search
 URxvt.scrollBar: false
 
 !! Copy-Paste
