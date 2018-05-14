@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/hill/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -52,10 +52,9 @@ ZSH_THEME="nicoulaj"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo tmux python npm docker git warhol zsh-dircolors-solarized fast-syntax-highlighting)
+plugins=(encode64 jsontools urltools web-search last-working-dir pip npm yarn sudo tmux docker git warhol zsh-dircolors-solarized fast-syntax-highlighting)
 # plugins=(sudo, zsh-dircolors-solarized)
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -94,3 +93,9 @@ if [[ `uname` == "Linux" ]]; then
 fi
 alias vi="vim"
 #alias vi="emacsclient -t"
+#macos overwrite:
+if [[ `uname` == "Darwin" ]]; then
+    source $HOME/zshrc.mac
+fi
+# this line needs to be put after plugin=(...) so the entire array of plugins will be initialized by ohmyzsh.
+source $ZSH/oh-my-zsh.sh
