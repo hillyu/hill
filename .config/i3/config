@@ -121,7 +121,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
     bindsym $mod+Shift+r restart
     bindsym $mod+Shift+s exec systemctl suspend
     # lock
-    bindsym $mod+Shift+x exec i3lock --color 475263
+    bindsym $mod+Shift+x exec --no-startup-id i3lock --color 475263
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exit
