@@ -50,10 +50,11 @@ call vundle#end()            " required
 " You complete me blacklist clear:
 let g:ycm_filetype_blacklist = {}
 " set directory for swp files //fixed a bug of E303 Error
-set directory=.,$TEMP
+set directory=$TEMP,.
 "from dereks vimrc
 "Why is this not a default
 set hidden
+set complete+=kspell
 
 " Don't update the display while executing macros
 set lazyredraw
@@ -224,8 +225,6 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
-"set laststatus=2
-"set t_Co=256
 colorscheme solarized
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -330,14 +329,18 @@ let Tlist_Close_On_Select = 1
 "####################################################################################################
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
 " (via http://stackoverflow.com/a/22253548/1626737)
+" UltiSnips send list to YCM, YCM will pullup completion list and let user
+" select, user can use enter to expand the snippets. Must enable ymc complete
+" in comment to enable #! or comment plugin
+let g:ycm_complete_in_comments = 1
+  
 let g:UltiSnipsExpandTrigger           = '<nop>'
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+"let g:UltiSnipsJumpForwardTrigger      = '<C-j>'
+"let g:UltiSnipsJumpBackwardTrigger     = '<C-k>'
 "let g:UltiSnipsJumpForwardTrigger="<c-j>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-
+let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:UltiSnipsEditSplit="vertical"
 "let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
