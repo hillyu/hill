@@ -52,7 +52,7 @@ ZSH_THEME="nicoulaj"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(encode64 jsontools urltools web-search last-working-dir pip npm yarn sudo tmux docker git warhol zsh-dircolors-solarized fast-syntax-highlighting)
+plugins=(encode64 jsontools urltools web-search pip npm yarn sudo tmux docker git warhol zsh-dircolors-solarized fast-syntax-highlighting)
 # plugins=(sudo, zsh-dircolors-solarized)
 
 
