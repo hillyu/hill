@@ -31,6 +31,7 @@ export MANPAGER=/bin/sh\ -c\ \"unset\ MANPAGER\;col\ -b\ -x\ \|\ vim\ -R\ -c\ \'
    #export EDITOR="emacsclient -c -a emacs"
    export EDITOR="vim"
    #export VISUAL="emacsclient -c -a emacs"
+   export VISUAL="vim"
  fi
 # hack to skip wayland check on qute browser, it actually supports wayland(not wayland-egl) backend
 # export QUTE_SKIP_WAYLAND_CHECK=1
