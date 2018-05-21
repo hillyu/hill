@@ -13,9 +13,29 @@ settings:
   bindings.commands:
     global:
       command:
+        <Meta+?>>: rl-delete-char
         <Meta+a>: rl-beginning-of-line
+        <Meta+b>: rl-backward-char
         <Meta+e>: rl-end-of-line
+        <Meta+f>: rl-forward-char
+        <Meta+h>: rl-backward-delete-char
+        <Meta+k>: rl-kill-line
         <Meta+u>: rl-unix-line-discard
+        <Meta+w>: rl-unix-word-rubout
+        <Meta+y>: rl-yank
+      insert:
+        <Alt+b>: fake-key <Ctrl-Left>
+        <Alt+d>: fake-key <Shift-Ctrl-Right> ;; fake-key <Ctrl-x>
+        <Alt+f>: fake-key <Ctrl-Right>
+        <Meta+a>: fake-key <Home>
+        <Meta+b>: fake-key <Left>
+        <Meta+e>: fake-key <End>
+        <Meta+f>: fake-key <Right>
+        <Meta+h>: fake-key <backspace>
+        <Meta+k>: fake-key <Shift-End> ;; fake-key <Ctrl-x>
+        <Meta+u>: fake-key <Shift+Home>;; fake-key <Ctrl-x>
+        <Meta+w>: fake-key <Shift-Ctrl-Left> ;; fake-key <Ctrl-x>
+        <Meta+y>: fake-key <Ctrl-v>
       normal:
         <Meta+b>: scroll-page 0 -1
         <Meta+d>: scroll-page 0 0.5
@@ -23,6 +43,25 @@ settings:
         <Meta+u>: scroll-page 0 -0.5
         M: hint links spawn -d mpv {hint-url}
         m: spawn -d mpv {url}
+      prompt:
+        <Meta+?>>: rl-delete-char
+        <Meta+a>: rl-beginning-of-line
+        <Meta+b>: rl-backward-char
+        <Meta+e>: rl-end-of-line
+        <Meta+f>: rl-forward-char
+        <Meta+h>: rl-backward-delete-char
+        <Meta+k>: rl-kill-line
+        <Meta+u>: rl-unix-line-discard
+        <Meta+w>: rl-unix-word-rubout
+        <Meta+y>: rl-yank
+  editor.command:
+    global:
+    - urxvt
+    - -name
+    - floating
+    - -e
+    - vim
+    - '{}'
   fonts.completion.category:
     global: bold 8pt monospace
   fonts.completion.entry:
@@ -63,7 +102,7 @@ settings:
   session.default_name:
     global: null
   tabs.tabs_are_windows:
-    global: true
+    global: false
   tabs.title.alignment:
     global: left
   url.default_page:
