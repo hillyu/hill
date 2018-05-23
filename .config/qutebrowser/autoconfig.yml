@@ -21,7 +21,7 @@ settings:
         <Meta+h>: rl-backward-delete-char
         <Meta+k>: rl-kill-line
         <Meta+u>: rl-unix-line-discard
-        <Meta+w>: rl-unix-word-rubout
+        <Meta+w>: rl-backward-kill-word
         <Meta+y>: rl-yank
       insert:
         <Alt+b>: fake-key <Ctrl-Left>
@@ -52,7 +52,7 @@ settings:
         <Meta+h>: rl-backward-delete-char
         <Meta+k>: rl-kill-line
         <Meta+u>: rl-unix-line-discard
-        <Meta+w>: rl-unix-word-rubout
+        <Meta+w>: rl-backward-kill-word
         <Meta+y>: rl-yank
   editor.command:
     global:
