@@ -35,7 +35,9 @@ settings:
         <Meta+k>: fake-key <Shift-End> ;; fake-key <Ctrl-x>
         <Meta+u>: fake-key <Shift+Home>;; fake-key <Ctrl-x>
         <Meta+w>: fake-key <Shift-Ctrl-Left> ;; fake-key <Ctrl-x>
+        <Meta+d>: fake-key <Shift-Ctrl-Right> ;; fake-key <Ctrl-x>
         <Meta+y>: fake-key <Ctrl-v>
+        <Meta+[>: fake-key <Escape>
       normal:
         <Meta+b>: scroll-page 0 -1
         <Meta+d>: scroll-page 0 0.5
