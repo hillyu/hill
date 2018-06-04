@@ -44,6 +44,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
+" fix vim c-w c-u not recoverable, will will use normalmode db and d0 command
+" for replacement then we can bind c-y to c-r " in insertmode to recover what
+" we have used before.
+inoremap <silent> <C-W> <C-\><C-O>db
+inoremap <silent> <C-U> <C-\><C-O>d0
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
