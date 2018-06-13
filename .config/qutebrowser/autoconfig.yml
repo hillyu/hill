@@ -27,17 +27,17 @@ settings:
         <Alt+b>: fake-key <Ctrl-Left>
         <Alt+d>: fake-key <Shift-Ctrl-Right> ;; fake-key <Ctrl-x>
         <Alt+f>: fake-key <Ctrl-Right>
+        <Meta+[>: fake-key <Escape>
         <Meta+a>: fake-key <Home>
         <Meta+b>: fake-key <Left>
+        <Meta+d>: fake-key <Shift-Ctrl-Right> ;; fake-key <Ctrl-x>
         <Meta+e>: fake-key <End>
         <Meta+f>: fake-key <Right>
         <Meta+h>: fake-key <backspace>
         <Meta+k>: fake-key <Shift-End> ;; fake-key <Ctrl-x>
         <Meta+u>: fake-key <Shift+Home>;; fake-key <Ctrl-x>
         <Meta+w>: fake-key <Shift-Ctrl-Left> ;; fake-key <Ctrl-x>
-        <Meta+d>: fake-key <Shift-Ctrl-Right> ;; fake-key <Ctrl-x>
         <Meta+y>: fake-key <Ctrl-v>
-        <Meta+[>: fake-key <Escape>
       normal:
         <Meta+b>: scroll-page 0 -1
         <Meta+d>: scroll-page 0 0.5
@@ -114,5 +114,5 @@ settings:
       DEFAULT: https://www.google.com/search?hl=en&q={}
   url.start_pages:
     global: https://www.google.com
-  window.hide_wayland_decoration:
+  window.hide_decoration:
     global: true
