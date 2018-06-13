@@ -358,13 +358,13 @@ bar {
 }
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1%
-bindsym XF86AudioRaiseVolume exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB- unmute"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB+ unmute"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB- unmute"
 #bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
-bindsym XF86AudioMute exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
 # bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioMicMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
 bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
 bindsym XF86Tools mode "$mode_display"
 bindsym XF86Search exec --no-startup-id arandr
