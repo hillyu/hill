@@ -191,7 +191,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
      # bindsym $mod+. workspace prev
 
  #workspace default monitors
- workspace $workspace1 output HDMI2
+ workspace $workspace1 output DP1
  workspace $workspace2 output DP1
  workspace $workspace3 output HDMI2
  workspace $workspace4 output DP1
