@@ -327,8 +327,8 @@ mode "$mode_display" {
 bindsym $mod+x mode "$mode_display"
 #also use upper row for shrink
 bindsym $mod+y resize shrink width 10 px or 10 ppt
-bindsym $mod+u resize grow height 10 px or 10 ppt
-bindsym $mod+i resize shrink height 10 px or 10 ppt
+bindsym $mod+i resize grow height 10 px or 10 ppt
+bindsym $mod+u resize shrink height 10 px or 10 ppt
 bindsym $mod+o resize grow width 10 px or 10 ppt
 # window colors
 #                       border              background         text                 indicator
@@ -376,10 +376,10 @@ focus_on_window_activation focus
 for_window [urgent=latest] focus
 
 #gaps 5
-workspace $workspace9 gaps inner 12
-workspace $workspace9 gaps outer 40
-workspace $workspace10 gaps inner 12
-workspace $workspace10 gaps outer 40
+#workspace $workspace9 gaps inner 12
+#workspace $workspace9 gaps outer 40
+#workspace $workspace10 gaps inner 12
+#workspace $workspace10 gaps outer 40
 default_border pixel
 # disable even the pixel border when there is only one container on tcurrent workspace.
 #smart_borders on
