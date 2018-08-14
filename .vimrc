@@ -1,6 +1,3 @@
-"doing the pathogenTrick
-"call pathogen#runtime_append_all_bundles()
-"cal pathogen#helptags()
 "using vundle instead of pathogen
 set nocompatible              " required
 filetype off                  " required
@@ -44,6 +41,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
+"set path to do fuzzy search
+set path+=**
 " fix vim c-w c-u not recoverable, will will use normalmode db and d0 command
 " for replacement then we can bind c-y to c-r " in insertmode to recover what
 " we have used before.
