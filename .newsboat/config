@@ -21,7 +21,7 @@ color listfocus black yellow standout bold
 color listnormal_unread blue black
 color listfocus_unread yellow black bold
 color info red black bold
-color article cyan black
+color article default black
 color background default black
 
 browser qutebrowser

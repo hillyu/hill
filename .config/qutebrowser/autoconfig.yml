@@ -45,6 +45,7 @@ settings:
         <Meta+u>: scroll-page 0 -0.5
         M: hint links spawn -d mpv {hint-url}
         m: spawn -d mpv {url}
+        r: spawn --userscript readability
       prompt:
         <Meta+?>>: rl-delete-char
         <Meta+a>: rl-beginning-of-line
@@ -98,7 +99,7 @@ settings:
     - \b[<←≪]\b
     - \b(<<|«)\b
   new_instance_open_target:
-    global: window
+    global: tab
   qt.force_platform:
     global: null
   session.default_name:
@@ -115,4 +116,4 @@ settings:
   url.start_pages:
     global: https://www.google.com
   window.hide_decoration:
-    global: true
+    global: false
