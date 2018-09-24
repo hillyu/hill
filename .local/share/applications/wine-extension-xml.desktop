@@ -2,7 +2,7 @@
 Type=Application
 Name=winebrowser
 MimeType=application/xml;
-Exec=env WINEPREFIX="/home/hill/.wine" wine start /ProgIDOpen xmlfile %f
+Exec=env WINEPREFIX="/home/hill/.wine2" wine start /ProgIDOpen xmlfile %f
 NoDisplay=true
 StartupNotify=true
 Icon=7765_winebrowser.0

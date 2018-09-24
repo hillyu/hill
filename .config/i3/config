@@ -242,8 +242,9 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
-for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 2, move left 20
-for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable, move down 2, move left 20
+for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable
+for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
+for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
@@ -285,7 +286,7 @@ for_window [class="(?i)keyring"] floating enable
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+minus scratchpad show, resize set 1334 750, move position center
 #
 # Resizing containers:
 #
