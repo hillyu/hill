@@ -204,11 +204,12 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
-assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
-assign [class="(?i)qutebrowser"]   $workspace1
+#assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
+#assign [class="(?i)qutebrowser"]   $workspace1
 #assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 #for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
-#for_window [title="(?i)paper"]   move scratchpad
+for_window [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   move scratchpad
+for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   move scratchpad
 assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
 assign [title="(?i)officemail"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
@@ -223,9 +224,9 @@ assign [class="(?i)gimp*"]   $workspace8
 assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
 assign [instance="(?i)ranger"]   $workspace7
-assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
+#assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)kanbanflow.com"]   $workspace6
-assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
+#assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9
@@ -286,7 +287,7 @@ for_window [class="(?i)keyring"] floating enable
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show, resize set 1334 750, move position center
+    bindsym $mod+minus scratchpad show, move position center
 #
 # Resizing containers:
 #
