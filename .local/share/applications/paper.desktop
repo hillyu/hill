@@ -2,6 +2,7 @@
 Name=Paper
 Comment=Dropbox paper
 GenericName=Dropbox Paper
-Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app="https://paper.dropbox.com/"
+#Exec=firefox -P app --new-window "https://paper.dropbox.com/"
+Exec=firefox -P app --new-window  "https://paper.dropbox.com/"
 Type=Application
 StartupNotify=false

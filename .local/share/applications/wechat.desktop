@@ -5,6 +5,6 @@ Terminal=false
 Type=Application
 Name=wechat
 Comment=wechat web client
-Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app="https://web.wechat.com"
+Exec=firefox -P app --new-window "https://web.wechat.com"
 StartupNotify=false
 Icon=chrome-fahmaaghhglfmonjliepjlchgpgfmobi-Default

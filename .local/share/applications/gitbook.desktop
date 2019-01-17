@@ -5,6 +5,6 @@ Terminal=false
 Type=Application
 Name=gitbook
 Comment=git book editor
-Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app="https://www.gitbook.com/book/hillyu/first-post-on-gitbook/edit"
+Exec=firefox -P app --new-window "https://www.gitbook.com/book/hillyu/first-post-on-gitbook/edit"
 StartupNotify=false
 Icon=chrome-fahmaaghhglfmonjliepjlchgpgfmobi-Default

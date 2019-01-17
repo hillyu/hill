@@ -1,10 +1,12 @@
 #Auto start services
-exec fcitx
-exec QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
-exec xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
+exec --no-startup-id fcitx
+exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
+exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
-exec LC_CTYPE=zh_CN.UTF-8 emacs --daemon
-exec udiskie  --no-notify
+#exec --no-startup-id LC_CTYPE=zh_CN.UTF-8 emacs --daemon
+exec --no-startup-id udiskie  --no-notify
+#notification server for sway.
+exec mako
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 # exec nice -12 slack
@@ -12,23 +14,22 @@ exec udiskie  --no-notify
 # exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0" # Default config for sway
 # output eDP-1 res 1366x768 pos 1920,180
-output eDP-1 res 1366x768 pos 0,0
-output HDMI-A-2 res 1920x1080 pos 1366,0
-# output HDMI-A-2 res 3840x2160 pos 1366,0
-# output DP-1 resolution 1024x768 position 3286,0
-output DP-1 resolution 1920x1080 position 3286,0
+output eDP-1 res 1366x768 pos 0,200
+output DP-1 resolution 1920x1080 position 1366,0 transform 270
+output HDMI-A-2 res 2560x1440 pos 2446,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 #
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-font SFNS Display 10
+font Roboto Bold 10
+#font pango:SFNS Display 10
 
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod1
+set $mod Mod5
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -63,7 +64,8 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
+#bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
+bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -95,8 +97,8 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec $term -e tmux
+    bindsym $mod+Return exec --no-startup-id $term
+    bindsym $mod+Shift+Return exec --no-startup-id $term -e tmux
 
     # kill focused window
     #bindsym $mod+Shift+q kill
@@ -105,22 +107,25 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
     # start your launcher
     #bindsym Ctrl+Space exec $menu
     # print screen
+    bindsym Print               exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+    bindsym Shift+Print         exec --no-startup-id grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    #floating_modifier $mod normal
+    floating_modifier $mod
 
 
     #focus_follows_mouse no
 
     # reload the configuration file
     bindsym $mod+Shift+c reload
-    bindsym $mod+Shift+s exec systemctl suspend
+    bindsym $mod+Shift+s exec --no-startup-id systemctl suspend
     # lock
-    bindsym $mod+Shift+x exec swaylock --color 475263
+    bindsym $mod+Shift+x exec --no-startup-id swaylock --color 475263
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exit
@@ -190,48 +195,51 @@ output "*" background ~/Pictures/wallpapers/lake.png fill
      # bindsym $mod+. workspace prev
 
  #workspace default monitors
- workspace $workspace10 output eDP-1
- workspace $workspace1 output HDMI-A-2
+ workspace $workspace1 output DP-1
  workspace $workspace2 output DP-1
  workspace $workspace3 output HDMI-A-2
- workspace $workspace4 output eDP-1
+ workspace $workspace4 output DP-1
  workspace $workspace5 output HDMI-A-2
  workspace $workspace6 output DP-1
  workspace $workspace7 output HDMI-A-2
- workspace $workspace8 output DP-1
- workspace $workspace9 output DP-1
+ workspace $workspace8 output HDMI-A-2
+ workspace $workspace9 output eDP-1
+ workspace $workspace10 output eDP-1
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
-assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
-assign [class="(?i)qutebrowser"]   $workspace1
+#assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
+#assign [class="(?i)qutebrowser"]   $workspace1
 #assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 #for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
 #for_window [title="(?i)paper"]   move scratchpad
 assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
 assign [title="(?i)officemail"]   $workspace4
+#assign [app_id="(?i)firefox"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)Word"]   $workspace3
 #only title works for native wayland window
 assign [title="(?i)zathura"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)ics-ml-gpu"]   $workspace5
-assign [class="Emacs"]   $workspace5
-assign [class="(?i)Slack"]   $workspace3
-assign [class="(?i)Rhythmbox"]   $workspace10
+#assign [class="Emacs"]   $workspace5
+#assign [class="(?i)Slack"]   $workspace3
+#assign [class="(?i)Rhythmbox"]   $workspace10
 assign [class="(?i)gimp*"]   $workspace8
 assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
 assign [instance="(?i)ranger"]   $workspace7
-assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
-assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
+#assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
+assign [app_id="(?i)firefox" title="(?i)kanbanflow.com"]   $workspace6
+#assign [class="(?i)Google-chrome" instance="(?i)kanbanflow.com"]   $workspace6
+#assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9
 # for_window [title="GIMP Startup"]  move workspace $workspace7
 ## enable tabbed layout on certain window
 ######## i like my graphic processing tools tabbed
-for_window [class="(?i)gimp*"] layout tabbed
-for_window [class="(?i)inkscape*"] layout tabbed
+#for_window [class="(?i)gimp*"] layout tabbed
+#for_window [class="(?i)inkscape*"] layout tabbed
 #for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
 
 ### enable floating on certain windows
@@ -242,6 +250,7 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
 for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable
 for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
+for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
@@ -283,7 +292,7 @@ for_window [class="(?i)keyring"] floating enable
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+minus scratchpad show, move position center
 #
 # Resizing containers:
 #
@@ -310,22 +319,22 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 #also use upper row for shrink
 bindsym $mod+y resize shrink width 10 px or 10 ppt
-bindsym $mod+u resize grow height 10 px or 10 ppt
-bindsym $mod+i resize shrink height 10 px or 10 ppt
+bindsym $mod+i resize grow height 10 px or 10 ppt
+bindsym $mod+u resize shrink height 10 px or 10 ppt
 bindsym $mod+o resize grow width 10 px or 10 ppt
 # window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $frame-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+#                       border              background         text                 indicator   child_border
+client.focused          $frame-color           $bg-color          $text-color          #00ff00  $frame-color
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00  $bg-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00  $bg-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00 $bg-color
 
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    tray_output primary
+    #tray_output primary
     status_command i3blocks -c /home/hill/.config/sway/i3blocks.conf
     position top
     colors {
@@ -337,6 +346,10 @@ bar {
         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
 }
+#adjust bar thickness and padding for sway only
+titlebar_border_thickness 1
+titlebar_padding 5 1
+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1%
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB+ unmute
@@ -349,19 +362,24 @@ bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer 
 bindsym XF86Display reload
 bindsym XF86Tools reload
 bindsym XF86Search output eDP-1 scale 1
-bindsym XF86LaunchA gaps inner workspace minus 4
-bindsym XF86Explorer gaps inner workspace plus  4
+bindsym XF86LaunchA gaps inner current minus 4
+bindsym XF86Explorer gaps inner current plus  4
 # output eDP-1 res 1366x768 pos 1920,180
 
 
 #gaps 5
+#workspace $workspace9 gaps inner 12
+#workspace $workspace9 gaps outer 40
+#workspace $workspace10 gaps inner 12
+#workspace $workspace10 gaps outer 40
 default_border pixel
+# disable even the pixel border when there is only one container on tcurrent workspace.
+#smart_borders on
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
-smart_gaps on
+#smart_gaps on
 floating_maximum_size -1 x -1
 # seems not working
 floating_minimum_size 90 x 55
 #work_space backandforth
 workspace_auto_back_and_forth yes
-
-include /etc/sway/config.d/*
+#include /etc/sway/config.d/*

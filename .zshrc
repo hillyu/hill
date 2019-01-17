@@ -85,7 +85,11 @@ plugins=(tmux docker git warhol zsh-dircolors-solarized fast-syntax-highlighting
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  exec startx
+  #exec startx
+  #
+  #sway doesn't need a login manager
+  sway
+  exit 0
 fi
 if [[ `uname` == "Linux" ]]; then
     alias open="xdg-open"
