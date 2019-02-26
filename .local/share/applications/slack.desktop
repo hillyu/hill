@@ -5,6 +5,6 @@ Terminal=false
 Type=Application
 Name=slack
 Comment=slack
-Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app="https://ics-ml.slack.com"
+Exec=firefox -P app --new-window "https://ics-ml.slack.com"
 StartupNotify=false
 Icon=chrome-fahmaaghhglfmonjliepjlchgpgfmobi-Default
