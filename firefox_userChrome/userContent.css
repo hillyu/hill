@@ -1,0 +1,8 @@
+@-moz-document domain(live.com) {
+div.WordLastSectionBackground {
+background-color: white !important;
+}
+div.Outline {
+background-color: white !important;
+}
+}

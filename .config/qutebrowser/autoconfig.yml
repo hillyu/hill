@@ -101,7 +101,9 @@ settings:
   new_instance_open_target:
     global: tab
   qt.force_platform:
-    global: null
+    global: xcb
+  qt.force_software_rendering:
+    global: none
   session.default_name:
     global: null
   tabs.tabs_are_windows:

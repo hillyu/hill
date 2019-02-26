@@ -2,7 +2,7 @@
 Type=Application
 Name=wordpad
 MimeType=application/wps-office.doc;
-Exec=env WINEPREFIX="/home/hill/.wine2" wine start /ProgIDOpen rtffile %f
+Exec=firefox -P app --new-window "/home/hill/.wine2" wine start /ProgIDOpen rtffile %f
 NoDisplay=true
 StartupNotify=true
 Icon=97C1_wordpad.0
