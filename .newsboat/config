@@ -24,7 +24,7 @@ color info red black bold
 color article default black
 color background default black
 
-browser firefox
+browser "firefox -P default --new-tab"
 macro , open-in-browser
 macro v set browser "mpv"; open-in-browser ; set browser firefox
 macro y set browser "spawndl"; open-in-browser ; set browser firefox
