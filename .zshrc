@@ -103,3 +103,4 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 # this line needs to be put after plugin=(...) so the entire array of plugins will be initialized by ohmyzsh.
 source $ZSH/oh-my-zsh.sh
+alias coverart="kunst --size 1366x768 --music_dir /mnt/ics-ml-gpu/Music/"
