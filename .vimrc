@@ -311,21 +311,17 @@ set backspace=2
 " UltiSnips send list to YCM, YCM will pullup completion list and let user
 " select, user can use enter to expand the snippets. Must enable ymc complete
 " in comment to enable #! or comment plugin
-  
-let g:UltiSnipsExpandTrigger           = '<nop>'
-let g:UltiSnipsEditSplit="vertical"
-let g:ulti_expand_or_jump_res = 0
 
 "let g:UltiSnipsJumpForwardTrigger      = '<C-j>'
 "let g:UltiSnipsJumpBackwardTrigger     = '<C-k>'
-"let g:UltiSnipsJumpForwardTrigger="<c-j>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-"let g:UltiSnipsExpandTrigger = "<nop>"
-"let g:UltiSnipsExpandTrigger="<CR>"
 
 "let g:ycm_complete_in_comments = 1
 "let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  
+let g:UltiSnipsExpandTrigger           = '<nop>'
+let g:UltiSnipsEditSplit="vertical"
+let g:ulti_expand_or_jump_res = 0
 
 function ExpandSnippetOrCarriageReturn()
     let snippet = UltiSnips#ExpandSnippetOrJump()
@@ -357,6 +353,7 @@ let g:html_indent_style1 = "inc"
 "-----------------------------------------------------------------------------
 au BufEnter *.cc,*.cpp let b:fswitchlocs = 'reg:/src/include/,ifrel:|/src/|../include|,./' | let b:fswitchdst = 'h, hpp'
 au BufEnter *.h let b:fswitchdst = 'cc,cpp' | let b:fswitchlocs = 'reg:/include/src/,ifrel:|/include/|../src|,./'
+au BufEnter *.py map <leader>tt :!ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags .<CR>
 "auto tag generation, UpdateTypesFile provide a better ctag generation
 "au BufWritePost,FileWritePost *.[ch],*.[ch]pp,*.cc :UpdateTypesFileOnly
 au CursorHold *.[ch],*.[ch]pp,*.cc :ReadTypes
