@@ -7,6 +7,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 ln -s ~/dotfile/.config ~/
 ln -s ~/dotfile/.vimrc ~/
 ln -s ~/dotfile/.zshrc ~/
+ln -s ~/dotfile/.zshenv ~/
 #instal vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
