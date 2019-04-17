@@ -9,7 +9,7 @@ is_app_installed() {
 # get data either form stdin or from file
 buf=$(cat "$@")
 
-copy_backend_remote_tunnel_port=$(tmux show-option -gvq "@copy_backend_remote_tunnel_port")
+#copy_backend_remote_tunnel_port=$(tmux show-option -gvq "@copy_backend_remote_tunnel_port")
 #copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
 copy_use_osc52_fallback="on"
 
@@ -29,7 +29,7 @@ fi
 
 # if copy backend is resolved, copy and exit
 if [ -n "$copy_backend" ]; then
-  printf "$buf" | eval "$copy_backend" 
+  printf %s "$buf" | eval "$copy_backend" 
   exit;
 fi
 
@@ -51,7 +51,7 @@ maxlen=74994
 
 # warn if exceeds maxlen
 if [ "$buflen" -gt "$maxlen" ]; then
-  printf "input is %d bytes too long" "$(( buflen - maxlen ))" >&2
+  echo "input is %d bytes too long" "$(( buflen - maxlen ))" >&2
 fi
 
 # build up OSC 52 ANSI escape sequence
@@ -67,5 +67,5 @@ erase="\033]52;c;!\a"
 pane_active_tty=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
 target_tty="${SSH_TTY:-$pane_active_tty}"
 
-printf "$erase" > "$target_tty"
-printf "$esc" > "$target_tty"
+printf %s "$erase" > "$target_tty"
+printf %s "$esc" > "$target_tty"

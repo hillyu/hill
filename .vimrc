@@ -305,16 +305,17 @@ inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            osc52 clipboard sync                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function OscyankRegister()
-    " Put current register's content to 'text'
- let text = @"
- " Put text with OSC52
- let executeCmd="echo -n '".text."' | yank.sh"
- call system(executeCmd)
- echom "clipboard sync complete"
-endfunction
+"function OscyankRegister()
+    "" Put current register's content to 'text'
+ "let text = @"
+ "" Put text with OSC52
+ "let executeCmd="echo -n '".text."' | yank.sh"
+ "call system(executeCmd)
+ "echom "clipboard sync complete"
+"endfunction
 "nnoremap <silent> <leader>y :call OscyankRegister()<cr>
-nnoremap  <leader>y :call OscyankRegister()<cr>
+"nnoremap  <leader>y :call OscyankRegister()<cr>
+nnoremap  <leader>y :call system("yank.sh", @")<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            html indentation                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
