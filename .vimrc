@@ -46,6 +46,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin()
 Plug 'SirVer/ultisnips'
 "Plug 'Valloric/YouCompleteMe'
+Plug 'maralla/completor.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime', {'for': 'python'}
@@ -310,18 +311,22 @@ set backspace=2
 " UltiSnips send list to YCM, YCM will pullup completion list and let user
 " select, user can use enter to expand the snippets. Must enable ymc complete
 " in comment to enable #! or comment plugin
-let g:ycm_complete_in_comments = 1
   
 let g:UltiSnipsExpandTrigger           = '<nop>'
+let g:UltiSnipsEditSplit="vertical"
+let g:ulti_expand_or_jump_res = 0
+
 "let g:UltiSnipsJumpForwardTrigger      = '<C-j>'
 "let g:UltiSnipsJumpBackwardTrigger     = '<C-k>'
 "let g:UltiSnipsJumpForwardTrigger="<c-j>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:UltiSnipsEditSplit="vertical"
 "let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
+"let g:UltiSnipsExpandTrigger="<CR>"
+
+"let g:ycm_complete_in_comments = 1
+"let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
 function ExpandSnippetOrCarriageReturn()
     let snippet = UltiSnips#ExpandSnippetOrJump()
     if g:ulti_expand_or_jump_res > 0
@@ -341,7 +346,6 @@ endfunction
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
 inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>" 
 inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>" 
-"let g:UltiSnipsExpandTrigger="<CR>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            html indentation                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -376,6 +380,7 @@ nmap <silent><leader>sv :so $MYVIMRC<cr>
 ":noremap <leader>p ::NERDTreeToggle<CR>
 " build tags of your own project with Ctrl-F12
 "map <leader>tt :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <leader>tt :!ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags .<CR>
 "nmap<leader>ec :e ~/.vim/bundle/EasyColor/colors/desert_thl.txt<CR>
 " If the current buffer has never been saved, it will have no name,
 " " call the file browser to save it, otherwise just save it.
@@ -405,3 +410,12 @@ xmap <leader>r <Plug>SlimeRegionSend
 nmap <leader>r <Plug>SlimeParagraphSend
 nmap <leader>v <Plug>SlimeConfig
 let g:airline#extensions#ale#enabled = 1
+"ALE settings
+let b:ale_linters = ['flake8']
+let b:ale_fixers = [
+\   'remove_trailing_lines',
+\   'isort',
+\   'ale#fixers#generic_python#BreakUpLongLines',
+\   'yapf',
+\]
+
