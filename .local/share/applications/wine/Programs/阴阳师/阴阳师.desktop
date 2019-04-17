@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=阴阳师
-Exec=env WINEPREFIX="/home/hill/.wine" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/hill/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/阴阳师/阴阳师.lnk
+Name=onmyoji
+Exec=env WINEPREFIX="/home/hill/.wine" LANG=zh_CN.UTF-8 wine Launch.exe
 Type=Application
 StartupNotify=true
-Path=/home/hill/.wine/dosdevices/c:/Program Files (x86)/Onmyoji
+Path=/home/hill/.wine/dosdevices/c:/Program Files/Onmyoji
 Icon=3619_Launch.0
 StartupWMClass=launch.exe

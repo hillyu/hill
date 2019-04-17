@@ -118,3 +118,29 @@ color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 # For better looks
 set markers=no # don't put '+' at the beginning of wrapped lines
 #set pager_index_lines= 5 # how large is the index window?
+#Forgotten Attachment Feature:
+## Example NeoMutt config file for the forgotten-attachment feature.
+
+# The 'forgotten-attachment' feature provides a new setting for NeoMutt that
+# alerts the user if the message body contains a certain regular expression but there are
+# no attachments added. This is meant to ensure that the user does not forget
+# to attach a file after promising to do so in the mail.
+
+# Ask if the user wishes to abort sending if $abort_noattach_regex is found in the
+# body, but no attachments have been added
+# It can be set to:
+#    "yes"     : always abort
+#    "ask-yes" : ask whether to abort
+#    "no"      : send the mail
+set abort_noattach = no
+# Search for the following regular expression in the body of the email
+# English: attach, attached, attachment, attachments
+set abort_noattach_regex = "\\<attach(|ed|ments?)\\>"
+# Nederlands:
+# set abort_noattach_regex = "\\<(bijvoegen|bijgevoegd|bijlage|bijlagen)\\>"
+# Deutsch:
+# set abort_noattach_regex = "\\<(anhängen|angehängt|anhang|anhänge|hängt an)\\>"
+# Français:
+# set abort_noattach_regex = "\\<(attaché|attachés|attache|attachons|joint|jointe|joints|jointes|joins|joignons)\\>"
+
+# vim: syntax=neomuttrc

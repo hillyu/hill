@@ -191,7 +191,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
      # bindsym $mod+. workspace prev
 
  #workspace default monitors
- workspace $workspace1 output HDMI2
+ workspace $workspace1 output DP1
  workspace $workspace2 output DP1
  workspace $workspace3 output HDMI2
  workspace $workspace4 output DP1
@@ -204,11 +204,12 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
-assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
-assign [class="(?i)qutebrowser"]   $workspace1
+#assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
+#assign [class="(?i)qutebrowser"]   $workspace1
 #assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 #for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
-#for_window [title="(?i)paper"]   move scratchpad
+for_window [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   move scratchpad
+for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   move scratchpad
 assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
 assign [title="(?i)officemail"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
@@ -223,9 +224,9 @@ assign [class="(?i)gimp*"]   $workspace8
 assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
 assign [instance="(?i)ranger"]   $workspace7
-assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
+#assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)kanbanflow.com"]   $workspace6
-assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
+#assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
 assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9
@@ -242,8 +243,9 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
-for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable, move down 2, move left 20
-for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable, move down 2, move left 20
+for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable
+for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
+for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
 # for_window [class="(?i)gimp*"] floating disable
@@ -285,7 +287,7 @@ for_window [class="(?i)keyring"] floating enable
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+minus scratchpad show, move position center
 #
 # Resizing containers:
 #
@@ -327,8 +329,8 @@ mode "$mode_display" {
 bindsym $mod+x mode "$mode_display"
 #also use upper row for shrink
 bindsym $mod+y resize shrink width 10 px or 10 ppt
-bindsym $mod+u resize grow height 10 px or 10 ppt
-bindsym $mod+i resize shrink height 10 px or 10 ppt
+bindsym $mod+i resize grow height 10 px or 10 ppt
+bindsym $mod+u resize shrink height 10 px or 10 ppt
 bindsym $mod+o resize grow width 10 px or 10 ppt
 # window colors
 #                       border              background         text                 indicator
@@ -358,13 +360,13 @@ bar {
 }
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1%
-bindsym XF86AudioRaiseVolume exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB- unmute"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB+ unmute"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB- unmute"
 #bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
-bindsym XF86AudioMute exec "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
 # bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioMicMute exec amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
 bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
 bindsym XF86Tools mode "$mode_display"
 bindsym XF86Search exec --no-startup-id arandr
@@ -376,10 +378,10 @@ focus_on_window_activation focus
 for_window [urgent=latest] focus
 
 #gaps 5
-workspace $workspace9 gaps inner 12
-workspace $workspace9 gaps outer 40
-workspace $workspace10 gaps inner 12
-workspace $workspace10 gaps outer 40
+#workspace $workspace9 gaps inner 12
+#workspace $workspace9 gaps outer 40
+#workspace $workspace10 gaps inner 12
+#workspace $workspace10 gaps outer 40
 default_border pixel
 # disable even the pixel border when there is only one container on tcurrent workspace.
 #smart_borders on

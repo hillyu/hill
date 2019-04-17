@@ -3,15 +3,15 @@
 
 #PRIMARY="eDP-1"
 PRIMARY="eDP1"
-EXT1="HDMI2"
+EXT2="HDMI2"
 #EXT1="HDMI-2"
 #EXT2="DP-1"
-EXT2="DP1"
+EXT1="DP1"
 INFO=$(xrandr)
 
 xrandr --output $PRIMARY --primary --auto
 if (echo "$INFO" | grep "^$EXT1 connected"); then
-    xrandr --output $EXT1 --primary --auto --right-of $PRIMARY
+    xrandr --output $EXT1 --primary --auto --right-of $PRIMARY --rotate left
     echo "second screen (HDMI) enabled"
 else
     xrandr --output $EXT1 --off

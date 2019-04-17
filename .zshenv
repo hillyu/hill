@@ -1,15 +1,15 @@
 # User configuration
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export GDK_BACKEND=wayland
+export GDK_BACKEND=wayland
 export CLUTTER_BACKEND=wayland
-# export QT_QPA_PLATFORM=wayland
-# export QT_QPA_PLATFORM=wayland-egl
+#export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORM=wayland-egl
 export QT_DISABLE_WINDOWDECORATION=1
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-#export ECORE_EVAS_ENGINE=wayland_egl
-#export ELM_ENGINE=wayland_egl
-#export SDL_VIDEODRIVER=wayland
+export ECORE_EVAS_ENGINE=wayland_egl
+export ELM_ENGINE=wayland_egl
+export SDL_VIDEODRIVER=wayland
 export PATH=~/.local/bin:~/bin:$PATH
 #set qt theme font to stay consistent with gtk
 export QT_STYLE_OVERRIDE=GTK+
@@ -31,6 +31,7 @@ export MANPAGER=/bin/sh\ -c\ \"unset\ MANPAGER\;col\ -b\ -x\ \|\ vim\ -R\ -c\ \'
    #export EDITOR="emacsclient -c -a emacs"
    export EDITOR="vim"
    #export VISUAL="emacsclient -c -a emacs"
+   export VISUAL="vim"
  fi
 # hack to skip wayland check on qute browser, it actually supports wayland(not wayland-egl) backend
 # export QUTE_SKIP_WAYLAND_CHECK=1
