@@ -2,7 +2,7 @@
 Type=Application
 Name=rundll32
 MimeType=application/x-mswinurl;
-Exec=env WINEPREFIX="/home/hill/.wine" wine start /ProgIDOpen InternetShortcut %f
+Exec=firefox -P app --new-window "/home/hill/.wine2" wine start /ProgIDOpen InternetShortcut %f
 NoDisplay=true
 StartupNotify=true
 Icon=1CD8_rundll32.0

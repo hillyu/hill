@@ -24,12 +24,12 @@ color info red black bold
 color article default black
 color background default black
 
-browser qutebrowser
+browser "firefox -P default --new-tab"
 macro , open-in-browser
-macro v set browser "i3 exec mpv"; open-in-browser ; set browser qutebrowser
-macro y set browser "spawndl"; open-in-browser ; set browser qutebrowser
-macro w set browser "w3m"; open-in-browser ; set browser qutebrowser
-macro p set browser "dmenuhandler"; open-in-browser ; set browser qutebrowser
+macro v set browser "mpv"; open-in-browser ; set browser firefox
+macro y set browser "spawndl"; open-in-browser ; set browser firefox
+macro w set browser "w3m"; open-in-browser ; set browser firefox
+macro p set browser "dmenuhandler"; open-in-browser ; set browser firefox
 # c copies the link to the clipboard.
 # The line below is probably the skiddiest line I've ever written.
 macro c set browser "copy(){ echo $1 | xclip ;}; copy "; open-in-browser ; set browser qutebrowser

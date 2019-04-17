@@ -5,6 +5,6 @@ Terminal=false
 Type=Application
 Name=KanbanFlow
 #Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=hhhlbmjihokflibmbfmldajolmkaemhi
-Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app="https://kanbanflow.com"
+Exec=firefox -P app --new-window "https://kanbanflow.com"
 Icon=chrome-hhhlbmjihokflibmbfmldajolmkaemhi-Default
 StartupWMClass=crx_hhhlbmjihokflibmbfmldajolmkaemhi

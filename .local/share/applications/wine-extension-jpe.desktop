@@ -2,7 +2,7 @@
 Type=Application
 Name=Wine Internet Explorer
 MimeType=image/jpeg;
-Exec=env WINEPREFIX="/home/hill/.wine" wine start /ProgIDOpen jpegfile %f
+Exec=firefox -P app --new-window "/home/hill/.wine2" wine start /ProgIDOpen jpegfile %f
 NoDisplay=true
 StartupNotify=true
 Icon=7596_iexplore.0
