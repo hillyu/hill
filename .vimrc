@@ -4,45 +4,63 @@ filetype off                  " required
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"call vundle#begin()
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-"Plugin 'vim-scripts/ShowMarks'
+" All of your Plugins must be added before the following line
+" let Vundle manage Vundle, required
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'derekwyatt/vim-fswitch' # switch between .h and c/cpp 
+"Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'jistr/vim-nerdtree-tabs'
 "Plugin 'newclear/vim-pyclewn'
-Plugin 'vim-scripts/STL-Syntax'
-Plugin 'wavded/vim-stylus'
+"Plugin 'nvie/vim-flake8'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'ujihisa/nclipper.vim'
+"Plugin 'vim-scripts/ShowMarks'
 "Plugin 'vim-scripts/TagHighlight'
 "Plugin 'vim-scripts/taglist.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 "Plugin 'wincent/command-t'
-"Plugin 'derekwyatt/vim-fswitch' # switch between .h and c/cpp 
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'jelera/vim-javascript-syntax'
-"Plugin 'ujihisa/nclipper.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'Shougo/neocomplete.vim'
-Plugin 'scrooloose/syntastic'
-"Plugin 'nvie/vim-flake8'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-surround'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+"Plugin 'SirVer/ultisnips'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'gmarik/Vundle.vim'
+"Plugin 'honza/vim-snippets'
+"Plugin 'jpalardy/vim-slime.git'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'tmhedberg/SimpylFold'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-surround'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-scripts/STL-Syntax'
+"Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'wavded/vim-stylus'
+"call vundle#end()            " required
+call plug#begin()
+Plug 'SirVer/ultisnips'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'altercation/vim-colors-solarized'
+Plug 'honza/vim-snippets'
+Plug 'jpalardy/vim-slime', {'for': 'python'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+"Plug 'w0rp/ale'
+Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
+Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
+Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
+call plug#end()
 "set path to do fuzzy search
 set path+=**
 " fix vim c-w c-u not recoverable, will will use normalmode db and d0 command
@@ -372,4 +390,13 @@ let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
-
+"slime setting to send code to tmux REPL ipython
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_dont_ask_default = 1
+let g:slime_python_ipython = 1
+"In visual mode, send selection
+xmap <leader>r <Plug>SlimeRegionSend
+nmap <leader>r <Plug>SlimeParagraphSend
+nmap <leader>v <Plug>SlimeConfig
+let g:airline#extensions#ale#enabled = 1
