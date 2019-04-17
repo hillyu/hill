@@ -264,46 +264,6 @@ set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
 "make backspace work
 set backspace=2
 
-"Tlist setting
-"let Tlist_Use_Right_Window = 1
-"let Tlist_Display_Prototype = 0
-"let Tlist_Display_Tag_Scope = 0
-"let Tlist_Exit_OnlyWindow = 1
-"let Tlist_File_Fold_Auto_Close = 1
-"let Tlist_GainFocus_On_ToggleOpen = 1
-"let Tlist_Use_SingleClick = 1
-"let Tlist_WinWidth = 40
-"let tlist_cpp_settings = 'c++;n:namespace;v:variable;d:macro;t:typedef;c:class;g:enum;s:struct;u:union;f:function;m:member;p:prototype'
-"let Tlist_Show_One_File = 1
-"let Tlist_Close_On_Select = 1
-"let NERDTreeQuitOnOpen = 1
-"Project List
-"let g:proj_flags='Lcgimst'
-"let g:proj_window_increment=40
-"let g:EasyGrepFileAssociations='/Users/hill/.vim/plugin/EasyGrepFileAssociations'
-"let g:EasyGrepMode=2
-"let g:EasyGrepCommand=0
-"let g:EasyGrepRecursive=1
-"let g:EasyGrepIgnoreCase=0
-"let g:EasyGrepHidden=0
-"let g:EasyGrepAllOptionsInExplorer=1
-"let g:EasyGrepWindow=0
-"let g:EasyGrepReplaceWindowMode=0
-"let g:EasyGrepOpenWindowOnMatch=1
-"let g:EasyGrepEveryMatch=0
-"let g:EasyGrepJumpToMatch=0
-"let g:EasyGrepInvertWholeWord=0
-"let g:EasyGrepFileAssociationsInExplorer=0
-"let g:EasyGrepOptionPrefix='<leader>vy'
-"let g:EasyGrepReplaceAllPerFile=0
-"let g:EasyGrepSearchCurrentBufferDir=1
-"let g:EasyGrepWindowPosition='botright'
-"Powerline setup
-"let g:Powerline_symbols = 'fancy'
-"supertab setting
-"####################################################################################################
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabContextDefaultCompletionType = "<c-n>"
 "
 "####################################################################################################
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -342,6 +302,19 @@ endfunction
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
 inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>" 
 inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>" 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            osc52 clipboard sync                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function OscyankRegister()
+    " Put current register's content to 'text'
+ let text = @"
+ " Put text with OSC52
+ let executeCmd="echo -n '".text."' | yank.sh"
+ call system(executeCmd)
+ echom "clipboard sync complete"
+endfunction
+"nnoremap <silent> <leader>y :call OscyankRegister()<cr>
+nnoremap  <leader>y :call OscyankRegister()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            html indentation                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
