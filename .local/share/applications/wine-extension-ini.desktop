@@ -2,7 +2,7 @@
 Type=Application
 Name=notepad
 MimeType=application/x-wine-extension-ini;
-Exec=env WINEPREFIX="/home/hill/.wine" wine start /ProgIDOpen inifile %f
+Exec=firefox -P app --new-window "/home/hill/.wine2" wine start /ProgIDOpen inifile %f
 NoDisplay=true
 StartupNotify=true
 Icon=1E64_notepad.0

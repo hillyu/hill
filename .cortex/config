@@ -1,5 +1,5 @@
 [config]
-browser-background=0
+browser-background=1
 frontpage=https://www.reddit.com/.json?feed=9b0f86ffe4dce26268cc90e6859abf7b6579572b&user=hilltruange
 
 [color]

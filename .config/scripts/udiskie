@@ -72,7 +72,7 @@ case $BLOCK_BUTTON in
         ;;
     2)
         #TODO: mid click umount part
-        udiskie-umount -d $(df |grep ${array_s[$INDEX]}|awk '{print $1}')
+        udiskie-umount -D $(df |grep ${array_s[$INDEX]}|awk '{print $1}')
         echo "0" > ${filename}
         init
         ;;

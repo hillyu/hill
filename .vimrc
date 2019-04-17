@@ -1,6 +1,3 @@
-"doing the pathogenTrick
-"call pathogen#runtime_append_all_bundles()
-"cal pathogen#helptags()
 "using vundle instead of pathogen
 set nocompatible              " required
 filetype off                  " required
@@ -24,18 +21,18 @@ Plugin 'wavded/vim-stylus'
 "Plugin 'vim-scripts/taglist.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'wincent/command-t'
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'pangloss/vim-javascript'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'ujihisa/nclipper.vim'
+"Plugin 'wincent/command-t'
+"Plugin 'derekwyatt/vim-fswitch' # switch between .h and c/cpp 
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'ujihisa/nclipper.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
 "Plugin 'scrooloose/nerdtree'
 "Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-fugitive'
@@ -44,9 +41,16 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+"set path to do fuzzy search
+set path+=**
+" fix vim c-w c-u not recoverable, will will use normalmode db and d0 command
+" for replacement then we can bind c-y to c-r " in insertmode to recover what
+" we have used before.
+inoremap <silent> <C-W> <C-\><C-O>db
+inoremap <silent> <C-U> <C-\><C-O>d0
+
 " You complete me blacklist clear:
 let g:ycm_filetype_blacklist = {}
 " set directory for swp files //fixed a bug of E303 Error
@@ -131,6 +135,7 @@ else
     let g:main_font = "Monospace\\ 9"
     let g:small_font = "Monospace\\ 2"
 endif
+"set spell checking
 set spell spelllang=en_us
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
@@ -197,7 +202,6 @@ else
 endif
 set ruler
 syntax on
-filetype plugin on
 " OPTIONAL: This enables automatic indentation as you type.
 filetype plugin indent on
 set showcmd
@@ -237,67 +241,22 @@ let g:airline_symbols.linenr = 'Ξ'
 set background=dark
 hi SpellBad cterm=underline
 "set tags+=~/.vim/tags/gcc
-set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags,~/.vim/tags/std,~/.vim/tags/inet,~/.vim/tags/omnet
-"let g:easytags_dynamic_files = 1
+set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
 "make backspace work
 set backspace=2
 
-
-" OmniCppComplete
-"let OmniCpp_NamespaceSearch = 1
-"let OmniCpp_GlobalScopeSearch = 1
-"let OmniCpp_ShowAccess = 1
-"let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-"let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-"let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"" automatically open and close the popup menu / preview window
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-"set completeopt=menuone,menu,longest,preview
-"autocmd FileType cpp set foldmethod=syntax
-"### setting for fuzzyfinder.vim {{{2
-"let g:FuzzyFinder_KeySwitchMode = ['<C-t>', '<C-S-t>']
-"let g:FuzzyFinder_KeySwitchIgnoreCase = '<C-i>'
-"let g:FuzzyFinder_FileModeVars =
-"\ { 'excludedPath' : '^\.$\|\.bak$\|\~$\|\.swp$\|\.pyc$\|\.exe$',
-"\   'abbrevMap' :
-"\    { "wts" : ["~/work/trunk/src", "~/work/trunk/bugfix"],
-"\      "vp" : ["~/.vim/plugin"]
-"\    }
-"\ }
-"let g:FuzzyFinder_IgnoreCase = 1
-"" don't use Migemo(a japanese search method)
-"let g:FuzzyFinder_Migemo = 0
-
-" Map this to select completion item or to finish input and open a
-" buffer/file. 1st item is mapped to open in previous window. 2nd item is
-" mapped to open in new window which is made from split previous window. 3rd
-" item is mapped to open in new window which is made from split previous
-" window vertically.
-"let g:FuzzyFinder_KeyOpen = ['<CR>', '<C-O>', '<C-V>']
-":noremap ,ff :FufFile<CR>
-":noremap <leader>fb :FufBuffer<CR>
-":noremap <leader>ft :FufTagFile<CR>
-":noremap <leader>ff :FufFile<CR>
-":noremap <leader>fc :FufMruCmd<CR>
-":noremap <leader>fv :FufFavFile<CR>
-":noremap <leader>fd :FufDir<CR>
-""}}}2
-"NerdTree panel
-"nmap <silent> <Leader>p <Plug>ToggleProject
 "Tlist setting
-let Tlist_Use_Right_Window = 1
-let Tlist_Display_Prototype = 0
-let Tlist_Display_Tag_Scope = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_WinWidth = 40
-let tlist_cpp_settings = 'c++;n:namespace;v:variable;d:macro;t:typedef;c:class;g:enum;s:struct;u:union;f:function;m:member;p:prototype'
-let Tlist_Show_One_File = 1
-let Tlist_Close_On_Select = 1
+"let Tlist_Use_Right_Window = 1
+"let Tlist_Display_Prototype = 0
+"let Tlist_Display_Tag_Scope = 0
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_File_Fold_Auto_Close = 1
+"let Tlist_GainFocus_On_ToggleOpen = 1
+"let Tlist_Use_SingleClick = 1
+"let Tlist_WinWidth = 40
+"let tlist_cpp_settings = 'c++;n:namespace;v:variable;d:macro;t:typedef;c:class;g:enum;s:struct;u:union;f:function;m:member;p:prototype'
+"let Tlist_Show_One_File = 1
+"let Tlist_Close_On_Select = 1
 "let NERDTreeQuitOnOpen = 1
 "Project List
 "let g:proj_flags='Lcgimst'
@@ -326,6 +285,7 @@ let Tlist_Close_On_Select = 1
 "####################################################################################################
 "let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabContextDefaultCompletionType = "<c-n>"
+"
 "####################################################################################################
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
 " (via http://stackoverflow.com/a/22253548/1626737)
