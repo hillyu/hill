@@ -65,5 +65,5 @@ erase="\033]52;c;!\a"
 # if we are on remote machine, send directly to SSH_TTY to transport escape sequence
 # to terminal on local machine, so data lands in clipboard on our local machine
 
-printf "$erase" > "$SSH_TTY"
-printf "$esc" > "$SSH_TTY"
+printf %s $erase > $SSH_TTY
+printf %s $esc > $SSH_TTY
