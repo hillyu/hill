@@ -27,7 +27,7 @@ elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listeni
   copy_backend="nc localhost $copy_backend_remote_tunnel_port"
 fi
 
-# if copy backend is resolved, copy and exit
+# if copy backend is resolved, copy and exit above case $buf is not b64 encoded thus may have chars has special meaning in double quote, hence use %s to output safe literal string.
 if [ -n "$copy_backend" ]; then
   printf %s "$buf" | eval "$copy_backend" 
   exit;
@@ -64,8 +64,6 @@ erase="\033]52;c;!\a"
 # resolve target terminal to send escape sequence
 # if we are on remote machine, send directly to SSH_TTY to transport escape sequence
 # to terminal on local machine, so data lands in clipboard on our local machine
-pane_active_tty=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
-target_tty="${SSH_TTY:-$pane_active_tty}"
 
-printf %s "$erase" > "$target_tty"
-printf %s "$esc" > "$target_tty"
+printf "$erase" > "$SSH_TTY"
+printf "$esc" > "$SSH_TTY"
