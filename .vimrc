@@ -363,6 +363,8 @@ map <leader>tt :!ctags -R --fields=+l --languages=python --python-kinds=-iv -f .
 " " call the file browser to save it, otherwise just save it.
 nnoremap <F2> :w<CR>
 inoremap <F2> <ESC>:w<CR>
+"use modelines
+set modelines=5
 "highlight python
 let python_highlight_all=1
 "plugin related settings
