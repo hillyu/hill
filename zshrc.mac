@@ -4,6 +4,8 @@ plugins+=(brew osx)
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
+export PATH="/usr/local/opt/python/libexec/bin:/Users/hill/Library/Python/3.7/bin:$PATH"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -13,8 +15,8 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias vi="vim"
-;eval `gdircolors -b ~/.dircolors`
+#eval `gdircolors -b ~/.dircolors`
 DEFAULT_USER=`whoami`
-source $(brew --prefix nvm)/nvm.sh
+#source $(brew --prefix nvm)/nvm.sh
 #let iterm send C-s
 stty -ixon
