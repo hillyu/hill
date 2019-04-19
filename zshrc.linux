@@ -1,0 +1,10 @@
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  #exec startx
+  #
+  #sway doesn't need a login manager
+  sway
+  exit 0
+fi
+alias open="xdg-open"
+alias umd="udiskie-umount -d"
+alias coverart="kunst --size 1366x768 --music_dir /mnt/ics-ml-gpu/Music/"
