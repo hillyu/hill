@@ -2,12 +2,11 @@
 
 
 #install on-my-zsh
+read -p "dotfile path: " $dotpath
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # softlink dotfiles
-ln -s ~/dotfile/.config ~/
-ln -s ~/dotfile/.vimrc ~/
-ln -s ~/dotfile/.zshrc ~/
-ln -s ~/dotfile/.zshenv ~/
-#instal vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+item_to_link=('.config' '.vimrc' '.zshrc' 'zshrc.mac' 'zshrc.linux' 'kitty.conf.mac')
+for i in ${item_to_link[@]}; do
+    ln -s "$dotpath"/"$i" ~/
+done
 
