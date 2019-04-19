@@ -1,5 +1,5 @@
 #plugins=(sudo git colored-man colorize github virtualenv pip tmux python brew osx zsh-syntax-highlighting)
-plugins+=(brew osx)
+plugins+=(osx)
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
