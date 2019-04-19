@@ -35,3 +35,5 @@ export MANPAGER=/bin/sh\ -c\ \"unset\ MANPAGER\;col\ -b\ -x\ \|\ vim\ -R\ -c\ \'
  fi
 # hack to skip wayland check on qute browser, it actually supports wayland(not wayland-egl) backend
 # export QUTE_SKIP_WAYLAND_CHECK=1
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
