@@ -57,8 +57,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime', {'for': 'python'}
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
-"Plug 'w0rp/ale'
+"Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
