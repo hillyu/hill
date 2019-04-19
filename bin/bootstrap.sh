@@ -14,7 +14,7 @@ git clone --recursive https://github.com/unixorn/warhol.plugin.zsh.git \
 git clone https://github.com/zdharma/fast-syntax-highlighting.git \
     $HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 # softlink dotfiles
-item_to_link=('.config' '.vimrc' '.zshrc' 'zshrc.mac' 'zshrc.linux' '.zshenv' 'kitty.conf.mac')
+item_to_link=('.config' '.vimrc' '.zshrc' 'zshrc.mac' 'zshrc.linux' '.zshenv' 'kitty.conf.mac' '.tmux.conf')
 for i in ${item_to_link[@]}; do
     [ -L $i ] && rm -v $i
     [ -e $i ] && mv $i $i.old
