@@ -84,18 +84,9 @@ plugins=(tmux docker git warhol zsh-dircolors-solarized fast-syntax-highlighting
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  #exec startx
-  #
-  #sway doesn't need a login manager
-  sway
-  exit 0
-fi
 if [[ `uname` == "Linux" ]]; then
-    alias open="xdg-open"
-    alias umd="udiskie-umount -d"
+    source $HOME/zshrc.linux
 fi
-alias vi="vim"
 #alias vi="emacsclient -t"
 #macos overwrite:
 if [[ `uname` == "Darwin" ]]; then
@@ -103,4 +94,4 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 # this line needs to be put after plugin=(...) so the entire array of plugins will be initialized by ohmyzsh.
 source $ZSH/oh-my-zsh.sh
-alias coverart="kunst --size 1366x768 --music_dir /mnt/ics-ml-gpu/Music/"
+alias vi="vim"
