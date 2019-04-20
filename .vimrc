@@ -20,7 +20,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " let Vundle manage Vundle, required
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Plugin 'Shougo/neocomplete.vim'
-"Plugin 'derekwyatt/vim-fswitch' # switch between .h and c/cpp 
+"Plugin 'derekwyatt/vim-fswitch' # switch between .h and c/cpp
 "Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'jistr/vim-nerdtree-tabs'
 "Plugin 'newclear/vim-pyclewn'
@@ -62,9 +62,11 @@ Plug 'w0rp/ale'
 Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
+Plug 'vim-scripts/vis'
 Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
 Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
 call plug#end()
@@ -76,8 +78,6 @@ set path+=**
 inoremap <silent> <C-W> <C-\><C-O>db
 inoremap <silent> <C-U> <C-\><C-O>d0
 
-" You complete me blacklist clear:
-let g:ycm_filetype_blacklist = {}
 " set directory for swp files //fixed a bug of E303 Error
 set directory=$TEMP,.
 "from dereks vimrc
@@ -104,6 +104,16 @@ else
 endif
 " Automatically read a file that has changed on disk
 set autoread
+" netrw settings
+" disable file explore banner
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_liststyle = 3
+let g:netrw_preview = 1
+
+
 "-----------------------------------------------------------------------------
 "vimgdb setting, only for patched vim. !Used pyclewn intead as it is more
 ""featurerich"
@@ -270,6 +280,8 @@ set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
 "make backspace work
 set backspace=2
 
+nnoremap <leader>f :Vex <cr>
+
 "
 "####################################################################################################
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -277,6 +289,9 @@ set backspace=2
 " UltiSnips send list to YCM, YCM will pullup completion list and let user
 " select, user can use enter to expand the snippets. Must enable ymc complete
 " in comment to enable #! or comment plugin
+"
+" You complete me blacklist clear:
+"let g:ycm_filetype_blacklist = {}
 
 "let g:UltiSnipsJumpForwardTrigger      = '<C-j>'
 "let g:UltiSnipsJumpBackwardTrigger     = '<C-k>'
@@ -284,7 +299,7 @@ set backspace=2
 "let g:ycm_complete_in_comments = 1
 "let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  
+
 let g:UltiSnipsExpandTrigger           = '<nop>'
 let g:UltiSnipsEditSplit="vertical"
 let g:ulti_expand_or_jump_res = 0
@@ -306,8 +321,8 @@ function ExpandSnippetOrTab()
     endif
 endfunction
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
-inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>" 
-inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>" 
+inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>"
+inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            osc52 clipboard sync                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
