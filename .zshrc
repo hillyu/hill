@@ -56,6 +56,9 @@ plugins=(tmux docker git warhol fast-syntax-highlighting)
 # plugins=(sudo, zsh-dircolors-solarized)
 
 
+# this line needs to be put after plugin=(...) so the entire array of plugins will be initialized by ohmyzsh.
+source $ZSH/oh-my-zsh.sh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -92,6 +95,4 @@ fi
 if [[ `uname` == "Darwin" ]]; then
     source $HOME/zshrc.mac
 fi
-# this line needs to be put after plugin=(...) so the entire array of plugins will be initialized by ohmyzsh.
-source $ZSH/oh-my-zsh.sh
 alias vi="vim"

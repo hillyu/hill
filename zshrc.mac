@@ -20,3 +20,4 @@ DEFAULT_USER=`whoami`
 #source $(brew --prefix nvm)/nvm.sh
 #let iterm send C-s
 stty -ixon
+export LSCOLORS=ExfxcxdxbxegedAbAgacad
