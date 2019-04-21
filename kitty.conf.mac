@@ -22,7 +22,7 @@ font_family        Menlo
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 13
+font_size 14.6
 #font_size 13
 
 #: Font size (in pts)
@@ -827,8 +827,8 @@ kitty_mod cmd
 #: You can change the font size for all top-level kitty OS windows at
 #: a time or only the current one.
 
-# map kitty_mod+equal     change_font_size all +2.0
-# map kitty_mod+minus     change_font_size all -2.0
+ #map kitty_mod+equal     change_font_size all +2
+ #map kitty_mod+minus     change_font_size all -2
 map kitty_mod+0 change_font_size all 0
 
 #: To setup shortcuts for specific font sizes::
