@@ -1,4 +1,4 @@
-
+set nocp
 "Auto install vim-plug from github address.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -34,7 +34,6 @@ call plug#end()
 let mapleader = ";"
 set hlsearch
 set incsearch
-"set autoindent
 if has("vms")
     set nobackup
 else
@@ -76,8 +75,6 @@ let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
 let g:netrw_preview = 1
 nnoremap <leader>f :Vex <cr>
-
-"set tags+=~/.vim/tags/gcc
 set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
 "make backspace work
 set backspace=2
@@ -91,6 +88,7 @@ inoremap <silent> <C-U> <C-\><C-O>d0
 
 " set directory for swp files //fixed a bug of E303 Error
 set directory=$TEMP,.
+
 "from dereks vimrc
 "Why is this not a default
 set hidden
@@ -116,8 +114,8 @@ endif
 " Automatically read a file that has changed on disk
 set autoread
 
-" Set the status line the way I like it
-set stl=%f\ %m\ %r%{fugitive#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
+" Set the status line the way I like it overrided by vim-airline
+"set stl=%f\ %m\ %r%{fugitive#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
 
 " tell Vim to always put a status line in, even if there is only one
 " window
@@ -135,7 +133,7 @@ set mousehide
 set timeoutlen=500
 
 " Allow the cursor to go in to "invalid" places
-set virtualedit=all
+set virtualedit=block
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
@@ -148,10 +146,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
-" Make the 'cw' and like commands put a $ at the end instead of just deleting
-" the text and replacing it
-set nocp
 
 " These commands open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
@@ -211,6 +205,7 @@ iab seperate  separate
 iab Seperate  Separate
 iab fone      phone
 iab Fone      Phone
+
 
 
 
@@ -307,7 +302,7 @@ au BufEnter *.h let b:fswitchdst = 'cc,cpp' | let b:fswitchlocs = 'reg:/include/
 " Personal Keybindings
 "-----------------------------------------------------------------------------
 " System default for mappings is now the "," character
-au BufEnter *.py map <leader>tt :!ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags .<CR>
+au BufEnter *.py map <leader>tt :!ctags -R --languages=python -f ./tags .<CR>
 " The following beast is something i didn't write... it will return the
 " syntax highlighting group that the current "thing" under the cursor
 " belongs to -- very useful for figuring out what to change as far as
@@ -322,13 +317,12 @@ nmap <silent><leader>sv :so $MYVIMRC<cr>
 ":noremap <leader>p ::NERDTreeToggle<CR>
 " build tags of your own project with Ctrl-F12
 "map <leader>tt :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-map <leader>tt :!ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags .<CR>
-"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 "
 "mark white space as bad in python:
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-"In visual mode, send selection
+
+"for vim slime In visual mode, send selection
 xmap <leader>r <Plug>SlimeRegionSend
 nmap <leader>r <Plug>SlimeParagraphSend
 nmap <leader>v <Plug>SlimeConfig
