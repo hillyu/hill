@@ -242,6 +242,7 @@ filetype plugin indent on
 set showcmd
 set dictionary+=~/.vim/dict/words
 set thesaurus+=~/.vim/dict/thesaurus
+let &t_ut=''
 if has("gui_running")
     set guioptions=-t
     let g:solarized_termcolors=256
