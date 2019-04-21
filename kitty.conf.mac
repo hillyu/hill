@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family        Menlo
+#font_family        Menlo
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -17,18 +17,18 @@ font_family        Menlo
 #: have many weight variants like Book, Medium, Thick, etc. For
 #: example::
 
-#:     font_family      Operator Mono Book
-#:     bold_font        Operator Mono Medium
-#:     italic_font      Operator Mono Book Italic
-#:     bold_italic_font Operator Mono Medium Italic
+     font_family      SF Mono Semibold
+     bold_font        SF Mono Heavy
+     italic_font      SF Mono Semibold Italic
+     bold_italic_font SF Mono Heavy Italic
 
-font_size 14.6
+font_size 16
 #font_size 13
 
 #: Font size (in pts)
 
-# adjust_line_height  0
-#adjust_column_width  99.9%
+adjust_line_height  0
+adjust_column_width  0
 
 #: Change the size of each character cell kitty renders. You can use
 #: either numbers, which are interpreted as pixels or percentages
@@ -600,7 +600,7 @@ clipboard_control write-clipboard write-primary
 #: Disable this if you want kitty top-level (OS) windows to not be
 #: resizable on macOS.
 
- macos_thicken_font 0.25
+ #macos_thicken_font 0.25
 
 #: Draw an extra border around the font with the given width, to
 #: increase legibility at small font sizes. For example, a value of
@@ -827,8 +827,8 @@ kitty_mod cmd
 #: You can change the font size for all top-level kitty OS windows at
 #: a time or only the current one.
 
- #map kitty_mod+equal     change_font_size all +2
- #map kitty_mod+minus     change_font_size all -2
+ #map kitty_mod+equal     change_font_size all +1
+ #map kitty_mod+minus     change_font_size all -1
 map kitty_mod+0 change_font_size all 0
 
 #: To setup shortcuts for specific font sizes::
