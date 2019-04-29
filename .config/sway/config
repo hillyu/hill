@@ -36,7 +36,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term urxvtc
+set $term st
+#set $term urxvtc
 # set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
@@ -65,7 +66,7 @@ set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 #bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
-bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
+bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="st"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
