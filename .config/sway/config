@@ -45,7 +45,8 @@ set $term st
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
 #set $menu sway-dmenu-desktop
 #color workspace name etc.
-set $menu-font "5x7"
+set $menu-font "roboto"
+#set $menu-font "5x7"
 set $base00 #101218
 set $frame-color #2e9ef4
 set $bg-color            #2f343f
@@ -53,10 +54,10 @@ set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
-set $workspace1 "1  "
+set $workspace1 "1 "
 set $workspace2 "2 "
 set $workspace3 "3 "
-set $workspace4 "4  "
+set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 "
 set $workspace7 "7 "
@@ -66,7 +67,7 @@ set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 #bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
-bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="st"
+bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -fn Roboto-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="st"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
