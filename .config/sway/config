@@ -1,4 +1,5 @@
 #Auto start services
+xwayland disable
 exec --no-startup-id fcitx
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
 exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
@@ -36,7 +37,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term st
+set $term kitty
 #set $term urxvtc
 # set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
@@ -67,7 +68,7 @@ set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 #bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
-bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -fn Roboto-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="st"
+bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu-wl -i -fn Roboto-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="kitty"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)

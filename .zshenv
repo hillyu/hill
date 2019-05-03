@@ -1,6 +1,6 @@
 # User configuration
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export WAYLAND_DEBUG=1 
+#export WAYLAND_DEBUG=1 
 export KITTY_ENABLE_WAYLAND=1
 export GDK_BACKEND=wayland
 export CLUTTER_BACKEND=wayland
