@@ -34,6 +34,7 @@ if [ -n "$copy_backend" ]; then
 fi
 
 
+
  #If no copy backends were eligible, decide to fallback to OSC 52 escape sequences
  #Note, most terminals do not handle OSC
 if [ "$copy_use_osc52_fallback" == "off" ]; then
@@ -56,14 +57,20 @@ fi
 
 # build up OSC 52 ANSI escape sequence
 esc="\033]52;c;$( printf %s "$buf" | head -c $maxlen | base64 | tr -d '\r\n' )\a"
-if [[ -z "$SSH_TTY" ]]; then
+erase='\033]52;c;!\a'
+#TODO: fix this for remote tmux session
+if [[ -n "${TMUX+x}" ]]; then
     esc="\033Ptmux;\033$esc\033\\"
+    erase="\033Ptmux;\033$erase\033\\"
 fi
 
-erase="\033]52;c;!\a" 
+#MTTY=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
+MTTY="/dev/$(ps hotty $$)"
+#echo $MTTY
+
 # resolve target terminal to send escape sequence
 # if we are on remote machine, send directly to SSH_TTY to transport escape sequence
 # to terminal on local machine, so data lands in clipboard on our local machine
 
-printf "$erase" > "$SSH_TTY"
-printf "$esc" > "$SSH_TTY"
+printf "$erase" > "$MTTY"
+printf "$esc" > "$MTTY"
