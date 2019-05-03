@@ -256,7 +256,7 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
-for_window [instance="(?i)neomutt"] floating enable
+for_window [app_id="(?i)neomutt"] floating enable
 for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
 for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable

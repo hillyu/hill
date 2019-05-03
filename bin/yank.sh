@@ -62,10 +62,10 @@ erase='\033]52;c;!\a'
 if [[ -n "${TMUX+x}" ]]; then
     esc="\033Ptmux;\033$esc\033\\"
     erase="\033Ptmux;\033$erase\033\\"
-fi
-
-#MTTY=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
+    MTTY=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
+else
 MTTY="/dev/$(ps hotty $$)"
+fi
 #echo $MTTY
 
 # resolve target terminal to send escape sequence
