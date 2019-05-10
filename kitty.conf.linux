@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-#font_family        Monospace
+#font_family        monospace
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -18,6 +18,8 @@
 #: example::
 
      font_family      SF Mono Semibold
+     #font_family      WenQuanYi Micro Hei Mono Light
+#SF Mono Semibold
      bold_font        SF Mono Heavy
      italic_font      SF Mono Semibold Italic
      bold_italic_font SF Mono Heavy Italic
@@ -37,7 +39,7 @@ adjust_column_width  0
 #: than 100% to reduce sizes (but this might cause rendering
 #: artifacts).
 
-symbol_map U+E0A0-U+E0A2,U+E0B0-U+E0B3 PowerlineSymbols
+#symbol_map U+E0A0-U+E0A2,U+E0B0-U+E0B3 PowerlineSymbols
 
 #: Map the specified unicode codepoints to a particular font. Useful
 #: if you need special rendering for some symbols, such as for
@@ -860,8 +862,8 @@ map super+at send_text all \000
 #: You can change the font size for all top-level kitty OS windows at
 #: a time or only the current one.
 
- #map kitty_mod+equal     change_font_size all +1
- #map kitty_mod+minus     change_font_size all -1
+ map kitty_mod+equal     change_font_size all +1
+ map kitty_mod+minus     change_font_size all -1
 map kitty_mod+0 change_font_size all 0
 
 #: To setup shortcuts for specific font sizes::
