@@ -4,7 +4,7 @@ Name=ranger
 Comment=Launches the ranger file manager
 Icon=utilities-terminal
 Terminal=true
-Exec=urxvtc -name ranger -e /usr/bin/ranger %f
+Exec=kitty --class=ranger /usr/bin/ranger %f
 #Exec=ranger
 Categories=ConsoleOnly;System;FileTools;FileManager
 MimeType=inode/directory;
