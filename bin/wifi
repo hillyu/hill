@@ -3,7 +3,7 @@
 INTERFACE="${BLOCK_INSTANCE:-wlp4s0}"
 NET_TB=`wpa_cli -i ${INTERFACE} list_network| tail -n +3|sed -e 's/^\([[:digit:]]*\)\t\([^\t]*\)\t.*$/\1-\2/g'`
 #echo $NET_TB
-SEL=`echo "$NET_TB" |dmenu -i -fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
+SEL=`echo "$NET_TB" |bemenu -i --fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
 
 
 [[ -n "$SEL" ]] && echo "select network" $SEL && wpa_cli -i ${INTERFACE} select_network $SEL
