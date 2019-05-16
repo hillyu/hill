@@ -25,7 +25,7 @@
      bold_italic_font SF Mono Heavy Italic
 
 #font_size 16
-#font_size 13
+font_size 11
 
 #: Font size (in pts)
 

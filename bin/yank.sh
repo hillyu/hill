@@ -19,10 +19,10 @@ if is_app_installed pbcopy; then
   copy_backend="pbcopy"
 elif is_app_installed reattach-to-user-namespace; then
   copy_backend="reattach-to-user-namespace pbcopy"
-elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
-  copy_backend="xsel -i --clipboard"
-elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
-  copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
+#elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
+  #copy_backend="xsel -i --clipboard"
+#elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
+  #copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
 elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listening "( sport = $copy_backend_remote_tunnel_port )" | tail -n +2 | wc -l)" -eq 1 ]; then
   copy_backend="nc localhost $copy_backend_remote_tunnel_port"
 fi
@@ -66,7 +66,6 @@ if [[ -n "${TMUX+x}" ]]; then
 else
 MTTY="/dev/$(ps hotty $$)"
 fi
-#echo $MTTY
 
 # resolve target terminal to send escape sequence
 # if we are on remote machine, send directly to SSH_TTY to transport escape sequence
