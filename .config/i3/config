@@ -45,7 +45,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term urxvtc
+set $term kitty
+#set $term urxvtc
 # set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
