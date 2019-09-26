@@ -3,16 +3,19 @@
 #export WAYLAND_DEBUG=1 
 export BEMENU_BACKEND=wayland
 export KITTY_ENABLE_WAYLAND=1
-export GDK_BACKEND=wayland
+#export GDK_BACKEND=wayland
 export CLUTTER_BACKEND=wayland
+export MOZ_ENABLE_WAYLAND=1
 #export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORM=wayland-egl
-export QT_DISABLE_WINDOWDECORATION=1
+export QT_WAYLAND_FORCE_DPI=physical
+#export QT_DISABLE_WINDOWDECORATION=1
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export ECORE_EVAS_ENGINE=wayland_egl
 export ELM_ENGINE=wayland_egl
-export SDL_VIDEODRIVER=wayland
 export PATH=~/.local/bin:~/bin:$PATH
 #set qt theme font to stay consistent with gtk
 export QT_STYLE_OVERRIDE=GTK+

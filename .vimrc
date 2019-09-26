@@ -253,7 +253,7 @@ if !exists('g:airline_symbols')
   endif
 let g:airline_theme='dark'
 let g:airline_powerline_fonts =1
-"let g:airline_symbols.linenr = 'Ξ'
+let g:airline_symbols.linenr = 'Ξ'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1

@@ -1,5 +1,5 @@
 #Auto start services
-#xwayland disable
+xwayland disable
 exec --no-startup-id fcitx
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
 #exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
@@ -248,9 +248,11 @@ assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
+for_window [app_id="(?i)mpv"] floating enable
 for_window [app_id="(?i)pavucontrol"] floating enable
 for_window [app_id="(?i)wpa_gui"] floating enable
 for_window [app_id="(?)qemu-system-x86_64"] floating enable
+for_window [app_id="(?)gvncviewer"] floating enable
 
 
 for_window [title="(?i)launcher"] floating enable
