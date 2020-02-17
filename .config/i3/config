@@ -1,8 +1,8 @@
 # i3 config file (v4)
 #
 #Auto start services
-exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
-exec --no-startup-id compton --xrender-sync-fence
+#exec --no-startup-id picom --xrender-sync-fence
+exec --no-startup-id picom -bG -d :0
 exec --no-startup-id nice -10 fcitx
 exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
 exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o 
@@ -33,7 +33,7 @@ exec --no-startup-id udiskie  --no-notify
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-font pango:SFNS Display 10
+font pango:SFNS Display 9
 
 ### Variables
 #
@@ -78,7 +78,7 @@ bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
 #output "*" background ~/Pictures/wallpapers/lake.png fill
 #output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
+exec --no-startup-id feh --bg-fill ~/Pictures/track.jpeg
 
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -192,16 +192,16 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/lake.png
      # bindsym $mod+. workspace prev
 
  #workspace default monitors
- workspace $workspace1 output DP1
- workspace $workspace2 output DP1
- workspace $workspace3 output HDMI2
- workspace $workspace4 output DP1
- workspace $workspace5 output HDMI2
- workspace $workspace6 output DP1
- workspace $workspace7 output HDMI2
- workspace $workspace8 output DP1
- workspace $workspace9 output eDP1
- workspace $workspace10 output eDP1
+ workspace $workspace1 output DP-1
+ workspace $workspace2 output DP-1
+ workspace $workspace3 output HDMI-A-2
+ workspace $workspace4 output DP-1
+ workspace $workspace5 output HDMI-A-2
+ workspace $workspace6 output DP-1
+ workspace $workspace7 output HDMI-A-2
+ workspace $workspace8 output HDMI-A-2
+ workspace $workspace9 output eDP-1
+ workspace $workspace10 output eDP-1
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
@@ -347,8 +347,9 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 bar {
     #output HDMI2
     #output eDP1
-    height 16
-    status_command i3blocks  -c /home/hill/.config/i3/i3blocks.conf
+    #hidpi use doulbe height
+    height 32
+    status_command i3blocks  -c /home/hill/.config/i3blocks.conf
     position top
     colors {
         background $bg-color
@@ -359,14 +360,21 @@ bar {
         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
 }
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1%-
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1%
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB+ unmute"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) 2dB- unmute"
-#bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
-#bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
-bindsym XF86AudioMute exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n \\"s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p\\"| head -n 1) toggle"
-# bindsym XF86AudioMute exec amixer -q set Master toggle
+#adjust bar thickness and padding for sway only
+#titlebar_border_thickness 1
+#titlebar_padding 5 1
+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 4%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +4%
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB+ unmute
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB- unmute
+##bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
+##bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
+#bindsym XF86AudioMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) toggle
+# bindsym# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks 
 bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
 bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
 bindsym XF86Tools mode "$mode_display"
@@ -379,13 +387,17 @@ focus_on_window_activation focus
 for_window [urgent=latest] focus
 
 #gaps 5
+gaps outer 20
+gaps inner 10
+smart_borders on
+smart_gaps inverse_outer
+
 #workspace $workspace9 gaps inner 12
 #workspace $workspace9 gaps outer 40
 #workspace $workspace10 gaps inner 12
 #workspace $workspace10 gaps outer 40
 default_border pixel
 # disable even the pixel border when there is only one container on tcurrent workspace.
-#smart_borders on
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
 #smart_gaps on
 floating_maximum_size -1 x -1

@@ -21,7 +21,7 @@
 
 
 #------------------------------------------------------------------------
-filename="$HOME/.config/sway/scripts/udisk_index"
+filename="$HOME/.config/scripts/udisk_index"
 ALERT_LOW="${1:-10}" # color will turn red under this value (default: 10%)
 INDEX=$(cat ${filename})
 IFS=$'\r\n' 
