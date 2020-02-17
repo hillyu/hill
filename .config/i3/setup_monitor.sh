@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-#PRIMARY="eDP-1"
-PRIMARY="eDP1"
-EXT2="HDMI2"
-#EXT1="HDMI-2"
-#EXT2="DP-1"
-EXT1="DP1"
+PRIMARY="eDP"
+#PRIMARY="eDP1"
+#EXT2="HDMI2"
+EXT1="HDMI-2"
+EXT2="DisplayPort-0"
+#EXT1="DP1"
 INFO=$(xrandr)
 
 xrandr --output $PRIMARY --primary --auto
@@ -22,11 +22,11 @@ if (echo "$INFO" | grep "^$EXT2 connected"); then
         xrandr --output $EXT2  --auto --right-of $EXT1
         echo "third screen (DP) enabled"
     else
-        xrandr --output $EXT2 --primary --auto --right-of $PRIMARY
+        xrandr --output $EXT2 --primary --auto --above $PRIMARY 
         echo "second screen (DP) enabled"
     fi
 else
     xrandr --output $EXT2 --off
     echo "second screen (DP) disabled"
 fi
-feh --bg-fill ~/Pictures/wallpapers/lake.png
+feh --bg-fill ~/Pictures/wall.jpg
