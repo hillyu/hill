@@ -17,20 +17,20 @@
 #: have many weight variants like Book, Medium, Thick, etc. For
 #: example::
 
-     font_family      SF Mono Semibold
-     #font_family      WenQuanYi Micro Hei Mono Light
-#SF Mono Semibold
-     bold_font        SF Mono Heavy
-     italic_font      SF Mono Semibold Italic
-     bold_italic_font SF Mono Heavy Italic
+     font_family      SF Mono Medium
+     #font_family      Source Code Pro
+##SF Mono Semibold
+     bold_font        SF Mono Semibold
+     italic_font      SF Mono Medium Italic
+     bold_italic_font SF Mono Semibold Italic
 
-#font_size 16
 font_size 11
+#font_size 10
 
 #: Font size (in pts)
 
-adjust_line_height  0
-adjust_column_width  0
+#adjust_line_height  0
+#adjust_column_width  -100%
 
 #: Change the size of each character cell kitty renders. You can use
 #: either numbers, which are interpreted as pixels or percentages
@@ -382,8 +382,8 @@ adjust_column_width  0
 
 #: The foreground and background colors
 
-background_opacity         0.8
-# dynamic_background_opacity no
+background_opacity         0.75
+dynamic_background_opacity no
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
 #: opaque and 0 is fully transparent.  This will only work if
@@ -591,7 +591,7 @@ clipboard_control write-clipboard write-primary
 
 #: Hide the kitty window from running tasks (Option+Tab) on macOS.
 
- macos_quit_when_last_window_closed yes
+ #macos_quit_when_last_window_closed yes
 
 #: Have kitty quit when all the top-level windows are closed. By
 #: default, kitty will stay running, even with no open windows, as is
@@ -751,14 +751,14 @@ map super+at send_text all \000
 #: Scrolling {{{
 
 # map kitty_mod+up        scroll_line_up
-# map kitty_mod+k         scroll_line_up
+ map kitty_mod+k         scroll_line_up
 # map kitty_mod+down      scroll_line_down
-# map kitty_mod+j         scroll_line_down
+ map kitty_mod+j         scroll_line_down
 # map kitty_mod+page_up   scroll_page_up
 # map kitty_mod+page_down scroll_page_down
 # map kitty_mod+home      scroll_home
 # map kitty_mod+end       scroll_end
-# map kitty_mod+h         show_scrollback
+ map kitty_mod+h         show_scrollback
 
 #: You can pipe the contents of the current screen + history buffer as
 #: STDIN to an arbitrary program using the ``pipe`` function. For
