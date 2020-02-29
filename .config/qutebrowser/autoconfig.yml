@@ -60,10 +60,12 @@ settings:
         <Meta+u>: rl-unix-line-discard
         <Meta+w>: rl-backward-kill-word
         <Meta+y>: rl-yank
+  content.notifications:
+    https://www.bilibili.com: true
   editor.command:
     global:
-    - urxvt
-    - -name
+    - kitty
+    - --name
     - floating
     - -e
     - vim
@@ -75,9 +77,11 @@ settings:
   fonts.debug_console:
     global: 8pt default_family
   fonts.default_family:
-    global: null
+    global: sans
   fonts.hints:
-    global: bold 20pt default_family
+    global: bold default_size "SF Pro Display"
+  fonts.keyhint:
+    global: default_size default_family
   fonts.statusbar:
     global: 9pt default_family
   fonts.web.family.cursive:
@@ -91,7 +95,9 @@ settings:
   fonts.web.family.serif:
     global: serif
   fonts.web.family.standard:
-    global: Noto Serif
+    global: '"SF Pro Display"'
+  fonts.web.size.default_fixed:
+    global: 13
   hints.prev_regexes:
     global:
     - \bprev(ious)?\b
@@ -100,11 +106,13 @@ settings:
     - \b[<←≪]\b
     - \b(<<|«)\b
   new_instance_open_target:
-    global: tab
+    global: window
   qt.force_platform:
     global: xcb
   qt.force_software_rendering:
     global: none
+  scrolling.smooth:
+    global: true
   session.default_name:
     global: null
   tabs.tabs_are_windows:

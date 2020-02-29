@@ -75,7 +75,7 @@ bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="bemenu -i --fn
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
-output "*" background ~/Pictures/plants.jpg stretch
+output "*" background ~/Pictures/leaf.jpg fill
 #output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 ### Input configuration
@@ -114,8 +114,8 @@ output "*" background ~/Pictures/plants.jpg stretch
     # start your launcher
     #bindsym Ctrl+Space exec $menu
     # print screen
-    bindsym Print exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+    bindsym Shift+Control+3 exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -264,6 +264,7 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
 for_window [app_id="(?i)neomutt"] floating enable
 for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
+for_window [instance="(?i)urxvt" title="(?i)ideapad*"] floating enable
 for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
@@ -384,8 +385,8 @@ bindsym XF86Explorer gaps inner current plus  4
 # output eDP-1 res 1366x768 pos 1920,180
 
 
-gaps inner 5
-gaps outer 5
+#gaps inner 10
+#gaps outer 10
 #workspace $workspace9 gaps inner 12
 #workspace $workspace9 gaps outer 40
 #workspace $workspace10 gaps inner 12

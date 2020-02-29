@@ -2,11 +2,13 @@
 #
 #Auto start services
 #exec --no-startup-id picom --xrender-sync-fence
-exec --no-startup-id picom -bG -d :0
+exec --no-startup-id picom -b -d :0
 exec --no-startup-id nice -10 fcitx
-exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
+#exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
 exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o 
 exec --no-startup-id udiskie  --no-notify
+exec --no-startup-id autorandr -c
+exec --no-startup-id bingwallpaper &>/dev/null &
 #exec --no-startup-id wpa_gui -t
 #exec --no-startup-id urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
@@ -33,7 +35,7 @@ exec --no-startup-id udiskie  --no-notify
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-font pango:SFNS Display 9
+font pango:SF Pro Display 9
 
 ### Variables
 #
@@ -72,13 +74,14 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
+bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"kitty\\""
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
 #output "*" background ~/Pictures/wallpapers/lake.png fill
 #output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-exec --no-startup-id feh --bg-fill ~/Pictures/track.jpeg
+#exec --no-startup-id feh --bg-fill ~/Pictures/track.jpeg
+#exec --no-startup-id ~/.screenlayout/doStyle2Display.sh
 
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -91,18 +94,18 @@ exec --no-startup-id feh --bg-fill ~/Pictures/track.jpeg
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec $term -e tmux
+    bindsym $mod+Return exec --no-startup-id $term
+    bindsym $mod+Shift+Return exec --no-startup-id $term -e tmux
 
     # kill focused window
     #bindsym $mod+Shift+q kill
     bindsym Ctrl+q kill
 
-    # start your launcher
-    #bindsym Ctrl+Space exec $menu
     # print screen
-    bindsym Print               exec --no-startup-id flameshot full -c
+    bindsym Print               exec --no-startup-id flameshot full -c -p /home/hill/Pictures/screenshot/
+    bindsym Shift+Ctrl+3               exec --no-startup-id flameshot full -c -p /home/hill/Pictures/screenshot/
     bindsym Shift+Print         exec --no-startup-id flameshot gui
+    bindsym Shift+Ctrl+4         exec --no-startup-id flameshot gui
     #bindsym Print               exec --no-startup-id scrot
     #bindsym Shift+Print         exec --no-startup-id scrot -u
 
@@ -245,7 +248,9 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
 for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable
+for_window [class="(?i)kitty" instance="(?i)neomutt"] floating enable
 for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
+for_window [class="(?i)kitty" instance="(?i)floating"] floating enable
 for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
@@ -376,7 +381,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks 
 bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
-bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
+#bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
+bindsym XF86Display exec --no-startup-id /home/hill/.screenlayout/doStyle2Display.sh
 bindsym XF86Tools mode "$mode_display"
 bindsym XF86Search exec --no-startup-id arandr
 bindsym XF86LaunchA gaps inner current minus 4
@@ -386,7 +392,6 @@ bindsym XF86Explorer gaps inner current plus  4
 focus_on_window_activation focus
 for_window [urgent=latest] focus
 
-#gaps 5
 gaps outer 20
 gaps inner 10
 smart_borders on
