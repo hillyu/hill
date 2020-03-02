@@ -2,13 +2,12 @@
 #
 #Auto start services
 #exec --no-startup-id picom --xrender-sync-fence
-exec --no-startup-id picom -b -d :0
+#exec --no-startup-id picom -b -d :0
 exec --no-startup-id nice -10 fcitx
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
-exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o 
+#exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o
 exec --no-startup-id udiskie  --no-notify
-exec --no-startup-id autorandr -c
-exec --no-startup-id bingwallpaper &>/dev/null &
+#exec --no-startup-id autorandr -c
 #exec --no-startup-id wpa_gui -t
 #exec --no-startup-id urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
@@ -47,7 +46,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term kitty -1
 #set $term urxvtc
 # set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
@@ -74,15 +73,16 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 ##
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"kitty\\""
+bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"\\$term\\""
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
 #output "*" background ~/Pictures/wallpapers/lake.png fill
 #output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#exec --no-startup-id feh --bg-fill ~/Pictures/track.jpeg
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.png
 #exec --no-startup-id ~/.screenlayout/doStyle2Display.sh
-
+#exec --no-startup-id /home/hill/bin/bingwallpaper &>/dev/null &
+#exec --no-startup-id /home/hill/bin/bingwallpaper
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -247,10 +247,14 @@ for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
+# 
+for_window [class="(?i)qvidcap"] floating enable
+for_window [class="(?i)qv4l2"] floating enable
 for_window [class="(?i)urxvt" instance="(?i)neomutt"] floating enable
 for_window [class="(?i)kitty" instance="(?i)neomutt"] floating enable
 for_window [class="(?i)urxvt" instance="(?i)floating"] floating enable
 for_window [class="(?i)kitty" instance="(?i)floating"] floating enable
+for_window [class="(?i)kitty" instance="(?i)prompt"] floating enable
 for_window [class="(?i)wine" instance="(?i)client.exe"] floating enable
 for_window [class="(?i)wpa_gui" ] floating enable
 for_window [class="(?i)keyring"] floating enable
@@ -377,9 +381,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +4%
 ##bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
 #bindsym XF86AudioMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) toggle
 # bindsym# change volume or toggle mute
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
 #bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
 bindsym XF86Display exec --no-startup-id /home/hill/.screenlayout/doStyle2Display.sh

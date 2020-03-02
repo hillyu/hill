@@ -15,7 +15,7 @@
 if ($ENV{BLOCK_BUTTON} == "1") {
     # body...
     #my $output = `kitty --hold --name floating -e sudo tlp fullcharge`;
-    my $output = `urxvt --geometry 24x6 --hold --name floating -e ~/bin/ideapad_battery_conservation_toggle.sh`;
+    my $output = `kitty  -1 --hold --name prompt -e ~/bin/ideapad_battery_conservation_toggle.sh`;
     #`urxvt--name floating -e ~/bin/ideapad_battery_conservation_toggle.sh`;
 
 }
