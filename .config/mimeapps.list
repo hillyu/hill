@@ -1,0 +1,17 @@
+[Default Applications]
+x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/http=userapp-Firefox-EZHRG0.desktop
+x-scheme-handler/https=userapp-Firefox-EZHRG0.desktop
+x-scheme-handler/ftp=userapp-Firefox-EZHRG0.desktop
+x-scheme-handler/chrome=userapp-Firefox-EZHRG0.desktop
+text/html=userapp-Firefox-EZHRG0.desktop
+application/x-extension-htm=userapp-Firefox-EZHRG0.desktop
+application/x-extension-html=userapp-Firefox-EZHRG0.desktop
+application/x-extension-shtml=userapp-Firefox-EZHRG0.desktop
+application/xhtml+xml=userapp-Firefox-EZHRG0.desktop
+application/x-extension-xhtml=userapp-Firefox-EZHRG0.desktop
+application/x-extension-xht=userapp-Firefox-EZHRG0.desktop
+text/plain=vim.desktop
+x-scheme-handler/mailto=neomutt.desktop
+
+[Added Associations]
