@@ -1,5 +1,5 @@
 #Auto start services
-#xwayland disable
+xwayland disable
 exec --no-startup-id fcitx
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
 #exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
@@ -8,7 +8,9 @@ exec --no-startup-id xrdb $HOME/.Xresources
 #exec --no-startup-id LC_CTYPE=zh_CN.UTF-8 emacs --daemon
 exec --no-startup-id udiskie  --no-notify
 #notification server for sway.
-exec mako
+exec --no-startup-id mako
+exec_always --no-startup-id blueman-applet
+
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 # exec nice -12 slack
@@ -50,7 +52,7 @@ set $term "kitty -1"
 #set $me
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
-set $menu dmenu_path|wofi -t $term -S drun -i -q|xargs swaymsg exec --
+set $menu wofi -t \"$term\" -S dmenu -i -q
 #color workspace name etc.
 set $menu-font "SF Pro Display"
 #set $menu-font "5x7"
@@ -75,7 +77,9 @@ set $workspace10 "10 "
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
 #bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
 #bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="bemenu -i --fn $menu-font -9 --nb \\$bg-color --nf \\$text-color --sb \\$text-color --sf \\$bg-color" --term="$term"
-bindsym Ctrl+Space exec --no-startup-id $menu
+#bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="wofi -t \"$term\" -S dmenu -i -q|xargs swaymsg exec --"
+bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="$menu" --term=$term
+#bindsym Ctrl+Space exec --no-startup-id $menu
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -133,10 +137,11 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     #bindsym Shift+Ctrl+3 exec --no-startup-id flameshot full -c -p /home/hill/Pictures/screenshot/
     #bindsym Shift+Print exec --no-startup-id flameshot gui
     #bindsym Shift+Ctrl+4 exec --no-startup-id flameshot gui
-    bindsym Print exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-    bindsym Shift+Control+3 exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png') && xclip -selection clipboard -t image/png -i $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+    set $screenshotdir "$(xdg-user-dir PICTURES)/screenshot/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+    bindsym Print exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
+    bindsym Shift+Control+3 exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
+    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
+    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -273,6 +278,7 @@ assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
 for_window [app_id="(?i)mpv"] floating enable
+for_window [app_id="(?i)blueman"] floating enable
 for_window [app_id="(?i)pavucontrol"] floating enable
 for_window [app_id="(?i)wpa_gui"] floating enable
 for_window [app_id="(?)qemu-system-x86_64"] floating enable
@@ -423,5 +429,5 @@ floating_maximum_size -1 x -1
 floating_minimum_size 90 x 55
 #work_space backandforth
 workspace_auto_back_and_forth yes
-exec swayidle timeout 350 "swaylock -c 000000f0" before-sleep "swaylock -c 000000f0"
+#exec swayidle timeout 350 "swaylock -c 000000f0" before-sleep "swaylock -c 000000f0"
 #include /etc/sway/config.d/*
