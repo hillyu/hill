@@ -1,15 +1,17 @@
 #Auto start services
 xwayland disable
-exec --no-startup-id fcitx
+exec --no-startup-id fcitx-autostart
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
 #exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
-exec --no-startup-id xrdb $HOME/.Xresources 
+#exec --no-startup-id xrdb $HOME/.Xresources 
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 #exec --no-startup-id LC_CTYPE=zh_CN.UTF-8 emacs --daemon
 exec --no-startup-id udiskie  --no-notify
 #notification server for sway.
 exec --no-startup-id mako
-exec_always --no-startup-id blueman-applet
+exec --no-startup-id mpris-proxy
+#exec_always --no-startup-id blueman-applet
+#exec_always --no-startup-id ~/bin/amdClock.sh
 
 #exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
@@ -19,8 +21,8 @@ exec_always --no-startup-id blueman-applet
 # exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0" # Default config for sway
 # output eDP-1 res 1366x768 pos 1920,180
 #output eDP-1 res 1366x768 pos 0,200
-output DP-1 pos 0,0
-output eDP-1 scale 2 position 314,1200
+output eDP-1 scale 2 position 0,950 dpms on
+output DP-1 pos 1280,0 dpms on
 #output DP-1 resolution 1920x1080 position 1366,0 transform 270
 #output HDMI-A-2 res 2560x1440 pos 2446,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
@@ -45,14 +47,15 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term "kitty -1"
+set $term "kitty --single-instance"
 #set $term urxvtc
 # set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
 #set $me
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
-set $menu wofi -t \"$term\" -S dmenu -i -q
+#set $menu (cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | wofi -t \"$term\" -S dmenu -i
+set $menu wofi -t \"$term\" -S drun,run -i -q
 #color workspace name etc.
 set $menu-font "SF Pro Display"
 #set $menu-font "5x7"
@@ -78,8 +81,8 @@ set $workspace10 "10 "
 #bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"urxvtc\\""
 #bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="bemenu -i --fn $menu-font -9 --nb \\$bg-color --nf \\$text-color --sb \\$text-color --sf \\$bg-color" --term="$term"
 #bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="wofi -t \"$term\" -S dmenu -i -q|xargs swaymsg exec --"
-bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="$menu" --term=$term
-#bindsym Ctrl+Space exec --no-startup-id $menu
+#bindsym Ctrl+Space exec --no-startup-id j4-dmenu-desktop --dmenu="$menu" --term=$term
+bindsym Ctrl+Space exec --no-startup-id "$menu"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -97,8 +100,9 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
        natural_scroll enabled
        middle_emulation enabled
        pointer_accel 0.05
-       scroll_factor 0.5
-       accel_profile adaptive
+       scroll_factor 0.3
+       #accel_profile adaptive
+
    }
    input "2:10:TPPS/2_IBM_TrackPoint" {
        natural_scroll enabled
@@ -106,8 +110,12 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
    }
    input type:keyboard {           
     xkb_layout us
-    xkb_options caps:escape
+    xkb_options ctrl:swap_lalt_lctl_lwin,lv3:ralt_switch,caps:escape,lv3:rwin_switch
    }
+   input "1452:597:DOT@LOFREE" {
+    xkb_layout us
+    xkb_options ctrl:swap_lwin_lctl,lv3:ralt_switch,caps:escape,lv3:rwin_switch
+}
    input type:pointer {           
        pointer_accel -0.75
        accel_profile adaptive
@@ -138,10 +146,10 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     #bindsym Shift+Print exec --no-startup-id flameshot gui
     #bindsym Shift+Ctrl+4 exec --no-startup-id flameshot gui
     set $screenshotdir "$(xdg-user-dir PICTURES)/screenshot/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
-    bindsym Print exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
-    bindsym Shift+Control+3 exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
-    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
-    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" $screenshotdir && xclip -selection clipboard -t image/png -i $screenshotdir
+    bindsym Print exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && wl-copy < $screenshotdir
+    bindsym Shift+Control+3 exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && wl-copy < $screenshotdir
+    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $screenshotdir && wl-copy < $screenshotdir
+    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" $screenshotdir && wl-copy < $screenshotdir
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -277,6 +285,10 @@ assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
+for_window [app_id="(?i)imv"] floating enable
+for_window [app_id="(?i)transmission-remote-gtk"] floating enable
+for_window [title="Launch Application"] floating enable
+for_window [app_id="floating"] floating enable
 for_window [app_id="(?i)mpv"] floating enable
 for_window [app_id="(?i)blueman"] floating enable
 for_window [app_id="(?i)pavucontrol"] floating enable
@@ -285,7 +297,7 @@ for_window [app_id="(?)qemu-system-x86_64"] floating enable
 for_window [app_id="(?)gvncviewer"] floating enable
 
 
-for_window [title="(?i)launcher"] floating enable
+#for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
@@ -410,18 +422,19 @@ bindsym XF86Tools reload
 bindsym XF86Search output eDP-1 scale 1
 bindsym XF86LaunchA gaps inner current minus 4
 bindsym XF86Explorer gaps inner current plus  4
+bindsym $mod+equal gaps inner current set 0
 # output eDP-1 res 1366x768 pos 1920,180
 
 
-#gaps inner 10
-#gaps outer 10
+gaps inner 10
+gaps outer 20
 #workspace $workspace9 gaps inner 12
 #workspace $workspace9 gaps outer 40
 #workspace $workspace10 gaps inner 12
 #workspace $workspace10 gaps outer 40
 default_border pixel
 # disable even the pixel border when there is only one container on tcurrent workspace.
-#smart_borders on
+smart_borders on
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
 #smart_gaps on
 floating_maximum_size -1 x -1
