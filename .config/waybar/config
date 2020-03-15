@@ -8,7 +8,7 @@
     "modules-left": ["sway/workspaces", "sway/mode" ],
     "modules-center": ["sway/window"],
     //"modules-right": ["mpd", "idle_inhibitor", "network", "cpu", "memory", "temperature", "temperature#amdgpu", "backlight", "battery", "battery#bat2", "pulseaudio", "clock", "tray"],
-    "modules-right": ["network", "cpu", "memory", "custom/temperature", "pulseaudio",  "battery", "backlight", "clock", "tray"],
+    "modules-right": [ "network", "cpu", "memory", "pulseaudio", "backlight", "battery", "clock", "tray", "custom/bluetooth"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -72,6 +72,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
+        "on-click-right": "kitty --class=floating --hold -e sudo /home/hill/bin/amdClock.sh",
         "tooltip": true
     },
     "memory": {
@@ -97,12 +98,13 @@
         "format-icons": ["", ""]
     },
     "battery": {
+        "bat": "BAT0",
         "states": {
             // "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "on-click-right": "kitty --name floating --hold -e /home/hill/bin/ideapad_battery_conservation_toggle.sh",
+        "on-click-right": "kitty --class=floating --hold -e /home/hill/bin/ideapad_battery_conservation_toggle.sh",
         "format": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
@@ -154,9 +156,22 @@
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
+    "custom/bluetooth": {
+        "format": "{icon}",
+        "return-type": "json",
+        "signal": 8,
+        "on-click-right": "bt-disconnect; pkill -SIGRTMIN+8 waybar",
+        "on-click": "bt; pkill -SIGRTMIN+8 waybar",
+        "on-click-middle": "kitty --class=floating -e bluetoothctl scan on; pkill -SIGRTMIN+8 waybar",
+        "interval": "once",
+        "format-icons": ["",""],
+        "escape": false,
+        "exec": "/home/hill/.config/scripts/bluetooth" // Script in resources folder
+    },
     "custom/temperature": {
         "format": "{}°C {icon}",
         "return-type": "json",
+        "interval": 10,
         "format-icons": ["", "", ""],
         "escape": false,
         "exec": "/home/hill/.config/scripts/temperature" // Script in resources folder

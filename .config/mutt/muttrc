@@ -16,36 +16,42 @@ set display_filter = '$HOME/.config/mutt/aliases.sh'
 ## Server config
 
 # IMAP config
-set imap_user="$my_username@$my_domain"
-set imap_pass=$my_password
-
-set folder="imaps://outlook.office365.com/"
-set spoolfile= +INBOX
+#set imap_user="$my_username@$my_domain"
+#set imap_pass=$my_password
+#set folder="imaps://outlook.office365.com/"
+# maildir for local mail server
+set mbox_type = Maildir
+# local mail server setting end
+set folder = "~/.mail/wisers"
+set spoolfile= +Inbox
 set postponed= +$my_drafts_noquote
 set record = +$my_sent_noquote
 set trash = +$my_trash_noquote
 mailboxes
 
-set imap_check_subscribed="yes"
-set imap_list_subscribed="yes"
-set timeout=15
-set mail_check=90
-set imap_keepalive=180
-set imap_idle
-set imap_peek=yes
-unset mark_old
-# set ssl_use_sslv4=yes
+#set imap_check_subscribed="yes"
+#set imap_list_subscribed="yes"
+#set timeout=15
+#set mail_check=90
+#set imap_keepalive=180
+#set imap_idle
+#set imap_peek=yes
+#unset mark_old
 
-# SMTP config
 set realname = $my_realname
 set from = "$my_username@$my_domain"
-set smtp_pass = $my_password
-set hostname = $my_domain
-set smtp_url = "smtp://$my_username@$my_domain@outlook.office365.com:587/"
-set ssl_force_tls = yes
-set smtp_authenticators = "login"
-set ssl_starttls=yes
-set certificate_file=$HOME/.config/mutt/outlook.office365.com.pem
+### sendmail for local mail
+set sendmail = "msmtp -a wisers"
+set sendmail_wait = 0
+
+# SMTP config
+#set smtp_pass = $my_password
+#set hostname = $my_domain
+#set smtp_url = "smtp://$my_username@$my_domain@outlook.office365.com:587/"
+#set ssl_force_tls = yes
+#set smtp_authenticators = "login"
+#set ssl_starttls=yes
+#set certificate_file=$HOME/.config/mutt/outlook.office365.com.pem
 
 ## More settings
 
@@ -68,7 +74,8 @@ set reverse_name=yes
 set reverse_realname=yes
 
 # Text editor
-set editor='vim + -c "set spell spelllang=en_us" -c "set textwidth=72" -c "set wrap"  -c "?^$"'
+set editor='vim + -c "set spell spelllang=en_us" -c "set textwidth=72" -c "set wrap"'
+#set editor='vim + -c "set spell spelllang=en_us" -c "set textwidth=72" -c "set wrap"  -c "?^$"'
 #set editor="emacsclient -a \"\" -t"
 set sort_alias=alias
 set reverse_alias=yes
@@ -89,10 +96,13 @@ set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 
 # Mailboxes
 #bind    index   G  imap-fetch-mail
-macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
+macro   index   gi "<change-folder>=Inbox<enter>"       "Go to Inbox"
 macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
 macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
 macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
+#macro   index   gj "<change-folder>=$my_spam<enter>"   "Go to Spam"
+macro   index   ga "<change-folder>=$my_archive<enter>"   "Go to Archive"
+macro index S "<shell-escape>mbsync -V wisers<enter>" "sync email"
 
 # Index
 macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
@@ -117,7 +127,10 @@ color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 
 # For better looks
 set markers=no # don't put '+' at the beginning of wrapped lines
-#set pager_index_lines= 5 # how large is the index window?
+set pager_index_lines= 10 # how large is the index window?
+set pager_context = 3
+set menu_scroll
+set tilde
 #Forgotten Attachment Feature:
 ## Example NeoMutt config file for the forgotten-attachment feature.
 
@@ -132,7 +145,7 @@ set markers=no # don't put '+' at the beginning of wrapped lines
 #    "yes"     : always abort
 #    "ask-yes" : ask whether to abort
 #    "no"      : send the mail
-set abort_noattach = no
+set abort_noattach = ask-yes
 # Search for the following regular expression in the body of the email
 # English: attach, attached, attachment, attachments
 set abort_noattach_regex = "\\<attach(|ed|ments?)\\>"
@@ -142,5 +155,20 @@ set abort_noattach_regex = "\\<attach(|ed|ments?)\\>"
 # set abort_noattach_regex = "\\<(anhängen|angehängt|anhang|anhänge|hängt an)\\>"
 # Français:
 # set abort_noattach_regex = "\\<(attaché|attachés|attache|attachons|joint|jointe|joints|jointes|joins|joignons)\\>"
+# sidebar 
+set sidebar_visible
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_width = 25
+set sidebar_divider_char = ' | '
+set sidebar_indent_string = '  ''
+#set sidebar_format = "%B %* [%?N?%N / ?%S]"
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+
+# Mailboxes to show in the sidebar.
+mailboxes =Inbox
+mailboxes =Archive ="Sent Items" =Drafts ="Junk Email" ="Deleted Items"
+
 
 # vim: syntax=neomuttrc

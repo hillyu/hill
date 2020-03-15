@@ -107,8 +107,6 @@ settings:
     - \b(<<|«)\b
   new_instance_open_target:
     global: window
-  qt.force_platform:
-    global: xcb
   qt.force_software_rendering:
     global: none
   scrolling.smooth:

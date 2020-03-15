@@ -2,10 +2,10 @@
 #
 #Auto start services
 #exec --no-startup-id picom --xrender-sync-fence
-#exec --no-startup-id picom -b -d :0
+exec --no-startup-id picom -b -d :0
 exec --no-startup-id nice -10 fcitx
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
-#exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o
+exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o
 exec --no-startup-id udiskie  --no-notify
 #exec --no-startup-id autorandr -c
 #exec --no-startup-id wpa_gui -t
