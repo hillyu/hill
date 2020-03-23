@@ -156,15 +156,15 @@ set abort_noattach_regex = "\\<attach(|ed|ments?)\\>"
 # Français:
 # set abort_noattach_regex = "\\<(attaché|attachés|attache|attachons|joint|jointe|joints|jointes|joins|joignons)\\>"
 # sidebar 
-set sidebar_visible
-set sidebar_short_path
-set sidebar_folder_indent
-set sidebar_width = 25
-set sidebar_divider_char = ' | '
-set sidebar_indent_string = '  ''
-#set sidebar_format = "%B %* [%?N?%N / ?%S]"
-set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
-set mail_check_stats
+#set sidebar_visible
+#set sidebar_short_path
+#set sidebar_folder_indent
+#set sidebar_width = 25
+#set sidebar_divider_char = ' | '
+#set sidebar_indent_string = '  ''
+##set sidebar_format = "%B %* [%?N?%N / ?%S]"
+#set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+#set mail_check_stats
 
 # Mailboxes to show in the sidebar.
 mailboxes =Inbox

@@ -22,6 +22,7 @@ exec --no-startup-id mpris-proxy
 # output eDP-1 res 1366x768 pos 1920,180
 #output eDP-1 res 1366x768 pos 0,200
 output eDP-1 scale 2 position 0,950 dpms on
+output eDP-2 scale 2 position 0,950 dpms on
 output DP-1 pos 1280,0 dpms on
 #output DP-1 resolution 1920x1080 position 1366,0 transform 270
 #output HDMI-A-2 res 2560x1440 pos 2446,0
@@ -426,8 +427,10 @@ bindsym $mod+equal gaps inner current set 0
 # output eDP-1 res 1366x768 pos 1920,180
 
 
-gaps inner 10
-gaps outer 20
+#gaps inner 10
+#gaps outer 10
+#gaps top -5
+#gaps bottom -5
 #workspace $workspace9 gaps inner 12
 #workspace $workspace9 gaps outer 40
 #workspace $workspace10 gaps inner 12

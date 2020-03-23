@@ -17,12 +17,12 @@
 #: have many weight variants like Book, Medium, Thick, etc. For
 #: example::
 
-     font_family      SF Mono Medium
+     font_family      SF Mono Semibold
      #font_family      Source Code Pro
 ##SF Mono Semibold
-     bold_font        SF Mono Semibold
-     italic_font      SF Mono Medium Italic
-     bold_italic_font SF Mono Semibold Italic
+     bold_font        SF Mono bold
+     italic_font      SF Mono Semibold Italic
+     bold_italic_font SF Mono Bold Italic
 
 font_size 11
 #font_size 10
