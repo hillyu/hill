@@ -1,9 +1,11 @@
 #!/bin/bash
 
-INTERFACE="${BLOCK_INSTANCE:-wlp4s0}"
-NET_TB=`wpa_cli -i ${INTERFACE} list_network| tail -n +3|sed -e 's/^\([[:digit:]]*\)\t\([^\t]*\)\t.*$/\1-\2/g'`
+INTERFACE="${BLOCK_INSTANCE:-wlp1s0}"
+NET_TB=`wpa_cli -i ${INTERFACE} list_network| tail -n +2|sed -e 's/^\([[:digit:]]*\)\t\([^\t]*\)\t.*$/\1-\2/g'`
 #echo $NET_TB
-SEL=`echo "$NET_TB" |bemenu -i --fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
+#SEL=`echo "$NET_TB" |bemenu -n -i --fn fixed-12 -l 200 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
+SEL=`echo "$NET_TB" |wofi -S dmenu -i -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
+#SEL=`echo "$NET_TB" |dmenu -i -fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
 
 
-[[ -n "$SEL" ]] && echo "select network" $SEL && wpa_cli -i ${INTERFACE} select_network $SEL
+[[ -n "$SEL" ]] && notify-send "select network" $SEL && wpa_cli -i ${INTERFACE} select_network $SEL
