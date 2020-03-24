@@ -26,6 +26,7 @@ Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
 Plug 'vim-scripts/vis'
 Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
 Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 "============================================
@@ -203,6 +204,11 @@ set grepprg=grep\ -nH\ $*
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 
 "-----------------------------------------------------------------------------
+" mark down review using bin/mdv
+"-----------------------------------------------------------------------------
+nnoremap  <silent> <leader>mdv :! mdv % <cr>
+"nnoremap   <leader>mdv :!md2html %<cr> <cr>
+"-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
 "-----------------------------------------------------------------------------
 
@@ -259,6 +265,10 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 
+" Vimwiki setting
+"let g:vimwiki_table_mappings=0
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 "ALE settings
 let b:ale_linters = ['flake8']
 let b:ale_fixers = [
@@ -291,7 +301,8 @@ function ExpandSnippetOrCarriageReturn()
     if g:ulti_expand_or_jump_res > 0
         return snippet
     else
-        return "\<CR>"
+        "return "\<CR>"
+        return "\<C-y>"
     endif
 endfunction
 function ExpandSnippetOrTab()
@@ -299,17 +310,21 @@ function ExpandSnippetOrTab()
     if g:ulti_expand_res > 0
         return snippet
     else
-        return "\<tab>"
+        return vimwiki#tbl#kbd_tab()
+        "return "\<Tab>"
     endif
 endfunction
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "<Esc>:VimwikiReturn 1 5<CR>"
 inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>"
-inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+"inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
 
 "html indentation [no longer using]
 "let g:html_indent_inctags = "html,body,head,tbody"
 "let g:html_indent_script1 = "inc"
 "let g:html_indent_style1 = "inc"
+
 
 "the fswitch setting [no longer using]
 "au BufEnter *.cc,*.cpp let b:fswitchlocs = 'reg:/src/include/,ifrel:|/src/|../include|,./' | let b:fswitchdst = 'h, hpp'
