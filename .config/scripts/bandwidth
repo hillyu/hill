@@ -103,5 +103,5 @@ tx_kib=$(( $tx_rate >> 10 ))
 if hash bc 2>/dev/null && [[ "$tx_rate" -gt 1000000 ]]; then
   printf '%sM' "`echo "scale=1; $tx_kib / 1024" | bc`"
 else
-  echo -n "${tx_kib}K"
+  echo  "${tx_kib}K"
 fi

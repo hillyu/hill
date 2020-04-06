@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+cpu=`sensors -j 2>/dev/null |jq '.["k10temp-pci-00c3"]|.["Tdie"]'`
+tooltip=$( sensors -A )
+text=`echo $cpu |jq '.["temp1_input"]'`
+temp=${text%.*}
+max=`echo $cpu |jq '.["temp1_max"]'`
+class="cool"
+if [[ temp -gt 55 ]]; then
+    class="normal"
+    elif [[ temp -gt 60 ]]; then
+        class="critical"
+fi
+percentage=`echo "$text/$max*100" |bc -l`
+#echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage }" | jq --unbuffered --compact-output
+echo "{\"text\": \"$temp\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage}"|sed  ':a;N;$!ba;s/\n/\\n/g'

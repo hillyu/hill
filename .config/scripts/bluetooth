@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+tooltip=$(bluetoothctl show)
+state=`echo "$tooltip" |grep Powered|cut -d' ' -f2`
+percentage=0
+[[ $state == "yes" ]] && percentage=100
+#echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage }" | jq --unbuffered --compact-output
+echo "{\"text\": \"$state\", \"tooltip\": \"$tooltip\", \"class\": \"$state\", \"percentage\": $percentage }"|sed  ':a;N;$!ba;s/\n/\\n/g'

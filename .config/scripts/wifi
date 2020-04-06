@@ -16,7 +16,7 @@
 
 #------------------------------------------------------------------------
 
-INTERFACE="${BLOCK_INSTANCE:-wlp4s0}"
+INTERFACE="${BLOCK_INSTANCE:-wlp1s0}"
 #echo $INTERFACE
 
 #------------------------------------------------------------------------
@@ -36,7 +36,7 @@ echo "$(iw dev ${INTERFACE} link | grep SSID | cut -d " " -f 2-) $QUALITY%
 echo $QUALITY% # short text
 case $BLOCK_BUTTON in
     1)
-        #wpa_cli -i ${INTERFACE} status | bemenu -p "AP Info:" -i --fn fixed-12 
+        wpa_cli -i ${INTERFACE} status | dmenu -p "AP Info:" -i --fn fixed-12 &>/dev/null
         ;;
     3)
         /home/hill/bin/wifi

@@ -2,12 +2,12 @@
 #
 #Auto start services
 #exec --no-startup-id picom --xrender-sync-fence
-exec --no-startup-id picom -b -d :0
-exec --no-startup-id nice -10 fcitx
+#exec --no-startup-id picom -b -d :0
+#exec --no-startup-id picom -b --experimental-backend
+exec --no-startup-id nice -10 fcitx5 &
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
 exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o
 exec --no-startup-id udiskie  --no-notify
-#exec --no-startup-id autorandr -c
 #exec --no-startup-id wpa_gui -t
 #exec --no-startup-id urxvtc -name ncmpcpp -e ncmpcpp
 # exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
@@ -72,8 +72,9 @@ set $workspace8 "8 "
 set $workspace9 "9 "
 set $workspace10 "10 "
 ##
-# bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
-bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"\\$term\\""
+ #bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i -fn fixed -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color" --term="urxvtc"
+#bindsym Ctrl+space exec --no-startup-id "j4-dmenu-desktop --no-generic --dmenu=\\"dmenu -i -fn fixed-12 -nb \\$bg-color -nf \\$text-color -sb \\$text-color -sf \\$bg-color\\" --term=\\"\\$term\\""
+bindsym Ctrl+space exec --no-startup-id rofi -show combi
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
@@ -195,16 +196,16 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/Binary-Code-Wallpaper-05
      # bindsym $mod+. workspace prev
 
  #workspace default monitors
- workspace $workspace1 output DP-1
- workspace $workspace2 output DP-1
- workspace $workspace3 output HDMI-A-2
- workspace $workspace4 output DP-1
- workspace $workspace5 output HDMI-A-2
- workspace $workspace6 output DP-1
- workspace $workspace7 output HDMI-A-2
- workspace $workspace8 output HDMI-A-2
- workspace $workspace9 output eDP-1
- workspace $workspace10 output eDP-1
+ workspace $workspace1 output DisplayPort-0
+ workspace $workspace2 output DisplayPort-0
+ workspace $workspace3 output DisplayPort-1
+ workspace $workspace4 output DisplayPort-0
+ workspace $workspace5 output DisplayPort-1
+ workspace $workspace6 output DisplayPort-0
+ workspace $workspace7 output DisplayPort-1
+ workspace $workspace8 output DisplayPort-1
+ workspace $workspace9 output eDP
+ workspace $workspace10 output eDP
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
@@ -240,10 +241,14 @@ assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 for_window [class="(?i)gimp*"] layout tabbed
 for_window [class="(?i)inkscape*"] layout tabbed
 #for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
+#float notification
+#
+for_window [window_type="(?i)notification"] floating enable
+#
 
 ### enable floating on certain windows
 for_window [class="(?i)mpv"] floating enable
-for_window [title="(?i)launcher"] floating enable
+#for_window [title="(?i)launcher"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ncmpcpp"] floating enable, move down
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] floating enable
 # for_window [class="(?i)urxvt" instance="(?i)ranger"] resize
@@ -384,9 +389,10 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +4%
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
+#bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
+bindsym XF86AudioMicMute exec --no-startup-id "amixer -D default -q set $(amixer -D default scontrols| sed -n 's/Simple mixer control '\''\([A-Za-z ]*\)'\'',0/\1/p'| grep -E Capture| head -n 1) toggle"
 #bindsym XF86Display exec --no-startup-id /home/hill/.config/i3/setup_monitor.sh
-bindsym XF86Display exec --no-startup-id /home/hill/.screenlayout/doStyle2Display.sh
+#bindsym XF86Display exec --no-startup-id /home/hill/.screenlayout/doStyle2Display.sh
 bindsym XF86Tools mode "$mode_display"
 bindsym XF86Search exec --no-startup-id arandr
 bindsym XF86LaunchA gaps inner current minus 4
@@ -396,10 +402,10 @@ bindsym XF86Explorer gaps inner current plus  4
 focus_on_window_activation focus
 for_window [urgent=latest] focus
 
-gaps outer 20
-gaps inner 10
-smart_borders on
-smart_gaps inverse_outer
+#gaps outer 20
+#gaps inner 10
+#smart_borders on
+#smart_gaps inverse_outer
 
 #workspace $workspace9 gaps inner 12
 #workspace $workspace9 gaps outer 40

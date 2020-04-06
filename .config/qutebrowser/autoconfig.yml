@@ -60,8 +60,12 @@ settings:
         <Meta+u>: rl-unix-line-discard
         <Meta+w>: rl-backward-kill-word
         <Meta+y>: rl-yank
+  content.dns_prefetch:
+    global: true
   content.notifications:
     https://www.bilibili.com: true
+  content.proxy:
+    global: none
   editor.command:
     global:
     - kitty
@@ -111,6 +115,8 @@ settings:
     global: window
   qt.force_software_rendering:
     global: none
+  qt.highdpi:
+    global: true
   qt.low_end_device_mode:
     global: never
   scrolling.smooth:
