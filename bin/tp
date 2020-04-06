@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+data=`<"${1:-/dev/stdin}"`
+total=`echo "$data" |grep -Eo "[0-9.]+h" |awk '{s+=$1} END {print s}'`
+#echo $total
+echo "$data" |perl -spe 's/([0-9\.]+)h/int($1\/$total*100+0.55555)."%"/e' -- -total=$total

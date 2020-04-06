@@ -1,0 +1,14 @@
+[Unit]
+Description = autossh
+Requires=openfortivpn.service
+After=network-online.target multi-user.target openfortivpn.service
+
+[Service]
+User=hill
+Restart=always
+RestartSec=10s
+ExecStart = /usr/bin/autossh -M0 -NCL 2080:iohub.ml:465 ess "ServerAliveInterval 60" -o  "ServerAliveCountMax 3"
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target

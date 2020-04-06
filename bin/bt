@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#INTERFACE="${BLOCK_INSTANCE:-wlp1s0}"
+bluetoothctl power on
+NET_TB=`bluetoothctl devices`
+#echo $NET_TB
+[ -z $WAYLAND_DISPLAY ] && SEL=`echo "$NET_TB" |sed -e 's/^Device //g'|dmenu -i -p "SELECT DEVICE:"|cut -d' ' -f1`||SEL=`echo "$NET_TB" |sed -e 's/^Device //g'|wofi -S dmenu -i -p "SELECT DEVICE:"|cut -d' ' -f1`
+#SEL=`echo "$NET_TB" |sed -e 's/^Device //g'|bemenu -n -i --fn fixed-12 -l 200 --nb "#000000" -p "SELECT DEVICE:"|cut -d' ' -f1`
+#SEL=`echo "$NET_TB" |dmenu -i -fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
+#echo "$SEL"
+
+
+[[ -n "$SEL" ]] && bluetoothctl connect $SEL && notify-send "Connected device:" "$(bluetoothctl info $SEL)" 

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mpv --quiet --no-ytdl --user-agent="[]" --http-header-fields="referer: http://movie.youku.com" $@

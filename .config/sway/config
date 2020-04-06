@@ -1,6 +1,7 @@
 #Auto start services
 xwayland disable
-exec --no-startup-id fcitx-autostart
+#exec --no-startup-id fcitx-autostart
+exec --no-startup-id fcitx5 &
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
 #exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 #exec --no-startup-id xrdb $HOME/.Xresources 

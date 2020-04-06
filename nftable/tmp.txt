@@ -1,0 +1,1 @@
+du: cannot read directory '/sys/fs/bpf': Permission denied
