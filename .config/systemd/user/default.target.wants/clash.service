@@ -1,1 +1,11 @@
-/usr/lib/systemd/user/clash.service
+[Unit]
+Description=A rule based proxy in Go.
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-abort
+ExecStart=/usr/bin/clash
+
+[Install]
+WantedBy=default.target
