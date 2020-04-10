@@ -1,0 +1,13 @@
+[Unit]
+Description = autossh
+Requires=openfortivpn.service
+After=network.target network-online.target multi-user.target openfortivpn.service
+
+[Service]
+User=hill
+Restart=always
+RestartSec=10s
+ExecStart = /home/hill/autossh.sh
+
+[Install]
+WantedBy=multi-user.target

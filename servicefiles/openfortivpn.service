@@ -1,0 +1,14 @@
+[Unit]
+Description = OpenFortiVPN
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+ExecStart = /usr/bin/openfortivpn -c /etc/openfortivpn/config
+Restart=always
+RestartSec=10
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
