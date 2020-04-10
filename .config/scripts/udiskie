@@ -24,11 +24,9 @@
 filename="$HOME/.config/scripts/udisk_index"
 ALERT_LOW="${1:-10}" # color will turn red under this value (default: 10%)
 INDEX=$(cat ${filename})
-IFS=$'\r\n' 
-array_s=($(ls /media))
 init(){
 IFS=$'\r\n' 
-array_s=($(ls /media))
+array_s=($(ls /run/media/hill))
 if [ ${#array_s[@]} -eq 0 ] ; then
     exit
 else

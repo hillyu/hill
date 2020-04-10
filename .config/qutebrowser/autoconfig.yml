@@ -131,8 +131,8 @@ settings:
     global: about:blank
   url.searchengines:
     global:
-      DEFAULT: https://www.bing.com/search?q={}
-      google: https://www.google.com/search?hl=en&q={}
+      DEFAULT: https://www.google.com/search?hl=en&q={}
+      bing: https://www.bing.com/search?q={}
   url.start_pages:
     global: https://www.google.com
   window.hide_decoration:
