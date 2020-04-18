@@ -207,7 +207,7 @@ nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync compl
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------
 "nnoremap  <silent> <leader>mdv :! mdv % <cr>
-nnoremap   <leader>mdv :!md2html %<cr> <cr>
+nnoremap   <leader>mdv :!md2html '%'<cr><cr>
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
 "-----------------------------------------------------------------------------

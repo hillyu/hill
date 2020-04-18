@@ -1,7 +1,8 @@
 #!/bin/bash
 if [ -n "$1" ]
 then 
-    pandoc $1 > /tmp/pdtmp.html && firefox -P app /tmp/pdtmp.html
+    #pandoc -s "$1" > /tmp/pdtmp.html && chromium --app="file:///tmp/pdtmp.html"
+    pandoc -s "$1" --to=html5 -o /tmp/pdtmp.html && chromium --app="file:///tmp/pdtmp.html"
 else
     echo "please set input file"
 fi

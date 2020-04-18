@@ -209,41 +209,45 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/Binary-Code-Wallpaper-05
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
-#assign [class="(?i)Google-chrome" instance="(?i)google-chrome"]   $workspace1
+#assign [class="(?i)Chromium" instance="(?i)google-chrome"]   $workspace1
 #assign [class="(?i)qutebrowser"]   $workspace1
-#assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
-#for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
-for_window [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   move scratchpad
-for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   move scratchpad
-assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
-assign [title="(?i)officemail"]   $workspace4
-assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
-assign [class="(?i)Google-chrome" instance="(?i)Word"]   $workspace3
+#assign [class="(?i)Chromium" instance="(?i)paper.dropbox.com"]   $workspace3
+#for_window [class="(?i)Chromium" instance="(?i)paper.dropbox.com"] move scratchpad
+for_window [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]   move scratchpad
+for_window [class="(?i)Chromium" instance="(?i)web.wechat.com"]   move scratchpad
+assign [class="(?i)Chromium" instance="(?i)outlook.office.com__owa"]   $workspace6
+assign [title="(?i)officemail"]   $workspace6
+assign [class="(?i)Chromium" instance="(?i)PowerPoint"]   $workspace3
+assign [class="(?i)Chromium" instance="(?i)Word"]   $workspace3
 #only title works for native wayland window
 assign [title="(?i)zathura"]   $workspace3
-assign [class="(?i)Google-chrome" instance="(?i)ics-ml-gpu"]   $workspace5
+assign [class="(?i)Chromium" instance="(?i)ics-ml-gpu"]   $workspace5
 assign [class="Emacs"]   $workspace5
 assign [class="(?i)Slack"]   $workspace3
 assign [class="(?i)Rhythmbox"]   $workspace10
 assign [class="(?i)gimp*"]   $workspace8
 assign [class="(?i)inkscape*"]   $workspace8
 assign [instance="(?i)ncmpcpp"]   $workspace10
-assign [instance="(?i)ranger"]   $workspace7
-#assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
-assign [class="(?i)Google-chrome" instance="(?i)kanbanflow.com"]   $workspace6
-#assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
-assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
-assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
+assign [class="kitty" title="(?i)ranger"]   $workspace7
+assign [class="Microsoft Teams - Preview" ]   $workspace2
+#assign [class="(?i)Chromium" instance="(?i)web.wechat.com"]   $workspace9
+assign [class="(?i)Chromium" instance="(?i)kanbanflow.com"]   $workspace4
+assign [class="(?i)Chromium" instance="jira.wisers.com__display*"]   $workspace5
+assign [class="(?i)Chromium" instance="jira.wisers.com__secure_RapidBoard*"]   $workspace3
+#assign [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]   $workspace9
+assign [class="(?i)Chromium" instance="(?i)paper.dropbox.com"]   $workspace3
+assign [class="(?i)Chromium" instance="(?i)gitbook.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9
 # for_window [title="GIMP Startup"]  move workspace $workspace7
 ## enable tabbed layout on certain window
 ######## i like my graphic processing tools tabbed
 for_window [class="(?i)gimp*"] layout tabbed
 for_window [class="(?i)inkscape*"] layout tabbed
-#for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
+#for_window [class="(?i)Chromium" instance="(?i)web.wechat.com"] floating enable
 #float notification
 #
-for_window [window_type="(?i)notification"] floating enable
+for_window [window_type="notification"] floating enable
+no_focus [window_type="notification"]
 #
 
 ### enable floating on certain windows
