@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 data=`<"${1:-/dev/stdin}"`
 total=`echo "$data" |grep -Eo "[0-9.]+h" |awk '{s+=$1} END {print s}'`
+header='Update:'
+timelog=`echo "$data" |sed  ':a;N;$!ba;s/.*Update:\n\(.*\)\nTodo.*/\1/g'`
+todo=`echo "$data" |sed ':a;N;$!ba;s/.*\(Todo:.*\)/\1/g'`
+echo $header
+echo -e "$timelog" |awk -v total="$total"  -F '\\(| -' '/[[:digit:]]h/  {p=int($2*100/total); ++line; n[line]=p; h[line]=$1; t[line]=$3; } 
+$0 !~ "[[:digit:]]h" {ll++; rest[ll]=$0}
+END {
+ for (i=1; i<line; ++i) {
+    s+=n[i]
+    printf("%s(%d%% -%s\n",h[i],n[i],t[i])
+}
+printf("%s(%d%% -%s\n",h[line],100-s,t[line]);
+for (d=1; d<=ll; ++d)
+    print rest[d]
+}'
+echo -e "$todo"
+#echo -e "$timelog" |awk -v total="$total" -F '\\(|h' '{print $2}'
 #echo $total
-echo "$data" |perl -spe 's/([0-9\.]+)h/int($1\/$total*100+0.55555)."%"/e' -- -total=$total
+#echo "$data" |perl -spe 's/([0-9\.]+)h/int($1\/$total*100+0.55555)."%"/e' -- -total=$total
+
