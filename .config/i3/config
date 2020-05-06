@@ -247,6 +247,7 @@ for_window [class="(?i)inkscape*"] layout tabbed
 #float notification
 #
 for_window [window_type="notification"] floating enable
+for_window [title="Task Manager - Chromium"] floating enable
 no_focus [window_type="notification"]
 #
 

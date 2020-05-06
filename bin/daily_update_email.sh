@@ -6,7 +6,7 @@ diary="$HOME/vimwiki/diary"
 #update=`tp $diary/$date.md|sed ':a;N;$!ba;s/.*\(Update:.*\).*/\1/g'`
 update=`diary2report.sh $diary/$date.md`
 email="$header$update$sig"
-emailto="staff.wisersallrec@wisers.com"
+emailto="hillyu@wisers.com"
 if [ `echo "$update"|grep -Eo "[0-9]+%" |awk '{s+=$1} END {print s}'` != 100 ]; then
     echo "Not add up to 100%, wanna look stupid? ;D"
     exit 1
