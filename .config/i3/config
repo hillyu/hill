@@ -6,7 +6,7 @@
 #exec --no-startup-id picom -b --experimental-backend
 exec --no-startup-id nice -10 fcitx5 &
 #exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -19 ~/.dropbox-dist/dropboxd
-exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o
+#exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o
 exec --no-startup-id udiskie  --no-notify
 #exec --no-startup-id wpa_gui -t
 #exec --no-startup-id urxvtc -name ncmpcpp -e ncmpcpp
@@ -198,12 +198,12 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/Binary-Code-Wallpaper-05
  #workspace default monitors
  workspace $workspace1 output DisplayPort-0
  workspace $workspace2 output DisplayPort-0
- workspace $workspace3 output DisplayPort-1
+ workspace $workspace3 output DisplayPort-0
  workspace $workspace4 output DisplayPort-0
- workspace $workspace5 output DisplayPort-1
+ workspace $workspace5 output DisplayPort-0
  workspace $workspace6 output DisplayPort-0
- workspace $workspace7 output DisplayPort-1
- workspace $workspace8 output DisplayPort-1
+ workspace $workspace7 output DisplayPort-0
+ workspace $workspace8 output DisplayPort-0
  workspace $workspace9 output eDP
  workspace $workspace10 output eDP
 
@@ -213,7 +213,9 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/Binary-Code-Wallpaper-05
 #assign [class="(?i)qutebrowser"]   $workspace1
 #assign [class="(?i)Chromium" instance="(?i)paper.dropbox.com"]   $workspace3
 #for_window [class="(?i)Chromium" instance="(?i)paper.dropbox.com"] move scratchpad
-for_window [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]   move scratchpad
+#for_window [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]   move scratchpad
+for_window [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]  floating enable 
+for_window [class="(?i)Qemu" ]  floating enable 
 for_window [class="(?i)Chromium" instance="(?i)web.wechat.com"]   move scratchpad
 assign [class="(?i)Chromium" instance="(?i)outlook.office.com__owa"]   $workspace6
 assign [title="(?i)officemail"]   $workspace6
@@ -234,7 +236,8 @@ assign [class="Microsoft Teams - Preview" ]   $workspace2
 assign [class="(?i)Chromium" instance="(?i)kanbanflow.com"]   $workspace4
 assign [class="(?i)Chromium" instance="jira.wisers.com__display*"]   $workspace5
 assign [class="(?i)Chromium" instance="jira.wisers.com__secure_RapidBoard*"]   $workspace3
-#assign [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]   $workspace9
+assign [class="(?i)Chromium" instance="(?i)teams.microsoft.com"]  $workspace2
+assign [class="(?i)Chromium" instance="(?i)web.whatsapp.com"]   $workspace9
 assign [class="(?i)Chromium" instance="(?i)paper.dropbox.com"]   $workspace3
 assign [class="(?i)Chromium" instance="(?i)gitbook.com"]   $workspace3
 # assign [instance="(?i)neomutt"]   $workspace9

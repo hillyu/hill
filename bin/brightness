@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+c=`brightnessctl s $1|awk '/Current/ {print $4}'|tr -d '(|)|%'`
+notify-progress Brightness $c brightness-display-symbolic

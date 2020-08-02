@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+read cpu a b c idle iowait d e f rest < /proc/stat
+prevtotal=$(( a+b+c+d+e+f+idle ))
+previdle=$((idle+iowait))
+sleep 1.5
+read cpu a b c idle iowait d e f rest < /proc/stat
+total=$(( a+b+c+d+e+f+idle ))
+idle=$((idle+iowait))
+cpu=$((100*(total-prevtotal-idle+previdle)/(total-prevtotal)))
+echo "$cpu%"
+

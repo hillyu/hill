@@ -1,0 +1,1 @@
+amixer -D default -q set $(amixer -D default scontrols| sed -n 's/Simple mixer control '\''\([A-Za-z ]*\)'\'',0/\1/p'| grep -E Capture| head -n 1) toggle

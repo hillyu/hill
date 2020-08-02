@@ -17,5 +17,11 @@ inode/directory=ranger.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/about=chromium.desktop
 x-scheme-handler/unknown=chromium.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
+application/x-shellscript=gvim.desktop;
+application/vnd.groove-tool-template=gvim.desktop;
+x-scheme-handler/http=userapp-Firefox-EZHRG0.desktop;
+x-scheme-handler/https=userapp-Firefox-EZHRG0.desktop;
+text/html=userapp-Firefox-EZHRG0.desktop;
