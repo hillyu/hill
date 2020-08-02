@@ -13,5 +13,6 @@ printf ("[%s] %s (%d%% - %s)\n",cat[i],title[i],100-acc,status[d]~"one"?"Done":"
 print "Todo:"
 for (ii in todo)
     print todo[ii]
+printf ("Total %.2fh spent today!",s)
 }
 '

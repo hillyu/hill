@@ -114,6 +114,7 @@ do
     #Logging
     # Set the view to zoom,
     gsettings set org.gnome.desktop.background picture-options "zoom"
+    feh --bg-fill $path$imgName
   else
     echo "$XDG_CURRENT_DESKTOP not supported."
     break

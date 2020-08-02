@@ -33,9 +33,9 @@ except ImportError:
 config = {
     'HOST': 'outlook.office365.com',
     'PORT': 993,
-    'USER': 'xcyu@astri.org',
+    'USER': 'hillyu@wisers.com',
     'PASS': '',
-    'URL': 'https://outlook.office.com/owa?realm=astri.org'
+    'URL': 'https://outlook.office.com/owa?realm=wisers.com'
 }
 # _____________________________________________________________________________
 

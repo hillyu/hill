@@ -26,7 +26,7 @@ ALERT_LOW="${1:-10}" # color will turn red under this value (default: 10%)
 INDEX=$(cat ${filename})
 init(){
 IFS=$'\r\n' 
-array_s=($(ls /run/media/hill))
+array_s=($([ -d /run/media/hill ] && ls /run/media/hill))
 if [ ${#array_s[@]} -eq 0 ] ; then
     exit
 else

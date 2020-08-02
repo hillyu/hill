@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+server=$1
+container=${2:-hill_jupyter}
+cmd=${3:-zsh}
+
+#[ -z "$0" ] && read -p "input server name [essXX]:" server  && read -p "input container name:" container
+echo server: $1  container: $2  
+echo command to run: $3
+
+ssh -Ct developer@"$server" docker exec -it $container env TERM=$TERM $cmd

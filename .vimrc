@@ -60,6 +60,7 @@ colorscheme solarized
 hi SpellBad cterm=underline
 set wrap
 set textwidth=0
+set ambiwidth=double
 set wrapmargin=0
 set number
 set cursorline
@@ -208,6 +209,7 @@ nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync compl
 "-----------------------------------------------------------------------------
 "nnoremap  <silent> <leader>mdv :! mdv % <cr>
 nnoremap   <leader>mdv :!md2html '%'<cr><cr>
+"nnoremap   <leader>mdv :!typora '%' & <cr><cr>
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
 "-----------------------------------------------------------------------------
@@ -260,6 +262,7 @@ if !exists('g:airline_symbols')
 let g:airline_theme='dark'
 let g:airline_powerline_fonts =1
 let g:airline_symbols.linenr = 'Ξ'
+"for ambiwidth=double
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -355,3 +358,6 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
+autocmd BufWritePost ~/src/dwmblocks/config.h !cd ~/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
+autocmd BufWritePost ~/src/st-my-build/config.h !cd ~/src/st-my-build/; sudo make clean install 
+autocmd BufWritePost ~/src/dwm/config.h !cd ~/src/dwm/; sudo make clean install

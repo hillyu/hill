@@ -33,7 +33,7 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 #------------------------------------------------------------------------
 
 echo "$(iw dev ${INTERFACE} link | grep SSID | cut -d " " -f 2-) $QUALITY%" # full text
-echo $QUALITY% # short text
+#echo $QUALITY% # short text
 case $BLOCK_BUTTON in
     1)
         wpa_cli -i ${INTERFACE} status | dmenu -p "AP Info:" -i --fn fixed-12 &>/dev/null
@@ -45,12 +45,12 @@ case $BLOCK_BUTTON in
 esac
 
 # color
-if [[ $QUALITY -ge 80 ]]; then
-    echo "#00FF00"
-elif [[ $QUALITY -ge 60 ]]; then
-    echo "#FFF600"
-elif [[ $QUALITY -ge 40 ]]; then
-    echo "#FFAE00"
-else
-    echo "#FF0000"
-fi
+#if [[ $QUALITY -ge 80 ]]; then
+    #echo "#00FF00"
+#elif [[ $QUALITY -ge 60 ]]; then
+    #echo "#FFF600"
+#elif [[ $QUALITY -ge 40 ]]; then
+    #echo "#FFAE00"
+#else
+    #echo "#FF0000"
+#fi

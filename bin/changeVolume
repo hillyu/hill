@@ -1,0 +1,5 @@
+#!/bin/bash
+# changeVolume
+
+# Play the volume changed sound
+canberra-gtk-play -i audio-volume-change -d "a"

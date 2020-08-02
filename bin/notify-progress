@@ -1,0 +1,18 @@
+#!/bin/bash
+# changeVolume
+
+# Arbitrary but unique message id
+msgId="991049"
+
+title=${1:-"osd"}
+percentage=${2:-"Null"}
+icon_path=${3:-"Null"}
+audio=${4:-"audio-volume-change"}
+# Show the percentage notification
+#"Volume: ${percentage}%" 
+dunstify -a "$title" -u low -i $icon_path -r "$msgId" \
+    "$title: ${percentage}%" "$(getProgressString 10 "⬤ " "◯ " $percentage)"
+    #"$(getProgressString 10 '<b>#</b>' '_' $percentage)"
+
+# Play the percentage changed sound
+canberra-gtk-play -i $audio -d "$title"

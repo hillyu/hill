@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 sensor=`sensors -j 2>/dev/null`
-cpu=`echo "$sensor" | jq '.["k10temp-pci-00c3"]|.["Tdie"]|.["temp1_input"]'`
+cpu=`echo "$sensor" | jq '.["k10temp-pci-00c3"]|.["Tctl"]|.["temp1_input"]'`
 gpu=`echo "$sensor" | jq '.["amdgpu-pci-0300"]|.["edge"]|.["temp1_input"]'`
 cpu=${cpu%.*}
 gpu=${gpu%.*}

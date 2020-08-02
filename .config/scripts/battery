@@ -14,8 +14,8 @@
 # click to enable fullcharge
 if ($ENV{BLOCK_BUTTON} == "1") {
     # body...
-    #my $output = `kitty --hold --name floating -e sudo tlp fullcharge`;
-    my $output = `kitty  -1 --hold --name prompt -e ~/bin/ideapad_battery_conservation_toggle.sh`;
+    #my $output = `kitty  -1 --hold --name prompt -e ~/bin/ideapad_battery_conservation_toggle.sh`;
+    my $output = `st -c prompt -g 22x2 -n "conserve battery" "ideapad_battery_conservation_toggle.sh"`;
     #`urxvt--name floating -e ~/bin/ideapad_battery_conservation_toggle.sh`;
 
 }
