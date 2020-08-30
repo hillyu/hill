@@ -12,12 +12,18 @@
 # The color will gradually change for a percentage below 85%, and the urgency
 # (exit code 33) is set if there is less that 5% remaining.
 # click to enable fullcharge
-if ($ENV{BLOCK_BUTTON} == "1") {
-    # body...
+if ($ENV{BLOCK_BUTTON} == "2") {
     #my $output = `kitty  -1 --hold --name prompt -e ~/bin/ideapad_battery_conservation_toggle.sh`;
-    my $output = `st -c prompt -g 22x2 -n "conserve battery" "ideapad_battery_conservation_toggle.sh"`;
+    my $output = `st -c prompt -g 22x3 -n "conserve battery" "ideapad_battery_conservation_toggle.sh"`;
     #`urxvt--name floating -e ~/bin/ideapad_battery_conservation_toggle.sh`;
 
+};
+
+if ($ENV{BLOCK_BUTTON} == "1") {
+        #my $output = `kitty  -1 --hold --name prompt -e ~/bin/ideapad_battery_conservation_toggle.sh`;
+        my $output = `st -c prompt -e sudo powertop`;
+        #        #`urxvt--name floating -e ~/bin/ideapad_battery_conservation_toggle.sh`;
+        #
 }
                 
 

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+cover_path=$HOME/.cache/cover.png
+FIRST_RUN=true
+
+while true; do
+    title=`mpc -f "%title%"|head -n1`
+    artist=`mpc -f "%artist%"|head -n1`
+    album=`mpc -f "%album%"|head -n1`
+    pkill -RTMIN+8 dwmblocks
+    QUERY="$artist"
+    API_URL="http://api.douban.com/music/subjects?q=$QUERY" && API_URL=${API_URL//' '/'%20'}
+    result=`curl -s "$API_URL"`
+    precise=`echo -n "$result"| grep -A 7 "<title>$album</title>"`
+    [ -z $? ] && result="$precise"
+    result=`echo -n "$result"| sed ':a;N;$!ba;s/.*href="\(.*\)" rel="image".*/\1/g' |sed 's/s\/public/l\/public/g'`
+    [ -z $result ] && result=`curl -s "$API_URL"| sed ':a;N;$!ba;s/.*href="\(.*\)" rel="image".*/\1/g' |sed 's/s\/public/l\/public/g'`
+    curl -s $result -o $cover_path
+    [ "$FIRST_RUN" == false ] && notify-send -a "mpd" -i "$cover_path" "$title" "\n<b>Artist</b>: <i>$artist</i>\n<b>Album</b>: <u>$album</u>\n"
+    FIRST_RUN=false
+    while true; do
+        mpc idle player &>/dev/null && (mpc status | grep "\[playing\]" &>/dev/null) && break
+    done
+done
+

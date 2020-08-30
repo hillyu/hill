@@ -14,14 +14,17 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime', {'for': 'python'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'vim-python/python-syntax'
 "Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
 Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'lervag/vimtex'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
 Plug 'vim-scripts/vis'
 Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
@@ -64,6 +67,8 @@ set ambiwidth=double
 set wrapmargin=0
 set number
 set cursorline
+set smartcase
+
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -75,7 +80,7 @@ augroup END
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 "let g:netrw_altv = 1
-let g:netrw_winsize = 25
+let g:netrw_winsize = 75
 let g:netrw_liststyle = 3
 let g:netrw_preview = 1
 nnoremap <leader>f :Vex <cr>
@@ -208,7 +213,7 @@ nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync compl
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------
 "nnoremap  <silent> <leader>mdv :! mdv % <cr>
-nnoremap   <leader>mdv :!md2html '%'<cr><cr>
+nnoremap   <leader>mdv :!md2html '%' &<cr><cr>
 "nnoremap   <leader>mdv :!typora '%' & <cr><cr>
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
@@ -255,21 +260,25 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 --interaction=nonstopmode $*'
 let g:Tex_ViewRule_pdf = 'Skim'
 
-" airline settings
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-let g:airline_theme='dark'
-let g:airline_powerline_fonts =1
-let g:airline_symbols.linenr = 'Ξ'
+ "airline settings
+"if !exists('g:airline_symbols')
+    "let g:airline_symbols = {}
+  "endif
+"let g:airline_theme='dark'
+"let g:airline_powerline_fonts =1
+"let g:airline_symbols.linenr = 'Ξ'
 "for ambiwidth=double
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#bufferline#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#branch#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#bufferline#enabled = 1
 
 " Vimwiki setting
 "let g:vimwiki_table_mappings=0
+nmap ]w <Plug>VimwikiNextLink
+nmap [w <Plug>VimwikiPrevLink
+nmap <leader>w<space> <Plug>VimwikiToggleListItem
+vmap <leader>w<space> <Plug>VimwikiToggleListItem
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 "ALE settings
@@ -332,7 +341,8 @@ inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
 "the fswitch setting [no longer using]
 "au BufEnter *.cc,*.cpp let b:fswitchlocs = 'reg:/src/include/,ifrel:|/src/|../include|,./' | let b:fswitchdst = 'h, hpp'
 "au BufEnter *.h let b:fswitchdst = 'cc,cpp' | let b:fswitchlocs = 'reg:/include/src/,ifrel:|/include/|../src|,./'
-
+"python highlight settings
+let g:python_highlight_all = 1
 "-----------------------------------------------------------------------------
 " Personal Keybindings
 "-----------------------------------------------------------------------------

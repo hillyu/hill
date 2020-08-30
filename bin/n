@@ -1,0 +1,1 @@
+tmux has-session -t "nnn" && tmux attach-session -t "nnn" ||tmux new-session -s "nnn" -n "file explore"  nnn -ed -P P

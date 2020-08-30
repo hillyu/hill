@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer unit for douban crawler
+
+[Timer]
+OnActiveSec=0
+OnUnitActiveSec=1h
+Unit=douban.service
+
+[Install]
+WantedBy=timers.target

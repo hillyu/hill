@@ -105,3 +105,12 @@ if hash bc 2>/dev/null && [[ "$tx_rate" -gt 1000000 ]]; then
 else
   echo  "${tx_kib}K"
 fi
+
+case $BLOCK_BUTTON in
+    1 )
+        st_hold ip addr
+        ;;
+    * )
+        ;;
+
+esac

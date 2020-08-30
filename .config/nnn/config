@@ -1,0 +1,7 @@
+# vim: ft=sh:
+export NNN_FIFO=/tmp/nnn.fifo
+#export NNN_COLORS='1234'
+export NNN_PLUG='g:-_git diff;f:finder;k:-_fuser -kiv $nnn*;l:-_git log;p:preview-tabbed;P:preview-tui;d:diffs;t:nmount;v:imgview'
+#NNN_OPENER=/home/hill/.config/nnn/plugins/nuke
+export NNN_BMS='d:~/Documents;p:~/papers;D:~/Downloads/'
+export USE_SCOPE=1

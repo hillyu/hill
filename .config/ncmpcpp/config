@@ -1,0 +1,67 @@
+show_duplicate_tags = "no"
+#enable_window_title = "yes"
+#startup_slave_screen = help
+display_bitrate = "no"
+message_delay_time = 1
+playlist_disable_highlight_delay = 1
+visualizer_output_name = "mpd_visualizer"
+visualizer_in_stereo = "yes"
+visualizer_sync_interval = 30
+#visualizer_look = O.
+visualizer_type = ellipse
+#visualizer_type = wave
+#visualizer_type = wave_filled
+#visualizer_type = spectrum
+#browser_display_mode = "classic"
+#playlist_editor_display_mode = "classic"
+
+
+### Appearance ###
+colors_enabled = "yes"
+#playlist_display_mode = "classic"
+playlist_display_mode = "columns"
+user_interface = classic
+#user_interface = alternative
+volume_color = "green"
+
+# Window #
+song_window_title_format = "Music Player (ncmpcpp)"
+# song_window_title_format = "{%a - }{%t}|{%f}"
+#statusbar_visibility = "yes"
+header_visibility = "no"
+#titles_visibility = "no"
+
+
+# Progress bar #
+progressbar_look = "▂▂▂"
+progressbar_color = "black"
+progressbar_elapsed_color = "yellow"
+
+# Alternative UI
+alternative_ui_separator_color = "255"
+alternative_header_first_line_format = $b$5«$/b$5« $b$8{%t}|{%f}$/b $5»$b$5»$/b 
+alternative_header_second_line_format = {$b{$2%a$9}{ - $7%b$9}{ ($2%y$9)}}|{%D}
+
+# Song list #
+#song_list_format = "  %f $R%a %l  "
+song_status_format = "{{   $6%a$9    {$5%t$9}}|{%f}{    $4%b$9{ (%y)}} }"
+#
+#song_list_format = "{%a - }{%t}|{%f}$R"
+song_columns_list_format = "(50)[white]{t|fr:Title} (50)[blue]{a}"
+#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+
+song_library_format = {{%a - %t} (%b)}|{%f}
+
+# Colors #
+main_window_color = "yellow"
+state_line_color = "black"
+now_playing_prefix = "$(blue)$r"
+now_playing_suffix = "$/r$(end)"
+current_item_prefix ="$(magenta) »$u"
+current_item_suffix ="$/u$(magenta)« "
+header_window_color = cyan
+statusbar_color = cyan
+statusbar_time_color = green:b
+
+color1 = "white"
+color2 = "red"

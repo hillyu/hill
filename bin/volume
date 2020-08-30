@@ -1,3 +1,30 @@
-echo $1
-amixer -q -D pulse sset Master "$1" && pkill -RTMIN+12 dwmblocks
+#!/usr/bin/env bash
+case $1 in
+    *ute* )
+        amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 dwmblocks
+        ;;
+    * )
+        amixer -q -D pulse sset Master "$1" && pkill -RTMIN+12 dwmblocks
+        ;;
+esac
+ACTIVE=$(pacmd list-sinks | grep "state\: RUNNING" -B4 -A7 | grep "index:\|name:\|volume: front\|muted:")
+[ -z "$ACTIVE" ] && ACTIVE=$(pacmd list-sinks | grep "index:\|name:\|volume: front\|muted:" | grep -A3 '*')
+for name in INDEX NAME VOL MUTED; do
+    read $name
+done < <(echo "$ACTIVE")
+INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
+VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
+VOL="${VOL%?}"
+
+if [[ $MUTED =~ "no" ]] ; then
+    if [[ $VOL -ge $AUDIO_MED_THRESH ]]; then
+        notify-progress "Volume" $VOL "audio-volume-high-panel"
+    elif [[ $VOL -ge $AUDIO_LOW_THRESH ]]; then
+        notify-progress "Volume" $VOL "audio-volume-medium-panel"
+    else 
+        notify-progress "Volume" $VOL "audio-volume-low-panel"
+    fi
+else
+    notify-progress "Volume" $VOL "audio-volume-muted-blocking-panel"
+fi
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+date '+%b %d  %H:%M'
+#[[ $BLOCK_BUTTON="1" ]] && st -c prompt -e "systemd-analyse critical-chain"
+[[ $BLOCK_BUTTON = "1" ]] && st_hold  "neofetch && systemd-analyze && systemd-analyze critical-chain"
+[[ $BLOCK_BUTTON = "3" ]] && st_hold  systemd-analyze blame
+#[ $BLOCK_BUTTON = "1" ] && notify-send -i temperature "Sensors:" "`sensors`"
+#[ $BLOCK_BUTTON = "1" ] && echo 1
