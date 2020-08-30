@@ -1,0 +1,7 @@
+[Unit]
+Description=A Duoban Crawler
+
+[Service]
+Type=oneshot
+ExecStart=/home/hill/bin/douban_mpd.sh
+;Restart=always

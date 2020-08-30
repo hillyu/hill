@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+key_url="https://deepjyoti30server.herokuapp.com/key"
+key=`curl -s $key_url|tr -d '"'` \
+&& read fid url < <([ $? = 0 ] && curl -s "https://api.unsplash.com/photos/random?client_id=$key&count=1&orientation=landscape" | jq -r '.[]|[.id, .urls.raw]|@tsv') \
+&& pic_url=`echo $url |sed 's/"\([^\?]*\)\?.*/\1/g'` \
+&& fpath=$HOME/Pictures/wallpaper/$fid.jpg \
+&& wget -q --content-disposition -c -O $fpath $pic_url \
+&& feh  --bg-fill --no-xinerama $fpath 

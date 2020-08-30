@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-load="$(cut -d ' ' -f1 /proc/loadavg)"
+load="$(cut -d ' ' -f3 /proc/loadavg)"
 cpus="$(nproc)"
 
 # full text

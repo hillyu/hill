@@ -23,7 +23,7 @@ const="&n=1"
 extn=".jpg"
 
 # Size.
-size="1920x1200"
+size="1920x1080"
 
 # Collection Path.
 path="$HOME/Pictures/Bing/"
@@ -56,7 +56,7 @@ do
   echo "Pinging Bing API..."
 
   # Fetching API response.
-  apiResp=$(curl -s $reqImg)
+  apiResp=$(curl -s -m 2 $reqImg)
   if [ $? -gt 0 ]; then
     echo "Ping failed!"
     exit 1
@@ -86,7 +86,7 @@ do
   mkdir -p $path
 
   # Saving Image to collection.
-  curl -L -s -o $path$imgName $reqImgURL
+  curl -L -s -m 2 -o $path$imgName $reqImgURL
 
   # Logging.
   echo "Saving image to $path$imgName"
@@ -107,14 +107,16 @@ do
   #gsettings for i3 using feh
   elif [ "$XDG_CURRENT_DESKTOP" = "i3" ]
   then
-    feh --bg-fill $path$imgName
+    #feh --bg-fill $path$imgName
+    nitrogen --head=-1 --set-scaled $path$imgName
   # Set the wallpaper for unity, gnome3, cinnamon.
   # Set the wallpaper for unity, gnome3, cinnamon.
   elif gsettings set org.gnome.desktop.background picture-uri "file://$path$imgName"; then
     #Logging
     # Set the view to zoom,
     gsettings set org.gnome.desktop.background picture-options "zoom"
-    feh --bg-fill $path$imgName
+    #feh --bg-fill $path$imgName
+    nitrogen --head=-1 --set-scaled $path$imgName
   else
     echo "$XDG_CURRENT_DESKTOP not supported."
     break

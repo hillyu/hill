@@ -8,4 +8,5 @@ cmd=${3:-zsh}
 echo server: $1  container: $2  
 echo command to run: $3
 
-ssh -Ct developer@"$server" docker exec -it $container env TERM=$TERM $cmd
+#ssh -Ct developer@"$server" docker exec -it $container env TERM=$TERM $cmd
+ssh -Ct developer@"$server" docker exec -it $container $cmd

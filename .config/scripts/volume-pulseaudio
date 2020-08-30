@@ -108,12 +108,12 @@ function set_default_playback_device_next {
 case "$BLOCK_BUTTON" in
     1) set_default_playback_device_next ;;
     #2) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY toggle && pkill -RTMIN+12 dwmblocks;;
-    2) mute;;
+    2) volume mute;;
     3) set_default_playback_device_next -1 ;;
     #4) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY $AUDIO_DELTA%+ ;;
-    4) volumeup ;;
+    4) volume 5%+;;
     #5) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY $AUDIO_DELTA%- ;;
-    5) volumedown ;;
+    5) volume 5%-;;
 esac
 
 function print_format {
@@ -154,20 +154,20 @@ sed 's/.*= "\(.*\)".*/\1/')
     if [[ $MUTED =~ "no" ]] ; then
         if [[ $VOL -ge $AUDIO_MED_THRESH ]]; then
             SYMB=$AUDIO_HIGH_SYMBOL
-            notify-progress "Volume" $VOL "audio-volume-high-panel"
+            #notify-progress "Volume" $VOL "audio-volume-high-panel"
             COLOR=$DEFAULT_COLOR
         elif [[ $VOL -ge $AUDIO_LOW_THRESH ]]; then
             SYMB=$AUDIO_MED_SYMBOL 
-            notify-progress "Volume" $VOL "audio-volume-medium-panel"
+            #notify-progress "Volume" $VOL "audio-volume-medium-panel"
             COLOR=$DEFAULT_COLOR
         else 
             SYMB=$AUDIO_LOW_SYMBOL 
-            notify-progress "Volume" $VOL "audio-volume-low-panel"
+            #notify-progress "Volume" $VOL "audio-volume-low-panel"
         fi
     else
         SYMB=$AUDIO_MUTED_SYMBOL
         COLOR=$MUTED_COLOR
-        notify-progress "Volume" $VOL "audio-volume-muted-blocking-panel"
+        #notify-progress "Volume" $VOL "audio-volume-muted-blocking-panel"
     fi
 
     if [[ $SUBSCRIBE == 1 ]] ; then

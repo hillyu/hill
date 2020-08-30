@@ -1,0 +1,7 @@
+[Unit]
+Description=Update wallpaper from unsplash
+
+[Service]
+Type=oneshot
+ExecStart=/home/hill/bin/unsplashwallpaper
+;Restart=always

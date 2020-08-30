@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer unit for wallpaper update
+
+[Timer]
+OnActiveSec=0
+OnUnitActiveSec=1h
+Unit=wallpaper.service
+
+[Install]
+WantedBy=timers.target
