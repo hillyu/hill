@@ -1,5 +1,5 @@
 configuration {
-    modi: "window,drun,ssh,run,combi";
+    modi: "dictionary:~/bin/dict.sh,ssh,find:~/bin/finder.sh,combi";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/
@@ -25,8 +25,8 @@ configuration {
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
-/*	sort: false;*/
-/*	sorting-method: ;*/
+    sort: true;
+    /*sorting-method: ;*/
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
@@ -35,14 +35,14 @@ configuration {
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
     combi-modi: "window,drun,run,ssh";
-matching: "fuzzy";
+    matching: "fuzzy";
 /*	tokenize: true;*/
-/*	m: "-5";*/
+    m: "-4";
 /*	line-margin: 2;*/
 /*	line-padding: 1;*/
 /*	filter: ;*/
 /*	separator-style: "dash";*/
-/*	hide-scrollbar: false;*/
+    hide-scrollbar: true;
 /*	fullscreen: false;*/
     /*fake-transparency: false;*/
     dpi: -1;

@@ -1,5 +1,8 @@
 .config/clash/
 .config/GIMP/
+.config/google-chrome
+.config/google-chrome-back-ovfs/
+.config/google-chrome-backup/
 .config/Microsoft/
 .config/QtProject.conf
 .config/RyzenController/
