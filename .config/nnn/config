@@ -5,3 +5,4 @@ export NNN_PLUG='g:-_git diff;f:finder;k:-_fuser -kiv $nnn*;l:-_git log;p:previe
 #NNN_OPENER=/home/hill/.config/nnn/plugins/nuke
 export NNN_BMS='d:~/Documents;p:~/papers;D:~/Downloads/'
 export USE_SCOPE=1
+export NNN_OPENER='mimeopen'

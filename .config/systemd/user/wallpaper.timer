@@ -2,7 +2,7 @@
 Description=Timer unit for wallpaper update
 
 [Timer]
-OnActiveSec=0
+OnActiveSec=10
 OnUnitActiveSec=1h
 Unit=wallpaper.service
 

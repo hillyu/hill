@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 
-read cpu a b c idle iowait d e f rest < /proc/stat
-prevtotal=$(( a+b+c+d+e+f+idle ))
-previdle=$((idle+iowait))
-sleep 1.5
+FILE="/tmp/cpuinfo"
+if [[ -f "$FILE" ]]; then
+    read prevtotal previdle < $FILE
+else
+    read cpu a b c idle iowait d e f rest < /proc/stat
+    prevtotal=$(( a+b+c+d+e+f+idle ))
+    previdle=$((idle+iowait))
+    echo "$prevtotal    $previdle" > $FILE
+    sleep 1
+fi
+
+
 read cpu a b c idle iowait d e f rest < /proc/stat
 total=$(( a+b+c+d+e+f+idle ))
 idle=$((idle+iowait))

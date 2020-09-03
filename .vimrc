@@ -35,7 +35,7 @@ call plug#end()
 "============================================
 "Generic Behavior
 "============================================
-let mapleader = ";"
+let mapleader = " "
 set hlsearch
 set incsearch
 if has("vms")
@@ -44,6 +44,16 @@ else
     set backup
 endif
 syntax on
+
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
 
 " OPTIONAL: This enables automatic indentation as you type.
 filetype plugin indent on
@@ -67,7 +77,9 @@ set ambiwidth=double
 set wrapmargin=0
 set number
 set cursorline
+set ignorecase
 set smartcase
+set incsearch
 
 augroup numbertoggle
   autocmd!
@@ -92,6 +104,7 @@ set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
 set backspace=2
 
  "set path to do fuzzy search
+set path+=~/.config,~/bin
 set path+=**
 
 " fix vim c-w c-u not recoverable, will will use normalmode db and d0 command
