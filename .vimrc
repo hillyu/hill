@@ -382,5 +382,6 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
 autocmd BufWritePost ~/src/dwmblocks/config.h !cd ~/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
+autocmd BufWritePost ~/src/dwmblocks_official/blocks.h !cd ~/src/dwmblocks_official/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
 autocmd BufWritePost ~/src/st-my-build/config.h !cd ~/src/st-my-build/; sudo make clean install 
 autocmd BufWritePost ~/src/dwm/config.h !cd ~/src/dwm/; sudo make clean install

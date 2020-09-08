@@ -16,6 +16,7 @@ read cpu a b c idle iowait d e f rest < /proc/stat
 total=$(( a+b+c+d+e+f+idle ))
 idle=$((idle+iowait))
 cpu=$((100*(total-prevtotal-idle+previdle)/(total-prevtotal)))
+echo "$total    $idle" > $FILE
 echo "$cpu%"
 [[ $BLOCK_BUTTON = "3" ]] && st -c prompt -e watch grep \"cpu MHz\" /proc/cpuinfo
 [[ $BLOCK_BUTTON = "1" ]] && st -c prompt -e gotop

@@ -9,3 +9,4 @@ image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
 
 application/pdf; pdftotext '%s' -; copiousoutput; description=PDF Documen;
 #nametemplate=%s.pdf
+text/calendar; /<pathto>/calview.rb '%s'; copiousoutput
