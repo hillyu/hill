@@ -103,6 +103,7 @@ function set_default_playback_device_next {
     default_sink=${sink_arr[$default_sink_index]}
     pacmd set-default-sink $default_sink
     move_sinks_to_new_default $default_sink
+    pkill -RTMIN+12 dwmblocks
 }
 
 case "$BLOCK_BUTTON" in

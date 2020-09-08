@@ -16,8 +16,8 @@ set display_filter = '$HOME/.config/mutt/aliases.sh'
 ## Server config
 
 # IMAP config
-#set imap_user="$my_username@$my_domain"
-#set imap_pass=$my_password
+set imap_user="$my_username@$my_domain"
+set imap_pass=$my_password
 #set folder="imaps://outlook.office365.com/"
 # maildir for local mail server
 set mbox_type = Maildir
@@ -29,14 +29,14 @@ set record = +$my_sent_noquote
 set trash = +$my_trash_noquote
 mailboxes
 
-#set imap_check_subscribed="yes"
-#set imap_list_subscribed="yes"
-#set timeout=15
-#set mail_check=90
-#set imap_keepalive=180
-#set imap_idle
-#set imap_peek=yes
-#unset mark_old
+set imap_check_subscribed="yes"
+set imap_list_subscribed="yes"
+set timeout=15
+set mail_check=90
+set imap_keepalive=180
+set imap_idle
+set imap_peek=yes
+unset mark_old
 
 set realname = $my_realname
 set from = "$my_username@$my_domain"

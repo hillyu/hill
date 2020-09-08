@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 pkill -f ncmpcpp 
-st -c prompt -g 90x25 -n ncmpcpp -e ncmpcpp & disown
+st -c ncmpcpp -n ncmpcpp -g 90x25+880-380 -e ncmpcpp & disown
 pkill -f sxiv 
-sxiv -s f -g 480x480+0-500 -N cover -b .cache/cover.png & disown
+sxiv -s f -g 480x480+200-500 -N cover -b /home/hill/.cache/cover.png & disown
 #st -c ncmpcpp -n ncmpcpp -g 90x10+560-25 ncmpcpp -c $HOME/.config/ncmpcpp/vis_conf -s visualizer & disown
 #st -c ncmpcpp -n ncmpcpp -g 90x09+560-1239 ncmpcpp -c $HOME/.config/ncmpcpp/vis_conf -s clock & disown
