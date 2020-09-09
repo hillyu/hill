@@ -8,7 +8,7 @@
 # Xin pro official
 #ryzenadj -a 35000 -b 50000 -c 42000 -f 80
  #lowest should be 15000, lower than that will cause lag 
-ryzenadj -a 15000 -b 25000 -c 15000 -d 2 -f 80
+#ryzenadj -a 15000 -b 15000 -c 15000 -d 2 -f 80
 # set power to low on GPU to prevent over use of power from vega 
 #/home/hill/bin/chicony-ir-toggle on
 #echo "low" > /sys/class/drm/card0/device/power_dpm_force_performance_level
