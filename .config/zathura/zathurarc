@@ -1,6 +1,9 @@
 set first-page-column 1:1
 set selection-clipboard "clipboard"
 set recolor true
+set recolor-keephue true
+set link-hadjust false
+map <BackSpace> jumplist backward
 #===============================================================================
 #                     Gruvbox Color Scheme (Stolen from Bryan Jenks)
 #===============================================================================

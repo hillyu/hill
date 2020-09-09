@@ -13,7 +13,7 @@ Plug 'maralla/completor.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime', {'for': 'python'}
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 "Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
@@ -21,6 +21,7 @@ Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 Plug 'lervag/vimtex'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
@@ -335,15 +336,22 @@ function ExpandSnippetOrTab()
     if g:ulti_expand_res > 0
         return snippet
     else
-        return vimwiki#tbl#kbd_tab()
-        "return "\<Tab>"
+        if exists("g:loaded_vimwiki")
+            return vimwiki#tbl#kbd_tab()
+        else
+            return "\<Tab>"
+        endif
     endif
 endfunction
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
 "inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "<Esc>:VimwikiReturn 1 5<CR>"
 inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>"
-"inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
-inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
+" "inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+" inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
+" override vimwiki tab binding, it is filetype mapping so use autocmd to
+" rebind
+autocmd FileType vimwiki inoremap <silent><buffer> <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "<Esc>:VimwikiReturn 1 5<CR>"
+autocmd FileType vimwiki inoremap <silent> <buffer> <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>"
 
 "html indentation [no longer using]
 "let g:html_indent_inctags = "html,body,head,tbody"
