@@ -8,7 +8,12 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="agnoster"
-ZSH_THEME="nicoulaj"
+#ZSH_THEME="nicoulaj"
+#ZSH_THEME="random"
+#ZSH_THEME="re5et"
+ZSH_THEME="ys"
+#ZSH_THEME="frisk"
+#ZSH_THEME="candy-kingdom"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -87,6 +92,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# calculte man hr to percent of time spend (8h perday)
+alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then
     source $HOME/zshrc.linux
 fi
