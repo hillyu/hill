@@ -8,27 +8,28 @@ endif
 
 call plug#begin()
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'maralla/completor.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'honza/vim-snippets'
-Plug 'jpalardy/vim-slime', {'for': 'python'}
-"Plug 'scrooloose/nerdcommenter'
-Plug 'vim-python/python-syntax'
 "Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
-Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+"Plug 'scrooloose/nerdcommenter'
+Plug 'chrisbra/matchit'
 Plug 'lervag/vimtex'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
 Plug 'vim-scripts/vis'
+Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
+Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
+Plug 'jpalardy/vim-slime', {'for': 'python'}
 Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
 Plug 'vimwiki/vimwiki'
 call plug#end()
@@ -45,7 +46,7 @@ else
     set backup
 endif
 syntax on
-
+set scrolloff=5
 " Let's save undo info!
 if !isdirectory($HOME."/.vim")
     call mkdir($HOME."/.vim", "", 0770)
@@ -59,8 +60,8 @@ set undofile
 " OPTIONAL: This enables automatic indentation as you type.
 filetype plugin indent on
 set showcmd
-set dictionary+=~/.vim/dict/words
-set thesaurus+=~/.vim/dict/thesaurus
+" set dictionary+=~/.vim/dict/words
+" set thesaurus+=~/.vim/dict/thesaurus
 " set background fixed a bug in kitty termnal
 let &t_ut=''
 if has("gui_running")
@@ -223,6 +224,7 @@ set grepprg=grep\ -nH\ $*
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 
+nnoremap   <leader>d :!daily_update_email.sh '%' <cr>
 "-----------------------------------------------------------------------------
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------
@@ -318,9 +320,12 @@ nmap <leader>v <Plug>SlimeConfig
 let g:SimpylFold_docstring_preview=1
 
 " ultiships settings
-let g:UltiSnipsExpandTrigger           = '<nop>'
+let g:UltiSnipsExpandTrigger = '<nop>'
 let g:UltiSnipsEditSplit="vertical"
 let g:ulti_expand_or_jump_res = 0
+autocmd FileType js UltiSnipsAddFiletypes javascript-jasmine
+" autocmd FileType python UltiSnipsAddFiletypes python
+autocmd FileType vimwiki UltiSnipsAddFiletypes markdown
 
 function ExpandSnippetOrCarriageReturn()
     let snippet = UltiSnips#ExpandSnippetOrJump()
@@ -343,15 +348,16 @@ function ExpandSnippetOrTab()
         endif
     endif
 endfunction
+inoremap <c-x><c-k> <c-x><c-k>
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
-"inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "<Esc>:VimwikiReturn 1 5<CR>"
 inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>"
-" "inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
-" inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
+inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+
 " override vimwiki tab binding, it is filetype mapping so use autocmd to
 " rebind
 autocmd FileType vimwiki inoremap <silent><buffer> <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "<Esc>:VimwikiReturn 1 5<CR>"
 autocmd FileType vimwiki inoremap <silent> <buffer> <expr> <tab> pumvisible() ? "\<C-n>" : "\<C-R>=ExpandSnippetOrTab()\<CR>"
+autocmd FileType vimwiki inoremap <silent> <buffer> <expr> <s-tab> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab() 
 
 "html indentation [no longer using]
 "let g:html_indent_inctags = "html,body,head,tbody"
@@ -387,6 +393,11 @@ nmap <silent><leader>sv :so $MYVIMRC<cr>
 "mark white space as bad in python:
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"override my highlight settings for pum 
+highlight Pmenusel ctermfg=4 ctermbg=7
+highlight Pmenu ctermfg=0 ctermbg=12
+
 
 
 autocmd BufWritePost ~/src/dwmblocks/config.h !cd ~/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
