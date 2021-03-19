@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cmd="${@}"
-st -c prompt bash -c "$cmd && bash"
+st -c prompt bash -c "$cmd ; read;"
