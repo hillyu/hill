@@ -66,3 +66,6 @@ bin/wisersRemoteRun.sh
 .config/teams/
 .config/vifm/
 bin/docker-compose
+nftable/iptables/raw
+bin/checkra1n
+nftable/raw
