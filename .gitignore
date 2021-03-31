@@ -40,3 +40,6 @@
 .config/wisers.gpg
 bin/wisersRemoteRun.sh
 .config/chromium-backup-crashrecovery-20200408_145511/
+.config/nnn
+.config/mpd
+.config/teams
