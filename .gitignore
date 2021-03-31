@@ -65,3 +65,4 @@ bin/wisersRemoteRun.sh
 .config/solaar/
 .config/teams/
 .config/vifm/
+bin/docker-compose
