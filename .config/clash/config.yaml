@@ -1,0 +1,124 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+mode: Rule
+log-level: info
+#external-controller: 0.0.0.0:9090
+#secret: ""
+#external-ui: dashboard
+#此处内容请安装一个gui版本的clash然后在里面配置好代理然后抄过来
+proxies: 
+# socks5
+  - name: "proxy1"
+    type: socks5
+    server: "127.0.0.1"
+    port: 3081
+  - name: "proxy2"
+    type: socks5
+    server: "127.0.0.1"
+    port: 3082
+  - name: "proxy3"
+    type: socks5
+    server: "127.0.0.1"
+    port: 3083
+  - name: "proxy4"
+    type: socks5
+    server: "127.0.0.1"
+    port: 3084
+  - name: "proxy5"
+    type: socks5
+    server: "127.0.0.1"
+    port: 3080
+ #shadow proxy
+  - name: "ss"
+    type: ss
+    server: "59.149.174.136"
+    port: 465
+    password: "hillyu001"
+    cipher: "chacha20-ietf-poly1305"
+proxy-groups:
+  # relay chains the proxies. proxies shall not contain a proxy-group. No UDP support.
+  # Traffic: clash <-> http <-> vmess <-> ss1 <-> ss2 <-> Internet
+  #- name: "relay"
+    #type: relay
+    #proxies:
+      #- http
+      #- vmess
+      #- ss1
+      #- ss2
+
+  # url-test select which proxy will be used by benchmarking speed to a URL.
+  - name: "auto"
+    type: url-test
+    proxies:
+      - ss
+      - proxy1
+      - proxy2
+      - proxy3
+      - proxy4
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # fallback select an available policy by priority. The availability is tested by accessing an URL, just like an auto url-test group.
+  - name: "fallback-auto"
+    type: fallback
+    proxies:
+      - proxy1
+      - proxy2
+      - proxy3
+      - proxy4
+      - ss
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # load-balance: The request of the same eTLD will be dial on the same proxy.
+  - name: "load-balance"
+    type: load-balance
+    proxies:
+      - proxy1
+      - proxy2
+      - proxy3
+      - proxy4
+      - proxy5
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # select is used for selecting proxy or proxy group
+  # you can use RESTful API to switch proxy, is recommended for use in GUI.
+  - name: Proxy
+    type: select
+    proxies:
+      - ss
+      - auto
+  
+  #- name: UseProvider
+    #type: select
+    #use:
+      #- provider1
+    #proxies:
+      #- Proxy
+      #- DIRECT
+dns:
+  enable: true
+  listen: 0.0.0.0:10052
+  enhanced-mode: redir-host
+  nameserver:
+    - 'tls://1.1.1.1:853'
+  fallback:
+    - 'tls://dns.rubyfish.cn:853'
+    - 'tls://8.8.8.8:853'
+    - 'tcp://1.1.1.1:53'
+    - 'tcp://208.67.222.222:443'
+    - 'tls://dns.google'
+    - 'tcp://10.16.1.241:53'
+    - 'tcp://10.16.2.241:53'
+rules:
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  #- DOMAIN-SUFFIX,google.com,load-balance
+  #- DOMAIN-KEYWORD,google,load-balance
+  #- DOMAIN,google.com,load-balance
+  #- DOMAIN-SUFFIX,ad.com,REJECT
+  #- MATCH,,load-balance
+  - MATCH,load-balance
