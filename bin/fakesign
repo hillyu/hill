@@ -1,0 +1,18 @@
+ipa=$1
+echo [*] unpacking..
+cd $(dirname $ipa)
+unzip "$ipa"
+cd Payload
+app=$(ls -1)
+echo "[*] fakesigning ${app:0:${#app}-4}"
+ldid -S "$app/${app:0:${#app}-4}"
+echo "[*] fakesigning all Frameworks.."
+for f in $app/Frameworks/*.dylib; do
+  echo "[*] fakesigning $f"
+  ldid -S "$f"
+done
+cd ..
+echo "[*] packaging.."
+zip -r "$ipa-fakesigned.ipa" Payload
+rm -f -r Payload
+echo [*] Created "$ipa-fakesigned.ipa"
