@@ -1,0 +1,2 @@
+r=${BROWSER:-brave}
+$r --app="$1"
