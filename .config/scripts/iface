@@ -54,7 +54,7 @@ esac
 IPADDR=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$1 and exit")
 
 case $BLOCK_BUTTON in
-  1) st -c prompt gotop;;
+  1) st -c prompt bmon;;
   3) echo -n "$IPADDR" | xclip -q -se c ;;
   2) st -c prompt sudo openfortivpn ;;
   *) ;;

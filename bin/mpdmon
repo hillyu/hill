@@ -4,13 +4,18 @@ cover_path=$HOME/.cache/cover.png
 FIRST_RUN=true
 
 function cover_art {
-    QUERY="$artist"
-    API_URL="http://api.douban.com/music/subjects?q=$QUERY" && API_URL=${API_URL//' '/'%20'}
-    result=`curl -s "$API_URL"`
-    precise=`echo -n "$result"| grep -A 7 "<title>$album</title>"`
-    [ -z $? ] && result="$precise"
-    result=`echo -n "$result"| sed ':a;N;$!ba;s/.*href="\(.*\)" rel="image".*/\1/g' |sed 's/s\/public/l\/public/g'`
-    [ -z "$result" ] && result=`curl -s "$API_URL"| sed ':a;N;$!ba;s/.*href="\(.*\)" rel="image".*/\1/g' |sed 's/s\/public/l\/public/g'`
+    # parse playlist file method.
+    #result=`sed -e 's/xmlns=".*"//g' /home/hill/Music/douban.xspf|xmllint --xpath "$xpath" - `
+    # web search method, obselete needs to update the API.
+    # QUERY="$artist"
+    # API_URL="http://api.douban.com/music/subjects?q=$QUERY" && API_URL=${API_URL//' '/'%20'}
+    # echo $API_URL
+    # result=`curl -s "$API_URL"`
+    # precise=`echo -n "$result"| grep -A 7 "<title>$album</title>"`
+    # [ -z $? ] && result="$precise"
+    # result=`echo -n "$result"| sed ':a;N;$!ba;s/.*href="\(.*\)" rel="image".*/\1/g' |sed 's/s\/public/l\/public/g'`
+    # [ -z "$result" ] && result=`curl -s "$API_URL"| sed ':a;N;$!ba;s/.*href="\(.*\)" rel="image".*/\1/g' |sed 's/s\/public/l\/public/g'`
+    # directly read comment tag which contains URL of the album art from douban
     curl -s \
         -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
         $result -o $cover_path
@@ -27,6 +32,9 @@ while true; do
     title=`mpc -f "%title%"|head -n1`
     artist=`mpc -f "%artist%"|head -n1`
     album=`mpc -f "%album%"|head -n1`
+    #xpath='//track[title="'"$title"'"]/image/text()'
+    result=`mpc -f "%comment%"|head -n1`
+    #call cover_art function
     cover_art &
     
 done
