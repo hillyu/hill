@@ -7,9 +7,10 @@ case $1 in
         amixer -q -D pulse sset Master "$1" && pkill -RTMIN+12 dwmblocks
         ;;
 esac
-ACTIVE=$(pacmd list-sinks | grep "state\: RUNNING" -B4 -A7 | grep "index:\|name:\|volume: front\|muted:")
-[ -z "$ACTIVE" ] && ACTIVE=$(pacmd list-sinks | grep "index:\|name:\|volume: front\|muted:" | grep -A3 '*')
-for name in INDEX NAME VOL MUTED; do
+ACTIVE=$(pactl list sinks | grep -i "state\: RUNNING" -B1 -A8 | grep -i "Sink\|name:\|volume: front\|mute:")
+[ -z "$ACTIVE" ] && ACTIVE=$(pactl list sinks |grep -B2 -A8 "Name: `pactl info |awk -F": " '$1=="Default Sink"{print $2}'`"|grep -i "sink\|name:\|volume: front\|mute:")
+# echo "$ACTIVE"
+for name in INDEX NAME MUTED VOL; do
     read $name
 done < <(echo "$ACTIVE")
 INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
