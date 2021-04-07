@@ -20,7 +20,7 @@ MUTED_COLOR=${MUTED_COLOR:-"#a0a0a0"}
 
 LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${INDEX}:${NAME}]'}
 SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB} ${VOL}% [${INDEX}]'}
-USE_ALSA_NAME=${USE_ALSA_NAME:-1}
+USE_ALSA_NAME=${USE_ALSA_NAME:-0}
 USE_DESCRIPTION=${USE_DESCRIPTION:-0}
 
 SUBSCRIBE=${SUBSCRIBE:-0}
@@ -88,20 +88,20 @@ CAPABILITY=$(amixer -D $MIXER get $SCONTROL | sed -n "s/  Capabilities:.*cvolume
 
 function move_sinks_to_new_default {
     DEFAULT_SINK=$1
-    pacmd list-sink-inputs | grep index: | grep -o '[0-9]\+' | while read SINK
+    pactl list sink-inputs | grep 'Sink Input #': | grep -o '[0-9]\+' | while read SINK
     do
-        pacmd move-sink-input $SINK $DEFAULT_SINK
+        pactl move-sink-input $SINK $DEFAULT_SINK
     done
 }
 
 function set_default_playback_device_next {
     inc=${1:-1}
-    num_devices=$(pacmd list-sinks | grep -c index:)
-    sink_arr=($(pacmd list-sinks | grep index: | grep -o '[0-9]\+'))
-    default_sink_index=$(( $(pacmd list-sinks | grep index: | grep -no '*' | grep -o '^[0-9]\+') - 1 ))
+    num_devices=$(pactl list sinks | grep -c "Sink #")
+    sink_arr=($(pactl list sinks short|cut -f2))
+    default_sink_index=$(( $(pactl list sinks |grep "Name:"|grep -no `pactl info |awk -F": " '$1=="Default Sink"{print $2}'`|cut -f1 -d":") - 1 ))
     default_sink_index=$(( ($default_sink_index + $num_devices + $inc) % $num_devices ))
     default_sink=${sink_arr[$default_sink_index]}
-    pacmd set-default-sink $default_sink
+    pactl set-default-sink $default_sink
     move_sinks_to_new_default $default_sink
     pkill -RTMIN+12 dwmblocks
 }
@@ -110,7 +110,7 @@ case "$BLOCK_BUTTON" in
     1) set_default_playback_device_next ;;
     #2) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY toggle && pkill -RTMIN+12 dwmblocks;;
     2) volume mute;;
-    3) set_default_playback_device_next -1 ;;
+    3) st_hold pulsemixer;;
     #4) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY $AUDIO_DELTA%+ ;;
     4) volume 5%+;;
     #5) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY $AUDIO_DELTA%- ;;
@@ -122,19 +122,21 @@ function print_format {
 }
 
 function print_block {
-    ACTIVE=$(pacmd list-sinks | grep "state\: RUNNING" -B4 -A7 | grep "index:\|name:\|volume: front\|muted:")
-    [ -z "$ACTIVE" ] && ACTIVE=$(pacmd list-sinks | grep "index:\|name:\|volume: front\|muted:" | grep -A3 '*')
-    for name in INDEX NAME VOL MUTED; do
+    ACTIVE=$(pactl list sinks | grep -i "state\: RUNNING" -B1 -A8 | grep -i "Sink\|name:\|volume: front\|mute:")
+    [ -z "$ACTIVE" ] && ACTIVE=$(pactl list sinks |grep -B2 -A8 "Name: `pactl info |awk -F": " '$1=="Default Sink"{print $2}'`"|grep -i "sink\|name:\|volume: front\|mute:")
+    # echo "$ACTIVE"
+    for name in INDEX NAME MUTED VOL; do
         read $name
     done < <(echo "$ACTIVE")
     INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
     VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
     VOL="${VOL%?}"
 
-    NAME=$(echo "$NAME" | sed \
-'s/.*<.*\.\(.*\)>.*/\1/; t;'\
-'s/.*<\(.*\)>.*/\1/; t;'\
-'s/.*/unknown/')
+    # NAME=$(echo "$NAME" | sed \
+# 's/.*<.*\.\(.*\)>.*/\1/; t;'\
+# 's/.*<\(.*\)>.*/\1/; t;'\
+# 's/.*/unknown/')
+    NAME=`echo "$NAME" |grep -oE "[^.]+$"`
 
     if [[ $USE_ALSA_NAME == 1 ]] ; then
         ALSA_NAME=$(pacmd list-sinks |\
