@@ -1,7 +1,7 @@
 data=`<"${1:-/dev/stdin}"`
 echo "$data"|awk -F '|' '
-$4 ~ "[[:digit:]]h"  { i++; s+=$4; cat[i]=$2;title[i]=$3;time[i]=$4;status[i]=$5}
-$2 !="" && $5 !~ "one" {e++;todo[e] ="[" $2 "] " $3}
+$4 ~ "[[:digit:]]h"  { i++; s+=$4; cat[i]=$3;title[i]=$2;time[i]=$4;status[i]=$5}
+$3 !="" && $5 !~ "one" {e++;todo[e] ="[" $3 "] " $2}
 END {
 print "Update:"
 for (d=1;d<i; ++d) {

@@ -224,7 +224,11 @@ set grepprg=grep\ -nH\ $*
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 
-nnoremap   <leader>d :!daily_update_email.sh '%' <cr>
+nnoremap   <leader>dm :!daily_update_email.sh '%' <cr>
+let @b = 'i|:.,+1s/\n/|/gAh| |j0'
+let h = '|Cat.|Detail|Time spent|Status|'
+nnoremap   <leader>dc I\|Cat.\|Detail\|Time spent\|Status\|<cr><Esc>10@b
+nnoremap <leader>da  :read !diary2report.sh %<cr>
 "-----------------------------------------------------------------------------
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------

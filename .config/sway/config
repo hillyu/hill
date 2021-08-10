@@ -1,29 +1,42 @@
 #Auto start services
 xwayland disable
-#exec --no-startup-id fcitx-autostart
-exec --no-startup-id fcitx5 &
-#exec --no-startup-id QT_QPA_PLATFORM="xcb" nice -12 ~/.dropbox-dist/dropboxd
+# a hack to load gsettings in config file and apply gsettings manually
+exec_always import-gsettings
+# import SWAYSOCK env as it is not accessible by systemd user unit (set wall paper etc.)
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# i3ipc to enable dwm like dynamic tiling
+exec_always $HOME/src/i3ipc-dynamic-tiling/i3ipc-dynamic-tiling
+exec wl-paste -t text --watch clipman store
+exec --no-startup-id fcitx5 --verbose 2 -d
+#dropbox tray requires x11/xwayland
+exec_always nice -12 ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
+exec dbus-update-activation-environment --systemd DISPLAY
 #exec --no-startup-id xrdb $HOME/.Xresources && urxvtd -q -f -o &&  urxvtc -name ncmpcpp -e ncmpcpp
 #exec --no-startup-id xrdb $HOME/.Xresources 
-# exec env WAYLAND_DISPLAY= alacritty -t ncmpcpp -e ncmpcpp
 #exec --no-startup-id LC_CTYPE=zh_CN.UTF-8 emacs --daemon
 exec --no-startup-id udiskie  --no-notify
 #notification server for sway.
-exec --no-startup-id mako
-exec --no-startup-id mpris-proxy
+exec bash -c "pkill -f dunst; dunst"
+# exec --no-startup-id mako
+# exec --no-startup-id mpris-proxy
+# use i3ipc dynamic tiling instead
+# exec --no-startup-id autotiling
+exec mpdmon >/dev/null 2>&1 &
+# exec libinput-gestures-setup start >/dev/null 2>&1 &
+# exec desk_dash.sh >/dev/null 2>&1 &
 #exec_always --no-startup-id blueman-applet
 #exec_always --no-startup-id ~/bin/amdClock.sh
 
-#exec $term -e tmux
 # exec  google-chrome-stable --app="https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0"
 # exec nice -12 slack
 # exec google-chrome-stable --app="https://paper.dropbox.com/"
 # exec qutebrowser --target window --qt-arg qwindowtitle paper "https://paper.dropbox.com/"
-# exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0" # Default config for sway
+# exec qutebrowser --target window --qt-arg qwindowtitle officemail "https://outlook.office.com/owa/?realm=astri.org&exsvurl=1&ll-cc=4105&modurl=0" 
+# output settings
 # output eDP-1 res 1366x768 pos 1920,180
 #output eDP-1 res 1366x768 pos 0,200
-output eDP-1 scale 2 position 0,950 dpms on
-output eDP-2 scale 2 position 0,950 dpms on
+output eDP-1 scale 2 position 0,540 dpms on
+# output eDP-2 scale 2 position 0,540 dpms on
 output DP-1 pos 1280,0 dpms on
 #output DP-1 resolution 1920x1080 position 1366,0 transform 270
 #output HDMI-A-2 res 2560x1440 pos 2446,0
@@ -50,14 +63,17 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term "kitty --single-instance"
+# set $term "alacritty"
+# exec $term --class "scratchpad" -e tmux_run.sh
+set $ft "$term" --class floating
+set $browser brave
 #set $term urxvtc
-# set $term env WAYLAND_DISPLAY= alacritty
 # Your preferred application launcher
-#set $me
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "$term"
 #set $menu (cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | wofi -t \"$term\" -S dmenu -i
-set $menu wofi -t \"$term\" -S drun,run -i -q
+# set $menu wofi -t \"$term\" -S drun,run -i -q
+set $menu rofi -show combi -m -4
 #color workspace name etc.
 set $menu-font "SF Pro Display"
 #set $menu-font "5x7"
@@ -118,6 +134,10 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     xkb_layout us
     xkb_options ctrl:swap_lwin_lctl,lv3:ralt_switch,caps:escape,lv3:rwin_switch
 }
+   input "1452:598:SONiX_USB_DEVICE" {
+    xkb_layout us
+    xkb_options ctrl:swap_lwin_lctl,lv3:ralt_switch,caps:escape,lv3:rwin_switch
+}
    input type:pointer {           
        pointer_accel -0.75
        accel_profile adaptive
@@ -134,7 +154,7 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
 #
     # start a terminal
     bindsym $mod+Return exec --no-startup-id $term
-    bindsym $mod+Shift+Return exec --no-startup-id $term -e tmux
+    bindsym $mod+Shift+Return exec --no-startup-id $term -e tmux_run.sh
 
     # kill focused window
     #bindsym $mod+Shift+q kill
@@ -150,8 +170,8 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     set $screenshotdir "$(xdg-user-dir PICTURES)/screenshot/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
     bindsym Print exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && wl-copy < $screenshotdir
     bindsym Shift+Control+3 exec --no-startup-id grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" $screenshotdir && wl-copy < $screenshotdir
-    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $screenshotdir && wl-copy < $screenshotdir
-    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" $screenshotdir && wl-copy < $screenshotdir
+    bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" - |swappy -f - -o $screenshotdir
+    bindsym Shift+Control+4 exec --no-startup-id grim -g "$(slurp)" - |swappy -f - -o $screenshotdir
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -168,18 +188,33 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     bindsym $mod+Shift+c reload
     bindsym $mod+Shift+s exec --no-startup-id systemctl suspend
     # lock
-    bindsym $mod+Shift+x exec --no-startup-id swaylock --color 475263
+    bindsym $mod+Shift+l exec --no-startup-id swaylock --color 475263
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exit
 #
 # Moving around:
 #
+# i3ipc dynamic tiling:
+#   # Focus next cycle.
+bindsym $mod+j nop i3ipc_focus next
+
+# Move next.
+bindsym $mod+shift+j nop i3ipc_move next
+
+# Focus previous cycle.
+bindsym $mod+k nop i3ipc_focus prev
+
+# Move previous.
+bindsym $mod+shift+k nop i3ipc_move prev
+bindsym $mod+Semicolon nop i3ipc_focus toggle
+bindsym $mod+space nop i3ipc_move swap
+
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    # bindsym $mod+$left focus left
+    # bindsym $mod+$down focus down
+    # bindsym $mod+$up focus up
+    # bindsym $mod+$right focus right
     # or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -187,15 +222,23 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     bindsym $mod+Right focus right
 
     # _move_ the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    bindsym $mod+$left move left
+    # bindsym $mod+Shift+$down move down
+    # bindsym $mod+Shift+$up move up
+    bindsym $mod+$right move right
     # ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    # move the focused to output (multi-mon)
+    bindsym $mod+comma focus output left
+    bindsym $mod+period focus output right
+    # ditto, with arrow keys
+    bindsym $mod+less move output left
+    bindsym $mod+greater move output right
+
 
   #set $workspace1 = "1:"
   #set $workspace2 = "2:"
@@ -257,7 +300,6 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
 #for_window [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"] move scratchpad
 #for_window [title="(?i)paper"]   move scratchpad
 assign [class="(?i)Google-chrome" instance="(?i)outlook.office.com__owa"]   $workspace4
-assign [title="(?i)officemail"]   $workspace4
 #assign [app_id="(?i)firefox"]   $workspace4
 assign [class="(?i)Google-chrome" instance="(?i)PowerPoint"]   $workspace3
 assign [class="(?i)Google-chrome" instance="(?i)Word"]   $workspace3
@@ -269,14 +311,18 @@ assign [class="(?i)Google-chrome" instance="(?i)ics-ml-gpu"]   $workspace5
 #assign [class="(?i)Rhythmbox"]   $workspace10
 assign [class="(?i)gimp*"]   $workspace8
 assign [class="(?i)inkscape*"]   $workspace8
-assign [instance="(?i)ncmpcpp"]   $workspace10
+assign [app_id="(?i)ncmpcpp"]   $workspace10
 assign [instance="(?i)ranger"]   $workspace7
+assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 #assign [class="(?i)Google-chrome" instance="(?i)web.wechat.com"]   $workspace9
-assign [app_id="(?i)firefox" title="(?i)kanbanflow.com"]   $workspace6
 #assign [class="(?i)Google-chrome" instance="(?i)kanbanflow.com"]   $workspace6
 #assign [class="(?i)Google-chrome" instance="(?i)web.whatsapp.com"]   $workspace9
-assign [class="(?i)Google-chrome" instance="(?i)paper.dropbox.com"]   $workspace3
-assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
+assign [title="(?i)officemail"]   $workspace2
+assign [title="(?i)Teams"]   $workspace2
+assign [title="(?i)Jira"]   $workspace4
+assign [title="(?i)Confluence"]   $workspace4
+assign [app_id="(?i)Brave-browser" title="(?i)dropbox"]   $workspace3
+assign [app_id="(?i)Brave-browser" title="(?i)kanbanflow.com"]   $workspace6
 # assign [instance="(?i)neomutt"]   $workspace9
 # for_window [title="GIMP Startup"]  move workspace $workspace7
 ## enable tabbed layout on certain window
@@ -286,11 +332,14 @@ assign [class="(?i)Google-chrome" instance="(?i)gitbook.com"]   $workspace3
 #for_window [class="(?i)Google-chrome" instance="(?i)web.wechat.com"] floating enable
 
 ### enable floating on certain windows
-for_window [class="(?i)mpv"] floating enable
+# for_window [class="(?i)mpv"] floating enable
+# for_window [title="Launch Application"] floating enable
+for_window [app_id="(?i)ncmpcpp"] floating enable; resize set width 750px height 420px
 for_window [app_id="(?i)imv"] floating enable
 for_window [app_id="(?i)transmission-remote-gtk"] floating enable
-for_window [title="Launch Application"] floating enable
-for_window [app_id="floating"] floating enable
+for_window [app_id="floating"] floating enable; resize set width 1210px height 670px
+for_window [app_id="scratchpad"] floating enable; resize set width 1200px height 669px; move scratchpad
+for_window [app_id="floatingv"] floating enable; resize set width 620px height 700px
 for_window [app_id="(?i)mpv"] floating enable
 for_window [app_id="(?i)blueman"] floating enable
 for_window [app_id="(?i)pavucontrol"] floating enable
@@ -318,13 +367,13 @@ for_window [class="(?i)keyring"] floating enable
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+shift+b splith
+    bindsym $mod+shift+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -333,10 +382,14 @@ for_window [class="(?i)keyring"] floating enable
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    # bindsym $mod+space exec sway_swap_con.sh
+    bindsym $mod+Shift+f focus mode_toggle
 
     # move focus to the parent container
-    bindsym $mod+a focus parent
+    # bindsym $mod+a focus parent
+    # # Toggle workspace.
+bindsym Ctrl+Tab workspace back_and_forth
+
 #
 # Scratchpad:
 #
@@ -348,42 +401,45 @@ for_window [class="(?i)keyring"] floating enable
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show, move position center
+    # bindsym $mod+minus scratchpad show, move position center
+    bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10 px or 10 ppt
-    bindsym $down resize grow height 10 px or 10 ppt
-    bindsym $up resize shrink height 10 px or 10 ppt
-    bindsym $right resize grow width 10 px or 10 ppt
+# mode "resize" {
+#     # left will shrink the containers width
+#     # right will grow the containers width
+#     # up will shrink the containers height
+#     # down will grow the containers height
+#     bindsym $left resize shrink width 10 px or 10 ppt
+#     bindsym $down resize grow height 10 px or 10 ppt
+#     bindsym $up resize shrink height 10 px or 10 ppt
+#     bindsym $right resize grow width 10 px or 10 ppt
 
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+#     # ditto, with arrow keys
+#     bindsym Left resize shrink width 10 px or 10 ppt
+#     bindsym Down resize grow height 10 px or 10 ppt
+#     bindsym Up resize shrink height 10 px or 10 ppt
+#     bindsym Right resize grow width 10 px or 10 ppt
 
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+#     # return to default mode
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
+# bindsym $mod+r mode "resize"
 #also use upper row for shrink
-bindsym $mod+y resize shrink width 10 px or 10 ppt
-bindsym $mod+i resize grow height 10 px or 10 ppt
-bindsym $mod+u resize shrink height 10 px or 10 ppt
-bindsym $mod+o resize grow width 10 px or 10 ppt
+# bindsym $mod+y resize grow width 10 px or 10 ppt
+# bindsym $mod+i resize grow height 10 px or 10 ppt
+# bindsym $mod+u resize shrink height 10 px or 10 ppt
+# bindsym $mod+o resize shrink width 10 px or 10 ppt
+bindsym $mod+i resize grow width 10 px or 10 ppt
+bindsym $mod+u resize shrink width 10 px or 10 ppt
 # window colors
 #                       border              background         text                 indicator   child_border
-client.focused          $frame-color           $bg-color          $text-color          #00ff00  $frame-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00  $bg-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00  $bg-color
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00 $bg-color
+client.focused          $frame-color           $bg-color          $text-color          $frame-color  $frame-color
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color  $bg-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color  $bg-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $urgent-bg-color $bg-color
 
 #
 # Status Bar:
@@ -391,7 +447,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     #tray_output primary
-    #status_command i3blocks -c /home/hill/.config/i3blocks.conf
+    # status_command i3blocks -c /home/hill/.config/i3blocks.conf
     swaybar_command waybar
     position top
     colors {
@@ -407,18 +463,24 @@ bar {
 titlebar_border_thickness 1
 titlebar_padding 5 1
 
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 4%-
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +4%
+# bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 4%-
+bindsym XF86MonBrightnessDown exec --no-startup-id brightness 1%-
+# bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +4%
+bindsym XF86MonBrightnessUp exec --no-startup-id brightness 1%+
 #bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB+ unmute
 #bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) 2dB- unmute
 ##bindsym XF86AudioRaiseVolume exec amixer -D default -q set PCM 2dB+ unmute
 ##bindsym XF86AudioLowerVolume exec amixer -D default -q set PCM 2dB- unmute
 #bindsym XF86AudioMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| head -n 1) toggle
 # bindsym# change volume or toggle mute
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks 
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks 
-bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
+# bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume +5%
+# bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id volume -5%
+# bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioMute exec --no-startup-id volume mute
+# bindsym XF86AudioMicMute exec --no-startup-id amixer -D default -q set $(amixer -D default scontrols| sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p"| grep -E "Mic"| head -n 1) toggle
+bindsym XF86AudioMicMute exec --no-startup-id micmute
 bindsym XF86Display reload
 bindsym XF86Tools reload
 bindsym XF86Search output eDP-1 scale 1
@@ -426,10 +488,32 @@ bindsym XF86LaunchA gaps inner current minus 4
 bindsym XF86Explorer gaps inner current plus  4
 bindsym $mod+equal gaps inner current set 0
 # output eDP-1 res 1366x768 pos 1920,180
+#  playback control
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPlay exec mpc toggle
+#quick Launch
+
+bindsym $mod+a exec $ft -e atop
+bindsym $mod+w exec $browser
+bindsym $mod+Shift+w exec rofi-surfraw
+bindsym $mod+s exec $ft --hold -e yay -Syu
+bindsym $mod+c exec $ft -e vim .config/sway/config
+bindsym $mod+m exec $ft -e neomutt
+bindsym $mod+t exec $ft -e tmux_run.sh
+bindsym $mod+d exec $ft -e vim -c :VimwikiDiaryIndex
+bindsym $mod+r exec $ft -e rtv
+bindsym $mod+n exec kitty --class floating --listen-on=unix:/tmp/mykitty -e nnn -ed -P P
+bindsym $mod+x exec $ft -e journalctl -xe
+bindsym $mod+Shift+x exec $ft -e journalctl -k
+bindsym $mod+v exec clipman pick -t rofi
+bindsym $mod+b exec papis -s picktool rofi open
+# control dunst notification
+bindsym Ctrl+grave exec dunstctl history-pop
 
 
-#gaps inner 10
-#gaps outer 10
+gaps inner 5
+gaps outer 5
 #gaps top -5
 #gaps bottom -5
 #workspace $workspace9 gaps inner 12
@@ -441,10 +525,12 @@ default_border pixel
 smart_borders on
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
 #smart_gaps on
-floating_maximum_size -1 x -1
+# floating_maximum_size -1 x -1
 # seems not working
-floating_minimum_size 90 x 55
+# floating_minimum_size 90 x 55
 #work_space backandforth
 workspace_auto_back_and_forth yes
 #exec swayidle timeout 350 "swaylock -c 000000f0" before-sleep "swaylock -c 000000f0"
 #include /etc/sway/config.d/*
+# mouse_warping container
+# popup_during_fullscreen leave_fullscreen

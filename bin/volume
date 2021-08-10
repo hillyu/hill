@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
+get_volume() {
+    ACTIVE=$(pactl list sinks | grep -i "state\: RUNNING" -B1 -A8 | grep -i "Sink\|name:\|volume: front\|mute:")
+    [ -z "$ACTIVE" ] && ACTIVE=$(pactl list sinks |grep -B2 -A8 "Name: `pactl info |awk -F": " '$1=="Default Sink"{print $2}'`"|grep -i "sink\|name:\|volume: front\|mute:")
+    # echo "$ACTIVE"
+    for name in INDEX NAME MUTED VOL; do
+        read $name
+    done < <(echo "$ACTIVE")
+    INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
+    VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
+    VOL="${VOL%?}"
+}
+
+get_volume
+[ $VOL -gt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ 100%
+
 case $1 in
     *ute* )
-        amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 dwmblocks
+        pactl set-sink-mute $INDEX toggle && pkill -RTMIN+12 dwmblocks
         ;;
     * )
-        amixer -q -D pulse sset Master "$1" && pkill -RTMIN+12 dwmblocks
+        [ $VOL -lt 100 ] || [[ $1 =~ "-" ]] && pactl set-sink-volume $INDEX "$1" && pkill -RTMIN+12 dwmblocks
         ;;
 esac
-ACTIVE=$(pactl list sinks | grep -i "state\: RUNNING" -B1 -A8 | grep -i "Sink\|name:\|volume: front\|mute:")
-[ -z "$ACTIVE" ] && ACTIVE=$(pactl list sinks |grep -B2 -A8 "Name: `pactl info |awk -F": " '$1=="Default Sink"{print $2}'`"|grep -i "sink\|name:\|volume: front\|mute:")
-# echo "$ACTIVE"
-for name in INDEX NAME MUTED VOL; do
-    read $name
-done < <(echo "$ACTIVE")
-INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
-VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
-VOL="${VOL%?}"
-
+get_volume
 if [[ $MUTED =~ "no" ]] ; then
     if [[ $VOL -ge $AUDIO_MED_THRESH ]]; then
         notify-progress "Volume" $VOL "audio-volume-high-panel"

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+IAM=(`pgrep -d " " -f ${0//*\//}`)
+[ ${#IAM[@]} -gt 1 ] && { echo I AM running; exit 127; }
+
 cover_path=$HOME/.cache/cover.png
 FIRST_RUN=true
 

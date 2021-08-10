@@ -1,14 +1,14 @@
 {
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    //"height": 30, // Waybar height (to be removed for auto height)
+    "height": 20, // Waybar height (to be removed for auto height)
     //"width": 1280, // Waybar width
     // Choose the order of the modules
     //"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-left": ["sway/workspaces", "sway/mode" ],
     "modules-center": ["sway/window"],
     //"modules-right": ["mpd", "idle_inhibitor", "network", "cpu", "memory", "temperature", "temperature#amdgpu", "backlight", "battery", "battery#bat2", "pulseaudio", "clock", "tray"],
-    "modules-right": [ "network", "cpu", "memory", "pulseaudio", "backlight", "battery", "clock", "tray", "custom/bluetooth"],
+    "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "pulseaudio", "backlight", "battery", "clock", "tray", "custom/bluetooth"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -34,6 +34,7 @@
         "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
         "unknown-tag": "N/A",
         "interval": 2,
+        "max-length": 28,
         "consume-icons": {
             "on": " "
         },
@@ -51,7 +52,13 @@
             "paused": "",
             "playing": ""
         },
-        "tooltip-format": "MPD (connected)",
+        "on-click": "kitty --class ncmpcpp -e ncmpcpp",
+        "on-click-middle": "mpc stop",
+        "on-click-right": "mpc toggle",
+        "on-scroll-up": "mpc prev",
+        "on-scroll-down": "mpc next",
+        //"tooltip-format": "MPD (connected)",
+        "tooltip-format":  "{stateIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] ",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
@@ -67,12 +74,15 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "format-alt": "{:%Y-%m-%d}",
+        "on-click-right": "start_info"
+
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click-right": "kitty --class=floating --hold -e sudo /home/hill/bin/amdClock.sh",
+        "on-click": "kitty --class=floating -e atop",
+        "on-click-right": "kitty --class=floating -e gotop",
         "tooltip": true
     },
     "memory": {
@@ -83,14 +93,14 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""]
     },
     "temperature#amdgpu": {
         "thermal-zone": 1,
         //"hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
         "critical-threshold": 80,
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -119,11 +129,16 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "on-click-right": "$HOME/bin/wifi",
+        "on-click-middle": "kitty --class floatingv -e sudo openfortivpn",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-alt": "{bandwidthUpBits}{bandwidthDownBits}",
+        "tooltip-format-wifi": "{ifname}: {signaldBm}dBm\n{ipaddr}\n{bandwidthUpBits}{bandwidthDownBits}",
+        "tooltip-format": "{ifname}\n{ipaddr}\n{bandwidthUpBits}{bandwidthDownBits}"
+
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -172,8 +187,9 @@
         "format": "{}°C {icon}",
         "return-type": "json",
         "interval": 10,
-        "format-icons": ["", "", ""],
+        "format-icons": ["", "", ""],
         "escape": false,
+        "on-click-right": "kitty --class floatingv -e sudo watch -n 1 cat /sys/kernel/debug/dri/0/amdgpu_pm_info",
         "exec": "/home/hill/.config/scripts/temperature" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }

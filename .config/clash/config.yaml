@@ -33,7 +33,7 @@ proxies:
  #shadow proxy
   - name: "ss"
     type: ss
-    server: "59.149.174.136"
+    server: "iohub.ml"
     port: 465
     password: "hillyu001"
     cipher: "chacha20-ietf-poly1305"
@@ -121,4 +121,4 @@ rules:
   #- DOMAIN,google.com,load-balance
   #- DOMAIN-SUFFIX,ad.com,REJECT
   #- MATCH,,load-balance
-  - MATCH,load-balance
+  - MATCH,ss

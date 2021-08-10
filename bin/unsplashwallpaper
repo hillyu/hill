@@ -6,4 +6,5 @@ key=`curl -s $key_url|tr -d '"'` \
 && pic_url=`echo $url |sed 's/"\([^\?]*\)\?.*/\1/g'` \
 && fpath=$HOME/Pictures/wallpaper/$fid.jpg \
 && wget -q --content-disposition -c -O $fpath $pic_url \
-&& feh  --bg-fill --no-xinerama $fpath 
+&& swaymsg -s $SWAYSOCK output "*" bg $fpath fill
+# && feh  --bg-fill --no-xinerama $fpath 

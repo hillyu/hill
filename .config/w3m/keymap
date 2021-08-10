@@ -1,0 +1,4 @@
+keymap	m	EXTERN_LINK
+keymap	H	BACK
+keymap	M-?	HELP
+keymap	M-L	LIST

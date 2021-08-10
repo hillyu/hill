@@ -1,0 +1,2 @@
+def SURFRAW_text_browser $BROWSER_TXT
+def SURFRAW_graphical_browser $BROWSER

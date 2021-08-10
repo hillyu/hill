@@ -130,7 +130,7 @@ handle_image() {
 
         # Image
         image/*)
-            exists catimg && catimg -r 2 -c -w 148  $FILE_PATH
+            # exists catimg && catimg -r 2 -c -w 148  $FILE_PATH
             #exists catimg && catimg -c -t -r 1 -w 100 $FILE_PATH
             local orientation
             orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"

@@ -6,10 +6,10 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-#font_family        monospace
-# bold_font        auto
-# italic_font      auto
-# bold_italic_font auto
+# font_family       PingFang SC
+ # bold_font        auto
+ # italic_font      auto
+ # bold_italic_font auto
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -19,13 +19,13 @@
 #: etc. For example::
 
      #font_family      SF Mono Semibold
-     #font_family      Source Code Pro
+     font_family      Fira Code Retina 
 ##SF Mono Semibold
-     #bold_font        SF Mono bold
-     #italic_font      SF Mono Semibold Italic
+     # bold_font        Fira Code Retina
+     # italic_font      Fira Code Italic
      #bold_italic_font SF Mono Bold Italic
 
-font_size 11.0
+font_size 12
 
 #: Font size (in pts)
 
@@ -59,8 +59,8 @@ adjust_column_width 0
 #: than 100% to reduce sizes (but this might cause rendering
 #: artifacts).
 
-# symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
-
+symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
+symbol_map U+4E00-U+62FF,U+6300-U+77FF,U+7800-U+8CFF,U+8D00-U+9FCC PingFang SC
 #: Map the specified unicode codepoints to a particular font. Useful
 #: if you need special rendering for some symbols, such as for
 #: Powerline. Avoids the need for patched fonts. Each unicode code
@@ -71,7 +71,7 @@ adjust_column_width 0
 
 #:     symbol_map codepoints Font Family Name
 
-disable_ligatures never
+disable_ligatures cursor
 
 #: Choose how you want to handle multi-character ligatures. The
 #: default is to always render them.  You can tell kitty to not render
@@ -85,7 +85,7 @@ disable_ligatures never
 #:     map alt+2 disable_ligatures_in all never
 #:     map alt+3 disable_ligatures_in tab cursor
 
-font_features none
+font_features FiraCode-Retina +zero +onum
 
 #: Choose exactly which OpenType features to enable or disable. This
 #: is useful as some fonts might have features worthwhile in a
@@ -565,12 +565,10 @@ tab_bar_background none
 
 #: Color scheme {{{
 
-foreground #dddddd
-background #000000
 
 #: The foreground and background colors
 
-background_opacity         0.75
+background_opacity         0.95
 #dynamic_background_opacity yes
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
@@ -679,7 +677,7 @@ dim_opacity 0.75
 # Dark
 
 #background              #073642
-background              #000002
+background              #2F343F
 foreground              #839496
 cursor                  #93a1a1
 
@@ -1246,3 +1244,4 @@ map kitty_mod+0 change_font_size all 0
 #: }}}
 
 # }}}
+#

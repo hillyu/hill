@@ -18,7 +18,7 @@ AUDIO_DELTA=${AUDIO_DELTA:-5}
 DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
 MUTED_COLOR=${MUTED_COLOR:-"#a0a0a0"}
 
-LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${INDEX}:${NAME}]'}
+LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${NAME}]'}
 SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB} ${VOL}% [${INDEX}]'}
 USE_ALSA_NAME=${USE_ALSA_NAME:-0}
 USE_DESCRIPTION=${USE_DESCRIPTION:-0}
@@ -88,7 +88,8 @@ CAPABILITY=$(amixer -D $MIXER get $SCONTROL | sed -n "s/  Capabilities:.*cvolume
 
 function move_sinks_to_new_default {
     DEFAULT_SINK=$1
-    pactl list sink-inputs | grep 'Sink Input #': | grep -o '[0-9]\+' | while read SINK
+    echo $1
+    pactl list sink-inputs | grep 'Sink Input #' | grep -o '[0-9]\+' | while read SINK
     do
         pactl move-sink-input $SINK $DEFAULT_SINK
     done
@@ -99,10 +100,12 @@ function set_default_playback_device_next {
     num_devices=$(pactl list sinks | grep -c "Sink #")
     sink_arr=($(pactl list sinks short|cut -f2))
     default_sink_index=$(( $(pactl list sinks |grep "Name:"|grep -no `pactl info |awk -F": " '$1=="Default Sink"{print $2}'`|cut -f1 -d":") - 1 ))
-    default_sink_index=$(( ($default_sink_index + $num_devices + $inc) % $num_devices ))
-    default_sink=${sink_arr[$default_sink_index]}
-    pactl set-default-sink $default_sink
-    move_sinks_to_new_default $default_sink
+    curr_sink_index=$(( $(pactl list sinks short|grep -no "RUNNING"|cut -f1 -d":") - 1 ))
+    # curr_sink_index=${curr_sink_index:-$default_sink_index}
+    curr_sink_index=$(( ($curr_sink_index + $num_devices + $inc) % $num_devices ))
+    curr_sink=${sink_arr[$curr_sink_index]}
+    # pactl set-default-sink $default_sink
+    move_sinks_to_new_default $curr_sink
     pkill -RTMIN+12 dwmblocks
 }
 
@@ -112,9 +115,9 @@ case "$BLOCK_BUTTON" in
     2) volume mute;;
     3) st_hold pulsemixer;;
     #4) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY $AUDIO_DELTA%+ ;;
-    4) volume 5%+;;
+    4) volume +5%;;
     #5) amixer -q -D $MIXER sset $SCONTROL $CAPABILITY $AUDIO_DELTA%- ;;
-    5) volume 5%-;;
+    5) volume -5%;;
 esac
 
 function print_format {

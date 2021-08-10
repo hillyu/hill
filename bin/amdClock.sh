@@ -14,5 +14,5 @@
 #echo "low" > /sys/class/drm/card0/device/power_dpm_force_performance_level
 # default is 24 which is too slow for my mx master (it uses 6 as min latency)
 #echo 6 > /sys/kernel/debug/bluetooth/hci0/conn_min_interval
-echo 20000 > /sys/bus/usb/devices/3-1/power/autosuspend_delay_ms
+echo 120000 > /sys/bus/usb/devices/3-1/power/autosuspend_delay_ms
 #echo 15 > /proc/sys/vm/swappiness

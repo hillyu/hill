@@ -41,7 +41,7 @@ MPD_HOST=/home/hill/.config/mpd/socket
 # URL='https://douban.fm//j/mine/playlist?type=s&sid=480884&pt=18.0&channel=8&pb=64&from=mainsite%22' 
 apikey="02646d3fb69a52ff072d47bf23cef8fd"
 douban_udid="b635779c65b816b13b330b68921c0f8edc049590"
-channel="13"
+channel="-10"
 kbps="192"
 client="s:mainsite|y:3.0"
 app_name="radio_website"

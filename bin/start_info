@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+alacritty --class floating --hold -e bash -c "neofetch && systemd-analyze && systemd-analyze critical-chain"

@@ -1,0 +1,24 @@
+[papers]
+dir = ~/Documents/papers
+
+[settings]
+default-library = papers
+add-folder-name = {doc[author]:.6}{doc[year]}-{doc[title]:.15}
+
+[machine-learning]
+dir = ~/Documents/papers/ml
+
+[rofi-gui]
+key-delete = Alt+x
+case_insensitive = True
+
+[tui]
+status_line_format = {selected_index}/{number_of_documents} ?:help c-l:redraw
+options_list.unselected_margin_style = bg:default
+options_list.selected_margin_style = bg:ansigray fg:ansimagenta
+status_line_style = bg:ansiblue fg:ansigray
+move_down_key = tab
+move_up_key = s-tab
+show_info_key = c-s
+focus_command_line_key = c-w
+show_help_key = ?

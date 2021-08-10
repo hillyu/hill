@@ -1,15 +1,34 @@
 #!/usr/bin/env bash
-cpu=`sensors -j 2>/dev/null |jq '.["k10temp-pci-00c3"]|.["Tdie"]'`
+# used for waybar
+#text=`echo $cpu |jq '.["temp1_input"]'`
+#temp=${text%.*}
+#max=`echo $cpu |jq '.["temp1_max"]'`
+#class="cool"
+#if [[ temp -gt 55 ]]; then
+#    class="normal"
+#    elif [[ temp -gt 60 ]]; then
+#        class="critical"
+#fi
+##echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage }" | jq --unbuffered --compact-output
+sensor=`sensors -j 2>/dev/null`
+cpu=`echo "$sensor" | jq '.["k10temp-pci-00c3"]|.["Tctl"]|.["temp1_input"]'`
+# gpu=`echo "$sensor" | jq '.["amdgpu-pci-0300"]|.["edge"]|.["temp1_input"]'`
 tooltip=$( sensors -A )
-text=`echo $cpu |jq '.["temp1_input"]'`
-temp=${text%.*}
-max=`echo $cpu |jq '.["temp1_max"]'`
+cpu=${cpu%.*}
+max=75
+percentage=`echo "$cpu/$max*100" |bc -l`
+# gpu=${gpu%.*}
 class="cool"
-if [[ temp -gt 55 ]]; then
+#echo  "C/G:$cpu/$gpu °C"
+# echo  "$cpu °C"
+#echo  "$cpu/$gpu °C"
+# echo  "$cpu °C"
+if [[ $cpu -gt 50 ]]; then
     class="normal"
-    elif [[ temp -gt 60 ]]; then
+    # echo  \#FFFC00
+    elif [[ $cpu -gt 60 ]]; then
         class="critical"
+        # echo \#FF0000
 fi
-percentage=`echo "$text/$max*100" |bc -l`
-#echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage }" | jq --unbuffered --compact-output
-echo "{\"text\": \"$temp\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage}"|sed  ':a;N;$!ba;s/\n/\\n/g'
+echo "{\"text\": \"$cpu\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage}"|sed  ':a;N;$!ba;s/\n/\\n/g'
+# echo -e "$cpu\n$tooltip\n$class"

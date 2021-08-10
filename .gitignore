@@ -69,3 +69,6 @@ bin/docker-compose
 nftable/iptables/raw
 bin/checkra1n
 nftable/raw
+.config/pipewire
+.config/rtv/
+.config/brave
