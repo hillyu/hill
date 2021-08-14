@@ -2,8 +2,9 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "SF Pro Display";
-    font-size: 12px;
+    font-family: "Terminus";
+    /* font-weight: bold; */
+    font-size: 9pt;
     min-height: 0;
 }
 

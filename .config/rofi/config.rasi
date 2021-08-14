@@ -26,8 +26,9 @@ configuration {
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
-    sort: true;
-    /*sorting-method: ;*/
+    sort: false;
+    /* sorting-method: "normal"; */
+    levenshtein-sort: false;
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
@@ -35,8 +36,8 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-    combi-modi: "window,drun,run,ssh";
-    matching: "fuzzy";
+    combi-modi: "drun,run,ssh";
+    matching: "normal";
 /*	tokenize: true;*/
     m: "-4";
 /*	line-margin: 2;*/

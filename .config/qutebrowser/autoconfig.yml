@@ -62,7 +62,7 @@ settings:
         <Meta+y>: rl-yank
   content.dns_prefetch:
     global: true
-  content.notifications:
+  content.notifications.enabled:
     https://www.bilibili.com: true
   content.proxy:
     global: none
@@ -74,22 +74,52 @@ settings:
     - -e
     - vim
     - '{}'
+  fileselect.folder.command:
+    global:
+    - kitty
+    - -e
+    - ranger
+    - --choosedir={}
+  fileselect.multiple_files.command:
+    global:
+    - kitty
+    - -e
+    - ranger
+    - --choosefiles={}
+  fileselect.single_file.command:
+    global:
+    - kitty
+    - -e
+    - ranger
+    - --choosefile={}
   fonts.completion.category:
-    global: bold 8pt default_family
+    global: bold default_size default_family
   fonts.completion.entry:
-    global: 8pt default_family
+    global: ' default_size default_family'
+  fonts.contextmenu:
+    global: null
   fonts.debug_console:
-    global: 8pt default_family
+    global: default_size default_family
   fonts.default_family:
-    global: sans
+    global: '"system-ui"'
+  fonts.default_size:
+    global: 9.5pt
+  fonts.downloads:
+    global: default_size default_family
   fonts.hints:
-    global: default_size "SF Pro Display"
+    global: 11pt default_family
   fonts.keyhint:
     global: default_size default_family
+  fonts.messages.warning:
+    global: default_size default_family
+  fonts.prompts:
+    global: default_size default_family
   fonts.statusbar:
-    global: 8pt default_family
-  fonts.tabs:
-    global: 8pt default_family
+    global: default_size default_family
+  fonts.tabs.selected:
+    global: default_size default_family
+  fonts.tabs.unselected:
+    global: default_size default_family
   fonts.web.family.cursive:
     global: z003
   fonts.web.family.fantasy:
@@ -101,7 +131,7 @@ settings:
   fonts.web.family.serif:
     global: serif
   fonts.web.family.standard:
-    global: '"SF Pro Display"'
+    global: sans
   fonts.web.size.default_fixed:
     global: 13
   hints.prev_regexes:

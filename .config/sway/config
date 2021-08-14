@@ -512,7 +512,7 @@ bindsym $mod+b exec papis -s picktool rofi open
 bindsym Ctrl+grave exec dunstctl history-pop
 
 
-gaps inner 5
+gaps inner 10
 gaps outer 5
 #gaps top -5
 #gaps bottom -5

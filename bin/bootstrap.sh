@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 
 dotpath=$1
@@ -6,14 +6,16 @@ dotpath=$1
 cd $HOME
 
 #install on-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 #install zsh-custom plugins:
 #git clone --recursive https://github.com/joel-porquet/zsh-dircolors-solarized \
     #$HOME/.oh-my-zsh/custom/plugins/zsh-dircolors-solarized
-git clone --recursive https://github.com/unixorn/warhol.plugin.zsh.git \
-    $HOME/.oh-my-zsh/custom/plugins/warhol
-git clone https://github.com/zdharma/fast-syntax-highlighting.git \
-    $HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+# zsh related
+# mkdir -p .zsh/{plugins,themes,lib}
+# git clone --recursive https://github.com/unixorn/warhol.plugin.zsh.git \
+    # $HOME/.zsh/plugins/warhol
+# git clone https://github.com/zdharma/fast-syntax-highlighting.git \
+    # $HOME/.zsh/plugins/fast-syntax-highlighting
 
 # softlink dotfiles
 item_to_link=('.config' '.vimrc' '.zshrc' 'zshrc.mac' 'zshrc.linux' '.zshenv' 'kitty.conf.mac' '.tmux.conf')

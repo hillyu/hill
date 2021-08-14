@@ -72,3 +72,4 @@ nftable/raw
 .config/pipewire
 .config/rtv/
 .config/brave
+.config/google-chrome-beta*

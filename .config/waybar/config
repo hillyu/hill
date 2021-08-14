@@ -29,12 +29,15 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
         "format-disconnected": "Disconnected ",
         "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
         "unknown-tag": "N/A",
+        /* "title-len": 10, */
+        /* "album-len": 10, */
+        /* "artist-len": 10, */
         "interval": 2,
-        "max-length": 28,
+        /* "max-length": 28, */
         "consume-icons": {
             "on": " "
         },
@@ -58,7 +61,7 @@
         "on-scroll-up": "mpc prev",
         "on-scroll-down": "mpc next",
         //"tooltip-format": "MPD (connected)",
-        "tooltip-format":  "{stateIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] ",
+        "tooltip-format":  "{stateIcon}({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] \n   {artist}\n   {album}\n   {title}",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
@@ -80,7 +83,7 @@
 
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage:2}% ",
         "on-click": "kitty --class=floating -e atop",
         "on-click-right": "kitty --class=floating -e gotop",
         "tooltip": true
@@ -104,7 +107,7 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "{percent:2}% {icon}",
         "format-icons": ["", ""]
     },
     "battery": {
@@ -115,9 +118,9 @@
             "critical": 15
         },
         "on-click-right": "kitty --class=floating --hold -e /home/hill/bin/ideapad_battery_conservation_toggle.sh",
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
+        "format": "{capacity:2}% {icon}",
+        "format-charging": "{capacity:2}% ",
+        "format-plugged": "{capacity:2}% ",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
@@ -142,7 +145,7 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{volume:3}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
@@ -184,7 +187,7 @@
         "exec": "/home/hill/.config/scripts/bluetooth" // Script in resources folder
     },
     "custom/temperature": {
-        "format": "{}°C {icon}",
+        "format": "{:2}°C {icon:2}",
         "return-type": "json",
         "interval": 10,
         "format-icons": ["", "", ""],

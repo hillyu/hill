@@ -28,6 +28,7 @@ function cover_art {
 while true; do
     while true; do
         pkill -RTMIN+8 dwmblocks
+        pkill -RTMIN+8 waybar
         mpc idle player &>/dev/null && (mpc status | grep "\[playing\]" )&>/dev/null && break
         mpc || sleep 30
     done

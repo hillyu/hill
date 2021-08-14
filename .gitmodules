@@ -1,0 +1,6 @@
+[submodule ".zsh/plugins/fast-syntax-highlighting"]
+	path = .zsh/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma/fast-syntax-highlighting.git
+[submodule ".zsh/plugins/warhol"]
+	path = .zsh/plugins/warhol
+	url = https://github.com/unixorn/warhol.plugin.zsh.git
