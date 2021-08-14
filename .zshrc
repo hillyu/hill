@@ -19,6 +19,8 @@ source /home/hill/.zsh/plugins/docker/_docker
 source /home/hill/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /home/hill/.zsh/plugins/git/git.plugin.zsh
 source /home/hill/.zsh/plugins/warhol/warhol.plugin.zsh
+source /home/hill/.zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+source /usr/share/doc/pkgfile/command-not-found.zsh
 source /home/hill/.zsh/themes/ys.zsh-theme
 alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then

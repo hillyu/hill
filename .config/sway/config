@@ -62,7 +62,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term "kitty --single-instance"
+set $term "alacritty"
 # set $term "alacritty"
 # exec $term --class "scratchpad" -e tmux_run.sh
 set $ft "$term" --class floating
