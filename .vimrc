@@ -236,8 +236,6 @@ nnoremap <expr> yy MyYank() .. '_'
  	  endif
 
 	  let sel_save = &selection
-	  " let reg_save = getreginfo('"')
-	  " let cb_save = &clipboard
 	  let visual_marks_save = [getpos("'<"), getpos("'>")]
 
 	  try
@@ -247,11 +245,8 @@ nnoremap <expr> yy MyYank() .. '_'
 	    exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
         call system("yank.sh", @")
 	  finally
-        " echom "clipboard sync complete"
-	    " call setreg('"', reg_save)
 	    call setpos("'<", visual_marks_save[0])
 	    call setpos("'>", visual_marks_save[1])
-	    " let &clipboard = cb_save
 	    let &selection = sel_save
 	  endtry
 	endfunction
