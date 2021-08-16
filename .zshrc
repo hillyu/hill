@@ -22,17 +22,18 @@ source /home/hill/.zsh/plugins/git/git.plugin.zsh
 source /home/hill/.zsh/plugins/warhol/warhol.plugin.zsh
 source /home/hill/.zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 source /home/hill/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/doc/pkgfile/command-not-found.zsh
 source /home/hill/.zsh/themes/ys.zsh-theme
 source /home/hill/.zsh/completions/_docker
 source /home/hill/.zsh/completions/_pip
+[[ -r /usr/share/doc/pkgfile/command-not-found.zsh ]] &&\
+source /usr/share/doc/pkgfile/command-not-found.zsh
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # load run-help and alias it it help so alt-h can support shell bultins
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
 alias vi="vim"
-alias ls=lsd
+command -v lsd >/dev/null 2>&1 && alias ls=lsd
 # alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then
     source $HOME/zshrc.linux
