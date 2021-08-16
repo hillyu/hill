@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 
 
 dotpath=$1
@@ -24,3 +24,4 @@ for i in ${item_to_link[@]}; do
     [ -e $i ] && mv $i $i.old
     ln -vs $dotpath/$i ~/
 done
+cd $dotpath && git submodule update --recursive --remote
