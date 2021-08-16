@@ -254,11 +254,8 @@ nnoremap yy yy:call system("yank.sh", @")<cr>
         endif
         call system("yank.sh", @")
 	  finally
-<<<<<<< Updated upstream
-=======
-        echom "clipboard sync complete"
+        " echom "clipboard sync complete"
 	    " call setreg('"', reg_save)
->>>>>>> Stashed changes
 	    call setpos("'<", visual_marks_save[0])
 	    call setpos("'>", visual_marks_save[1])
 	    let &selection = sel_save
