@@ -27,8 +27,7 @@ configuration {
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
     sort: false;
-    /* sorting-method: "normal"; */
-    levenshtein-sort: false;
+    /* sorting-method: "fzf"; */
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/

@@ -118,6 +118,14 @@ bindkey '\C-x\C-e' edit-command-line
 # file rename magick
 bindkey "^[m" copy-prev-shell-word
 
+# personal settings
+bindkey -M emacs "p" up-line-or-beginning-search
+bindkey -M viins "p" up-line-or-beginning-search
+bindkey -M vicmd "p" up-line-or-beginning-search
+bindkey -M emacs "n" down-line-or-beginning-search
+bindkey -M viins "n" down-line-or-beginning-search
+bindkey -M vicmd "n" down-line-or-beginning-search
+bindkey "^u" backward-kill-line
 # consider emacs keybindings:
 
 #bindkey -e  ## emacs key bindings

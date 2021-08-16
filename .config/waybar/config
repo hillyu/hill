@@ -84,8 +84,8 @@
     },
     "cpu": {
         "format": "{usage:2}% ",
-        "on-click": "kitty --class=floating -e atop",
-        "on-click-right": "kitty --class=floating -e gotop",
+        "on-click": "alacritty --class=floating -e atop",
+        "on-click-right": "alacritty --class=floating -e gotop",
         "tooltip": true
     },
     "memory": {

@@ -222,7 +222,41 @@ set grepprg=grep\ -nH\ $*
 "endfunction
 "nnoremap <silent> <leader>y :call OscyankRegister()<cr>
 "nnoremap  <leader>y :call OscyankRegister()<cr>
+"nnoremap  <leader>y :call OscyankRegister()<cr>
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
+" override default yank
+nnoremap <expr> y MyYank()
+xnoremap <expr> y MyYank()
+nnoremap <expr> yy MyYank() .. '_'
+
+	function MyYank(type = '') abort
+	  if a:type == ''
+	    set opfunc=MyYank
+	    return 'g@'
+ 	  endif
+
+	  let sel_save = &selection
+	  " let reg_save = getreginfo('"')
+	  " let cb_save = &clipboard
+	  let visual_marks_save = [getpos("'<"), getpos("'>")]
+
+	  try
+	    set clipboard= selection=inclusive
+	    let commands = #{line: "'[V']y", char: "`[v`]y", block: "`[\<c-v>`]y"}
+	    " silent exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+	    exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+        call system("yank.sh", @")
+	  finally
+        " echom "clipboard sync complete"
+	    " call setreg('"', reg_save)
+	    call setpos("'<", visual_marks_save[0])
+	    call setpos("'>", visual_marks_save[1])
+	    " let &clipboard = cb_save
+	    let &selection = sel_save
+	  endtry
+	endfunction
+
+" 0noremap  yy yy:call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 
 nnoremap   <leader>dm :!daily_update_email.sh '%' <cr>
 let @b = 'i|:.,+1s/\n/|/gAh| |j0'

@@ -1,32 +1,41 @@
 autoload -Uz compinit promptinit
+autoload -Uz run-help
+autoload -U colors && colors
 compinit
 promptinit
 setopt prompt_subst
 setopt auto_cd
 setopt interactivecomments
+ENABLE_CORRECTION="true"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7,bg=68"
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
-alias ls=lsd
-plugins=(tmux docker git warhol fast-syntax-highlighting)
 source /home/hill/.zsh/lib/git.zsh
 source /home/hill/.zsh/lib/directories.zsh
 source /home/hill/.zsh/lib/completion.zsh
 source /home/hill/.zsh/lib/correction.zsh
 source /home/hill/.zsh/lib/key-bindings.zsh
-source /home/hill/.zsh/lib/theme-and-appearance.zsh
-source /home/hill/.zsh/plugins/docker/_docker
 source /home/hill/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /home/hill/.zsh/plugins/git/git.plugin.zsh
 source /home/hill/.zsh/plugins/warhol/warhol.plugin.zsh
 source /home/hill/.zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+source /home/hill/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /home/hill/.zsh/themes/ys.zsh-theme
-alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
+source /home/hill/.zsh/completions/_docker
+source /home/hill/.zsh/completions/_pip
+# Take advantage of $LS_COLORS for completion as well.
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# load run-help and alias it it help so alt-h can support shell bultins
+(( ${+aliases[run-help]} )) && unalias run-help
+alias help=run-help
+alias vi="vim"
+alias ls=lsd
+# alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then
     source $HOME/zshrc.linux
 fi
 if [[ `uname` == "Darwin" ]]; then
     source $HOME/zshrc.mac
 fi
-alias vi="vim"

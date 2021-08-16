@@ -460,8 +460,8 @@ bar {
     }
 }
 #adjust bar thickness and padding for sway only
-titlebar_border_thickness 1
-titlebar_padding 5 1
+# titlebar_border_thickness 1
+# titlebar_padding 5 1
 
 # bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 4%-
 bindsym XF86MonBrightnessDown exec --no-startup-id brightness 1%-
