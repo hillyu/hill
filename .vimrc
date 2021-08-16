@@ -225,12 +225,13 @@ set grepprg=grep\ -nH\ $*
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 " override default yank
-nnoremap <expr> y MyYank()
-xnoremap <expr> y MyYank()
-nnoremap <expr> yy MyYank() .. '_'
+nnoremap <expr> y MyYank(1,1)
+xnoremap <expr> y MyYank(1,1)
+"only works on vim 8.2+
+nnoremap yy yy:call system("yank.sh", @")<cr>
 
-	function MyYank(type = '') abort
-	  if a:type == ''
+	function MyYank(type,...) abort
+	  if a:0 
 	    set opfunc=MyYank
 	    return 'g@'
  	  endif
@@ -240,11 +241,24 @@ nnoremap <expr> yy MyYank() .. '_'
 
 	  try
 	    set clipboard= selection=inclusive
-	    let commands = #{line: "'[V']y", char: "`[v`]y", block: "`[\<c-v>`]y"}
+        " unfortunately below only works on vim 8.2>
+	    "let commands = #{line: "'[V']y", char: "`[v`]y", block: "`[\<c-v>`]y"}
 	    " silent exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
-	    exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+	    "exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+		if a:type == 'block'
+			exe "noautocmd keepjumps normal! `[\<c-v>`]y"
+		elseif a:type == 'line'
+			silent exe "normal! '[V']y"
+		else
+            silent exe "normal! `[v`]y"
+        endif
         call system("yank.sh", @")
 	  finally
+<<<<<<< Updated upstream
+=======
+        echom "clipboard sync complete"
+	    " call setreg('"', reg_save)
+>>>>>>> Stashed changes
 	    call setpos("'<", visual_marks_save[0])
 	    call setpos("'>", visual_marks_save[1])
 	    let &selection = sel_save
