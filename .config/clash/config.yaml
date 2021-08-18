@@ -104,13 +104,15 @@ dns:
   listen: 0.0.0.0:10052
   enhanced-mode: redir-host
   nameserver:
+    - 'tcp://208.67.222.222:443'
     - 'tls://1.1.1.1:853'
   fallback:
+    - 'tls://dns.google'
+    - 'tls://8.8.8.8:853'
     - 'tls://dns.rubyfish.cn:853'
     - 'tls://8.8.8.8:853'
     - 'tcp://1.1.1.1:53'
     - 'tcp://208.67.222.222:443'
-    - 'tls://dns.google'
     - 'tcp://10.16.1.241:53'
     - 'tcp://10.16.2.241:53'
 rules:
@@ -121,4 +123,4 @@ rules:
   #- DOMAIN,google.com,load-balance
   #- DOMAIN-SUFFIX,ad.com,REJECT
   #- MATCH,,load-balance
-  - MATCH,ss
+  - MATCH, load-balance
