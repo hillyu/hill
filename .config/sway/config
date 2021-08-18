@@ -346,6 +346,7 @@ for_window [app_id="(?i)pavucontrol"] floating enable
 for_window [app_id="(?i)wpa_gui"] floating enable
 for_window [app_id="(?)qemu-system-x86_64"] floating enable
 for_window [app_id="(?)gvncviewer"] floating enable
+for_window [app_id="(?i)firefoxdeveloperedition" title="(?i)Picture-in-Picture"]   floating enable
 
 
 #for_window [title="(?i)launcher"] floating enable
@@ -373,7 +374,7 @@ for_window [class="(?i)keyring"] floating enable
     # Switch the current container between different layout styles
     # bindsym $mod+s layout stacking
     # bindsym $mod+w layout tabbed
-    # bindsym $mod+e layout toggle split
+    bindsym $mod+e layout toggle all
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -486,7 +487,7 @@ bindsym XF86Tools reload
 bindsym XF86Search output eDP-1 scale 1
 bindsym XF86LaunchA gaps inner current minus 4
 bindsym XF86Explorer gaps inner current plus  4
-bindsym $mod+equal gaps inner current set 0
+bindsym $mod+equal gaps inner current set 0; gaps outer current set 0
 # output eDP-1 res 1366x768 pos 1920,180
 #  playback control
 bindsym XF86AudioPrev exec mpc prev

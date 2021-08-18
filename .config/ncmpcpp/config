@@ -46,7 +46,7 @@ alternative_header_second_line_format = {$b{$2%a$9}{ - $7%b$9}{ ($2%y$9)}}|{%D}
 
 # Song list #
 #song_list_format = "  %f $R%a %l  "
-song_status_format = "{{   $6%a$9    {$5%t$9}}|{%f}{    $4%b$9{ (%y)}} }"
+song_status_format = "{{   $6%a$9    {$5%t$9}}|{%f}{    $4%b$9{ (%y)}} }"
 #
 #song_list_format = "{%a - }{%t}|{%f}$R"
 song_columns_list_format = "(50)[white]{t|fr:Title} (50)[blue]{a}"

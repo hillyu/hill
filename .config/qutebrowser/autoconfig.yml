@@ -101,9 +101,9 @@ settings:
   fonts.debug_console:
     global: default_size default_family
   fonts.default_family:
-    global: '"SF Pro Text"'
+    global: JetBrains Mono SemiBold
   fonts.default_size:
-    global: 13px
+    global: 12px
   fonts.downloads:
     global: default_size default_family
   fonts.hints:

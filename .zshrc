@@ -33,6 +33,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
 alias vi="vim"
+alias firefox=firefox-developer-edition
 command -v lsd >/dev/null 2>&1 && alias ls=lsd || alias ls="ls --color"
 # alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then
