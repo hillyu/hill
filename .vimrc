@@ -9,20 +9,15 @@ endif
 call plug#begin()
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'maralla/completor.vim'
 Plug 'altercation/vim-colors-solarized'
-"Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-"Plug 'scrooloose/nerdcommenter'
 Plug 'chrisbra/matchit'
 Plug 'lervag/vimtex'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
 Plug 'vim-scripts/vis'
@@ -30,7 +25,7 @@ Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
 Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'jpalardy/vim-slime', {'for': 'python'}
-Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
+" Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
@@ -139,12 +134,13 @@ set wildmenu
 " Add ignorance of whitespace to diff
 set diffopt+=iwhite
 
-" Add the unnamed register to the clipboard
-if has("unnamedplus")
-    set clipboard=unnamedplus
-else
-    set clipboard=unnamed
-endif
+" Add the unnamed register to the clipboard, conflict with my yank script so
+" disble
+" if has("unnamedplus")
+"     set clipboard=unnamedplus
+" else
+"     set clipboard=unnamed
+" endif
 
 " Automatically read a file that has changed on disk
 set autoread
@@ -229,6 +225,7 @@ nnoremap <expr> y MyYank(1,1)
 xnoremap <expr> y MyYank(1,1)
 "only works on vim 8.2+
 nnoremap yy yy:call system("yank.sh", @")<cr>
+xnoremap<silent> Y Y:call system("yank.sh", @")<cr>
 
 	function MyYank(type,...) abort
 	  if a:0 
@@ -254,15 +251,12 @@ nnoremap yy yy:call system("yank.sh", @")<cr>
         endif
         call system("yank.sh", @")
 	  finally
-        " echom "clipboard sync complete"
-	    " call setreg('"', reg_save)
 	    call setpos("'<", visual_marks_save[0])
 	    call setpos("'>", visual_marks_save[1])
 	    let &selection = sel_save
 	  endtry
 	endfunction
 
-" 0noremap  yy yy:call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 
 nnoremap   <leader>dm :!daily_update_email.sh '%' <cr>
 let @b = 'i|:.,+1s/\n/|/gAh| |j0'
@@ -273,8 +267,8 @@ nnoremap <leader>da  :read !diary2report.sh %<cr>
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------
 "nnoremap  <silent> <leader>mdv :! mdv % <cr>
-nnoremap   <leader>mdv :!md2html '%' &<cr><cr>
-"nnoremap   <leader>mdv :!typora '%' & <cr><cr>
+" nnoremap   <leader>mdv :!md2html '%' &<cr><cr>
+nnoremap   <leader>mdv :!typora '%' & <cr><cr>
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
 "-----------------------------------------------------------------------------
@@ -448,3 +442,4 @@ autocmd BufWritePost ~/src/dwmblocks/config.h !cd ~/src/dwmblocks/; sudo make cl
 autocmd BufWritePost ~/src/dwmblocks_official/blocks.h !cd ~/src/dwmblocks_official/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
 autocmd BufWritePost ~/src/st-my-build/config.h !cd ~/src/st-my-build/; sudo make clean install 
 autocmd BufWritePost ~/src/dwm/config.h !cd ~/src/dwm/; sudo make clean install
+autocmd BufWritePost ~/src/dwl/config.h !cd ~/src/dwl/; sudo make clean install

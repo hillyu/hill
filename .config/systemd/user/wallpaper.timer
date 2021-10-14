@@ -8,3 +8,4 @@ Unit=wallpaper.service
 
 [Install]
 WantedBy=timers.target
+WantedBy=sway-session.target

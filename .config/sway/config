@@ -1,13 +1,17 @@
+# include package shipped configs
+include /etc/sway/config.d/*
 #Auto start services
 xwayland disable
 # a hack to load gsettings in config file and apply gsettings manually
 exec_always import-gsettings
-# import SWAYSOCK env as it is not accessible by systemd user unit (set wall paper etc.)
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# import SWAYSOCK env as it is not accessible by systemd user unit (set wall paper etc.) 
+# ! already in /etc/sway/config.d/50-systemd-user.conf
+# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+#
 # i3ipc to enable dwm like dynamic tiling
 exec_always $HOME/src/i3ipc-dynamic-tiling/i3ipc-dynamic-tiling
 exec wl-paste -t text --watch clipman store
-exec --no-startup-id fcitx5 --verbose 2 -d
+exec_always fcitx5 -d --replace
 #dropbox tray requires x11/xwayland
 exec_always nice -12 ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
 exec dbus-update-activation-environment --systemd DISPLAY
@@ -49,7 +53,8 @@ bindswitch --reload lid:off output $laptop enable
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-font pango:SF Pro Display 9
+# font pango:SF Pro Display 8.5
+font pango:Fixedsys Excelsior MonoLF 8.5
 #font pango:SFNS Display 10
 
 ### Variables
@@ -62,11 +67,11 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
+# set $term "kitty --single-instance"
 set $term "alacritty"
-# set $term "alacritty"
 # exec $term --class "scratchpad" -e tmux_run.sh
 set $ft "$term" --class floating
-set $browser brave
+set $browser qutebrowser
 #set $term urxvtc
 # Your preferred application launcher
 # bindsym Ctrl+Space exec j4-dmenu-desktop --dmenu "dmenu -i " --term "urxvtc"
@@ -139,7 +144,7 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     xkb_options ctrl:swap_lwin_lctl,lv3:ralt_switch,caps:escape,lv3:rwin_switch
 }
    input type:pointer {           
-       pointer_accel -0.75
+       # pointer_accel -0.75
        accel_profile adaptive
    }
 #
@@ -182,7 +187,6 @@ output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.pn
     floating_modifier $mod
 
 
-    #focus_follows_mouse no
 
     # reload the configuration file
     bindsym $mod+Shift+c reload
@@ -337,7 +341,8 @@ assign [app_id="(?i)Brave-browser" title="(?i)kanbanflow.com"]   $workspace6
 for_window [app_id="(?i)ncmpcpp"] floating enable; resize set width 750px height 420px
 for_window [app_id="(?i)imv"] floating enable
 for_window [app_id="(?i)transmission-remote-gtk"] floating enable
-for_window [app_id="floating"] floating enable; resize set width 1210px height 670px
+for_window [app_id="floating"] floating enable; resize set width 1206px height 666px
+for_window [app_id= "(?i)qutebrowser"]  resize set width 55ppt height 100ppt
 for_window [app_id="scratchpad"] floating enable; resize set width 1200px height 669px; move scratchpad
 for_window [app_id="floatingv"] floating enable; resize set width 620px height 700px
 for_window [app_id="(?i)mpv"] floating enable
@@ -488,7 +493,6 @@ bindsym XF86Search output eDP-1 scale 1
 bindsym XF86LaunchA gaps inner current minus 4
 bindsym XF86Explorer gaps inner current plus  4
 bindsym $mod+equal gaps inner current set 0; gaps outer current set 0
-# output eDP-1 res 1366x768 pos 1920,180
 #  playback control
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioNext exec mpc next
@@ -496,6 +500,7 @@ bindsym XF86AudioPlay exec mpc toggle
 #quick Launch
 
 bindsym $mod+a exec $ft -e atop
+# bindsym Alt+p exec wdisplays
 bindsym $mod+w exec $browser
 bindsym $mod+Shift+w exec rofi-surfraw
 bindsym $mod+s exec $ft --hold -e yay -Syu
@@ -522,6 +527,7 @@ gaps outer 5
 #workspace $workspace10 gaps inner 12
 #workspace $workspace10 gaps outer 40
 default_border pixel
+default_floating_border pixel
 # disable even the pixel border when there is only one container on tcurrent workspace.
 smart_borders on
 #If smart_gaps are on then gaps will only be enabled if a workspace has more than one child container.
@@ -535,3 +541,6 @@ workspace_auto_back_and_forth yes
 #include /etc/sway/config.d/*
 # mouse_warping container
 # popup_during_fullscreen leave_fullscreen
+titlebar_border_thickness 0
+# focus_follows_mouse on
+# mouse_warping output

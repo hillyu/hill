@@ -24,7 +24,7 @@ ignore_null_img_alt 1
 view_unseenobject 0
 display_image 1
 pseudo_inlines 1
-auto_image 1
+auto_image 0
 max_load_image 4
 ext_image_viewer 1
 image_scale 100
@@ -50,7 +50,7 @@ pagerline 10000
 use_history 1
 history 100
 save_hist 1
-confirm_qq 1
+confirm_qq 0
 close_tab_back 0
 mark 0
 emacs_like_lineedit 0

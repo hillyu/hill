@@ -48,7 +48,7 @@ settings:
         <Meta+u>: scroll-page 0 -0.5
         M: hint links spawn -d mpv {hint-url}
         m: spawn -d mpv {url}
-        r: spawn --userscript readability
+        r: spawn --userscript readability-js
       prompt:
         <Meta+?>>: rl-delete-char
         <Meta+a>: rl-beginning-of-line
@@ -60,12 +60,29 @@ settings:
         <Meta+u>: rl-unix-line-discard
         <Meta+w>: rl-backward-kill-word
         <Meta+y>: rl-yank
+  content.desktop_capture:
+    https://teams.microsoft.com: true
   content.dns_prefetch:
     global: true
+  content.geolocation:
+    https://outlook.office365.com: true
+    https://www.google.com: true
+  content.media.audio_capture:
+    https://teams.microsoft.com: true
+  content.media.audio_video_capture:
+    https://teams.microsoft.com: true
+  content.media.video_capture:
+    https://teams.microsoft.com: true
   content.notifications.enabled:
+    https://teams.microsoft.com: true
     https://www.bilibili.com: true
+    https://www.networkworld.com: true
+    https://www.reddit.com: true
+    https://www.youtube.com: true
   content.proxy:
     global: none
+  content.register_protocol_handler:
+    https://outlook.office365.com?mailtouri=%25s: true
   editor.command:
     global:
     - kitty
@@ -101,13 +118,13 @@ settings:
   fonts.debug_console:
     global: default_size default_family
   fonts.default_family:
-    global: JetBrains Mono SemiBold
+    global: Fixedsys Excelsior MonoLF
   fonts.default_size:
-    global: 12px
+    global: 9pt
   fonts.downloads:
     global: default_size default_family
   fonts.hints:
-    global: 11pt default_family
+    global: 9pt default_family
   fonts.keyhint:
     global: default_size default_family
   fonts.messages.warning:
@@ -143,6 +160,9 @@ settings:
     - \b(<<|«)\b
   new_instance_open_target:
     global: window
+  qt.environ:
+    global:
+      NODE_PATH: /usr/lib/node_modules
   qt.force_software_rendering:
     global: none
   qt.highdpi:

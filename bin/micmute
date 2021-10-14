@@ -1,1 +1,5 @@
-amixer -D default -q set $(amixer -D default scontrols| sed -n 's/Simple mixer control '\''\([A-Za-z ]*\)'\'',0/\1/p'| grep -E Capture| head -n 1) toggle
+#!/usr/bin/env bash
+
+#amixer -D default -q set $(amixer -D default scontrols| sed -n 's/Simple mixer control '\''\([A-Za-z ]*\)'\'',0/\1/p'| grep -E Capture| head -n 1) toggle
+pactl set-source-mute alsa_input.pci-0000_03_00.6.analog-stereo toggle
+
