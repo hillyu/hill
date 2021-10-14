@@ -10,3 +10,6 @@
 [submodule ".zsh/plugins/zsh-autosuggestions"]
 	path = .zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule ".zsh/themes/dircolors-solarized"]
+	path = .zsh/themes/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
