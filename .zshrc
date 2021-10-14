@@ -27,6 +27,8 @@ source /home/hill/.zsh/completions/_docker
 source /home/hill/.zsh/completions/_pip
 [[ -r /usr/share/doc/pkgfile/command-not-found.zsh ]] &&\
 source /usr/share/doc/pkgfile/command-not-found.zsh
+# import dircolors suitable for solorized dark
+eval `dircolors /home/hill/.zsh/themes/dircolors-solarized/dircolors.256dark`
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # load run-help and alias it it help so alt-h can support shell bultins
