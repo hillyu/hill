@@ -24,4 +24,4 @@ for i in ${item_to_link[@]}; do
     [ -e $i ] && mv $i $i.old
     ln -vs $dotpath/$i ~/
 done
-cd $dotpath && git submodule update --recursive --remote
+cd $dotpath && git submodule update --init --recursive --remote
