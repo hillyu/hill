@@ -3,7 +3,7 @@ dir = ~/Documents/papers
 
 [settings]
 default-library = papers
-add-folder-name = {doc[author]:.6}{doc[year]}-{doc[title]:.15}
+add-folder-name = {doc[author]:.6}{doc[year]}-{doc[title]:.30}
 
 [machine-learning]
 dir = ~/Documents/papers/ml
