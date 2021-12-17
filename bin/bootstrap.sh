@@ -4,6 +4,7 @@
 dotpath=$1
 [ -z $@ ] && read -p "dotfile path: " dotpath
 cd $HOME
+for i in "$dotpath/terminfo/*"; do tic -x "$i";done
 
 #install on-my-zsh
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
