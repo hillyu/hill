@@ -1,0 +1,11 @@
+#[output eDP-1]
+[output *]
+image=/home/hill/Pictures/wallpaper/3XXSKa4jKaM.jpg
+filter=good
+scaling-mode=fill
+anchor=center
+#[output DP-1]
+#image=/home/hill/Pictures/wallpaper/gZPNmbvvXCA.jpg
+#filter=good
+#scaling-mode=fill
+#anchor=center

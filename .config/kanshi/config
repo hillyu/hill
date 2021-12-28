@@ -1,0 +1,7 @@
+profile multiheadRXM {
+    output eDP-1 enable scale 2 position 0,540
+    output DP-1 enable position 1280,0
+}
+profile laptop {
+    output eDP-1 enable scale 2 position 0,0
+}
