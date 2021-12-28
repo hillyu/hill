@@ -50,13 +50,29 @@ mtype="n"
 URL="https://api.douban.com/v2/fm/playlist?alt=json&apikey=$apikey&app_name=$app_name&channel=$channel&client=$client&douban_udid=$douban_udid&kbps=$kbps&pt=0.0&type=$mtype&udid=b88146214e19b8a8244c9bc0e2789da68955234d&version=$version"
 header='<?xml version="1.0" encoding="UTF-8"?> <playlist version="1" xmlns="http://xspf.org/ns/0/"> <trackList>'
 footer='</trackList> </playlist>'
+playlistfile="/home/hill/Music/douban.xspf"
 
 #set header and curl the playlist from api "//" after hostname is important.
+
+# curl -s "$URL" \
+#     -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
+#     -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+#     -H 'Accept-Language: en-CA,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,zh-CN;q=0.6,zh;q=0.5,ja;q=0.4,zh-TW;q=0.3' \
+#     --compressed \
+#     |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' -v a="$header" -v b="$footer" 'BEGIN {print a} {gsub("&", "&amp;"); gsub("<", "&lt;");gsub(">", "&gt;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>", $1, $2, $3, $4, $5, $6} END {print b}' > ~/Music/douban.xspf \
+#     && mpc --host=$MPD_HOST load douban.xspf \
+#     && mpc --host=$MPD_HOST playlist
+IFS=$'\n'
+rawlist=($(\
 curl -s "$URL" \
     -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
     -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
     -H 'Accept-Language: en-CA,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,zh-CN;q=0.6,zh;q=0.5,ja;q=0.4,zh-TW;q=0.3' \
     --compressed \
-    |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' -v a="$header" -v b="$footer" 'BEGIN {print a} {gsub("&", "&amp;"); gsub("<", "&lt;");gsub(">", "&gt;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>", $1, $2, $3, $4, $5, $6} END {print b}' > ~/Music/douban.xspf \
-    && mpc --host=$MPD_HOST load douban.xspf \
-    && mpc --host=$MPD_HOST playlist
+    |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' '{gsub("&", "&amp;"); gsub("<", "&lt;");gsub(">", "&gt;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>\n", $1, $2, $3, $4, $5, $6}'))
+for line in  "${rawlist[@]}"; do
+    printf "adding $(echo $line|grep -oE "<title>.*</title>")\n"
+    grep -qF "$line" "$playlistfile" && printf "found dupe!\n" || printf "\$i\n$line\\n.\\nw\\n" | ex -s /home/hill/Music/douban.xspf
+done \
+    && mpc --host=$MPD_HOST crop \
+    && mpc --host=$MPD_HOST load douban.xspf

@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
 pkill -f nwg-wrapper
 
-nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p left -ml 150 -o eDP-1 &
-nwg-wrapper -t bindings.pango -c bindings.css -p right -mr 90 -mt 50 -o eDP-1 &
-# nwg-wrapper -s timezones.sh -r 60000 -c timezones.css -p right -mr 50 -a start -mt 50 -j right -o eDP-1 &
+# internal mon
+
+nwg-wrapper  -r 1800000 -c date-wttr.css -p left -a start   -mt 50 -ml 50 -o eDP-1 -s date-wttr.sh &
+nwg-wrapper  -c termout.css -r 0  -p left -a start  -mt 280 -ml 50 -o eDP-1 -s failedservice.sh &
+nwg-wrapper  -r 0 -c album.css -p left -a end  -mb 10 -ml 50 -sr 8 -o eDP-1 -s album.sh &
+nwg-wrapper  -s timezones.sh -r 60000 -c timezones.css -p right -a end -mb 0 -mr 65 -j right -o eDP-1 &
+nwg-wrapper  -c bindings.css -p right -a start -mt 50 -mr 20 -o eDP-1 -t bindings.pango &
+nwg-wrapper  -l 1 -c cowsay.css -p right -a end  -mr 470 -mb 60 -o eDP-1 -s cowsay.sh &
+
+# ext mon
+nwg-wrapper -r 0 -c album.css -p left -a end -ml 50 -mb 50 -sr 8 -o DP-1 -s album.sh &
+nwg-wrapper -c termout.css -r 0 -p right -a start -mr 0 -mt 50 -o DP-1 -s neofetch.sh &
+nwg-wrapper -c termout.css -r 30000 -p right -a end -mb 280 -o DP-1 -s lswt.sh &
+nwg-wrapper -c termout.css -r 60000 -p right -a end  -mb 50 -o DP-1 -s timer.sh &
+nwg-wrapper -c termout.css -r 1800000 -p left -a start  -ml 50 -mt 50 -o DP-1 -s calendar.sh &
+# nwg-wrapper -c termout.css -r 0 -p left -a end -ml 400 -mb 50 -o DP-1 -s disk.sh &
+nwg-wrapper -c termout.css -r 0 -p left -a end -ml 400 -mb 50 -o DP-1 -s lastupgraded.sh &
+# nwg-wrapper  -c termout.css -r 0 -p right -a start -mt 50 -mr 600 -s lastupgraded.sh -o DP-1 &
+nwg-wrapper  -c termout.css -r 0 -p right -a start -mt 50 -mr 580 -s disk.sh -o DP-1 &

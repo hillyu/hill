@@ -73,3 +73,4 @@ nftable/raw
 .config/rtv/
 .config/brave
 .config/google-chrome-beta*
+.config/Typora

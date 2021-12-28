@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export MPD_HOST="/home/hill/.config/mpd/socket"
 
 IAM=(`pgrep -d " " -f ${0//*\//}`)
 [ ${#IAM[@]} -gt 1 ] && { echo I AM running; exit 127; }
@@ -22,13 +23,11 @@ function cover_art {
     curl -s \
         -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
         $result -o $cover_path
-    [ "$FIRST_RUN" == false ] && notify-send -a "mpd" -i "$cover_path" "$title" "\n<b>Artist</b>: <i>$artist</i>\n<b>Album</b>: <u>$album</u>\n"
+    [ "$FIRST_RUN" == false ] && notify-send -a "mpd" -i "$cover_path" "$title" "\n<b>Artist</b>: <i>$artist</i>\n<b>Album</b>: <u>$album</u>\n" && pkill -8 nwg-wrapper
 }
 
 while true; do
     while true; do
-        pkill -RTMIN+8 dwmblocks
-        pkill -RTMIN+8 waybar
         mpc idle player &>/dev/null && (mpc status | grep "\[playing\]" )&>/dev/null && break
         mpc || sleep 30
     done
@@ -40,6 +39,8 @@ while true; do
     result=`mpc -f "%comment%"|head -n1`
     #call cover_art function
     cover_art &
+    pkill -RTMIN+8 dwmblocks
+    pkill -RTMIN+8 waybar
     
 done
 

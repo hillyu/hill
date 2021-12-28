@@ -31,7 +31,7 @@ color message       cyan            black
 color markers       red             white           
 color attachment    white           black         
 color search        brightmagenta   black         
-#color status        J_black         J_status        
+# color status        J_black         J_status        
 color status        brightyellow    black           
 color indicator     brightblack     yellow          
 color tree          yellow          black                                     # arrow in threads
@@ -145,7 +145,7 @@ mono body          underline                       "(^|[[:space:][:punct:]])/[^/
 # Border lines.
 color body          blue            black         "( *[-+=#*~_]){6,}"
 
-folder-hook .                  "color status        J_black         J_status        "
-folder-hook gmail/inbox        "color status        J_black         yellow          "
-folder-hook gmail/important    "color status        J_black         yellow          "
+# folder-hook .                  "color status        J_black         yellow        "
+# folder-hook gmail/inbox        "color status        J_black         yellow          "
+# folder-hook gmail/important    "color status        J_black         yellow          "
 

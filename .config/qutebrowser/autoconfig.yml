@@ -114,7 +114,7 @@ settings:
   fonts.completion.entry:
     global: ' default_size default_family'
   fonts.contextmenu:
-    global: null
+    global: 10pt default_family
   fonts.debug_console:
     global: default_size default_family
   fonts.default_family:

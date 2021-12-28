@@ -1,14 +1,11 @@
 {
     "layer": "top", // Waybar at top layer
+    "exclusive": true,
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    //"height": 20, // Waybar height (to be removed for auto height)
-    //"width": 1280, // Waybar width
     // Choose the order of the modules
-    //"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-left": ["sway/workspaces", "sway/mode" ],
+    "modules-left": ["sway/workspaces", "sway/mode","river/tags"],
     "modules-center": ["sway/window"],
-    //"modules-right": ["mpd", "idle_inhibitor", "network", "cpu", "memory", "temperature", "temperature#amdgpu", "backlight", "battery", "battery#bat2", "pulseaudio", "clock", "tray"],
-    "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "pulseaudio", "backlight", "battery", "clock", "tray", "custom/bluetooth"],
+    "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature",   "backlight", "battery", "custom/bluetooth", "pulseaudio",  "tray", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -25,19 +22,27 @@
     //         "default": ""
     //     }
     // },
+    "river/tags": {
+        "num-tags": 9,
+        "tag-labels": ["1 " ,"2 " ,"3 " ,"4 ","5 ","6 ","7 ","8 ","9 "],
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        /* "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{songPosition} ", */
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} ",
         "format-disconnected": "Disconnected ",
         "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "tooltip-format":  "[{songPosition}|{queueLength}] ({totalTime:%M:%S}/{elapsedTime:%M:%S})\n\n{stateIcon} {title}\n\n {artist}\n\n {album}\n",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "tooltip-format-stopped": "MPD (stopped)",
         "unknown-tag": "N/A",
         /* "title-len": 10, */
         /* "album-len": 10, */
         /* "artist-len": 10, */
-        "interval": 2,
-        /* "max-length": 28, */
+        "interval": "once",
+        /* "max-length": 15, */
         "consume-icons": {
             "on": " "
         },
@@ -59,10 +64,7 @@
         "on-click-middle": "mpc stop",
         "on-click-right": "mpc toggle",
         "on-scroll-up": "mpc prev",
-        "on-scroll-down": "mpc next",
-        //"tooltip-format": "MPD (connected)",
-        "tooltip-format":  "{stateIcon}({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] \n   {artist}\n   {album}\n   {title}",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+        "on-scroll-down": "mpc next"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -77,8 +79,13 @@
     },
     "clock": {
         // "timezone": "America/New_York",
+        "today-format": "<b><u>{}</u></b>",
+        "timezones": [ "Asia/Hong_Kong", "America/New_York", "Europe/Rome"],
+        /* "format": "{:%b %d %H:%M %a}", */
+        "format": "{: %a %d %Z  %R   }",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
-        "format-alt": "{:%Y-%m-%d}",
+        /* "format-alt": "{:%Y-%m-%d}", */
+        "on-click": "powermenu.sh",
         "on-click-right": "start_info"
 
     },
@@ -113,15 +120,15 @@
     "battery": {
         "bat": "BAT0",
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
         "on-click-right": "kitty --class=floating --hold -e /home/hill/bin/ideapad_battery_conservation_toggle.sh",
-        "format": "{capacity:2}% {icon}",
+        //"format": "{capacity:2}% {icon}",
+        "format-discharging": "{capacity:2}% {icon}",
         "format-charging": "{capacity:2}% ",
         "format-plugged": "{capacity:2}% ",
-        "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
@@ -133,19 +140,19 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "on-click-right": "$HOME/bin/wifi",
         "on-click-middle": "kitty --class floatingv -e sudo openfortivpn",
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid}({signalStrength})% ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}",
         "format-alt": "{bandwidthUpBits}{bandwidthDownBits}",
-        "tooltip-format-wifi": "{ifname}: {signaldBm}dBm\n{ipaddr}\n{bandwidthUpBits}{bandwidthDownBits}",
+        "tooltip-format-wifi": "{essid}\n\n{ifname}{signaldBm}dBm\n\n{ipaddr}\n\n{bandwidthUpBits}{bandwidthDownBits}",
         "tooltip-format": "{ifname}\n{ipaddr}\n{bandwidthUpBits}{bandwidthDownBits}"
 
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume:3}% {icon} {format_source}",
+        "format": "{volume:2}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": "{format_source}",
@@ -177,12 +184,12 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/bluetooth": {
-        "format": "{icon}",
+        "format": "{} {icon}",
         "return-type": "json",
-        "signal": 8,
-        "on-click-right": "bt-disconnect; pkill -SIGRTMIN+8 waybar",
+        "signal": 9,
+        "on-click-right": "bt-disconnect; pkill -SIGRTMIN+9 waybar",
         "on-click": "bt; pkill -SIGRTMIN+8 waybar",
-        "on-click-middle": "kitty --class=floating -e bluetoothctl scan on; pkill -SIGRTMIN+8 waybar",
+        "on-click-middle": "kitty --class=floating -e bluetoothctl scan on; pkill -SIGRTMIN+9 waybar",
         "interval": "once",
         "format-icons": ["",""],
         "escape": false,

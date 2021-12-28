@@ -1,30 +1,28 @@
 <span face="monospace">
-<span size="xx-large" foreground="#6699cc" face="serif">Cheat sheet</span>
-<span foreground="#eeeeee">
-Terminal emulator	<span foreground="#6699cc" face="serif">Mod+T</span>
-Web browser		<span foreground="#6699cc" face="serif">Mod+W</span>
-Activity Monitor	<span foreground="#6699cc" face="serif">Mod+A</span>
-File manager		<span foreground="#6699cc" face="serif">Mod+N</span>
-Application launcher	<span foreground="#6699cc" face="serif">Super+Space</span>
-email			<span foreground="#6699cc" face="serif">Mod+M</span>
-Diary			<span foreground="#6699cc" face="serif">Mod+D</span>
-Syslog			<span foreground="#6699cc" face="serif">Mod+X</span>
-System Update	        <span foreground="#6699cc" face="serif">Mod+S</span>
-Preferences             <span foreground="#6699cc" face="serif">Mod+C</span>
+<span size="xx-large" foreground="#8cc7d6" font_weight="bold" face="serif">Cheat sheet</span>
+<span font_weight="bold" foreground="#eeeeee">
+Terminal emulator	<span foreground="#8cc7d6" face="serif">Mod+T</span>
+Web browser		<span foreground="#8cc7d6" face="serif">Mod+W</span>
+Activity Monitor	<span foreground="#8cc7d6" face="serif">Mod+A</span>
+File manager		<span foreground="#8cc7d6" face="serif">Mod+N</span>
+Application launcher	<span foreground="#8cc7d6" face="serif">Super+Space</span>
+email			<span foreground="#8cc7d6" face="serif">Mod+M</span>
+Diary			<span foreground="#8cc7d6" face="serif">Mod+D</span>
+Syslog			<span foreground="#8cc7d6" face="serif">Mod+X</span>
+System Update	        <span foreground="#8cc7d6" face="serif">Mod+S</span>
+Preferences             <span foreground="#8cc7d6" face="serif">Mod+C</span>
 
-Kill task		<span foreground="#6699cc" face="serif">Super+Q</span>
-Exit			<span foreground="#6699cc" face="serif">Mod+Shift+E</span>
-Reload sway		<span foreground="#6699cc" face="serif">Mod+Shift+C</span>
+Kill task		<span foreground="#8cc7d6" face="serif">Super+Q</span>
+Exit			<span foreground="#8cc7d6" face="serif">Mod+Shift+E</span>
+Reload                  <span foreground="#8cc7d6" face="serif">Mod+Shift+C</span>
 
-Switch workspace	<span foreground="#6699cc" face="serif">Mod+number</span>
-Move to workspace	<span foreground="#6699cc" face="serif">Mod+Shift+number</span>
-Move focus		<span foreground="#6699cc" face="serif">Mod+hjkl</span>
-Move container		<span foreground="#6699cc" face="serif">Mod+Shift+hjkl</span>
+Switch workspace	<span foreground="#8cc7d6" face="serif">Mod+number</span>
+Move to workspace	<span foreground="#8cc7d6" face="serif">Mod+Shift+number</span>
+Move focus		<span foreground="#8cc7d6" face="serif">Mod+hjkl</span>
+Move container		<span foreground="#8cc7d6" face="serif">Mod+Shift+hjkl</span>
 
-Toggle floating		<span foreground="#6699cc" face="serif">Mod+Shift+Space</span>
-Fullscreen		<span foreground="#6699cc" face="serif">Mod+F</span>
+Toggle floating		<span foreground="#8cc7d6" face="serif">Mod+Shift+Space</span>
+Fullscreen		<span foreground="#8cc7d6" face="serif">Mod+F</span>
 
-Move to scratchpad	<span foreground="#6699cc" face="serif">Mod+Shift+_</span>
-Show scratchpad		<span foreground="#6699cc" face="serif">Mod+_</span>
 </span>
 </span>

@@ -1,5 +1,5 @@
 [Default Applications]
-x-scheme-handler/msteams=teams-insiders.desktop
+x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/ftp=chromium.desktop

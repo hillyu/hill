@@ -1,7 +1,13 @@
 #!/bin/bash
 if [ -n "$1" ]
 then 
-    pandoc -s "$1" --toc -c /usr/share/pandoc/data/vimwiki.css --to=html5 -o /tmp/pdtmp.html  && $BROWSER --app="file:///tmp/pdtmp.html" 
+    # pandoc -s "$1" --toc -c /usr/share/pandoc/data/vimwiki.css --to=html5 -o /tmp/pdtmp.html  && $BROWSER --app="file:///tmp/pdtmp.html" 
+pandoc -s "$1" --toc \
+    --output=/tmp/pdtmp.html \
+    --to=html5 \
+    --css=$HOME/.local/share/markdown-css/tufte.css \
+    --highlight-style=haddock \
+    --self-contained && $BROWSER --app="file:///tmp/pdtmp.html" 
 else
     echo "please set input file"
 fi

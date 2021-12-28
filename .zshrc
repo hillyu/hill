@@ -9,6 +9,7 @@ setopt interactivecomments
 ENABLE_CORRECTION="true"
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7,bg=68"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=58"
+# ZSH_HIGHLIGHT_STYLES[comment]="fg=black"
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -31,6 +32,8 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 eval `dircolors /home/hill/.zsh/themes/dircolors-solarized/dircolors.256dark`
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+#fast-syntax-highlighting set theme to q-jmnemonic
+# fast-theme -t q-jmnemonic
 # load run-help and alias it it help so alt-h can support shell bultins
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help

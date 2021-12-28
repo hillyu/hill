@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-tooltip=$(bluetoothctl show)
-state=`echo "$tooltip" |grep Powered|cut -d' ' -f2`
-percentage=0
-[[ $state == "yes" ]] && percentage=100
+# st=$(bluetoothctl show)
+# state=`echo "$st" |grep Powered|cut -d' ' -f2`
+tooltip=$(bluetoothctl devices | cut -f2 -d' ' | while read uuid; do bluetoothctl info $uuid; done|grep -e "Connected\|Name"|sed -e 's/\t\+//g' -e 's/Connected/    Connected/g' -e 's/Name: //g' )
+out=$(echo "$tooltip"|grep "Connected: yes"|wc -l)
+percentage=0 
+state="no"
+[[ "$out" > "0" ]] && percentage=100 && state="yes" 
 #echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage }" | jq --unbuffered --compact-output
-echo "{\"text\": \"$state\", \"tooltip\": \"$tooltip\", \"class\": \"$state\", \"percentage\": $percentage }"|sed  ':a;N;$!ba;s/\n/\\n/g'
+echo "{\"text\": \"$out\", \"tooltip\": \"$tooltip\", \"class\": \"$state\", \"percentage\": $percentage }"|sed  ':a;N;$!ba;s/\n/\\n/g'

@@ -23,15 +23,15 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+   columns: 126
+   lines: 46
 
   # Window position (changes require restart)
   #
@@ -45,12 +45,12 @@
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+   x: 0
+   y: 0
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  # dynamic_padding: true
 
   # Window decorations
   #
@@ -61,7 +61,8 @@
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: none
+  opacity: 0.95
 
   # Startup Mode (changes require restart)
   #
@@ -154,7 +155,7 @@ font:
     # style: Bold Italic
 
   # Point size
-  size: 10
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -177,16 +178,20 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
+# draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
 colors:
   # Default colors
   primary:
-    background: '0x2F343F'
-    foreground: '0x839496'
+    # background: '0x2F343F'
+    # background: '#4b5162' # arc blue gray
+    background: '#323F4F'
+    # background: '#3d4c5f'
+    # foreground: '0x839496'
     # background: '0x262626'
     # foreground: '0xb2b2b2'
+    # background:   '#002B36' solarized default
 
   # Normal colors
   normal:
@@ -290,8 +295,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
-window.opacity: 0.975
+# background_opacity: 0.975
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -925,3 +929,4 @@ key_bindings:
 
   # Print all received window events.
   #print_events: false
+

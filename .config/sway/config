@@ -1,7 +1,7 @@
 # include package shipped configs
 include /etc/sway/config.d/*
 #Auto start services
-xwayland disable
+# xwayland disable
 # a hack to load gsettings in config file and apply gsettings manually
 exec_always import-gsettings
 # import SWAYSOCK env as it is not accessible by systemd user unit (set wall paper etc.) 
@@ -542,5 +542,6 @@ workspace_auto_back_and_forth yes
 # mouse_warping container
 # popup_during_fullscreen leave_fullscreen
 titlebar_border_thickness 0
+focus output DP-1
 # focus_follows_mouse on
 # mouse_warping output

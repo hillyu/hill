@@ -2,6 +2,7 @@
 
 # time=$(LC_ALL=C TZ='Europe/Warsaw' date +'%A, %d. %B')
 time=$(date +'%A, %d. %B')
-wttr=$(curl https://wttr.in/Minxian?format=1)
-echo '<span size="35000" foreground="#998000">'$time'</span><span size="30000" foreground="#ccc">'
-echo $wttr'</span>'
+# wttr=$(curl -s https://wttr.in/Minxian?format=2)
+wttr=$(curl -s https://wttr.in/Minxian?format="%c+%t+|+%w\n+%h+|+%p\n+%l\n")
+echo '<span size="35000" foreground="#A795DD">'$time'</span><span size="20000" foreground="#cccc">'
+echo "$wttr</span>"

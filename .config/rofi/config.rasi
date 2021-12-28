@@ -54,7 +54,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-    theme: "Arc-Dark";
+    /* theme: "Arc-Dark"; */
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -146,3 +146,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 @import "/usr/share/rofi/themes/Adapta-Nokto.rasi"
+@theme  "Arc-Dark"
