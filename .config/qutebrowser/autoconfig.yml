@@ -74,6 +74,7 @@ settings:
   content.media.video_capture:
     https://teams.microsoft.com: true
   content.notifications.enabled:
+    https://blog.csdn.net: true
     https://teams.microsoft.com: true
     https://www.bilibili.com: true
     https://www.networkworld.com: true
@@ -118,7 +119,7 @@ settings:
   fonts.debug_console:
     global: default_size default_family
   fonts.default_family:
-    global: Fixedsys Excelsior MonoLF
+    global: Fixedsys Excelsior MonoL
   fonts.default_size:
     global: 9pt
   fonts.downloads:
@@ -170,7 +171,7 @@ settings:
   qt.low_end_device_mode:
     global: never
   scrolling.smooth:
-    global: true
+    global: false
   session.default_name:
     global: null
   tabs.tabs_are_windows:

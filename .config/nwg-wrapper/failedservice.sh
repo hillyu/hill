@@ -4,8 +4,8 @@
 title="Failed Systemd Unit:"
 color="#c88fae"
 cmd="$(systemctl --failed)"
-textfont="Fixedsys Excelsior MonoLF"
-fontsize="6pt"
+textfont="Fixedsys Excelsior MonoL"
+# fontsize="6pt"
 source ~/.config/nwg-wrapper/termout.sh
 
 

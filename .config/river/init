@@ -11,20 +11,22 @@
 ## autostart, don't forget to fork the process or it will block
 #
 #
-export XDG_CURRENT_DESKTOP=river
+# export XDG_CURRENT_DESKTOP=river
 import-gsettings
 systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
 wl-paste -t text --watch clipman store &
 fcitx5 -d --replace
 nice -12 ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
-# dbus-update-activation-environment --systemd DISPLAY &
 udiskie &
-bash -c "pkill -f dunst; dunst" &
+#dunst is started with dubs so no longer needed.
+# bash -c "pkill -f dunst; dunst" &
 /usr/bin/kanshi &
 waybar > waybar.log 2>&1 &
 # files=(~/Pictures/wallpaper/*); pkill swaybg ; swaybg -i "${files[RANDOM % ${#files[@]}]}" &
 desk_dash.sh &
 oguri &
+dbus-update-activation-environment --systemd DISPLAY &
+lxqt-policykit-agent &
 # ## exec --no-startup-id mpris-proxy
 
 # setup variables 
@@ -169,9 +171,9 @@ do
     # personal hotkeys to launch various apps
     riverctl map $mode $mod A spawn "$ft -e gotop"
     # riverctl map $mode Alt p spawn wdisplays
-    riverctl map $mode $mod W spawn "$browser"
+    riverctl map $mode $mod W spawn "notify-send -i 'computer' 'Unsplash:' 'Changing Wallpaper ...' && unsplashwallpaper"
     riverctl map $mode $mod+Shift W spawn "rofi-surfraw"
-    riverctl map $mode $mod S spawn "$ft --hold -e yay -Syu"
+    riverctl map $mode $mod S spawn "term_hold yay -Syu"
     riverctl map $mode $mod C spawn "$ft -e vim .config/river/init"
     riverctl map $mode $mod M spawn "$ft -e neomutt"
     riverctl map $mode $mod T spawn "$ft -e tmux_run.sh"
@@ -205,6 +207,7 @@ riverctl float-filter-add app-id floating
 riverctl float-filter-add app-id floatingv
 riverctl float-filter-add app-id ncmpcpp
 riverctl float-filter-add app-id "imv"
+riverctl float-filter-add app-id "display"
 riverctl float-filter-add app-id "mpv"
 riverctl float-filter-add app-id "vlc"
 riverctl float-filter-add app-id "pavucontrol"
@@ -212,6 +215,7 @@ riverctl float-filter-add app-id "wpa_gui"
 riverctl float-filter-add app-id "neomutt"
 riverctl float-filter-add title "Fcitx Configuration"
 riverctl float-filter-add app-id Lxappearance
+riverctl float-filter-add app-id lxqt-policykit-agent
 
 # Set app-ids and titles of views which should use client side decorations
 riverctl csd-filter-add app-id "gedit"
@@ -236,4 +240,3 @@ riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" pointer-accel 0.05
        #accel_profile adaptive
 
 exec rivertile -view-padding 6 -outer-padding 6
-

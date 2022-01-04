@@ -9,8 +9,12 @@ key=$(</home/hill/unsplashAPI.key) \
 || { files=(~/Pictures/wallpaper/*); fpath="${files[RANDOM % ${#files[@]}]}"; }
 pkill swaybg  
 echo "$fpath" 
-ogurictl output eDP-1  --image "$fpath" 
-ogurictl output DP-1  --image "$fpath" 
+resized=$HOME/.cache/$(basename $fpath).png
+convert -resize 2560x1440 "$fpath" $resized
+echo "$resized" >> $HOME/.cache/wallpaper.log
+ogurictl output eDP-1  --image $resized --anchor bottom-left --scaling-mode tile
+ogurictl output DP-1  --image $resized --anchor top-right --scaling-mode tile
+pkill -8 nwg-wrapper
 # || { files=(~/Pictures/wallpaper/*); pkill swaybg ;  swaybg -i "${files[RANDOM % ${#files[@]}]}"; }
 # && swaymsg -s $SWAYSOCK output "*" bg $fpath fill
 # && feh  --bg-fill --no-xinerama $fpath 

@@ -69,10 +69,10 @@ curl -s "$URL" \
     -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
     -H 'Accept-Language: en-CA,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,zh-CN;q=0.6,zh;q=0.5,ja;q=0.4,zh-TW;q=0.3' \
     --compressed \
-    |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' '{gsub("&", "&amp;"); gsub("<", "&lt;");gsub(">", "&gt;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>\n", $1, $2, $3, $4, $5, $6}'))
+    |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' '{gsub("&", "\\&amp;"); gsub("<", "\\&lt;");gsub(">", "\\&gt;");gsub(/"/, "\\&quot;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>\n", $1, $2, $3, $4, $5, $6}'))
 for line in  "${rawlist[@]}"; do
     printf "adding $(echo $line|grep -oE "<title>.*</title>")\n"
-    grep -qF "$line" "$playlistfile" && printf "found dupe!\n" || printf "\$i\n$line\\n.\\nw\\n" | ex -s /home/hill/Music/douban.xspf
-done \
-    && mpc --host=$MPD_HOST crop \
-    && mpc --host=$MPD_HOST load douban.xspf
+    grep -qF "$(grep -oP "song\/\K\w+(?=\.)" <<< $line)" "$playlistfile" && printf "found dupe!\n" || printf "\$i\n$line\\n.\\nw\\n" | ex -s /home/hill/Music/douban.xspf
+done 
+# mpc --host=$MPD_HOST crop
+# mpc --host=$MPD_HOST load douban.xspf

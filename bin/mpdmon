@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-export MPD_HOST="/home/hill/.config/mpd/socket"
+MPD_HOST=$(tail -n1 $HOME/tmp/MPDHOST)
+MPD_HOST=${MPD_HOST:-"/home/hill/.config/mpd/socket"}
+# MPD_HOST="192.168.8.229"
 
 IAM=(`pgrep -d " " -f ${0//*\//}`)
 [ ${#IAM[@]} -gt 1 ] && { echo I AM running; exit 127; }
@@ -28,15 +30,15 @@ function cover_art {
 
 while true; do
     while true; do
-        mpc idle player &>/dev/null && (mpc status | grep "\[playing\]" )&>/dev/null && break
-        mpc || sleep 30
+        mpc -h $MPD_HOST idle player &>/dev/null && (mpc -h $MPD_HOST status | grep "\[playing\]" )&>/dev/null && break
+        mpc -h $MPD_HOST || sleep 30
     done
     FIRST_RUN=false
-    title=`mpc -f "%title%"|head -n1`
-    artist=`mpc -f "%artist%"|head -n1`
-    album=`mpc -f "%album%"|head -n1`
+    title=`mpc -h $MPD_HOST -f "%title%"|head -n1`
+    artist=`mpc -h $MPD_HOST -f "%artist%"|head -n1`
+    album=`mpc -h $MPD_HOST -f "%album%"|head -n1`
     #xpath='//track[title="'"$title"'"]/image/text()'
-    result=`mpc -f "%comment%"|head -n1`
+    result=`mpc -h $MPD_HOST -f "%comment%"|head -n1`
     #call cover_art function
     cover_art &
     pkill -RTMIN+8 dwmblocks

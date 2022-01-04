@@ -1,9 +1,11 @@
+# font_family Fixedsys MonoLF
 font_family      Fixedsys Excelsior MonoL
-font_size 12
+font_size 10
+adjust_column_width -1
 symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
 symbol_map U+4E00-U+62FF,U+6300-U+77FF,U+7800-U+8CFF,U+8D00-U+9FCC PingFang SC
 disable_ligatures cursor
-font_features FiraCode-Retina +zero +onum
+# font_features FiraCode-Retina +zero +onum
 cursor_shape block
 cursor_blink_interval -1
 cursor_stop_blinking_after 15.0

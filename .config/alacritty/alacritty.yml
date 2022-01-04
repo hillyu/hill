@@ -31,7 +31,7 @@ window:
   # fall back to the window manager's recommended size.
   dimensions:
    columns: 126
-   lines: 46
+   lines: 43
 
   # Window position (changes require restart)
   #
@@ -45,9 +45,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-   x: 0
-   y: 0
+  # padding:
+   # x: 2
+   # y: 2
 
   # Spread additional padding evenly around the terminal content.
   # dynamic_padding: true
@@ -114,9 +114,9 @@ font:
     #   - (Windows) Consolas
     # family: "Fira Code Retina"
     # family: "Sarasa Fixed SC"
-    family: "Fixedsys Excelsior MonoLF"
+    family: "Fixedsys Excelsior MonoL"
     # family: "Terminus"
-    # style: Semibold
+    style: Semibold
 
     # The `style` can be specified to pick a specific face.
     # style: Bold
@@ -155,13 +155,13 @@ font:
     # style: Bold Italic
 
   # Point size
-  size: 11
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   # offset:
-   # x: 1
+   # x: -1
    # y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -188,7 +188,7 @@ colors:
     # background: '#4b5162' # arc blue gray
     background: '#323F4F'
     # background: '#3d4c5f'
-    # foreground: '0x839496'
+    foreground: '0x839496'
     # background: '0x262626'
     # foreground: '0xb2b2b2'
     # background:   '#002B36' solarized default

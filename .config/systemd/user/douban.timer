@@ -3,7 +3,7 @@ Description=Timer unit for douban crawler
 
 [Timer]
 OnActiveSec=0
-OnUnitActiveSec=1h
+OnUnitActiveSec=1m
 Unit=douban.service
 
 [Install]

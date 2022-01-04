@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Fixedsys Excelsior MonoLF";
+    font-family: "Fixedsys Excelsior MonoL";
     font-size: 9pt;
     /* font-weight: 900; */
     min-height: 13pt;
@@ -26,6 +26,7 @@ tooltip label {
 /*     color: white; */
     padding: 2em 4em;
     font-family: "SF Pro Display";
+    /* font-family: "Fixedsys Excelsior MonoL"; */
     font-weight: 500;
     font-size: 12pt;
 }
@@ -227,6 +228,7 @@ label:focus {
 #pulseaudio {
     /* border-bottom: 3px solid #f1c40f; */
     border-top: 3px solid #f1c40f;
+    /* min-width: 80pt; */
     /* color: #000000; */
 }
 

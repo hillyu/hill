@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 title="Today's Fortune:"
-color="#d6e1a6"
+color="$(fgcolor.sh 391x323+426+0)"
 cmd=$(fortune -s|cowthink -W 30)
 # textfont="Fixedsys Excelsior MonoL"
 fontsize="12pt"

@@ -1,4 +1,1 @@
-#!/usr/bin/env bash
-
-cmd="${@}"
-st -c prompt bash -c "$cmd ; read;"
+term_hold

@@ -1,1 +1,0 @@
-XKB_DEFAULT_LAYOUT="us" XKB_DEFAULT_OPTIONS="ctrl:swap_lwin_lctl,lv3:ralt_switch,caps:escape,lv3:rwin_switch,lv3:menu_switch" river
