@@ -3,7 +3,8 @@ socks-port: 7891
 redir-port: 7892
 allow-lan: true
 mode: Rule
-log-level: info
+interface-name: eth0
+# log-level: info
 #external-controller: 0.0.0.0:9090
 #secret: ""
 #external-ui: dashboard
@@ -106,15 +107,14 @@ dns:
   nameserver:
     - 'tcp://208.67.222.222:443'
     - 'tls://1.1.1.1:853'
-  fallback:
+    - 'tcp://1.1.1.1:53'
     - 'tls://dns.google'
-    - 'tls://8.8.8.8:853'
     - 'tls://dns.rubyfish.cn:853'
     - 'tls://8.8.8.8:853'
-    - 'tcp://1.1.1.1:53'
-    - 'tcp://208.67.222.222:443'
     - 'tcp://10.16.1.241:53'
     - 'tcp://10.16.2.241:53'
+      #fallback:
+    #- 'tcp://208.67.222.222:443'
 rules:
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
