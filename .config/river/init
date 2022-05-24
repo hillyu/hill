@@ -12,11 +12,11 @@
 #
 #
 # export XDG_CURRENT_DESKTOP=river
+export XDG_CURRENT_DESKTOP=sway
 import-gsettings
 systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
 wl-paste -t text --watch clipman store &
 fcitx5 -d --replace
-nice -12 ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
 udiskie &
 #dunst is started with dubs so no longer needed.
 # bash -c "pkill -f dunst; dunst" &
@@ -26,6 +26,7 @@ waybar > waybar.log 2>&1 &
 desk_dash.sh &
 oguri &
 dbus-update-activation-environment --systemd DISPLAY &
+nice -12 ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
 lxqt-policykit-agent &
 # ## exec --no-startup-id mpris-proxy
 
@@ -213,12 +214,17 @@ riverctl float-filter-add app-id "vlc"
 riverctl float-filter-add app-id "pavucontrol"
 riverctl float-filter-add app-id "wpa_gui"
 riverctl float-filter-add app-id "neomutt"
+riverctl float-filter-add app-id "kvantummanager"
+riverctl float-filter-add app-id "dolphin-emu"
 riverctl float-filter-add title "Fcitx Configuration"
+riverctl float-filter-add title "Save file"
+riverctl float-filter-add title "nnn"
 riverctl float-filter-add app-id Lxappearance
 riverctl float-filter-add app-id lxqt-policykit-agent
 
 # Set app-ids and titles of views which should use client side decorations
 riverctl csd-filter-add app-id "gedit"
+riverctl csd-filter-add app-id "refoxdeveloperedition"
 
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
@@ -231,11 +237,11 @@ riverctl set-cursor-warp on-output-change
 
 #input settings
 
-riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" disable-while-typing enabled
-riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" tap enabled
-riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" natural-scroll enabled
-riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" middle-emulation enabled
-riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" pointer-accel 0.05
+riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" disable-while-typing enabled
+riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" tap enabled
+riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" natural-scroll enabled
+riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" middle-emulation enabled
+riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" pointer-accel 0.05
 # riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" scroll-factor 0.3
        #accel_profile adaptive
 

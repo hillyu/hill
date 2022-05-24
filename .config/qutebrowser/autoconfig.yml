@@ -75,6 +75,7 @@ settings:
     https://teams.microsoft.com: true
   content.notifications.enabled:
     https://blog.csdn.net: true
+    https://money.udn.com: true
     https://teams.microsoft.com: true
     https://www.bilibili.com: true
     https://www.networkworld.com: true

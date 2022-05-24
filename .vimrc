@@ -221,11 +221,12 @@ set grepprg=grep\ -nH\ $*
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
 " override default yank
-nnoremap <expr> y MyYank(1,1)
-xnoremap <expr> y MyYank(1,1)
+" nnoremap <expr> y MyYank(1,1)
+" xnoremap <expr> y MyYank(1,1)
 "only works on vim 8.2+
-nnoremap yy yy:call system("yank.sh", @")<cr>
-xnoremap<silent> Y Y:call system("yank.sh", @")<cr>
+" nnoremap yy yy:call system("yank.sh", @")<cr>
+" xnoremap<silent> Y Y:call system("yank.sh", @")<cr>
+autocmd! TextYankPost * call system("yank.sh", v:event.regcontents)
 
 	function MyYank(type,...) abort
 	  if a:0 

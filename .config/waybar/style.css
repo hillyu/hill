@@ -2,8 +2,8 @@
     border: none;
     border-radius: 0;
     font-family: "Fixedsys Excelsior MonoL";
-    font-size: 9pt;
-    /* font-weight: 900; */
+    font-size: 8pt;
+    font-weight: 900;
     min-height: 13pt;
 }
 
@@ -88,7 +88,9 @@ window#waybar.brave {
 /* river settings equiv to above workspaces */
 #tags button {
     padding: 0.1em 0.6em;
-    background-color: transparent;
+    /* background-color: transparent; */
+    /* background-color: #495972; */
+    background-color: #4A5C74;
     color: #ffffff;
     border-bottom: 3px solid transparent;
 

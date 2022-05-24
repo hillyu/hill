@@ -10,4 +10,5 @@ NET_TB=`bluetoothctl devices`
 #echo "$SEL"
 
 
-[[ -n "$SEL" ]] && bluetoothctl connect $SEL && notify-send -i bluetooth-active-symbolic "Connected device:" "$(bluetoothctl info $SEL)" 
+[[ -n "$SEL" ]] && bluetoothctl connect $SEL && notify-send -i bluetooth-active-symbolic "Connected device:" "$(bluetoothctl info $SEL)" && canberra-gtk-play -i device-added
+

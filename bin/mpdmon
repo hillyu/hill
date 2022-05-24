@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-MPD_HOST=$(tail -n1 $HOME/tmp/MPDHOST)
+# MPD_HOST=$(tail -n1 $HOME/tmp/MPDHOST)
 MPD_HOST=${MPD_HOST:-"/home/hill/.config/mpd/socket"}
 # MPD_HOST="192.168.8.229"
 

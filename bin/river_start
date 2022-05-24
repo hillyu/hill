@@ -1,1 +1,1 @@
-XKB_DEFAULT_LAYOUT="us" XKB_DEFAULT_OPTIONS="lv3:ralt_switch,lv3:rwin_switch,lv3:menu_switch" river
+XKB_DEFAULT_LAYOUT="us" river

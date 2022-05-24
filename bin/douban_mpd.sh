@@ -1,6 +1,34 @@
 #!/usr/bin/env bash
 
 MPD_HOST=/home/hill/.config/mpd/socket 
+declare -A channelDict
+channelDict[CN]=1
+channelDict[EN]=2
+channelDict[JP]=17
+channelDict[Folk]=8
+channelDict[Pop]=194
+channelDict[indie]=268
+channelDict[Jazz]=13
+channelDict[Rap]=15
+channelDict[RnB]=16
+channelDict[Classical]=27
+channelDict[Work]=153
+channelDict[Outdoor]=151
+channelDict[Rest]=152
+channelDict[Upbeat]=154
+channelDict[Relax]=155
+channelDict[New]=61
+channelDict[Coffee]=32
+channelDict[Workout]=257
+channelDict[FemaleVocal]=20
+# channelDict[Fly]=267
+# channelDict[Goodie]=179
+# channelDict[Youth]=262
+# channelDict[Anime]=28
+# channelDict[Easy]=77
+channelDict[ninetyone]=91
+plpath=/home/hill/Music
+
 #华语
 # 已知固定频道
 # channel=0 私人兆赫 type=e()
@@ -36,21 +64,17 @@ MPD_HOST=/home/hill/.config/mpd/socket
 # Artist
 # channel=26 公共兆赫：豆瓣音乐人MHZ
 # channel=dj DJ兆赫
-# URL="https://douban.fm//j/mine/playlist?type=s&sid=186609&pt=39.6&channel=1&pb=64&from=mainsite"
-
-# URL='https://douban.fm//j/mine/playlist?type=s&sid=480884&pt=18.0&channel=8&pb=64&from=mainsite%22' 
 apikey="02646d3fb69a52ff072d47bf23cef8fd"
 douban_udid="b635779c65b816b13b330b68921c0f8edc049590"
-channel="-10"
+# channel="-10"
 kbps="192"
 client="s:mainsite|y:3.0"
 app_name="radio_website"
 version="100"
 mtype="n"
-URL="https://api.douban.com/v2/fm/playlist?alt=json&apikey=$apikey&app_name=$app_name&channel=$channel&client=$client&douban_udid=$douban_udid&kbps=$kbps&pt=0.0&type=$mtype&udid=b88146214e19b8a8244c9bc0e2789da68955234d&version=$version"
 header='<?xml version="1.0" encoding="UTF-8"?> <playlist version="1" xmlns="http://xspf.org/ns/0/"> <trackList>'
 footer='</trackList> </playlist>'
-playlistfile="/home/hill/Music/douban.xspf"
+# playlistfile="/home/hill/Music/douban.xspf"
 
 #set header and curl the playlist from api "//" after hostname is important.
 
@@ -62,17 +86,28 @@ playlistfile="/home/hill/Music/douban.xspf"
 #     |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' -v a="$header" -v b="$footer" 'BEGIN {print a} {gsub("&", "&amp;"); gsub("<", "&lt;");gsub(">", "&gt;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>", $1, $2, $3, $4, $5, $6} END {print b}' > ~/Music/douban.xspf \
 #     && mpc --host=$MPD_HOST load douban.xspf \
 #     && mpc --host=$MPD_HOST playlist
-IFS=$'\n'
-rawlist=($(\
-curl -s "$URL" \
-    -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
-    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
-    -H 'Accept-Language: en-CA,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,zh-CN;q=0.6,zh;q=0.5,ja;q=0.4,zh-TW;q=0.3' \
-    --compressed \
-    |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' '{gsub("&", "\\&amp;"); gsub("<", "\\&lt;");gsub(">", "\\&gt;");gsub(/"/, "\\&quot;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>\n", $1, $2, $3, $4, $5, $6}'))
-for line in  "${rawlist[@]}"; do
-    printf "adding $(echo $line|grep -oE "<title>.*</title>")\n"
-    grep -qF "$(grep -oP "song\/\K\w+(?=\.)" <<< $line)" "$playlistfile" && printf "found dupe!\n" || printf "\$i\n$line\\n.\\nw\\n" | ex -s /home/hill/Music/douban.xspf
-done 
-# mpc --host=$MPD_HOST crop
-# mpc --host=$MPD_HOST load douban.xspf
+getpl () {
+    URL="https://api.douban.com/v2/fm/playlist?alt=json&apikey=$apikey&app_name=$app_name&channel=$channel&client=$client&douban_udid=$douban_udid&kbps=$kbps&pt=0.0&type=$mtype&udid=b88146214e19b8a8244c9bc0e2789da68955234d&version=$version"
+    IFS=$'\n'
+    rawlist=($(\
+        curl -s "$URL" \
+        -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
+        -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+        -H 'Accept-Language: en-CA,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,zh-CN;q=0.6,zh;q=0.5,ja;q=0.4,zh-TW;q=0.3' \
+        --compressed \
+        |jq -r '.song[]|[.url,.title,.length,.artist,.albumtitle,.picture]|@tsv'| awk -F$'\t' '{gsub("&", "\\&amp;"); gsub("<", "\\&lt;");gsub(">", "\\&gt;");gsub(/"/, "\\&quot;"); printf "<track>  <location>%s</location> <title>%s</title> <duration>%d</duration> <creator>%s</creator> <album>%s</album>  <annotation>%s</annotation> </track>\n", $1, $2, $3, $4, $5, $6}'))
+            for line in  "${rawlist[@]}"; do
+                printf "adding $(echo $line|grep -oE "<title>.*</title>")\n"
+                grep -qF "$(grep -oP "song\/\K\w+(?=\.)" <<< $line)" "$playlistfile" && printf "found dupe!\n" || printf "\$i\n$line\\n.\\nw\\n" | ex -s $playlistfile
+            done 
+        }
+        # mpc --host=$MPD_HOST crop
+        # mpc --host=$MPD_HOST load douban.xspf
+for key in "${!channelDict[@]}"; do 
+    channel="${channelDict[$key]}"
+    echo $key $channel
+    playlistfile="$plpath/douban_$key.xspf"
+    [ ! -f "$playlistfile" ] && head -n1 $plpath/douban.xspf > $playlistfile && tail -n1 $plpath/douban.xspf >> $playlistfile
+    getpl &
+    sleep 1
+done

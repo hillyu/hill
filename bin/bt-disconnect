@@ -11,4 +11,5 @@ dmenu='dmenu -i -p "SELECT DEVICE TO DISCONNECT:"'
 #echo "$SEL"
 
 
-[[ -n "$SEL" ]] && notify-send -i bluetooth-disabled-symbolic "Disconnecting device" $SEL && bluetoothctl disconnect $SEL
+[[ -n "$SEL" ]] && notify-send -i bluetooth-disabled-symbolic "Disconnecting device" $SEL && bluetoothctl disconnect $SEL && canberra-gtk-play -i device-removed
+
