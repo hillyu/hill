@@ -162,6 +162,8 @@ settings:
     - \b(<<|«)\b
   new_instance_open_target:
     global: window
+  qt.chromium.low_end_device_mode:
+    global: never
   qt.environ:
     global:
       NODE_PATH: /usr/lib/node_modules
@@ -169,8 +171,6 @@ settings:
     global: none
   qt.highdpi:
     global: true
-  qt.low_end_device_mode:
-    global: never
   scrolling.smooth:
     global: false
   session.default_name:

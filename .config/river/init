@@ -14,7 +14,6 @@
 # export XDG_CURRENT_DESKTOP=river
 export XDG_CURRENT_DESKTOP=sway
 import-gsettings
-systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
 wl-paste -t text --watch clipman store &
 fcitx5 -d --replace
 udiskie &
@@ -25,7 +24,11 @@ waybar > waybar.log 2>&1 &
 # files=(~/Pictures/wallpaper/*); pkill swaybg ; swaybg -i "${files[RANDOM % ${#files[@]}]}" &
 desk_dash.sh &
 oguri &
-dbus-update-activation-environment --systemd DISPLAY &
+# systemctl --user import-environment DISPLAY WAYLAND_DISPLAY QT_QPA_PLATFORMTHEME
+# following bus cmd can replace above, and also import envs to dbus session.
+# gnupg needs this to show pinentry correctly, theme, scale etc. Personal
+# systemd unit/timers may also depend on DISPLAY, etc.
+dbus-update-activation-environment --systemd --all &
 nice -12 ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
 lxqt-policykit-agent &
 # ## exec --no-startup-id mpris-proxy
@@ -206,6 +209,7 @@ riverctl set-repeat 50 300
 # Make certain views start floating
 riverctl float-filter-add app-id floating
 riverctl float-filter-add app-id floatingv
+riverctl float-filter-add app-id "pinentry-qt"
 riverctl float-filter-add app-id ncmpcpp
 riverctl float-filter-add app-id "imv"
 riverctl float-filter-add app-id "display"

@@ -3,7 +3,7 @@ font_family      Fixedsys Excelsior MonoL
 font_size 10
 # adjust_column_width -1
 symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
-symbol_map U+4E00-U+62FF,U+6300-U+77FF,U+7800-U+8CFF,U+8D00-U+9FCC Sarasa Term SC
+# symbol_map U+4E00-U+62FF,U+6300-U+77FF,U+7800-U+8CFF,U+8D00-U+9FCC MI Lan Pro VF
 disable_ligatures cursor
 # font_features FiraCode-Retina +zero +onum
 cursor_shape block

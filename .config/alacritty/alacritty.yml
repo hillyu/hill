@@ -138,7 +138,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Roboto Mono
+    family:  JetBrains Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -674,7 +674,7 @@ key_bindings:
   - { key: Equals,   mods: Control, action: IncreaseFontSize             }
   - { key: Minus, mods: Control, action: DecreaseFontSize             }
   - { key: Underline, mods: Command, chars: "\x1f"             }
-  #- { key: ^, mods: Command, chars: "\x1e"             }
+  - { key: Key6, mods: Command, chars: "\x1e"             }
   - { key: RBracket, mods: Command, chars: "\x1d"             }
   - { key: Backslash, mods: Command, chars: "\x1c"             }
   - { key: LBracket, mods: Command, chars: "\x1b"             }

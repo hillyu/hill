@@ -11,7 +11,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'maralla/completor.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -19,14 +19,16 @@ Plug 'tpope/vim-commentary'
 Plug 'chrisbra/matchit'
 Plug 'lervag/vimtex'
 Plug 'itchyny/lightline.vim'
-Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
+" Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
 Plug 'vim-scripts/vis'
-Plug 'vim-python/python-syntax'
+" Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
-Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
+" Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'jpalardy/vim-slime', {'for': 'python'}
 " Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
 Plug 'vimwiki/vimwiki'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 "============================================
@@ -220,49 +222,51 @@ set grepprg=grep\ -nH\ $*
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 nnoremap  <leader>y :call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>
+autocmd! TextYankPost * call system("yank.sh", v:event.regcontents)
+" no need for following map anymore since above autocmd took care of
+" everything.
 " override default yank
 " nnoremap <expr> y MyYank(1,1)
 " xnoremap <expr> y MyYank(1,1)
 "only works on vim 8.2+
 " nnoremap yy yy:call system("yank.sh", @")<cr>
 " xnoremap<silent> Y Y:call system("yank.sh", @")<cr>
-autocmd! TextYankPost * call system("yank.sh", v:event.regcontents)
 
-	function MyYank(type,...) abort
-	  if a:0 
-	    set opfunc=MyYank
-	    return 'g@'
- 	  endif
+	"function MyYank(type,...) abort
+	"  if a:0 
+	"    set opfunc=MyYank
+	"    return 'g@'
+ 	  "endif
 
-	  let sel_save = &selection
-	  let visual_marks_save = [getpos("'<"), getpos("'>")]
+	"  let sel_save = &selection
+	"  let visual_marks_save = [getpos("'<"), getpos("'>")]
 
-	  try
-	    set clipboard= selection=inclusive
-        " unfortunately below only works on vim 8.2>
-	    "let commands = #{line: "'[V']y", char: "`[v`]y", block: "`[\<c-v>`]y"}
-	    " silent exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
-	    "exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
-		if a:type == 'block'
-			exe "noautocmd keepjumps normal! `[\<c-v>`]y"
-		elseif a:type == 'line'
-			silent exe "normal! '[V']y"
-		else
-            silent exe "normal! `[v`]y"
-        endif
-        call system("yank.sh", @")
-	  finally
-	    call setpos("'<", visual_marks_save[0])
-	    call setpos("'>", visual_marks_save[1])
-	    let &selection = sel_save
-	  endtry
-	endfunction
+	"  try
+	"    set clipboard= selection=inclusive
+        "" unfortunately below only works on vim 8.2>
+	"    "let commands = #{line: "'[V']y", char: "`[v`]y", block: "`[\<c-v>`]y"}
+	"    " silent exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+	"    "exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+	"	if a:type == 'block'
+	"		exe "noautocmd keepjumps normal! `[\<c-v>`]y"
+	"	elseif a:type == 'line'
+	"		silent exe "normal! '[V']y"
+	"	else
+            "silent exe "normal! `[v`]y"
+        "endif
+        "call system("yank.sh", @")
+	"  finally
+	"    call setpos("'<", visual_marks_save[0])
+	"    call setpos("'>", visual_marks_save[1])
+	"    let &selection = sel_save
+	"  endtry
+	"endfunction
 
 
 nnoremap   <leader>dm :!daily_update_email.sh '%' <cr>
-let @b = 'i|:.,+1s/\n/|/gAh| |j0'
+let @b = 'i|:.,+1s/\n/|/g<cr>Ah| |j0'
 let h = '|Cat.|Detail|Time spent|Status|'
-nnoremap   <leader>dc I\|Cat.\|Detail\|Time spent\|Status\|<cr><Esc>10@b
+nnoremap   <leader>dc I\|Cat.\|Detail\|Time spent\|Status\|<cr><Esc>20@b
 nnoremap <leader>da  :read !diary2report.sh %<cr>
 "-----------------------------------------------------------------------------
 " mark down review using bin/mdv
@@ -407,8 +411,39 @@ autocmd FileType vimwiki inoremap <silent> <buffer> <expr> <s-tab> pumvisible() 
 "the fswitch setting [no longer using]
 "au BufEnter *.cc,*.cpp let b:fswitchlocs = 'reg:/src/include/,ifrel:|/src/|../include|,./' | let b:fswitchdst = 'h, hpp'
 "au BufEnter *.h let b:fswitchdst = 'cc,cpp' | let b:fswitchlocs = 'reg:/include/src/,ifrel:|/include/|../src|,./'
+
 "python highlight settings
 let g:python_highlight_all = 1
+"LSP Keybindings
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    " setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    " let g:lsp_format_sync_timeout = 1000
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+highlight lspReference ctermfg=7 ctermbg=4
+let g:lsp_diagnostics_echo_cursor=1
 "-----------------------------------------------------------------------------
 " Personal Keybindings
 "-----------------------------------------------------------------------------
