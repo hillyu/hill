@@ -87,8 +87,13 @@ set cursorline
 set ignorecase
 set smartcase
 set incsearch
-let &t_SI="\<Esc>[5 q"
-let &t_EI="\<Esc>[2 q"
+" let &t_SI="\<Esc>[5 q"
+" let &t_EI="\<Esc>[2 q"
+"Mode Settings
+"
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[3 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
 augroup numbertoggle
   autocmd!
@@ -100,8 +105,8 @@ augroup END
 " disable file explore banner
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-let g:netrw_winsize = 75
+" let g:netrw_altv = 1
+let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
 let g:netrw_preview = 1
 nnoremap <leader>f :Vex <cr>
@@ -125,8 +130,7 @@ inoremap <silent> <C-U> <C-\><C-O>d0
 " set directory for swp files //fixed a bug of E303 Error
 set directory=$TEMP,.
 
-"from dereks vimrc
-"Why is this not a default
+"do not destroy the buffer when not active
 set hidden
 
 " add spell suggestion to completion list
@@ -228,6 +232,7 @@ set grepprg=grep\ -nH\ $*
  "call system(executeCmd)
  "echom "clipboard sync complete"
 "endfunction
+
 "nnoremap <silent> <leader>y :call OscyankRegister()<cr>
 "nnoremap  <leader>y :call OscyankRegister()<cr>
 "nnoremap  <leader>y :call OscyankRegister()<cr>
@@ -318,7 +323,9 @@ iab Seperate  Separate
 iab fone      phone
 iab Fone      Phone
 
+"-----------------------------------------------------------------------------
 "plugin specific settigns
+"-----------------------------------------------------------------------------
 
 " tex settings
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
@@ -386,7 +393,6 @@ function ExpandSnippetOrCarriageReturn()
     if g:ulti_expand_or_jump_res > 0
         return snippet
     else
-        "return "\<CR>"
         return "\<C-y>"
     endif
 endfunction
@@ -424,10 +430,10 @@ autocmd FileType vimwiki inoremap <silent> <buffer> <expr> <s-tab> pumvisible() 
 "au BufEnter *.h let b:fswitchdst = 'cc,cpp' | let b:fswitchlocs = 'reg:/include/src/,ifrel:|/include/|../src|,./'
 
 "python highlight settings
-let g:python_highlight_all = 1
+" let g:python_highlight_all = 1
 "LSP Keybindings
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
+    " setlocal omnifunc=lsp#complete
     " setlocal lsp_preview_float=0
     " setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
@@ -455,12 +461,11 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 highlight lspReference ctermfg=7 ctermbg=4
-highlight MyPopupColor ctermfg=7 ctermbg=4
 let g:lsp_diagnostics_echo_cursor=1
 " let g:lsp_diagnostics_float_cursor=1
 let g:lsp_hover_ui = 'float'
-let g:lsp_hover_conceal = 0
-
+" let g:lsp_hover_conceal = 0
+" there is a bug with getreviewwinid so following will not work
 " augroup lsp_float_colours
 " 	autocmd!
 " 	if !has('nvim')
@@ -479,6 +484,7 @@ let g:lsp_hover_conceal = 0
 call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
         \ 'name': 'ultisnips',
         \ 'allowlist': ['*'],
+        \ 'priority': 100,
         \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
         \ }))
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
@@ -496,6 +502,22 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'priority': 10,
     \ 'completor': function('asyncomplete#sources#file#completor')
     \ }))
+let g:asyncomplete_min_chars = 2
+function! s:sort_by_priority_preprocessor(options, matches) abort
+	let l:items = []
+	for [l:source_name, l:matches] in items(a:matches)
+		for l:item in l:matches['items']
+			if stridx(l:item['word'], a:options['base']) == 0
+				let l:item['priority'] =
+							\ get(asyncomplete#get_source_info(l:source_name),'priority',0)
+				call add(l:items, l:item)
+			endif
+		endfor
+	endfor
+	let l:items = sort(l:items, {a, b -> b['priority'] - a['priority']})
+	call asyncomplete#preprocess_complete(a:options, l:items)
+  endfunction
+let g:asyncomplete_preprocessor = [function('s:sort_by_priority_preprocessor')]
 "-----------------------------------------------------------------------------
 " Personal Keybindings
 "-----------------------------------------------------------------------------
@@ -522,10 +544,9 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "override my highlight settings for pum 
 highlight Pmenusel ctermfg=4 ctermbg=7
+" floating popup uses same Highlight, so switch off cterm=revers using clear
 highlight clear Pmenu 
 highlight Pmenu ctermfg=13 ctermbg=0
-
-
 
 autocmd BufWritePost ~/src/dwmblocks/config.h !cd ~/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
 autocmd BufWritePost ~/src/dwmblocks_official/blocks.h !cd ~/src/dwmblocks_official/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
