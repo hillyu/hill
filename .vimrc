@@ -7,9 +7,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'maralla/completor.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 Plug 'altercation/vim-colors-solarized'
 " Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
@@ -19,16 +18,23 @@ Plug 'tpope/vim-commentary'
 Plug 'chrisbra/matchit'
 Plug 'lervag/vimtex'
 Plug 'itchyny/lightline.vim'
-" Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
 Plug 'vim-scripts/vis'
+" Plug 'vim-scripts/STL-Syntax' ,{'for': 'cpp'}
+" Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
 " Plug 'vim-python/python-syntax'
-Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'}
+" Plug 'vim-scripts/indentpython.vim' ,{'for': 'python'} " not used
 " Plug 'tmhedberg/SimpylFold' ,{'for': 'python'}
 Plug 'jpalardy/vim-slime', {'for': 'python'}
-" Plug 'wavded/vim-stylus' ,{'for': 'stylus'}
 Plug 'vimwiki/vimwiki'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'maralla/completor.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
 call plug#end()
 
 "============================================
@@ -37,6 +43,8 @@ call plug#end()
 let mapleader = " "
 set hlsearch
 set incsearch
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect,popup
 if has("vms")
     set nobackup
 else
@@ -79,6 +87,8 @@ set cursorline
 set ignorecase
 set smartcase
 set incsearch
+let &t_SI="\<Esc>[5 q"
+let &t_EI="\<Esc>[2 q"
 
 augroup numbertoggle
   autocmd!
@@ -264,16 +274,17 @@ autocmd! TextYankPost * call system("yank.sh", v:event.regcontents)
 
 
 nnoremap   <leader>dm :!daily_update_email.sh '%' <cr>
-let @b = 'i|:.,+1s/\n/|/g<cr>Ah| |j0'
+let @b = 'i|:.,+1s/\n/|/gAh| |j0'
 let h = '|Cat.|Detail|Time spent|Status|'
 nnoremap   <leader>dc I\|Cat.\|Detail\|Time spent\|Status\|<cr><Esc>20@b
 nnoremap <leader>da  :read !diary2report.sh %<cr>
+:nnoremap <leader>s a<C-X><C-S>
 "-----------------------------------------------------------------------------
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------
 "nnoremap  <silent> <leader>mdv :! mdv % <cr>
-" nnoremap   <leader>mdv :!md2html '%' &<cr><cr>
-nnoremap   <leader>mdv :!typora '%' & <cr><cr>
+nnoremap   <leader>mdv :!md2html '%' &<cr><cr>
+" nnoremap   <leader>mdv :!typora '%' & <cr><cr>
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
 "-----------------------------------------------------------------------------
@@ -417,6 +428,7 @@ let g:python_highlight_all = 1
 "LSP Keybindings
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
+    " setlocal lsp_preview_float=0
     " setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
@@ -443,7 +455,47 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 highlight lspReference ctermfg=7 ctermbg=4
+highlight MyPopupColor ctermfg=7 ctermbg=4
 let g:lsp_diagnostics_echo_cursor=1
+" let g:lsp_diagnostics_float_cursor=1
+let g:lsp_hover_ui = 'float'
+let g:lsp_hover_conceal = 0
+
+" augroup lsp_float_colours
+" 	autocmd!
+" 	if !has('nvim')
+" 		autocmd User lsp_float_opened
+" 					\ call setwinvar(lsp#ui#vim#output#getpreviewwinid(),
+" 					\		       '&wincolor', 'PopupWindow')
+" 	else
+" 		autocmd User lsp_float_opened
+" 					\ call nvim_win_set_option(
+" 					\   lsp#ui#vim#output#getpreviewwinid(),
+" 					\   'winhighlight', 'Normal:PopupWindow')
+" 	endif
+" augroup end
+
+"asyncomplete and supported completors
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'allowlist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'blocklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+        \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'allowlist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
 "-----------------------------------------------------------------------------
 " Personal Keybindings
 "-----------------------------------------------------------------------------
@@ -470,7 +522,8 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "override my highlight settings for pum 
 highlight Pmenusel ctermfg=4 ctermbg=7
-highlight Pmenu ctermfg=0 ctermbg=12
+highlight clear Pmenu 
+highlight Pmenu ctermfg=13 ctermbg=0
 
 
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# echo $1
+# mpv `curl -s $1 |grep -oP "http[s]?://.*?\.mp4"|head -n1`
+# url=`curl -s $1 |grep -oE '<div data-vid="[^"]+'|grep -oE "http[s]?://[^$]+"`
+url=`curl -s $1|grep -oP "http[s]?:.*?m3u8"|head -n1|tr -d '\\\'`
+echo $url
+mpv --no-terminal "$url"
+# curl -s $1 |grep -oE '<div data-vid="[^"]+'|grep -oE "http[s]?://.*"

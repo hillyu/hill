@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+sounddir=/usr/share/sounds/freedesktop/stereo
+
+timer=$1
+[ -n "$timer" ] \
+    && pw-play $sounddir/window-attention.oga \
+    && notify-send -i clock "Set a timer for:" "<i><b>$timer</b></i> Sec" \
+    && sleep $timer && notify-send -i clock "Time's up la!" \
+    && pw-play $sounddir/alarm-clock-elapsed && exit 0
+timer=1500
+resttime=300
+while [[ True ]]; do
+pw-play $sounddir/window-attention.oga
+notify-send -i pomondoro "Pomondoro:" "Focus!"
+sleep $timer 
+pw-play $sounddir/complete.oga
+
+sel=$(notify-send -i pomondoro "Pomondoro:" "Rest!"
+rofi -dmenu -i -p Select <<<"Rest
+Cancel")
+case $sel in
+    Rest )
+        pw-play $sounddir/window-attention.oga
+        sleep $resttime
+        pw-play $sounddir/complete.oga
+
+        notify-send -i pomondoro "Pomondoro:" "Rest time's up!"
+        stat=$(rofi -dmenu -i -p Resume Focus <<<"OK
+Cancel")
+        [ "$stat" = "Cancel" ] && exit 0
+        ;;
+    Cancel )
+        exit 0
+        ;;
+esac
+done

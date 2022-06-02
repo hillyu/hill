@@ -1,3 +1,5 @@
+**/*.bak
+**/*.log
 .config/clash/
 .config/GIMP/
 .config/google-chrome
@@ -74,3 +76,7 @@ nftable/raw
 .config/brave
 .config/google-chrome-beta*
 .config/Typora
+.config/teams
+.config/Kingsoft
+.config/microsoft-edge
+.config/microsoft-edge*

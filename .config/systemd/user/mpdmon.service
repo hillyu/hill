@@ -1,0 +1,12 @@
+[Unit]
+Description=MPD Monitor
+After=mpd.service
+
+[Service]
+ExecStart=/home/hill/bin/mpdmon
+Restart=always
+RestartSec=500ms
+
+
+[Install]
+WantedBy=default.target
