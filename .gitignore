@@ -81,3 +81,5 @@ nftable/raw
 .config/microsoft-edge
 .config/microsoft-edge*
 .config/fcitx5/conf/cached_layouts
+.config/Unknown Organization/
+.config/vivaldi
