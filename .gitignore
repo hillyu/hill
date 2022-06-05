@@ -80,3 +80,4 @@ nftable/raw
 .config/Kingsoft
 .config/microsoft-edge
 .config/microsoft-edge*
+.config/fcitx5/conf/cached_layouts

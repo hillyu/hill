@@ -236,7 +236,7 @@ riverctl default-layout rivertile
 
 #focus and cursor settings
 
-# riverctl focus-follows-cursor normal
+riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-output-change
 
 #input settings
