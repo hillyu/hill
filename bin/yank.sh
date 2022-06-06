@@ -60,8 +60,9 @@ esc="\033]52;c;$( printf %s "$buf" | head -c $maxlen | base64 | tr -d '\r\n' )\a
 erase='\033]52;c;!\a'
 #TODO: fix this for remote tmux session
 if [[ -n "${TMUX+x}" ]]; then
-    esc="\033Ptmux;\033$esc\033\\"
-    erase="\033Ptmux;\033$erase\033\\"
+    # as of tmux 3.3 following safe measure is no longer working, tmux should be able to handle osc52 directly.
+    # esc="\033Ptmux;\033$esc\033\\"
+    # erase="\033Ptmux;\033$erase\033\\"
     MTTY=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
 else
 MTTY="/dev/$(ps hotty $$)"

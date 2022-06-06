@@ -83,3 +83,19 @@ nftable/raw
 .config/fcitx5/conf/cached_layouts
 .config/Unknown Organization/
 .config/vivaldi
+.config/teams/
+.config/w3m/cookie
+.config/w3m/history
+.config/d-feet/
+.config/fontforge/
+.config/gtk-4.0/
+.config/keyd/
+.config/khal/
+.config/kingsoft.conf
+.config/lxqt/
+.config/qtile/
+.config/qutebrowser/qsettings/
+.config/udiskie/
+.config/vivarium/
+.config/vlc/
+unbound.conf.d/
