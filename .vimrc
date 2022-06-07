@@ -14,6 +14,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish' "provides subvert coerce to handle search and cases
 Plug 'tpope/vim-commentary'
 Plug 'chrisbra/matchit'
 Plug 'lervag/vimtex'
