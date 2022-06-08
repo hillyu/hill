@@ -4,7 +4,7 @@ INTERFACE="${BLOCK_INSTANCE:-wlp1s0}"
 NET_TB=`wpa_cli -i ${INTERFACE} list_network| tail -n +2|sed -e 's/^\([[:digit:]]*\)\t\([^\t]*\)\t.*$/\1-\2/g'`
 #echo $NET_TB
 #SEL=`echo "$NET_TB" |bemenu -n -i --fn fixed-12 -l 200 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
-[ ! -z $WAYLAND_DISPLAY ] && EL=`echo "$NET_TB" |wofi -S dmenu -i -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'` || SEL=`echo "$NET_TB" |dmenu -i -fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
+[ ! -z $WAYLAND_DISPLAY ] && SEL=`echo "$NET_TB" |wofi -S dmenu -i -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'` || SEL=`echo "$NET_TB" |dmenu -i -fn fixed-12 -p "SELECT WIFI:"|sed -e 's/^\([[:digit:]]*\)-.*$/\1/g'`
 
 
 [[ -n "$SEL" ]] && notify-send -i network-wireless-signal-excellent-symbolic "select network" $SEL && wpa_cli -i ${INTERFACE} select_network $SEL
