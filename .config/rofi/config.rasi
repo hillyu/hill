@@ -1,7 +1,8 @@
 configuration {
-    modi: "dictionary:~/bin/dict.sh,ssh,find:~/bin/finder.sh,combi";
+    modi: "dictionary:~/bin/dict.sh,ssh,find:~/bin/finder.sh,combi,filebrowser";
 /*	width: 50;*/
 /*	lines: 15;*/
+    lines: 5;
 /*	columns: 1;*/
     font: "Ubuntu 12";
 /*	bw: 1;*/
@@ -31,6 +32,7 @@ configuration {
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
+	sidebar-mode: true;
 /*	eh: 1;*/
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
@@ -90,8 +92,8 @@ configuration {
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-    kb-mode-next: "Shift+Right,Control+h";
-    kb-mode-previous: "Shift+Left,Control+l";
+    kb-mode-next: "Shift+Right,Control+l";
+    kb-mode-previous: "Shift+Left,Control+h";
     kb-mode-complete: "Control+n";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
@@ -145,5 +147,6 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-@import "/usr/share/rofi/themes/Adapta-Nokto.rasi"
-@theme  "Arc-Dark"
+/* @import "/usr/share/rofi/themes/Adapta-Nokto.rasi" */
+/* @theme  "Arc-Dark" */
+@theme "catp"

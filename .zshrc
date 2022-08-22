@@ -8,7 +8,8 @@ setopt auto_cd
 setopt interactivecomments
 ENABLE_CORRECTION="true"
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7,bg=68"
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=58"
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=58"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=11"
 # ZSH_HIGHLIGHT_STYLES[comment]="fg=black"
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
@@ -46,4 +47,3 @@ fi
 if [[ `uname` == "Darwin" ]]; then
     source $HOME/zshrc.mac
 fi
-

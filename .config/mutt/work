@@ -1,0 +1,25 @@
+set my_username=hillyu
+set my_password="$(pass hillyu@wisers.com)"
+# local mail server setting end
+set folder = "~/.mail/wisers"
+set my_lang=en_US
+set my_domain=wisers.com
+set my_drafts="Drafts"
+set my_drafts_noquote=Drafts
+set my_postponed=Outbox
+set my_sent_noquote="Sent Items"
+set my_sent="Sent<quote-char><space>Items"
+set my_trash_noquote=Deleted
+set my_trash="Deleted<quote-char><space>Items"
+set my_spam_noquote="Junk Email"
+set my_spam="Junk<quote-char><space>Email"
+set my_archive=Archive
+set my_realname="Hill Xiaochuan YU"
+
+### sendmail for local mail
+set sendmail = "msmtp -a wisers"
+## Hook -- IMPORTANT!
+#account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
+# Mailboxes to show in the sidebar.
+mailboxes =Inbox
+mailboxes =Archive ="Sent Items" =Drafts ="Junk Email" ="Deleted Items"

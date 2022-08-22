@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: "Fixedsys Excelsior MonoL";
-    font-size: 8pt;
+    font-size: 9pt;
     font-weight: 900;
     min-height: 13pt;
 }
@@ -30,22 +30,20 @@ tooltip label {
     font-weight: 500;
     font-size: 12pt;
 }
-/* #window { */
-/*     padding: 0 1em; */
-/* } */
+#window {
+    padding: 0 1em;
+}
 
 window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
 window#waybar.empty {
     background-color: transparent;
 }
 window#waybar.solo {
     background-color: #FFFFFF;
 }
-*/
 
 window#waybar.kitty {
     background-color: #3F3F3F;

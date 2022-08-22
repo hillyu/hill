@@ -1,20 +1,20 @@
 [Default Applications]
 x-scheme-handler/msteams=teams.desktop
-x-scheme-handler/http=brave-browser.desktop
-x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/http=microsoft-edge.desktop
+x-scheme-handler/https=microsoft-edge.desktop
 x-scheme-handler/ftp=chromium.desktop
 x-scheme-handler/chrome=chromium.desktop
-text/html=brave-browser.desktop
+text/html=microsoft-edge.desktop
 application/x-extension-htm=chromium.desktop
 application/x-extension-html=chromium.desktop
 application/x-extension-shtml=chromium.desktop
 application/xhtml+xml=userapp-chromium.desktop
 application/x-extension-xhtml=chromium.desktop
 application/x-extension-xht=chromium.desktop
-x-scheme-handler/mailto=brave-browser.desktop
+x-scheme-handler/mailto=microsoft-edge.desktop
 inode/directory=nnn.desktop
 application/pdf=org.pwmt.zathura.desktop
-x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/about=microsoft-edge.desktop
 x-scheme-handler/postman=Postman.desktop
 image/png=imv.desktop
 image/bmp=imv.desktop
@@ -35,12 +35,12 @@ image/x-tga=imv.desktop
 image/x-xbitmap=imv.desktop
 x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
 x-scheme-handler/etcher=balena-etcher-electron.desktop
-x-scheme-handler/unknown=brave-browser.desktop
+x-scheme-handler/unknown=microsoft-edge.desktop
 x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 
 [Added Associations]
-application/x-shellscript=gvim.desktop;
-application/vnd.groove-tool-template=gvim.desktop;
+application/x-shellscript=vim.desktop;
+application/vnd.groove-tool-template=vim.desktop;
 text/markdown=typora.desktop;
 video/mp4=mpv.desktop;
 text/plain=vim.desktop;

@@ -14,6 +14,8 @@
 # export XDG_CURRENT_DESKTOP=river
 export XDG_CURRENT_DESKTOP=sway
 import-gsettings
+#clear buttons to hide gtk titlebar, needs to leave menu to prevent crash in microsoft edge
+gsettings set org.gnome.desktop.wm.preferences button-layout "menu:"
 wl-paste -t text --watch clipman store &
 fcitx5 -d --replace
 udiskie &
@@ -208,6 +210,7 @@ riverctl set-repeat 50 300
 
 # Make certain views start floating
 riverctl float-filter-add app-id floating
+riverctl float-filter-add app-id "msedge-www.merriam-webster.com"
 riverctl float-filter-add app-id floatingv
 riverctl float-filter-add app-id "pinentry-qt"
 riverctl float-filter-add app-id ncmpcpp
@@ -221,6 +224,7 @@ riverctl float-filter-add app-id "neomutt"
 riverctl float-filter-add app-id "kvantummanager"
 riverctl float-filter-add app-id "dolphin-emu"
 riverctl float-filter-add title "Fcitx Configuration"
+riverctl float-filter-add title "Firefox Developer Edition — Sharing Indicator"
 riverctl float-filter-add title "Save file"
 riverctl float-filter-add title "nnn"
 riverctl float-filter-add app-id Lxappearance
@@ -236,7 +240,7 @@ riverctl default-layout rivertile
 
 #focus and cursor settings
 
-riverctl focus-follows-cursor normal
+# riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-output-change
 
 #input settings

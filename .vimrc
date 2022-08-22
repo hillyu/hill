@@ -10,6 +10,7 @@ call plug#begin()
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'altercation/vim-colors-solarized'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 " Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -76,15 +77,22 @@ if has("gui_running")
     set lines=51
     set columns=90
 endif
-set background=dark
 colorscheme solarized
+" colorscheme catppuccin_latte
+" colorscheme catppuccin_macchiato
+set background=dark
+hi Normal ctermbg=None
+" hi clear SpellBad
 hi SpellBad cterm=underline
+hi SignColumn ctermbg=0
+hi Visual ctermbg=14 ctermfg=8
 set wrap
 set textwidth=0
 set ambiwidth=double
 set wrapmargin=0
 set number
 set cursorline
+set cursorcolumn
 set ignorecase
 set smartcase
 set incsearch
@@ -289,7 +297,7 @@ nnoremap <leader>da  :read !diary2report.sh %<cr>
 " mark down review using bin/mdv
 "-----------------------------------------------------------------------------
 "nnoremap  <silent> <leader>mdv :! mdv % <cr>
-nnoremap   <leader>mdv :!md2html '%' &<cr><cr>
+nnoremap   <leader>mdv :!md2html '%' & <cr><cr>
 " nnoremap   <leader>mdv :!typora '%' & <cr><cr>
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
@@ -353,12 +361,24 @@ let g:Tex_ViewRule_pdf = 'Skim'
 
 " Vimwiki setting
 "let g:vimwiki_table_mappings=0
-nmap ]w <Plug>VimwikiNextLink
-nmap [w <Plug>VimwikiPrevLink
+" nmap ]w <Plug>VimwikiNextLink
+" nmap [w <Plug>VimwikiPrevLink
 nmap <leader>w<space> <Plug>VimwikiToggleListItem
+nmap l <Plug>VimwikiTableMoveColumnRight
+nmap h <Plug>VimwikiTableMoveColumnLeft
 vmap <leader>w<space> <Plug>VimwikiToggleListItem
+let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+            \'auto_export':1,
+            \'automatic_nested_syntaxes':1,
+            \'path_html': '$HOME/_site',
+            \'template_path': '$HOME/.local/share/pandoc/templates',
+            \'template_default':'github',
+            \'template_ext':'.html',
+            \'custom_wiki2html': '$HOME/bin/wiki2html.sh',
+            \'autotags': 1,
+            \'auto_header' : 1,
+            \ 'syntax': 'markdown', 'ext': '.md'}]
 "ALE settings
 let b:ale_linters = ['flake8']
 let b:ale_fixers = [
@@ -461,7 +481,7 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-highlight lspReference ctermfg=7 ctermbg=4
+hi lspReference ctermfg=7 ctermbg=4
 let g:lsp_diagnostics_echo_cursor=1
 " let g:lsp_diagnostics_float_cursor=1
 let g:lsp_hover_ui = 'float'
@@ -540,15 +560,15 @@ nmap <silent><leader>sv :so $MYVIMRC<cr>
 "map <leader>tt :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "
 "mark white space as bad in python:
-highlight BadWhitespace ctermbg=red guibg=darkred
+hi BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "override my highlight settings for pum 
-highlight Pmenusel ctermfg=4 ctermbg=7
+hi Pmenusel ctermfg=4 ctermbg=7
 " floating popup uses same Highlight, so switch off cterm=revers using clear
-highlight clear Pmenu 
-highlight Pmenu ctermfg=13 ctermbg=0
-
+hi clear Pmenu 
+" hi Pmenu ctermfg=4 ctermbg=8
+hi Pmenu ctermfg=15 ctermbg=8
 autocmd BufWritePost ~/src/dwmblocks/config.h !cd ~/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
 autocmd BufWritePost ~/src/dwmblocks_official/blocks.h !cd ~/src/dwmblocks_official/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
 autocmd BufWritePost ~/src/st-my-build/config.h !cd ~/src/st-my-build/; sudo make clean install
