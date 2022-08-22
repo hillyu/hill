@@ -1,0 +1,28 @@
+set my_username=hillyu
+set my_password="$(pass hillyu@live.com)"
+# local mail server setting end
+set folder = "~/.mail/live"
+set my_lang=en_US
+set my_drafts="Drafts"
+set my_drafts_noquote="Drafts"
+set my_sent="Sent"
+set my_sent_noquote="Sent"
+set my_trash="Deleted<quote-char><space>Items"
+set my_trash_noquote="Deleted Items"
+set my_domain=live.com
+set my_postponed=Outbox
+set my_spam_noquote=Junk
+set my_spam="Junk"
+set my_archive=Archive
+set my_realname="Hill YU"
+
+### sendmail for local mail
+set sendmail = "msmtp -a live"
+## Hook -- IMPORTANT!
+#account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
+
+# Mailboxes to show in the sidebar.
+mailboxes =Inbox
+mailboxes =Sent =Drafts =Junk ="Deleted Items"
+## Key bindings
+
