@@ -20,4 +20,6 @@ DEFAULT_USER=`whoami`
 #source $(brew --prefix nvm)/nvm.sh
 #let iterm send C-s
 stty -ixon
+export CLICOLOR=1
 export LSCOLORS=ExfxcxdxbxegedAbAgacad
+command -v lsd >/dev/null 2>&1 && alias ls=lsd

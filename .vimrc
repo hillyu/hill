@@ -10,7 +10,7 @@ call plug#begin()
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'altercation/vim-colors-solarized'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+" Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 " Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
