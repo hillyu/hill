@@ -19,12 +19,9 @@
 .config/dconf/
 .config/enchant/
 .config/fcitx/
-.config/gtk-2.0/
-.config/gtk-3.0/
 .config/htop/
 .config/ibus/
 .config/inkscape/
-.config/kitty/
 .config/libreoffice/
 .config/mpv/pre-scalers/
 .config/mutt/20200304_22h45m42s_grim.png
@@ -88,7 +85,6 @@ nftable/raw
 .config/w3m/history
 .config/d-feet/
 .config/fontforge/
-.config/gtk-4.0/
 .config/keyd/
 .config/khal/
 .config/kingsoft.conf
