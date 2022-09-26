@@ -1,2 +1,152 @@
+/* @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); */
+/* Copy the default settings for --tab-min-height as --hidetabs-tab-min-height */
+/* :root { */
+/*     --hidetabs-tab-min-height: 33px; */
+/* } */
+
+/* :root[uidensity=compact] { */
+/*     --hidetabs-tab-min-height: 29px; */
+/* } */
+
+/* :root[uidensity=touch] { */
+/*     --hidetabs-tab-min-height: 41px; */
+/* } */
+
+/* Set --tab-min-height to 0px so tab bar can disappear */
+#TabsToolbar {
+      visibility: collapse;
+  }
+#tabbrowser-tabs {
+    --tab-min-height: 0px;
+}
+
+#tabbrowser-tabs {
+    visibility: collapse;
+}
+#nav-bar {
+  /* customize this value. */
+  --navbar-margin: -40px;
+
+  margin-top: var(--navbar-margin);
+  margin-bottom: 0;
+  z-index: -100;
+  transition: all 0.3s ease !important;
+  opacity: 0;
+  background-color: #4b5162 !important;
+}
+
+#navigator-toolbox:focus-within > #nav-bar,
+#navigator-toolbox:hover > #nav-bar
+{
+  margin-top: 0;
+  margin-bottom: var(--navbar-margin);
+  z-index: 100;
+  opacity: 1;
+}
+/* Restore minimum height when more than one tab */
+/* #tabbrowser-tabs tab { */
+    /* min-height: var(--hidetabs-tab-min-height); */
+/* } */
+
+/* Collapse tab bar when there is only one tab (tab is both first & last) */
+/* #tabbrowser-tabs tab[first-visible-tab="true"][last-visible-tab="true"] { */
+    /* visibility: collapse; */
+/* } */
+
+/* Hide the New Tab button when there is only one tab (first visible tab is
+   adjacent to new tab button) */
+/* #tabbrowser-tabs tab[first-visible-tab="true"] + #tabs-newtab-button { */
+    /* visibility: collapse; */
+
+/* } */
+/* tab center */
+
+#sidebar-box[sidebarcommand*="tabcenter"] {
+    z-index: 1;
+}
 
 
+#sidebar-box[sidebarcommand*="tabcenter"] #sidebar-header {
+    visibility: collapse;
+    display: none;
+}
+
+[sidebarcommand*="tabcenter"] #sidebar {
+    min-width: 48px !important;
+    max-width: 48px !important;
+}
+
+
+#sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) {
+    display: block;
+    position: absolute;
+    min-width: 48px;
+    max-width: 48px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    border-right: 1px solid var(--sidebar-border-color);
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+}
+
+[sidebarcommand*="tabcenter"] #sidebar:hover,
+#sidebar-box[sidebarcommand*="tabcenter"]:hover {
+    min-width: 10vw !important;
+    width: 30vw !important;
+    max-width: 200px !important;
+    z-index: 10 !important;
+}
+
+@media (width >= 1200px) {
+    [sidebarcommand*="tabcenter"] #sidebar:hover,
+    #sidebar-box[sidebarcommand*="tabcenter"]:hover {
+        max-width: 250px !important;
+    }
+}
+
+[sidebarcommand*="tabcenter"] ~ #sidebar-splitter {
+    display: none;
+}
+
+[sidebarcommand*="tabcenter"] #sidebar {
+    max-height: 100%;
+    height: 100%;
+}
+
+#sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) ~ #appcontent {
+    margin-left: 48px;
+}
+
+#main-window[inFullscreen][inDOMFullscreen] #appcontent {
+    margin-left: 0;
+}
+
+#main-window[inFullscreen] #sidebar {
+    height: 100vh;
+}
+
+[sidebarcommand*="tabcenter"] #sidebar-header {
+    background: #0C0C0D;
+    border-bottom: none !important;
+}
+
+[sidebarcommand*="tabcenter"] ~ #sidebar-splitter {
+    border-right-color: #0C0C0D !important;
+    border-left-color: #0C0C0D !important;
+}
+
+[sidebarcommand*="tabcenter"] #sidebar-switcher-target,
+[sidebarcommand*="tabcenter"] #sidebar-close {
+    filter: invert(100%);
+}
+
+@media (max-width: 630px) {
+    #urlbar-container {
+        min-width: 100% !important;
+    }
+
+    #menubar-items {
+        display: none !important;
+    }
+}
