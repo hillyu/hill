@@ -1,5 +1,6 @@
 **/*.bak
 **/*.log
+.irssi/
 .config/clash/
 .config/GIMP/
 .config/google-chrome
