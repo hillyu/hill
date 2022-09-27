@@ -19,7 +19,7 @@ for i in "$dotpath"/terminfo/*; do tic -x "$i";done
     # $HOME/.zsh/plugins/fast-syntax-highlighting
 
 # softlink dotfiles
-item_to_link=('.config' '.vimrc' '.zshrc' 'zshrc.mac' 'zshrc.linux' '.zshenv' 'kitty.conf.mac' '.tmux.conf' '.zsh')
+item_to_link=('.config' '.vimrc' '.zshrc' 'zshrc.mac' 'zshrc.linux' '.zshenv' 'kitty.conf.mac' '.tmux.conf' '.zsh' 'firefox_userChrome')
 for i in ${item_to_link[@]}; do
     [ -L $i ] && rm -v $i
     [ -e $i ] && mv $i $i.old

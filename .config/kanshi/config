@@ -1,6 +1,22 @@
-profile multiheadRXM {
-    output eDP-1 enable scale 2 position 0,540
-    output DP-1 enable position 1280,0
+#profile multiheadRXM {
+#    output eDP-1 enable scale 2 position 0,540
+#    output DP-1 enable position 1280,0
+#}
+profile office {
+    output "Dell Inc. DELL S2722DC 45HQGD3"  enable position 3840,0 
+    output "Dell Inc. DELL S2722DC 5HHQGD3"  enable position 1280,0
+    output eDP-1 disable scale 2 position 0,1200
+}
+
+#profile hkHomeDocked {
+#    output "Samsung Electric Company SyncMaster 0x00007734" enable position 1280,800
+#    output "Dell Inc. DELL 2209WA H737H97B12LL" enable position 3200,700 transform 90
+#    output eDP-1 disable
+#}
+profile hkHome {
+    output eDP-1 enable scale 2 position 0,0
+    output "Samsung Electric Company SyncMaster 0x00007734" enable position 1280,800
+    output "Dell Inc. DELL 2209WA H737H97B12LL" enable position 3200,700 transform 90
 }
 profile laptop {
     output eDP-1 enable scale 2 position 0,0

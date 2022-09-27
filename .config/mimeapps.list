@@ -44,3 +44,4 @@ application/vnd.groove-tool-template=vim.desktop;
 text/markdown=typora.desktop;
 video/mp4=mpv.desktop;
 text/plain=vim.desktop;
+text/csv=libreoffice-calc.desktop;
