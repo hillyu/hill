@@ -95,3 +95,4 @@ nftable/raw
 .config/vivarium/
 .config/vlc/
 unbound.conf.d/
+.config/gtk-3.0/bookmarks
