@@ -11,7 +11,8 @@
 #fi
 ##echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"$class\", \"percentage\": $percentage }" | jq --unbuffered --compact-output
 sensor=`sensors -j 2>/dev/null`
-cpu=`echo "$sensor" | jq '.["k10temp-pci-00c3"]|.["Tctl"]|.["temp1_input"]'`
+# cpu=`echo "$sensor" | jq '.["k10temp-pci-00c3"]|.["Tctl"]|.["temp1_input"]'`
+cpu=`echo "$sensor" | jq '[.[]|.[]]|.[1]|.["temp1_input"]'`
 # gpu=`echo "$sensor" | jq '.["amdgpu-pci-0300"]|.["edge"]|.["temp1_input"]'`
 tooltip=$( sensors -A )
 cpu=${cpu%.*}
