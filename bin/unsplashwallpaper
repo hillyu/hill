@@ -14,7 +14,6 @@ resized=$HOME/.cache/$(basename $fpath).png
 convert -resize 3020x1720 "$fpath" $resized
 echo "$resized" >> $HOME/.cache/wallpaper.log
 ogurictl output eDP-1  --image $resized --anchor bottom-left --scaling-mode tile
-ogurictl output VGA-1  --image $resized --anchor bottom-left --scaling-mode tile
 ogurictl output DP-1  --image $resized --anchor top-right --scaling-mode tile
 ogurictl output DP-2  --image $resized --anchor top-right --scaling-mode tile
 ogurictl output DP-3  --image $resized --anchor top-right --scaling-mode tile

@@ -21,8 +21,3 @@ profile hkHome {
 profile laptop {
     output eDP-1 enable scale 2 position 0,0
 }
-
-profile hkHome {
-    output "Samsung Electric Company SyncMaster 0x00007734" enable position 0,0
-    output "Dell Inc. DELL 2209WA H737H97B12LL"  enable position 1920,0 transform 90
-}
