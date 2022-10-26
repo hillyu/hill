@@ -195,7 +195,7 @@ do
     riverctl map $mode Control grave spawn "dunstctl history-pop"
     riverctl map $mode None Print spawn "snapshot full"
     riverctl map $mode Shift Print spawn "snapshot select"
-    riverctl map $mode $mod+Shift L spawn "swaylock"
+    riverctl map $mode $mod+Shift L spawn "swaylock & systemctl suspend"
     riverctl map $mode Control+Shift 3 spawn "snapshot full"
     riverctl map $mode Control+Shift 4 spawn "snapshot select"
 done
@@ -246,20 +246,10 @@ riverctl set-cursor-warp on-output-change
 
 #input settings
 
-riverctl input "pointer-2-7-SynPS/2_Synaptics_TouchPad" disable-while-typing enabled
-riverctl input "pointer-1452-781-hill___s_mouse" disable-while-typing enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" disable-while-typing enabled
-riverctl input "pointer-1452-781-hill___s_mouse" tap enabled
-riverctl input "pointer-2-7-SynPS/2_Synaptics_TouchPad" tap enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" tap enabled
-riverctl input "pointer-1452-781-hill___s_mouse" natural-scroll enabled
-riverctl input "pointer-2-7-SynPS/2_Synaptics_TouchPad" natural-scroll enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" natural-scroll enabled
-riverctl input "pointer-2-7-SynPS/2_Synaptics_TouchPad" middle-emulation enabled
-riverctl input "pointer-1452-781-hill___s_mouse" middle-emulation enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" middle-emulation enabled
-riverctl input "pointer-1452-781-hill___s_mouse" pointer-accel 0.05
-riverctl input "pointer-2-7-SynPS/2_Synaptics_TouchPad" pointer-accel 0.05
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" pointer-accel 0.05
 # riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" scroll-factor 0.3
        #accel_profile adaptive
