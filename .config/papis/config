@@ -1,12 +1,12 @@
 [papers]
-dir = ~/Documents/papers
+dir = ~/papers
 
 [settings]
 default-library = papers
 add-folder-name = {doc[author]:.6}{doc[year]}-{doc[title]:.30}
 
-[machine-learning]
-dir = ~/Documents/papers/ml
+#[machine-learning]
+#dir = ~/papers/ml
 
 [rofi-gui]
 key-delete = Alt+x
