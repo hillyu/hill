@@ -95,6 +95,5 @@ nftable/raw
 .config/vivarium/
 .config/vlc/
 unbound.conf.d/
-.config/hypr/
 .config/syncthing/
 firefox_userChrome/user.js

@@ -6,7 +6,8 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 # sway -d 2>~/sway.log
 # sway >~/sway.log 2>~/sway.log
  # libinput list-devices|grep -E "SONiX|LOFREE" && /home/hill/bin/river_start_lofree >/dev/null 2>&1 || /home/hill/bin/river_start > /dev/null 2>&1
-/home/hill/bin/river_start> /dev/null 2>&1
+# /home/hill/bin/river_start> /dev/null 2>&1
+Hyprland
 # dwl -s /home/hill/.startup.sh
 # sway -d >~/sway.log 2>~/sway.log
 #  exit 0

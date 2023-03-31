@@ -7,7 +7,7 @@ then
 
     coproc ( microsoft-edge-stable --window-size="600,700" --app-window-size="600,700" --app="https://www.merriam-webster.com/dictionary/$@" > /dev/null 2>&1 )
 else
-    if [ -z "$DISPLAY" ] 
+    if [ ! -z "$WAYLAND_DISPLAY" ] 
     then 
         word=`wl-paste -p`
     else

@@ -251,7 +251,7 @@ riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" tap enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" natural-scroll enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" middle-emulation enabled
 riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" pointer-accel 0.05
-# riverctl input "1739:52542:MSFT0001:00_06CB:CD3E_Touchpad" scroll-factor 0.3
+riverctl input "pointer-1739-52542-MSFT0001:00_06CB:CD3E_Touchpad" scroll-factor 0.3
        #accel_profile adaptive
 
 exec rivertile -view-padding 6 -outer-padding 6

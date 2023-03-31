@@ -3,7 +3,8 @@
     "exclusive": true,
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode","river/tags","river/window"],
+    // "modules-left": ["river/window"],
+    "modules-left": ["wlr/workspaces" ],
     "modules-center": ["sway/window"],
     "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "custom/bluetooth", "pulseaudio", "backlight", "battery", "tray", "clock"],
     // Modules configuration
@@ -22,6 +23,13 @@
     //         "default": ""
     //     }
     // },
+    "wlr/workspaces": {
+        "format": "{name} {icon}",
+        "format-icons": { "1": "" ,"2": "" ,"3": "" ,"4": "","5": "","6": "","7": "","8": "","9": "" },
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-click": "activate",
+},
     "river/tags": {
         "num-tags": 9,
         "tag-labels": ["1 " ,"2 " ,"3 " ,"4 ","5 ","6 ","7 ","8 ","9 "],
@@ -49,7 +57,7 @@
         /* "album-len": 10, */
         /* "artist-len": 10, */
         "interval": "once",
-        "max-length": 20,
+        // "max-length": 20,
         "consume-icons": {
             "on": " "
         },

@@ -12,6 +12,7 @@ window#waybar {
     /* background: alpha(@theme_base_color, 0.75); */
     /* background: @theme_base_color; */
     background: #3D4C5F;
+    /* background-color: rgba(61,76,95,0.75); */
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -53,30 +54,66 @@ window#waybar.brave {
     background-color: #000000;
     border: none;
 }
-
 #workspaces button {
-    padding: 0 0.6em;
-    background-color: transparent;
+    padding: 0.1em 0.6em;
+    /* background-color: transparent; */
+    /* background-color: #495972; */
+    background-color: #4A5C74;
     color: #ffffff;
     border-bottom: 3px solid transparent;
 
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
+    background-color: #2e9ef4;
+    /* background-color: #64727D; */
     box-shadow: inherit;
-    border-bottom: 3px solid #ffffff;
 }
-
 #workspaces button.focused {
+        background-color: #2e9ef4;
+            border-bottom: 3px solid #2e9ef4;
+        }
+#workspaces button.active {
     background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 3px solid @focused_borders;
 }
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
+
+#workspaces button.occupied {
+    /* background: rgba(0, 0, 0, 0.2); */
+    /* box-shadow: inherit; */
+    /* border-bottom: 3px solid #ffffff; */
+    border-bottom: 3px solid @focused_borders;
+
+}
+
+/* #workspaces button { */
+/*     padding: 0 0.6em; */
+/*     background-color: transparent; */
+/*     color: #ffffff; */
+/*     border-bottom: 3px solid transparent; */
+
+/* } */
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+/* #workspaces button:hover { */
+/*     background: rgba(0, 0, 0, 0.2); */
+/*     box-shadow: inherit; */
+/*     border-bottom: 3px solid #ffffff; */
+/* } */
+
+/* #workspaces button.focused { */
+/*     background-color: #64727D; */
+/*     border-bottom: 3px solid #ffffff; */
+/* } */
+
+/* #workspaces button.urgent { */
+/*     background-color: #eb4d4b; */
+/* } */
 
 #mode {
     background-color: #64727D;

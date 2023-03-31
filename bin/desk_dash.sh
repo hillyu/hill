@@ -9,7 +9,7 @@ nwg-wrapper  -r 0 -c album.css -p left -a end  -mb 10 -ml 50 -sr 8 -o eDP-1 -s a
 nwg-wrapper  -r 0 -c album.css -p left -a end  -mb 10 -ml 50 -sr 8 -o HDMI-A-1 -s album.sh &
 nwg-wrapper  -s timezones.sh -r 60000 -c timezones.css -p right -a end -mb 0 -mr 65 -sr 8 -j right -o eDP-1 &
 nwg-wrapper  -s timezones.sh -r 60000 -c timezones.css -p right -a end -mb 0 -mr 65 -sr 8 -j right -o HDMI-A-1 &
-nwg-wrapper  -c bindings.css -p right -a start -mt 50 -mr 20 -o eDP-1 -t bindings.pango &
+nwg-wrapper  -c bindings.css -p right -a start -mt 50 -mr 20 -o eDP-1 -t bindings.pango -sr 9&
 nwg-wrapper -s music.sh  -c timezones.css -p left -a end -mb 350 -ml 90 -o eDP-1 -sr 8 &
 nwg-wrapper -s music.sh  -c timezones.css -p left -a end -mb 350 -ml 90 -o HDMI-A-1 -sr 8 &
 nwg-wrapper  -l 1 -c timezones.css -p right -a end  -mr 500 -mb 20 -o eDP-1 -sr 8 -s cowsay.sh &
