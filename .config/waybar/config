@@ -4,7 +4,7 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // Choose the order of the modules
     // "modules-left": ["river/window"],
-    "modules-left": ["wlr/workspaces" ],
+    "modules-left": ["hyprland/workspaces" ],
     "modules-center": ["sway/window"],
     "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "custom/bluetooth", "pulseaudio", "backlight", "battery", "tray", "clock"],
     // Modules configuration
