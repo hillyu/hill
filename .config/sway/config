@@ -40,6 +40,7 @@ exec mpdmon >/dev/null 2>&1 &
 # output eDP-1 res 1366x768 pos 1920,180
 #output eDP-1 res 1366x768 pos 0,200
 output eDP-1 scale 2 position 0,540 dpms on
+output HDMI-A-2 res 2560x1440 position 0,540 dpms on
 # output eDP-2 scale 2 position 0,540 dpms on
 output DP-1 pos 1280,0 dpms on
 #output DP-1 resolution 1920x1080 position 1366,0 transform 270
@@ -109,7 +110,7 @@ bindsym Ctrl+Space exec --no-startup-id "$menu"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
-output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.png fill dpms on
+# output "*" background ~/Pictures/wallpaper/Binary-Code-Wallpaper-05-2560x1600.png fill dpms on
 #output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 ### Input configuration

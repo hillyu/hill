@@ -25,3 +25,4 @@ pkill -8 nwg-wrapper
 # && swaymsg -s $SWAYSOCK output "*" bg $fpath fill
 # && feh  --bg-fill --no-xinerama $fpath 
 # curl -s "https://api.unsplash.com/photos/random?client_id=$key&count=1&featured=true&orientation=landscape&content_filter=high&query=wallpaper" 
+feh  --bg-fill --no-xinerama $fpath 

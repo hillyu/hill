@@ -98,3 +98,8 @@ unbound.conf.d/
 .config/syncthing/
 firefox_userChrome/user.js
 .config/mutt/tokenfile
+.config/systemd
+M
+.config/autorandr/office/
+.config/gtk-3.0/bookmarks
+.config/weixin/

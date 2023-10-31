@@ -88,7 +88,7 @@ CAPABILITY=$(amixer -D $MIXER get $SCONTROL | sed -n "s/  Capabilities:.*cvolume
 
 function move_sinks_to_new_default {
     DEFAULT_SINK=$1
-    echo $1
+    # echo $1
     pactl list sink-inputs | grep 'Sink Input #' | grep -o '[0-9]\+' | while read SINK
     do
         pactl move-sink-input $SINK $DEFAULT_SINK

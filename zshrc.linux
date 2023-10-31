@@ -1,13 +1,13 @@
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
  # [[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx -- vt1 &> /dev/null
-#  #exec startx
+ exec startx
 #  #
 #  #sway doesn't need a login manager
 # sway -d 2>~/sway.log
 # sway >~/sway.log 2>~/sway.log
  # libinput list-devices|grep -E "SONiX|LOFREE" && /home/hill/bin/river_start_lofree >/dev/null 2>&1 || /home/hill/bin/river_start > /dev/null 2>&1
 # /home/hill/bin/river_start> /dev/null 2>&1
-Hyprland
+# Hyprland
 # dwl -s /home/hill/.startup.sh
 # sway -d >~/sway.log 2>~/sway.log
 #  exit 0

@@ -1,0 +1,1 @@
+kitty --class floating --listen-on=unix:/tmp/mykitty -e nnn -ed -P P
