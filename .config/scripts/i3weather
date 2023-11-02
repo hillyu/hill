@@ -1,11 +1,12 @@
 #!/bin/bash
+LOC=""
 
 #[[ $BLOCK_BUTTON = "1" ]] && kitty -1 --class prompt --name floating --hold -e curl -s  wttr.in
-[[ $BLOCK_BUTTON = "1" ]] && st -c prompt -n "weather" -g 126x41 bash -c "curl -s  wttr.in/Minxian && sleep 5"
+[[ $BLOCK_BUTTON = "1" ]] && st -c prompt -n "weather" -g 126x41 bash -c "curl -s  wttr.in/$LOC && sleep 5"
 
 ping -q -w 1 -c 1 `ip r | grep default | head -n1| cut -d ' ' -f 3` >/dev/null || exit
 
-weatherreport=$(curl -s wttr.in/Minxian)
+weatherreport=$(curl -s wttr.in/$LOC)
 
 precipitation=$(echo "$weatherreport"|sed -n 16p | sed -e 's/[^m]*m//g' | grep -o "[0-9]*%" | sort -n | sed -e '$!d' |sed -e 's/\n//g')
 precipitation=" $precipitation"
