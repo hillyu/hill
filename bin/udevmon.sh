@@ -11,6 +11,6 @@ export XDG_RUNTIME_DIR=/run/user/1000
 pgrep river || exit 0
 # only do following in wayland or x11 session
 devtype="Usb"
-[ "$SUBSYSTEM" = "bluetooth" ] && pkill -RTMIN+9 waybar && devtype="Bluetooth" && exit 0
+[ "$SUBSYSTEM" = "bluetooth" ] && pkill -RTMIN+9 dwmblocks && pkill -RTMIN+9 waybar && devtype="Bluetooth" && exit 0
 /usr/bin/su hill -c "/usr/bin/notify-send -i usb-device \"$devtype Device:\" \"$ID_MODEL $1\""
 pw-play /usr/share/sounds/freedesktop/stereo/device-$1.oga
