@@ -61,6 +61,7 @@ application/wps-office.wps=wps-office-wps.desktop
 application/wps-office.wpss=wps-office-wps.desktop
 application/wps-office.wpso=wps-office-wps.desktop
 application/wps-office.wpt=wps-office-wps.desktop
+x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
 
 [Added Associations]
 application/x-shellscript=vim.desktop;
