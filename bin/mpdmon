@@ -24,7 +24,7 @@ function cover_art {
     # directly read comment tag which contains URL of the album art from douban
     curl -s \
         -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36' \
-        $result -o $cover_path
+        $result -o $cover_path || rsync "/home/hill/Music/$folder"/{cover,folder}.jpg $cover_path
     [ "$FIRST_RUN" == false ] && notify-send -a "mpd" -i "$cover_path" "$title" "\n<b>Artist</b>: <i>$artist</i>\n<b>Album</b>: <u>$album</u>\n" && pkill -8 nwg-wrapper
 }
 
@@ -39,6 +39,7 @@ while true; do
     album=`mpc -h $MPD_HOST -f "%album%"|head -n1`
     #xpath='//track[title="'"$title"'"]/image/text()'
     result=`mpc -h $MPD_HOST -f "%comment%"|head -n1`
+    folder=`dirname "$(mpc -h $MPD_HOST -f "%file%"|head -n1)"`
     #call cover_art function
     cover_art &
     pkill -RTMIN+8 dwmblocks
