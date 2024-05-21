@@ -103,3 +103,6 @@ firefox_userChrome/user.js
 .config/gtk-3.0/bookmarks
 .config/weixin/
 .config/systemd/user/*.wants
+.config/Nextcloud/
+.config/baidunetdisk/
+.config/code-server/
