@@ -85,6 +85,7 @@ mods = "Command"
 
 [window]
 opacity = 0.95
+option_as_alt="OnlyLeft"
 
 [window.dimensions]
 columns = 200
