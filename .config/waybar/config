@@ -97,7 +97,7 @@
         "today-format": "<b><u>{}</u></b>",
         "timezones": [ "Asia/Hong_Kong", "America/New_York", "Europe/Rome"],
      //   "format": "{:%b %d %H:%M %a}",
-        "format": "{: %a %d %Z  %R   }",
+        "format": " {:%a %d %Z  %R   }",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
       //  "format-alt": "{:%Y-%m-%d}",
 //        "on-click": "powermenu.sh",
