@@ -103,3 +103,10 @@ firefox_userChrome/user.js
 .config/gtk-3.0/bookmarks
 .config/weixin/
 .config/systemd/user/*.wants
+M
+M
+M
+M
+M
+M
+.config/alacritty/alacritty.toml

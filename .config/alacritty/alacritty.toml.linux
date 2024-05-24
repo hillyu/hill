@@ -26,7 +26,7 @@ foreground = "#9ea5af"
 blinking = "Always"
 
 [font]
-size = 11
+size = 10
 
 [font.normal]
 family = "Fixedsys Excelsior MonoL"
