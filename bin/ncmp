@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pkill -f ncmpcpp 
-alacritty --class ncmpcpp -o "window.position.x: 3560" -o "window.position.y: 350" -o "window.dimensions.x:90" -o "window.dimensions.y:25" -e ncmpcpp & disown
+alacritty --class ncmpcpp -o "window.position.x=3560" -o "window.position.y=350" -o "window.dimensions.lines=40" -o "window.dimensions.columns=120" -e ncmpcpp & disown
 pkill -f sxiv 
 sxiv -s f -g 480x480+2760-500 -N cover -b /home/hill/.cache/cover.png & disown
 # imv -s f -g 480x480+200-500 -N cover -b /home/hill/.cache/cover.png & disown
