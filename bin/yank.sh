@@ -14,24 +14,25 @@ buf=$(cat "$@")
 copy_use_osc52_fallback="on"
 
 # Resolve copy backend: pbcopy (OSX), reattach-to-user-namespace (OSX), xclip/xsel (Linux)
-copy_backend=""
-if is_app_installed pbcopy; then
-  copy_backend="pbcopy"
-elif is_app_installed reattach-to-user-namespace; then
-  copy_backend="reattach-to-user-namespace pbcopy"
+# copy_backend=""
+# if is_app_installed pbcopy; then
+#   copy_backend="pbcopy"
+# elif is_app_installed reattach-to-user-namespace; then
+#   copy_backend="reattach-to-user-namespace pbcopy"
 #elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
   #copy_backend="xsel -i --clipboard"
 #elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
   #copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
 # elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listening "( sport = $copy_backend_remote_tunnel_port )" | tail -n +2 | wc -l)" -eq 1 ]; then
   # copy_backend="nc localhost $copy_backend_remote_tunnel_port"
-fi
+# fi
 
 # if copy backend is resolved, copy and exit above case $buf is not b64 encoded thus may have chars has special meaning in double quote, hence use %s to output safe literal string.
-if [ -n "$copy_backend" ]; then
-  printf %s "$buf" | eval "$copy_backend" 
-  exit;
-fi
+# echo $copy_backend
+# if [ -n "$copy_backend" ]; then
+#   printf %s "$buf" | eval "$copy_backend" 
+#   exit;
+# fi
 
 
 
@@ -58,19 +59,19 @@ fi
 # build up OSC 52 ANSI escape sequence
 esc="\033]52;c;$( printf %s "$buf" | head -c $maxlen | base64 | tr -d '\r\n' )\a"
 erase='\033]52;c;!\a'
-#TODO: fix this for remote tmux session
 if [[ -n "${TMUX+x}" ]]; then
     # as of tmux 3.3 following safe measure is no longer working, tmux should be able to handle osc52 directly.
     # esc="\033Ptmux;\033$esc\033\\"
     # erase="\033Ptmux;\033$erase\033\\"
     MTTY=$(tmux list-panes -F "#{pane_active} #{pane_tty}" | awk '$1=="1" { print $2 }')
 else
-MTTY="/dev/$(ps hotty $$)"
+# macos tend to return multiple ttys and will add a trailing space which 
+# interferes with following printf cmd
+MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')"
 fi
 
 # resolve target terminal to send escape sequence
-# if we are on remote machine, send directly to SSH_TTY to transport escape sequence
-# to terminal on local machine, so data lands in clipboard on our local machine
+# it has to be a tty detectedd by ps hotty $$ as in script no tty is allocated.
 
 printf "$erase" > "$MTTY"
 printf "$esc" > "$MTTY"

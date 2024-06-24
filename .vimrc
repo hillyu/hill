@@ -137,7 +137,7 @@ inoremap <silent> <C-W> <C-\><C-O>db
 inoremap <silent> <C-U> <C-\><C-O>d0
 
 " set directory for swp files //fixed a bug of E303 Error
-set directory=$TEMP,.
+set directory=~/.vim/swap,.
 
 "do not destroy the buffer when not active
 set hidden
@@ -453,6 +453,7 @@ autocmd FileType vimwiki inoremap <silent> <buffer> <expr> <s-tab> pumvisible() 
 "python highlight settings
 " let g:python_highlight_all = 1
 "LSP Keybindings
+
 function! s:on_lsp_buffer_enabled() abort
     " setlocal omnifunc=lsp#complete
     " setlocal lsp_preview_float=0
@@ -472,6 +473,7 @@ function! s:on_lsp_buffer_enabled() abort
     " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     " let g:lsp_format_sync_timeout = 1000
+    let g:lsp_diagnostics_virtual_text_enabled = 0
     " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
     " refer to doc to add more commands
