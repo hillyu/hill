@@ -37,7 +37,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # load run-help and alias it it help so alt-h can support shell bultins
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
-command -v vim >/dev/null 2>&1 && alias vi="vim"
+command -v nvim >/dev/null 2>&1 && alias vi="nvim"
 # alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then
     source $HOME/zshrc.linux

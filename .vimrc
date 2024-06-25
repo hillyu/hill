@@ -64,6 +64,16 @@ endif
 set undodir=~/.vim/undo-dir
 set undofile
 
+" Let's save swp file!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/swp")
+    call mkdir($HOME."/.vim/swp", "", 0700)
+endif
+ " set directory for swp files //fixed a bug of E303 Error
+set directory=$HOME/.vim/swp//,.
+
 " OPTIONAL: This enables automatic indentation as you type.
 filetype plugin indent on
 set showcmd
@@ -136,8 +146,6 @@ set path+=**
 inoremap <silent> <C-W> <C-\><C-O>db
 inoremap <silent> <C-U> <C-\><C-O>d0
 
-" set directory for swp files //fixed a bug of E303 Error
-set directory=~/.vim/swap,.
 
 "do not destroy the buffer when not active
 set hidden

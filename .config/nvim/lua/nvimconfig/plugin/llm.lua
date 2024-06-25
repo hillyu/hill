@@ -29,6 +29,7 @@ return {
                     top_p = 0.95,
                 }
             },
+            accept_keymap = "<C-E>",
         })
     end,
 }
