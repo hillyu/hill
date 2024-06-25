@@ -21,6 +21,7 @@ return {
                 --     ['<C-Space>'] = cmp.mapping.complete(),
                 -- }),
                 mapping = {
+                    ['<C-A>'] = cmp.mapping.complete(),
                     ['<CR>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             if luasnip.expandable() then
@@ -57,9 +58,18 @@ return {
                 },
                 snippet = {
                     expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
+                        luasnip.lsp_expand(args.body)
                     end,
                 },
+                luasnip.setup({
+                    -- Required to automatically include base snippets, like "c" snippets for "cpp"
+                    load_ft_func = require('luasnip_snippets.common.snip_utils').load_ft_func,
+                    ft_func = require('luasnip_snippets.common.snip_utils').ft_func,
+                    -- To enable auto expansin
+                    enable_autosnippets = true,
+                    -- Uncomment to enable visual snippets triggered using <c-x>
+                    -- store_selection_keys = '<c-x>',
+                }),
                 window = {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
@@ -93,14 +103,14 @@ return {
         build = "make install_jsregexp"
     },
     {
-		'mireq/luasnip-snippets',
-		dependencies = {'L3MON4D3/LuaSnip'},
-		init = function()
-			-- Mandatory setup function
-			require('luasnip_snippets.common.snip_utils').setup()
-		end
+        'mireq/luasnip-snippets',
+        dependencies = {'L3MON4D3/LuaSnip'},
+        init = function()
+            -- Mandatory setup function
+            require('luasnip_snippets.common.snip_utils').setup()
+        end
 
-	},
+    },
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
