@@ -1,4 +1,5 @@
 return {
+    'onsails/lspkind.nvim',
     {"hrsh7th/nvim-cmp",
         config = function()
             local cmp = require('cmp')
@@ -13,15 +14,7 @@ return {
                     { name = 'buffer' },
                     { name = 'path' },
                 }, 
-                -- mapping = cmp.mapping.preset.insert({
-                --     -- Enter key confirms completion item
-                --     ['<CR>'] = cmp.mapping.confirm({select = false}),
-                --
-                --     -- Ctrl + space triggers completion menu
-                --     ['<C-Space>'] = cmp.mapping.complete(),
-                -- }),
                 mapping = {
-                    ['<C-A>'] = cmp.mapping.complete(),
                     ['<CR>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             if luasnip.expandable() then
@@ -66,14 +59,31 @@ return {
                     load_ft_func = require('luasnip_snippets.common.snip_utils').load_ft_func,
                     ft_func = require('luasnip_snippets.common.snip_utils').ft_func,
                     -- To enable auto expansin
-                    enable_autosnippets = true,
+                    -- enable_autosnippets = true,
                     -- Uncomment to enable visual snippets triggered using <c-x>
                     -- store_selection_keys = '<c-x>',
                 }),
                 window = {
-                    completion = cmp.config.window.bordered(),
+                    -- completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
+                    completion = {
+                        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                        col_offset = -3,
+                        side_padding = 0,
+                    },
                 },
+                formatting = {
+                    fields = { "kind", "abbr", "menu" },
+                    format = function(entry, vim_item)
+                        local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                        local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                        kind.kind = " " .. (strings[1] or "") .. " "
+                        kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+                        return kind
+                    end,
+                },
+
             })
             -- `/` cmdline setup.
             cmp.setup.cmdline('/', {
@@ -102,6 +112,7 @@ return {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp"
     },
+    'saadparwaiz1/cmp_luasnip',
     {
         'mireq/luasnip-snippets',
         dependencies = {'L3MON4D3/LuaSnip'},

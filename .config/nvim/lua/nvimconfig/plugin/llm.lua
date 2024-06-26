@@ -7,7 +7,7 @@ return {
             -- model = "deepseek-coder",
             -- url = "https://api.deepseek.com",
             -- disable_url_path_completion = true,
-            url = "http://localhost:11434", -- llm-ls uses "/api/generate"
+            url = "http://192.168.8.2:11434", -- llm-ls uses "/api/generate"
             model = "starcoder2:3b",
 
             tokens_to_clear = { "<|endoftext|>" },
