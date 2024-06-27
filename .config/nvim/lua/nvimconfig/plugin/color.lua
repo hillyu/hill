@@ -60,12 +60,7 @@ return {
             -- vim.cmd.colorscheme 'solarized'
         end,
     },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-        config = function()
-            vim.cmd.colorscheme 'tokyonight'
-        end
-    },
+    "folke/tokyonight.nvim",
+    -- 'projekt0n/github-nvim-theme',
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }

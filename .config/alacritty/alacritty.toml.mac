@@ -26,10 +26,10 @@ foreground = "#9ea5af"
 blinking = "Always"
 
 [font]
-size = 12
+size = 14
 
 [font.normal]
-family = "Menlo"
+family = "BlexMono Nerd Font Mono"
 
 [[hints.enabled]]
 command = "xdg-open"
