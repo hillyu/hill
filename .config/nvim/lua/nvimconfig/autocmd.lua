@@ -5,5 +5,9 @@ vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "InsertEnter"}, {
     command = "set norelativenumber",
 })
 vim.api.nvim_create_autocmd({"TextYankPost"}, {
-    callback = function() vim.fn.system("yank.sh", vim.v.event.regcontents) end,
+    callback = function() 
+        vim.fn.system("yank.sh", vim.v.event.regcontents) 
+        -- vim.system({'echo', 'hello','>','/home/hill/testvimout.txt'}, { text = false }, on_exit)
+    end,
+
 })

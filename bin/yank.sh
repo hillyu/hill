@@ -67,7 +67,7 @@ if [[ -n "${TMUX+x}" ]]; then
 else
 # macos tend to return multiple ttys and will add a trailing space which 
 # interferes with following printf cmd
-MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')"
+MTTY=${MTTY:-"/dev/$(ps hotty $$|tail -n1|tr -d ' ')"}
 fi
 
 # resolve target terminal to send escape sequence
