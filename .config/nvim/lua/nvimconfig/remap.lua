@@ -13,7 +13,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>y", ':call system("yank.sh", @")<cr> :echom "clipboard sync complete"<cr>')
-vim.keymap.set("n", "<leader>ev", ":Lexplore ~/.config/nvim/lua/nvimconfig/<CR>")
+vim.keymap.set("n", "<leader>ev", ":Vex ~/.config/nvim/lua/nvimconfig/<CR>")
 vim.keymap.set("n", "<leader>sv", function() vim.cmd("so") end)
 -- vnnoremap <leader>s a<C-X><C-S>
 -- TODO: vimwiki stuff
