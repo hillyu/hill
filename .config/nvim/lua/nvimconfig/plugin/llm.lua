@@ -1,5 +1,6 @@
 return {
     'huggingface/llm.nvim',
+     enabled = function() return jit.arch ~= "arm64" end,
     config = function()
         require('llm').setup({
             -- backend = "openai",
