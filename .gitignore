@@ -105,3 +105,6 @@ firefox_userChrome/user.js
 .config/systemd/user/*.wants
 .config/alacritty/alacritty.toml
 .config/nvim/lazy-lock.json
+.config/fcitx5/conf/quickphrase.conf
+.config/Nextcloud/
+.config/elinks/
