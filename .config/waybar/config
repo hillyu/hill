@@ -216,7 +216,7 @@
         "interval": 10,
         "format-icons": ["", "", ""],
         "escape": false,
-        "on-click-right": "alacritty --class floatingv -e sudo watch -n 1 cat /sys/kernel/debug/dri/0/amdgpu_pm_info",
+        "on-click-right": "alacritty --class floatingv -e sudo watch -n 1 cat /sys/kernel/debug/dri/1/amdgpu_pm_info",
         "exec": "/home/hill/.config/scripts/temperature" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
