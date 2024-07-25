@@ -45,4 +45,3 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 #set dircolor using LS_COLOR var, on mac it is LSCOLOR in a different format, one can easly convert them using online tools https://geoff.greer.fm/lscolors/
-. "$HOME/.cargo/env"
