@@ -10,6 +10,7 @@ services:
       - nextcloud_aio_mastercontainer:/mnt/docker-aio-config # This line is not allowed to be changed as otherwise the built-in backup solution will not work
       - /var/run/docker.sock:/var/run/docker.sock:ro # May be changed on macOS, Windows or docker rootless. See the applicable documentation. If adjusting, don't forget to also set 'WATCHTOWER_DOCKER_SOCKET_PATH'!
       - nextcloud_aio_nextcloud_datadir:/mnt/ncdata
+      - nextcloud_aio_backupdir:/var/borgbackup
     ports:
       # - 80:80 # Can be removed when running behind a web server or reverse proxy (like Apache, Nginx, Cloudflare Tunnel and else). See https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md
       - 8080:8080
@@ -62,6 +63,13 @@ volumes: # If you want to store the data on a different drive, see https://githu
       type: nfs4
       o: "addr=192.168.8.8,rw"
       device: ":/storage/nextcloud"
+  nextcloud_aio_backupdir:
+    name: nextcloud_aio_backupdir
+    driver: "local"
+    driver_opts:
+      type: nfs4
+      o: "addr=192.168.8.8,rw"
+      device: ":/storage/backup"
 
 
 # # Optional: If you need ipv6, follow step 1 and 2 of https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md first and then uncomment the below config in order to activate ipv6 for the internal nextcloud-aio network.
