@@ -12,7 +12,7 @@ vim.opt.smartindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
--- vim.opt.path:append('**')
+vim.opt.path:append '**'
 vim.opt.directory = os.getenv("HOME") .. "/.vim/swap,."
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
@@ -37,7 +37,7 @@ vim.opt.complete:append('kspell')
 vim.g.netrw_browse_split = 4
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 3
-vim.g.netrw_preview = 1
+-- vim.g.netrw_preview = 1
 -- vim.g.netrw_keepdir = 0
 
 -- vim.cmd.colorscheme  'tokyonight'

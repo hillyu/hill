@@ -9,7 +9,7 @@ from lxml import html
 import os.path
 playlistfile="/home/hill/Music/indieshuffle.xspf"
 #get latest trackid to get the playlist and dump music from this playlist
-dom=html.fromstring(requests.get('http://www.indieshuffle.com/new-songs/page/1').text)
+dom=html.fromstring(requests.get('http://www.indieshuffle.com').text)
 mId=dom.xpath('//div[@class="cover col-4"]/div[2]/@data-track-id')[0]
 mCount=1000
 url="http://www.indieshuffle.com/mobile/player?id={}&key=04ffdb11a4c54c729c743eccc46da873&count={}&page=1&type=newest&sort=order".format(mId,mCount)
