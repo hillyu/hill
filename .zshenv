@@ -70,7 +70,7 @@ export QT5_IM_MODULE=fcitx
 export xim=fcitx
 export XMODIFIERS=@im=fcitx
 # export GLFW_IM_MODULE=ibus
-source /home/hill/.config/nnn/config
+source $HOME/.config/nnn/config
 #set dircolor using LS_COLOR var, on mac it is LSCOLOR in a different format, one can easly convert them using online tools https://geoff.greer.fm/lscolors/
 export MPD_HOST=~/.config/mpd/socket
 export BROWSER=brave
