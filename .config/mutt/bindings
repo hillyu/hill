@@ -9,7 +9,7 @@ macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
 macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
 macro   index   gj "<change-folder>=$my_spam<enter>"   "Go to Spam"
 macro   index   ga "<change-folder>=$my_archive<enter>"   "Go to Archive"
-macro index S "<shell-escape>mbsync -V wisers<enter>" "sync email"
+macro index S "<shell-escape>mbsync -V -a<enter>" "sync email"
 
 # Index
 macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"

@@ -13,7 +13,6 @@ return {
             -- url = "http://localhost:11434", -- llm-ls uses "/api/generate"
 
             backend = "huggingface",
-            api_token = "REMOVED_TOKEN",
             model = "bigcode/starcoder2-15b", -- the model ID, behavior depends on backend
             tokens_to_clear = { "<|endoftext|>" }, -- tokens to remove from the model's output
             -- set this if the model supports fill in the middle
