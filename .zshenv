@@ -85,6 +85,6 @@ export LIBVA_DRIVER_NAME=radeonsi
 export BRAVE_FLAGS='--user-data-dir=/home/hill/.config/google-chrome --no-default-browser-check'
 export LIBSEAT_BACKEND=logind
 export HF_HOME=$HOME/HF
-export HF_API_KEY=$(cat $HF_HOME/token)
+f="$HF_HOME/token"; [[ -f $f ]] && export HF_API_KEY=$(cat $f)
 
 alias fromipad='scp -r ipad:Documents/PSP/SAVEDATA .config/ppsspp/PSP/'
