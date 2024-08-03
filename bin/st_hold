@@ -1,1 +1,5 @@
-term_hold
+#!/usr/bin/env bash
+
+cmd="${@}"
+# st -c prompt bash -c "$cmd ; read -p 'press any key to continue...'"
+alacritty --class floating -e bash -c "$cmd ; read -p 'press any key to continue...'"
