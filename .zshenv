@@ -58,6 +58,7 @@ export LESS=' -R '
    export EDITOR="vi"
    #export VISUAL="emacsclient -c -a emacs"
    export VISUAL="vi"
+   export SUDO_EDITOR="vi"
  fi
 # hack to skip wayland check on qute browser, it actually supports wayland(not wayland-egl) backend
 # export QUTE_SKIP_WAYLAND_CHECK=1
