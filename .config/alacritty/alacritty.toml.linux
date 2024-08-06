@@ -30,6 +30,9 @@ size = 10
 
 [font.normal]
 family = "Fixedsys Excelsior MonoL"
+[font.italic]
+# family =  "JetBrains Mono"
+family = "Fixedsys Excelsior MonoL"
 
 [[hints.enabled]]
 command = "xdg-open"
