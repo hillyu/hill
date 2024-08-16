@@ -40,20 +40,21 @@ window#waybar.hidden {
 }
 
 window#waybar.empty {
-    background-color: transparent;
+    /*background-color: transparent;*/
+    background-color: rgba(61,76,95,0.25); 
 }
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
+/*window#waybar.solo {*/
+/*    background-color: #2F2F2F;*/
+/*}*/
 
-window#waybar.kitty {
-    background-color: #3F3F3F;
-}
+/*window#waybar.kitty {*/
+/*    background-color: #3F3F3F;*/
+/*}*/
 
-window#waybar.brave {
-    background-color: #000000;
-    border: none;
-}
+/*window#waybar.brave {*/
+/*    background-color: #000000;*/
+/*    border: none;*/
+/*}*/
 #workspaces button {
     padding: 0.1em 0.6em;
     /* background-color: transparent; */
