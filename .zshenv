@@ -40,7 +40,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 #radeon card
 #export VDPAU_DRIVER=radeonsi 
 # # pager set to vim
-export MANPAGER=/bin/sh\ -c\ \"unset\ MANPAGER\;col\ -b\ -x\ \|\ vim\ -R\ -c\ \'set\ ft=man\ nonumber\ norelativenumber\ nomod\ nolist\'\ -\"
+export MANPAGER=/bin/sh\ -c\ \"unset\ MANPAGER\;col\ -b\ -x\ \|\ nvim\ -R\ -c\ \'set\ ft=man\ nonumber\ norelativenumber\ nomod\ nolist\'\ -\"
+# export MANPAGER=/usr/share/nvim/runtime/macros/less.sh
+export GROFF_NO_SGR=1
+
 #export PAGER=/usr/share/vim/vim82/macros/less.sh
 #export PAGER=less
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"

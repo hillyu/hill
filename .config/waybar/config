@@ -5,7 +5,7 @@
     // Choose the order of the modules
     // "modules-left": ["river/window"],
     "modules-left": ["hyprland/workspaces" ],
-    "modules-center": ["sway/window"],
+    "modules-center": ["hyprland/window"],
     "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "custom/bluetooth", "pulseaudio", "backlight", "battery", "tray", "clock"],
     // Modules configuration
     // "sway/workspaces": {
@@ -219,5 +219,8 @@
         "on-click-right": "alacritty --class floatingv -e sudo watch -n 1 cat /sys/kernel/debug/dri/1/amdgpu_pm_info",
         "exec": "/home/hill/.config/scripts/temperature" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "hyprland/window": {
+    "separate-outputs": true
+}
 }
