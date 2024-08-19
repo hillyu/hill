@@ -43,7 +43,7 @@ return {
             -- },
             -- context_window = 8192,
             tokenizer = {
-                repository = "bigcode/starcoder2-3b",
+                repository = "bigcode/starcoder2-15b",
                 -- repository = "google/gemma-2b",
                 
             },
