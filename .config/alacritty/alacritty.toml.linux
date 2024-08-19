@@ -701,7 +701,7 @@ mods = "Super"
 opacity = 0.95
 
 [window.dimensions]
-columns = 256
+columns = 128
 lines = 43
 
 [window.padding]

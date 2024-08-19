@@ -1,12 +1,15 @@
 {
     "layer": "top", // Waybar at top layer
+    //"spacing": "10", // Space between modules
+    "mode": "dock",
     "exclusive": true,
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // Choose the order of the modules
     // "modules-left": ["river/window"],
     "modules-left": ["hyprland/workspaces" ],
     "modules-center": ["hyprland/window"],
-    "modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "custom/bluetooth", "pulseaudio", "backlight", "battery", "tray", "clock"],
+    //"modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "custom/bluetooth", "pulseaudio", "backlight", "battery", "tray", "clock"],
+    "modules-right": [ "mpd", "network", "cpu", "custom/temperature", "custom/bluetooth", "pulseaudio", "battery", "tray", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -93,19 +96,18 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
         "today-format": "<b><u>{}</u></b>",
         "timezones": [ "Asia/Hong_Kong", "America/New_York", "Europe/Rome"],
      //   "format": "{:%b %d %H:%M %a}",
-        "format": " {:%a %d %Z  %R   }",
+        "format": " {:%a %d  %R %Z  }",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
       //  "format-alt": "{:%Y-%m-%d}",
-//        "on-click": "powermenu.sh",
- //       "on-click-right": "start_info"
+        "on-click": "powermenu.sh",
+        "on-click-right": "start_info"
 
     },
     "cpu": {
-        "format": "{usage:2}% ",
+        "format": "{usage:3}% ",
         "on-click": "alacritty --class=floating -e atop",
         "on-click-right": "alacritty --class=floating -e gotop",
         "tooltip": true
@@ -170,7 +172,7 @@
         "format": "{volume:2}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "{format_source}",
+        "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
