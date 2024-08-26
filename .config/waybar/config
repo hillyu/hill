@@ -7,7 +7,7 @@
     // Choose the order of the modules
     // "modules-left": ["river/window"],
     "modules-left": ["hyprland/workspaces" ],
-    "modules-center": ["hyprland/window"],
+    //"modules-center": ["hyprland/window"],
     //"modules-right": [ "mpd", "network", "cpu", "memory", "custom/temperature", "custom/bluetooth", "pulseaudio", "backlight", "battery", "tray", "clock"],
     "modules-right": [ "mpd", "network", "cpu", "custom/temperature", "custom/bluetooth", "pulseaudio", "battery", "tray", "clock"],
     // Modules configuration
@@ -109,7 +109,7 @@
     "cpu": {
         "format": "{usage:3}% ",
         "on-click": "alacritty --class=floating -e atop",
-        "on-click-right": "alacritty --class=floating -e gotop",
+        "on-click-right": "alacritty --class=floating -e gotop -c vice",
         "tooltip": true
     },
     "memory": {
@@ -168,7 +168,7 @@
 
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
+        //"scroll-step": 1, // %, can be a float
         "format": "{volume:2}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -186,7 +186,9 @@
         },
         "on-click": "pavucontrol",
         "on-click-right": "volume mute",
-        "on-click-middle": "micmute toggle"
+        "on-click-middle": "micmute toggle",
+        "on-scroll-up": "volume +5%",
+        "on-scroll-down": "volume -5%",
     },
     "custom/media": {
         "format": "{icon} {}",
