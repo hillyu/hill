@@ -92,3 +92,6 @@ export HF_HOME=$HOME/HF
 f="$HF_HOME/token"; [[ -f $f ]] && export HF_API_KEY=$(cat $f)
 
 alias fromipad='scp -r ipad:Documents/PSP/SAVEDATA .config/ppsspp/PSP/'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
