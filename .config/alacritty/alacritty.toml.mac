@@ -25,11 +25,11 @@ foreground = "#9ea5af"
 [cursor.style]
 blinking = "Always"
 
-[font]
-size = 14
-
 [font.normal]
-family = "BlexMono Nerd Font Mono"
+family = "Menlo"
+
+[font]
+size = 13
 
 [[hints.enabled]]
 command = "xdg-open"
@@ -88,7 +88,7 @@ opacity = 0.95
 option_as_alt="Both"
 
 [window.dimensions]
-columns = 200
+columns = 120
 lines = 60
 
 [window.padding]
