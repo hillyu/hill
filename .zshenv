@@ -30,8 +30,8 @@ export LESS=' -R '
    export SUDO_EDITOR="vi"
  fi
 # hack to skip wayland check on qute browser, it actually supports wayland(not wayland-egl) backend
-export HF_HOME=$HOME/HF
-f="$HF_HOME/token"; [[ -f $f ]] && export HF_API_KEY=$(cat $f)
+# export HF_HOME=$HOME/HF
+# f="$HF_HOME/token"; [[ -f $f ]] && export HF_API_KEY=$(cat $f)
 
 alias fromipad='scp -r ipad:Documents/PSP/SAVEDATA .config/ppsspp/PSP/'
 export NVM_DIR="$HOME/.nvm"

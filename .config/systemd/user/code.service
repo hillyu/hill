@@ -1,0 +1,12 @@
+[Unit]
+Description=vscode
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/environment
+Type=exec
+ExecStart=/bin/bash -lc 'code serve-web --host 127.0.0.1 --port 59005 --without-connection-token'
+Restart=always
+
+[Install]
+WantedBy=default.target
