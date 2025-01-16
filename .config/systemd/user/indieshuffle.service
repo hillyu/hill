@@ -1,0 +1,7 @@
+[Unit]
+Description=A indieshuffle Crawler
+
+[Service]
+Type=oneshot
+ExecStart=/home/hill/bin/indieshufflstream.py
+;Restart=always
