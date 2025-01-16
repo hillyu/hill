@@ -28,11 +28,10 @@ blinking = "Always"
 [font]
 size = 10
 
-[font.italic]
-family = "JetBrains Mono"
-style = "Bold Italic"
-
 [font.normal]
+family = "Fixedsys Excelsior MonoL"
+[font.italic]
+# family =  "JetBrains Mono"
 family = "Fixedsys Excelsior MonoL"
 
 [[hints.enabled]]
@@ -702,7 +701,7 @@ mods = "Super"
 opacity = 0.95
 
 [window.dimensions]
-columns = 126
+columns = 256
 lines = 43
 
 [window.padding]

@@ -5,7 +5,8 @@ screenshotdir=${2:-"$default_dir"}
 
     case $1 in
         full )
-            output=$(lswt -t|awk -F'\t' '{if ($5 == "true"){print $7}}'|tr -d '"')
+            # output=$(lswt -t|awk -F'\t' '{if ($5 == "true"){print $7}}'|tr -d '"')
+            output=$(hyprctl -j monitors|jq '.[]|select(.focused == true)|.name'|tr -d \")
             grim -o $output $screenshotdir && wl-copy < $screenshotdir
             notify-send -t 5000 -i camera "Snapshot Taken:" "$screenshotdir"
             canberra-gtk-play -i screen-capture -d "screen capture"

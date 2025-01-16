@@ -1,52 +1,52 @@
 Expunge None
 CopyArrivalDate yes
 
-IMAPAccount wisers
-#PipelineDepth 1
-# Address to connect to
-Host outlook.office365.com
-User hillyu@wisers.com
-AuthMechs XOAUTH2
-#PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.config/wisers.gpg"
-# PassCmd "pass hillyu@wisers.com"
-# PassCmd "pass wisersmailtoken"
-PassCmd "/home/hill/.config/mutt/mutt_oauth2.py /home/hill/.config/mutt/tokenfile"
-# Use TLS
-SSLType IMAPS
-SSLVersions TLSv1.2
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore wisers-remote
-Account wisers
-
-MaildirStore wisers-local
-# The trailing "/" is important
-Path ~/.mail/wisers/
-Inbox ~/.mail/wisers/Inbox
-#Path ~/.mail/test/
-#Inbox ~/.mail/test/Inbox
-Trash   "Deleted Items"
-Subfolders Verbatim
-
-Channel wisers
-Far :wisers-remote:
-Near :wisers-local:
-# Exclude everything under the internal [Gmail] folder, except the interesting folders
-#Patterns * !Journal* !Daily*
-Patterns INBOX Drafts Sent* Outbox Junk* 
-# Or include everything
-#Patterns *
-# Automatically create missing mailboxes, both locally and on the server
-Create Near
-Expunge Near
-Remove  Near
-Sync    All
-# Save the synchronization state files in the relevant directory
-SyncState *
-MaxSize 50M
-
-Group           boxes
-Channels        wisers
+# IMAPAccount wisers
+# #PipelineDepth 1
+# # Address to connect to
+# Host outlook.office365.com
+# User hillyu@wisers.com
+# AuthMechs XOAUTH2
+# #PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.config/wisers.gpg"
+# # PassCmd "pass hillyu@wisers.com"
+# # PassCmd "pass wisersmailtoken"
+# PassCmd "/home/hill/.config/mutt/mutt_oauth2.py /home/hill/.config/mutt/tokenfile"
+# # Use TLS
+# SSLType IMAPS
+# SSLVersions TLSv1.2
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+#
+# IMAPStore wisers-remote
+# Account wisers
+#
+# MaildirStore wisers-local
+# # The trailing "/" is important
+# Path ~/.mail/wisers/
+# Inbox ~/.mail/wisers/Inbox
+# #Path ~/.mail/test/
+# #Inbox ~/.mail/test/Inbox
+# Trash   "Deleted Items"
+# Subfolders Verbatim
+#
+# Channel wisers
+# Far :wisers-remote:
+# Near :wisers-local:
+# # Exclude everything under the internal [Gmail] folder, except the interesting folders
+# #Patterns * !Journal* !Daily*
+# Patterns INBOX Drafts Sent* Outbox Junk* 
+# # Or include everything
+# #Patterns *
+# # Automatically create missing mailboxes, both locally and on the server
+# Create Near
+# Expunge Near
+# Remove  Near
+# Sync    All
+# # Save the synchronization state files in the relevant directory
+# SyncState *
+# MaxSize 50M
+#
+# Group           boxes
+# Channels        wisers
 
 IMAPAccount live
 #PipelineDepth 1
