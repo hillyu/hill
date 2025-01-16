@@ -15,7 +15,7 @@ case_insensitive = True
 [tui]
 status_line_format = {selected_index}/{number_of_documents} ?:help c-l:redraw
 options_list.unselected_margin_style = bg:default
-options_list.selected_margin_style = bg:ansigray fg:ansimagenta
+options_list.selected_margin_style = bg:ansiblack fg:ansigreen
 status_line_style = bg:ansiblue fg:ansigray
 move_down_key = tab
 move_up_key = s-tab

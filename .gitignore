@@ -98,11 +98,14 @@ unbound.conf.d/
 .config/syncthing/
 firefox_userChrome/user.js
 .config/mutt/tokenfile
-.config/systemd
 .config/autorandr/office/
 .config/gtk-3.0/bookmarks
 .config/weixin/
 .config/systemd/user/*.wants
-.config/Nextcloud/
 .config/baidunetdisk/
 .config/code-server/
+.config/alacritty/alacritty.toml
+.config/nvim/lazy-lock.json
+.config/fcitx5/conf/quickphrase.conf
+.config/Nextcloud/
+.config/elinks/
