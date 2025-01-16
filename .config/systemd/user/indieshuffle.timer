@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer unit for indieshuffle crawler
+
+[Timer]
+OnActiveSec=0
+OnUnitActiveSec=60m
+Unit=indieshuffle.service
+
+[Install]
+WantedBy=timers.target
