@@ -109,3 +109,4 @@ firefox_userChrome/user.js
 .config/fcitx5/conf/quickphrase.conf
 .config/Nextcloud/
 .config/elinks/
+openwebui/application_default_credentials.json
