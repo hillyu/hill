@@ -84,6 +84,5 @@ export CM_LAUNCHER=rofi
 # export TERMINAL=st
 export TERMINAL="alacritty -e"
 #export CHROME_USER_DATA_DIR=/home/hill/.config/google-chrome
-export LIBVA_DRIVER_NAME=radeonsi
 export BRAVE_FLAGS='--user-data-dir=/home/hill/.config/google-chrome --no-default-browser-check'
 export LIBSEAT_BACKEND=logind
