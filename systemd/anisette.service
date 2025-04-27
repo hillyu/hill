@@ -1,0 +1,15 @@
+[Unit]
+Description = anisette server for altstore
+Requires=netmuxd.service
+After=network-online.target multi-user.target
+
+[Service]
+RestartSec=10s
+ExecStart = /home/hill/altstore/anisette-server-x86_64
+Restart=always
+KillSignal=SIGTERM
+PIDFile=/run/anisette.pid
+
+
+[Install]
+WantedBy=multi-user.target
