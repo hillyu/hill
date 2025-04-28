@@ -25,11 +25,10 @@ foreground = "#9ea5af"
 [cursor.style]
 blinking = "Always"
 
-[font.normal]
-family = "Menlo"
 
 [font]
-size = 13
+normal.family = "JetBrainsMono Nerd Font Mono"
+size = 14
 
 [[hints.enabled]]
 command = "xdg-open"
