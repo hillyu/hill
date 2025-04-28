@@ -1,0 +1,17 @@
+[Unit]
+Description = altstore server
+Requires=anisette.service
+After=network-online.target multi-user.target
+
+[Service]
+Environment="ALTSERVER_ANISETTE_SERVER=http://127.0.0.1:6969"
+Environment="USBMUXD_SOCKET_ADDRESS=127.0.0.1:27015"
+RestartSec=10s
+ExecStart = /home/hill/altstore/AltServer-x86_64
+Restart=always
+KillSignal=SIGTERM
+PIDFile=/run/altstore.pid
+
+
+[Install]
+WantedBy=multi-user.target

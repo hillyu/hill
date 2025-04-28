@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 server=$1
-container=${2:-hill_jupyter}
+container=${2:-notebook_jupyter}
 cmd=${3:-zsh}
 
 #[ -z "$0" ] && read -p "input server name [essXX]:" server  && read -p "input container name:" container

@@ -37,7 +37,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # load run-help and alias it it help so alt-h can support shell bultins
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
-command -v nvim >/dev/null 2>&1 && alias vi="MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')" nvim"
+# command -v nvim >/dev/null 2>&1 && alias vi="MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')" nvim"
+alias vi="MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')" nvim"
 # alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
 if [[ `uname` == "Linux" ]]; then
     source $HOME/zshrc.linux
@@ -46,6 +47,3 @@ if [[ `uname` == "Darwin" ]]; then
     source $HOME/zshrc.mac
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

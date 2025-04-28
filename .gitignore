@@ -102,8 +102,11 @@ firefox_userChrome/user.js
 .config/gtk-3.0/bookmarks
 .config/weixin/
 .config/systemd/user/*.wants
+.config/baidunetdisk/
+.config/code-server/
 .config/alacritty/alacritty.toml
 .config/nvim/lazy-lock.json
 .config/fcitx5/conf/quickphrase.conf
 .config/Nextcloud/
 .config/elinks/
+openwebui/application_default_credentials.json
