@@ -2,9 +2,9 @@
 plugins+=(osx)
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
+; export SSH_KEY_PATH="~/.ssh/id_rsa"
 
-export PATH="/usr/local/opt/python/libexec/bin:/Users/hill/Library/Python/3.7/bin:$PATH"
+; export PATH="/usr/local/opt/python/libexec/bin:/Users/hill/Library/Python/3.7/bin:$PATH"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -16,10 +16,11 @@ export PATH="/usr/local/opt/python/libexec/bin:/Users/hill/Library/Python/3.7/bi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias vi="vim"
 #eval `gdircolors -b ~/.dircolors`
-DEFAULT_USER=`whoami`
+; DEFAULT_USER=`whoami`
 #source $(brew --prefix nvm)/nvm.sh
 #let iterm send C-s
-stty -ixon
-export CLICOLOR=1
-export LSCOLORS=ExfxcxdxbxegedAbAgacad
+; stty -ixon
+; export CLICOLOR=1
+; export LSCOLORS=ExfxcxdxbxegedAbAgacad
 command -v lsd >/dev/null 2>&1 && alias ls=lsd
+eval "$(/opt/homebrew/bin/brew shellenv)"
