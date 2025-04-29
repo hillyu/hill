@@ -29,14 +29,12 @@ source $HOME/.zsh/completions/_pip
 [[ -r /usr/share/doc/pkgfile/command-not-found.zsh ]] &&\
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source $HOME/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-# import dircolors suitable for solorized dark
-# Take advantage of $LS_COLORS for completion as well.
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #fast-syntax-highlighting set theme to q-jmnemonic
 # fast-theme -t q-jmnemonic
 # load run-help and alias it it help so alt-h can support shell bultins
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
+command -v lsd >/dev/null 2>&1 && alias ls=lsd || alias ls="ls --color=auto"
 # command -v nvim >/dev/null 2>&1 && alias vi="MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')" nvim"
 alias vi="MTTY="/dev/$(ps hotty $$|tail -n1|tr -d ' ')" nvim"
 # alias th='perl -pe '\''s/(\d+)%/($1*8\/100).h/e'\'''
@@ -46,4 +44,5 @@ fi
 if [[ `uname` == "Darwin" ]]; then
     source $HOME/zshrc.mac
 fi
-
+# Take advantage of $LS_COLORS for completion as well.
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

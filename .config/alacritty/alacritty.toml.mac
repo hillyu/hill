@@ -1,37 +1,26 @@
-[colors.bright]
-black = "#3d4c5f"
-blue = "0x839496"
-cyan = "#8cc7d6"
-green = "0x586e75"
-magenta = "0x6c71c4"
-red = "0xcb4b16"
-white = "#a1d4c7"
-yellow = "0x657b83"
-
-[colors.normal]
-black = "#1E1D2F"
-blue = "0x268bd2"
-cyan = "0x2aa198"
-green = "0x859900"
-magenta = "0xd33682"
-red = "0xdc322f"
-white = "0xeee8d5"
-yellow = "0xb58900"
-
-[colors.primary]
-background = "#2F343F"
-foreground = "#9ea5af"
-
+general.import = [
+  # uncomment the flavour you want below:
+  # "~/.config/alacritty/catppuccin-latte.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+    "~/.config/alacritty/mycolor.toml"
+  # "~/.config/alacritty/catppuccin-macchiato.toml"
+  # "~/.config/alacritty/catppuccin-mocha.toml"
+]
 [cursor.style]
 blinking = "Always"
 
 
 [font]
-normal.family = "JetBrainsMono Nerd Font Mono"
-size = 14
+#normal.family = "JetBrainsMono Nerd Font Mono"
+#normal.family = "Liga SFMono Nerd Font"
+#normal.family = "SFMono Nerd Font"
+normal.family = "FiraMono Nerd Font"
+#normal.family = "RobotoMono Nerd Font"
+#normal.family = "SF Mono"
+size = 16
 
 [[hints.enabled]]
-command = "xdg-open"
+command = "open"
 post_processing = true
 regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
 
@@ -83,13 +72,15 @@ key = "Minus"
 mods = "Command"
 
 [window]
-opacity = 0.95
-option_as_alt="Both"
+#opacity = 0.8
+option_as_alt = "Both"
+decorations = "Buttonless"
+#blur = true
 
 [window.dimensions]
 columns = 120
-lines = 60
+lines = 45
 
 [window.padding]
-x = 2
-y = 5
+x = 30
+y = 20
