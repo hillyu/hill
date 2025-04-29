@@ -22,5 +22,5 @@ plugins+=(osx)
 ; stty -ixon
 ; export CLICOLOR=1
 ; export LSCOLORS=ExfxcxdxbxegedAbAgacad
-command -v lsd >/dev/null 2>&1 && alias ls=lsd
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval `gdircolors $HOME/.zsh/themes/dircolors-solarized/dircolors.256dark`
