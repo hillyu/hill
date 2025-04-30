@@ -14,10 +14,15 @@ blinking = "Always"
 #normal.family = "JetBrainsMono Nerd Font Mono"
 #normal.family = "Liga SFMono Nerd Font"
 #normal.family = "SFMono Nerd Font"
-normal.family = "FiraMono Nerd Font"
-#normal.family = "RobotoMono Nerd Font"
+#normal.family = "FiraMono Nerd Font"
+#italic.family = "MesloLGS Nerd Font"
+#normal.family = "BlexMono Nerd Font"
+#normal.family = "MesloLGS Nerd Font"
+normal.family = "Cousine Nerd Font"
+#normal.family = "0xProto Nerd Font"
+#normal.family = "Roboto"
 #normal.family = "SF Mono"
-size = 16
+size = 15
 
 [[hints.enabled]]
 command = "open"
@@ -72,10 +77,10 @@ key = "Minus"
 mods = "Command"
 
 [window]
-#opacity = 0.8
-option_as_alt = "Both"
+dynamic_padding = true
 decorations = "Buttonless"
-#blur = true
+option_as_alt = "Both"
+position = "None"
 
 [window.dimensions]
 columns = 120
