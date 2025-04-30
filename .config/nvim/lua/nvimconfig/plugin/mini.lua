@@ -1,4 +1,6 @@
 return {
+    { 'echasnovski/mini.surround', version = false },
+    { 'echasnovski/mini.ai', version = false },
     { 'echasnovski/mini.indentscope', version = false },
     { 'echasnovski/mini.trailspace', version = false },
     { 'echasnovski/mini.icons', version = false },
