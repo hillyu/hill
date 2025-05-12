@@ -12,21 +12,24 @@ blinking = "Always"
 transparent_background_colors = true
 
 [font]
-normal.family = "FixedsysExcelsiorMonoL Nerd Font"
-#normal.family = "SFMono Nerd Font"
-#normal.family = "JetBrainsMono Nerd Font Mono"
+# normal.family = "FixedsysExcelsiorMonoL Nerd Font"
+# italic.family = "JetBrainsMono Nerd Font Mono"
+# normal.family = "SFMono Nerd Font"
+normal.family = "JetBrainsMono Nerd Font Mono"
 #normal.family = "Liga SFMono Nerd Font"
-#normal.family = "SFMono Nerd Font"
-#normal.family = "FiraMono Nerd Font"
-#normal.family = "MonaspiceNe Nerd Font"
-#italic.family = "MesloLGS Nerd Font"
+# normal.family = "SFMono Nerd Font"
+# normal.family = "FiraCode Nerd Font"
+# normal.family = "FiraMono Nerd Font"
+# italic.family = "MonaspiceAr Nerd Font"
+# normal.family = "MonaspiceAr Nerd Font"
+# normal.family = "MesloLGS Nerd Font"
 #normal.family = "BlexMono Nerd Font"
 #normal.family = "MesloLGS Nerd Font"
-#normal.family = "Cousine Nerd Font"
+# normal.family = "Cousine Nerd Font"
 #normal.family = "0xProto Nerd Font"
 #normal.family = "Roboto"
 #normal.family = "SF Mono"
-size = 12
+size = 13.5
 
 [[hints.enabled]]
 command = "open"
@@ -50,6 +53,8 @@ regex = '([0-9a-f]{12,128})|([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3
 key = "I"
 mods = "Control|Shift"
 
+[mouse]
+hide_when_typing = true
 # [[keyboard.bindings]]
 # action = "Paste"
 # key = "V"
@@ -87,6 +92,7 @@ dynamic_padding = true
 decorations = "Buttonless"
 option_as_alt = "Both"
 position = "None"
+startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 120
