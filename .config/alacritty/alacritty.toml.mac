@@ -15,21 +15,21 @@ transparent_background_colors = true
 # normal.family = "FixedsysExcelsiorMonoL Nerd Font"
 # italic.family = "JetBrainsMono Nerd Font Mono"
 # normal.family = "SFMono Nerd Font"
-normal.family = "JetBrainsMono Nerd Font Mono"
+# normal.family = "JetBrainsMono Nerd Font Mono"
 #normal.family = "Liga SFMono Nerd Font"
 # normal.family = "SFMono Nerd Font"
 # normal.family = "FiraCode Nerd Font"
 # normal.family = "FiraMono Nerd Font"
-# italic.family = "MonaspiceAr Nerd Font"
+italic.family = "MonaspiceAr Nerd Font"
+normal.family = "BlexMono Nerd Font"
 # normal.family = "MonaspiceAr Nerd Font"
 # normal.family = "MesloLGS Nerd Font"
-#normal.family = "BlexMono Nerd Font"
 #normal.family = "MesloLGS Nerd Font"
 # normal.family = "Cousine Nerd Font"
 #normal.family = "0xProto Nerd Font"
 #normal.family = "Roboto"
 #normal.family = "SF Mono"
-size = 13.5
+size = 14.5
 
 [[hints.enabled]]
 command = "open"
@@ -86,7 +86,7 @@ key = "Minus"
 mods = "Command"
 
 [window]
-opacity = 0.75
+opacity = 0.95
 blur = true
 dynamic_padding = true
 decorations = "Buttonless"
