@@ -1,0 +1,661 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Prevent cmd+q quiting the app, map to cmd+w",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "alacritty tmux rcmd + t",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/Applications/Ghostty.app/Contents/MacOS/ghostty -e /usr/local/bin/tmux new-session -A -s main &" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "alacritty rcmd + enter",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "osascript $HOME/bin/ghostty_launcher_macosa" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/focus (rcmd - [hjkl])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus next" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus prev" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/swap (rcmd + shift - [hjkl])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap next" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap prev" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/float/place (rcmd + shift - [space])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float && /opt/homebrew/bin/yabai -m window --grid 5:5:1:1:3:3" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/move (rcmd + opt - [hjkl])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --move rel:-20:0" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --move rel:0:20" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --move rel:0:-20" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --move rel:20:0" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/resize (shift+option+rcmd - [hljk])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["shift", "option", "right_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "repeat": true,
+                                        "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:-20:0"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "repeat": true,
+                                        "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:-20:0"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["shift", "option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:20:0" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:20:0" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["shift", "option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --resize bottom:0:20" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["shift", "option", "right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --resize bottom:0:-20" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/tree (opt - [rxy])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --rotate 90" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --mirror y-axis" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/toggle/zoom (rcmd - [zf])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle native-fullscreen" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/toggle/and_place (rcmd - [p])",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle sticky;\n/opt/homebrew/bin/yabai -m window --toggle topmost;\n/opt/homebrew/bin/yabai -m window --grid 5:5:4:0:1:1" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/toggle/view (rcmd + g)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle padding; /opt/homebrew/bin/yabai -m space --toggle gap" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/desktop/create (shift/opt + cmd - n)",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["shift", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --create &&     index=\"$(/opt/homebrew/bin/yabai -m query --spaces --display | jq 'map(select(.\"native-fullscreen\" == 0))[-1].index')\" &&     /opt/homebrew/bin/yabai -m window --space \"${index}\" &&     /opt/homebrew/bin/yabai -m space --focus \"${index}\"" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["option", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --create &&     index=\"$(/opt/homebrew/bin/yabai -m query --spaces --display | jq 'map(select(.\"native-fullscreen\" == 0))[-1].index')\" &&     /opt/homebrew/bin/yabai -m space --focus \"${index}\"" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/desktop/delete (opt + cmd + w)",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": { "mandatory": ["option", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --destroy" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/desktop/focus (rcmd - [1..9,0])",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 3" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 4" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 5" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 6" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 7" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 8" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 9" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus 10" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/desktop/send_window (rcmd + shift - [1..9,0])",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 3" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 4" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 5" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 6" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 7" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 8" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": { "mandatory": ["right_command", "shift"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 9" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/monitor/focus (ctrl + opt - [x,z,c,1..3])",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus recent" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus prev" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus next" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus 1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus 2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus 3" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/monitor/focus (ctrl + cmd - [x,z,c,1..3])",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": { "mandatory": ["control", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus recent; /opt/homebrew/bin/yabai -m display --focus recent" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": { "mandatory": ["control", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus prev;   /opt/homebrew/bin/yabai -m display --focus prev" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["control", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus next;   /opt/homebrew/bin/yabai -m display --focus next" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": { "mandatory": ["control", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus 1;      /opt/homebrew/bin/yabai -m display --focus 1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": { "mandatory": ["control", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus 2;      /opt/homebrew/bin/yabai -m display --focus 1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["control", "command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus 3;      /opt/homebrew/bin/yabai -m display --focus 1" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "yabai/window/toggle/layout (opt + ctrl - [ad])",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": { "mandatory": ["option", "control"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --layout bsp" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["option", "control"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --layout float" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ],
+                "title": "yabai"
+            },
+            "name": "Default profile",
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        },
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Change rcmd to command+control+option.",
+                                "from": {
+                                    "key_code": "right_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_option",
+                                        "modifiers": ["left_command", "left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "alacritty rcmd + enter",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "shell_command": "osascript $HOME/bin/ghostty_launcher_macosa" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "aerospace",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
