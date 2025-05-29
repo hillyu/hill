@@ -11,5 +11,7 @@
 #[[ "$ZSH_TMUX_AUTOCONNECT" == "true" ]] && $tmux_cmd attach
 #tmux att || tmux new
 # sleep 0.3
+export TERM=xterm-256color
+
 tmux has-session -t "term" && tmux attach-session -t "term" ||tmux new-session -s "term" 
-exit
+# exit

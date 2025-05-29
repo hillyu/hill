@@ -86,13 +86,13 @@ key = "Minus"
 mods = "Command"
 
 [window]
-opacity = 0.95
-blur = true
+# opacity = 0.65
+# blur = true
 dynamic_padding = true
 decorations = "Buttonless"
 option_as_alt = "Both"
 position = "None"
-startup_mode = "Maximized"
+# startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 120
