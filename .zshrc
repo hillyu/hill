@@ -1,7 +1,7 @@
 autoload -Uz compinit promptinit
 autoload -Uz run-help
 autoload -U colors && colors
-compinit
+compinit -i
 promptinit
 setopt prompt_subst
 setopt auto_cd
