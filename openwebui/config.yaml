@@ -7,7 +7,7 @@ model_list:
       api_key: "06aae2b989144733aea359b60f54f360"
   - model_name: gemini-2.5-pro
     litellm_params:
-      model: vertex_ai/gemini-2.5-pro-preview-03-25
+      model: vertex_ai/gemini-2.5-pro
       vertex_location: "us-central1" # proj location
       safety_settings:
       - category: HARM_CATEGORY_HARASSMENT
@@ -20,7 +20,7 @@ model_list:
         threshold: BLOCK_NONE
   - model_name: gemini-2.5-flash
     litellm_params:
-      model: vertex_ai/gemini-2.5-flash-preview-04-17
+      model: vertex_ai/gemini-2.5-flash
       vertex_location: "us-central1" # proj location
       safety_settings:
       - category: HARM_CATEGORY_HARASSMENT
