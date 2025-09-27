@@ -1,7 +1,7 @@
 autoload -Uz compinit promptinit
 autoload -Uz run-help
 autoload -U colors && colors
-compinit
+compinit -i
 promptinit
 setopt prompt_subst
 setopt auto_cd
@@ -29,9 +29,6 @@ source $HOME/.zsh/completions/_pip
 [[ -r /usr/share/doc/pkgfile/command-not-found.zsh ]] &&\
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source $HOME/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-# import dircolors suitable for solorized dark
-# Take advantage of $LS_COLORS for completion as well.
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #fast-syntax-highlighting set theme to q-jmnemonic
 # fast-theme -t q-jmnemonic
 # load run-help and alias it it help so alt-h can support shell bultins
@@ -46,4 +43,6 @@ fi
 if [[ `uname` == "Darwin" ]]; then
     source $HOME/zshrc.mac
 fi
-
+command -v lsd >/dev/null 2>&1 && alias ls=lsd || alias ls="ls --color=auto"
+# Take advantage of $LS_COLORS for completion as well.
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

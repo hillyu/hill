@@ -1,38 +1,38 @@
-[colors.bright]
-black = "#3d4c5f"
-blue = "0x839496"
-cyan = "#8cc7d6"
-green = "0x586e75"
-magenta = "0x6c71c4"
-red = "0xcb4b16"
-white = "#a1d4c7"
-yellow = "0x657b83"
-
-[colors.normal]
-black = "#1E1D2F"
-blue = "0x268bd2"
-cyan = "0x2aa198"
-green = "0x859900"
-magenta = "0xd33682"
-red = "0xdc322f"
-white = "0xeee8d5"
-yellow = "0xb58900"
-
-[colors.primary]
-background = "#2F343F"
-foreground = "#9ea5af"
-
+general.import = [
+  # uncomment the flavour you want below:
+  # "~/.config/alacritty/catppuccin-latte.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+    "~/.config/alacritty/mycolor.toml"
+  # "~/.config/alacritty/catppuccin-macchiato.toml"
+  # "~/.config/alacritty/catppuccin-mocha.toml"
+]
 [cursor.style]
 blinking = "Always"
-
-[font.normal]
-family = "Menlo"
+[colors]
+transparent_background_colors = true
 
 [font]
-size = 13
+# normal.family = "FixedsysExcelsiorMonoL Nerd Font"
+# italic.family = "JetBrainsMono Nerd Font Mono"
+# normal.family = "SFMono Nerd Font"
+# normal.family = "JetBrainsMono Nerd Font Mono"
+#normal.family = "Liga SFMono Nerd Font"
+# normal.family = "SFMono Nerd Font"
+# normal.family = "FiraCode Nerd Font"
+# normal.family = "FiraMono Nerd Font"
+italic.family = "MonaspiceAr Nerd Font"
+normal.family = "BlexMono Nerd Font"
+# normal.family = "MonaspiceAr Nerd Font"
+# normal.family = "MesloLGS Nerd Font"
+#normal.family = "MesloLGS Nerd Font"
+# normal.family = "Cousine Nerd Font"
+#normal.family = "0xProto Nerd Font"
+#normal.family = "Roboto"
+#normal.family = "SF Mono"
+size = 14.5
 
 [[hints.enabled]]
-command = "xdg-open"
+command = "open"
 post_processing = true
 regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
 
@@ -53,6 +53,8 @@ regex = '([0-9a-f]{12,128})|([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3
 key = "I"
 mods = "Control|Shift"
 
+[mouse]
+hide_when_typing = true
 # [[keyboard.bindings]]
 # action = "Paste"
 # key = "V"
@@ -84,13 +86,18 @@ key = "Minus"
 mods = "Command"
 
 [window]
-opacity = 0.95
-option_as_alt="Both"
+# opacity = 0.65
+# blur = true
+dynamic_padding = true
+decorations = "Buttonless"
+option_as_alt = "Both"
+position = "None"
+# startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 120
-lines = 60
+lines = 45
 
 [window.padding]
-x = 2
-y = 5
+x = 30
+y = 20
