@@ -1,5 +1,3 @@
-version: "3.8"
-
 #
 # WARNING: Make sure to use the docker-compose.yml of the current release:
 #
@@ -14,50 +12,32 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    command: [ "start.sh", "immich" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${STORAGE}:/mnt
       - /etc/localtime:/etc/localtime:ro
-      - /mnt:/mnt
     env_file:
       - .env
     ports:
-      - 2283:3001
+      - 2283:2283
     depends_on:
       - redis
       - database
     restart: always
 
-  immich-microservices:
-    container_name: immich_microservices
-    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/hardware-transcoding
-    #   file: hwaccel.transcoding.yml
-    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
-    command: [ "start.sh", "microservices" ]
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
+    # Example tag: ${IMMICH_VERSION:-release}-cuda
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
+    #   file: hwaccel.ml.yml
+    #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
+      - model-cache:/cache
     env_file:
       - .env
-    depends_on:
-      - redis
-      - database
     restart: always
-
-  # immich-machine-learning:
-  #   container_name: immich_machine_learning
-  #   # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-  #   # Example tag: ${IMMICH_VERSION:-release}-cuda
-  #   image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
-  #   # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
-  #   #   file: hwaccel.ml.yml
-  #   #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
-  #   volumes:
-  #     - model-cache:/cache
-  #   env_file:
-  #     - .env
-  #   restart: always
 
   redis:
     container_name: immich_redis
@@ -74,22 +54,39 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always
-  backup:
-    container_name: immich_db_dumper
-    image: prodrigestivill/postgres-backup-local
-    env_file:
-      - .env
-    environment:
-      POSTGRES_HOST: database
-      POSTGRES_DB: ${DB_DATABASE_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      SCHEDULE: "@daily"
-      BACKUP_DIR: /db_dumps
-    volumes:
-      - /mnt/immichUpload/db_dumps:/db_dumps
-    depends_on:
-      - database
+  # backup:
+  #   container_name: immich_db_dumper
+  #   image: prodrigestivill/postgres-backup-local
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     POSTGRES_HOST: database
+  #     POSTGRES_DB: ${DB_DATABASE_NAME}
+  #     POSTGRES_USER: ${DB_USERNAME}
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #     SCHEDULE: "@daily"
+  #     BACKUP_DIR: /data/db_dumps
+  #   volumes:
+  #     - ${UPLOAD_LOCATION}:/data
+  #   depends_on:
+  #     - database
 volumes:
   pgdata:
   model-cache:
+  # upload:
+  #   driver: "local"
+  #   driver_opts:
+  #     type: nfs4
+  #     o: "addr=192.168.8.8,rw"
+  #     device: ":/storage/immichUpload"
+  # storage:
+  #   driver: "local"
+  #   driver_opts:
+  #     type: nfs4
+  #     o: "addr=192.168.8.8,ro"
+  #     device: ":/storage"
+  #     # type: cifs
+  #     # o: "addr=hillyu.linkpc.net,username=hill,password=zuotintin,rw,uid=1000,gid=1000,file_mode=0777,dir_mode=0777"
+  #     # device: "//hillyu.linkpc.net/files/storage/immichUpload"
+  #
+

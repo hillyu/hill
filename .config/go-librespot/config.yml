@@ -1,0 +1,3 @@
+zeroconf_enabled: false
+credentials:
+  type: interactive
