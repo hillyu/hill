@@ -1,4 +1,5 @@
-font-family = SFMono
+# font-family = SFMono
+font-family = SF Mono Terminal Regular
 # font-family = FixedsysExcelsiorMonoL Nerd Font
 #cursor-style = block
 #cursor-style-blink = true
