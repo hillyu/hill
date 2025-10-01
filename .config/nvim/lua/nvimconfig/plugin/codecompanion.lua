@@ -17,19 +17,21 @@ return {
             },
         },
         adapters = {
-            litellm = function()
-                return require("codecompanion.adapters").extend("openai_compatible", {
-                    schema = {
-                        model = {
-                            default = "gemini-2.5-pro",
+            http = {
+                litellm = function()
+                    return require("codecompanion.adapters").extend("openai_compatible", {
+                        schema = {
+                            model = {
+                                default = "gemini-2.5-pro",
+                            },
                         },
-                    },
-                    env = {
-                        url = "http://g.ps.ai:12000",
-                        api_key = "hillyu",
-                    },
-                })
-            end,
+                        env = {
+                            url = "http://g.ps.ai:12000",
+                            api_key = "hillyu",
+                        },
+                    })
+                end,
+            },
         },
     }
 }
