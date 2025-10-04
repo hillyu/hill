@@ -9,8 +9,10 @@ services:
     volumes:
       - nextcloud_aio_mastercontainer:/mnt/docker-aio-config # This line is not allowed to be changed as otherwise the built-in backup solution will not work
       - /var/run/docker.sock:/var/run/docker.sock:ro # May be changed on macOS, Windows or docker rootless. See the applicable documentation. If adjusting, don't forget to also set 'WATCHTOWER_DOCKER_SOCKET_PATH'!
-      - nextcloud_aio_nextcloud_datadir:/mnt/ncdata
-      - nextcloud_aio_backupdir:/var/borgbackup
+      # - nextcloud_aio_nextcloud_datadir:/mnt/ncdata
+      - /storage/nextcloud:/mnt/ncdata
+      # - nextcloud_aio_backupdir:/var/borgbackup
+      - /storage/backup:/var/borgbackup
     ports:
       # - 80:80 # Can be removed when running behind a web server or reverse proxy (like Apache, Nginx, Cloudflare Tunnel and else). See https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md
       - 8080:8080
@@ -21,7 +23,7 @@ services:
       - APACHE_IP_BINDING=0.0.0.0 # Should be set when running behind a web server or reverse proxy (like Apache, Nginx, Cloudflare Tunnel and else) that is running on the same host. See https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md
       # - BORG_RETENTION_POLICY=--keep-within=7d --keep-weekly=4 --keep-monthly=6 # Allows to adjust borgs retention policy. See https://github.com/nextcloud/all-in-one#how-to-adjust-borgs-retention-policy
       # - COLLABORA_SECCOMP_DISABLED=false # Setting this to true allows to disable Collabora's Seccomp feature. See https://github.com/nextcloud/all-in-one#how-to-disable-collaboras-seccomp-feature
-      - NEXTCLOUD_DATADIR=nextcloud_aio_nextcloud_datadir # Allows to set the host directory for Nextcloud's datadir. ⚠️⚠️⚠️ Warning: do not set or adjust this value after the initial Nextcloud installation is done! See https://github.com/nextcloud/all-in-one#how-to-change-the-default-location-of-nextclouds-datadir
+      - NEXTCLOUD_DATADIR=/storage/nextcloud # Allows to set the host directory for Nextcloud's datadir. ⚠️⚠️⚠️ Warning: do not set or adjust this value after the initial Nextcloud installation is done! See https://github.com/nextcloud/all-in-one#how-to-change-the-default-location-of-nextclouds-datadir
       # - NEXTCLOUD_MOUNT=/mnt/ # Allows the Nextcloud container to access the chosen directory on the host. See https://github.com/nextcloud/all-in-one#how-to-allow-the-nextcloud-container-to-access-directories-on-the-host
       # - NEXTCLOUD_UPLOAD_LIMIT=10G # Can be adjusted if you need more. See https://github.com/nextcloud/all-in-one#how-to-adjust-the-upload-limit-for-nextcloud
       # - NEXTCLOUD_MAX_TIME=3600 # Can be adjusted if you need more. See https://github.com/nextcloud/all-in-one#how-to-adjust-the-max-execution-time-for-nextcloud
@@ -56,20 +58,20 @@ services:
 volumes: # If you want to store the data on a different drive, see https://github.com/nextcloud/all-in-one#how-to-store-the-filesinstallation-on-a-separate-drive
   nextcloud_aio_mastercontainer:
     name: nextcloud_aio_mastercontainer # This line is not allowed to be changed as otherwise the built-in backup solution will not work
-  nextcloud_aio_nextcloud_datadir:
-    name: nextcloud_aio_nextcloud_datadir 
-    driver: "local"
-    driver_opts:
-      type: nfs4
-      o: "addr=192.168.8.8,rw"
-      device: ":/storage/nextcloud"
-  nextcloud_aio_backupdir:
-    name: nextcloud_aio_backupdir
-    driver: "local"
-    driver_opts:
-      type: nfs4
-      o: "addr=192.168.8.8,rw"
-      device: ":/storage/backup"
+  # nextcloud_aio_nextcloud_datadir:
+  #   name: nextcloud_aio_nextcloud_datadir 
+  #   driver: "local"
+  #   driver_opts:
+  #     type: nfs4
+  #     o: "addr=192.168.8.8,rw"
+  #     device: ":/storage/nextcloud"
+  # nextcloud_aio_backupdir:
+  #   name: nextcloud_aio_backupdir
+  #   driver: "local"
+  #   driver_opts:
+  #     type: nfs4
+  #     o: "addr=192.168.8.8,rw"
+  #     device: ":/storage/backup"
 
 
 # # Optional: If you need ipv6, follow step 1 and 2 of https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md first and then uncomment the below config in order to activate ipv6 for the internal nextcloud-aio network.
