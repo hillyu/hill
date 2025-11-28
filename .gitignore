@@ -110,3 +110,5 @@ firefox_userChrome/user.js
 .config/Nextcloud/
 .config/elinks/
 openwebui/application_default_credentials.json
+.gemini/*
+!.gemini/settings.json

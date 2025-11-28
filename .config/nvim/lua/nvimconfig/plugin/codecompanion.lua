@@ -7,7 +7,7 @@ return {
     opts= {
         strategies = {
             chat = {
-                adapter = "litellm",
+                adapter = "gemini_cli",
             },
             inline = {
                 adapter = "litellm",
