@@ -21,6 +21,8 @@ services:
     environment:
       DATABASE_URL: postgresql://${DB_USERNAME}:${DB_PASSWORD}@openwebui-database:5432/${DB_DATABASE_NAME} 
       GLOBAL_LOG_LEVEL: ERROR
+      CHAT_STREAM_RESPONSE_CHUNK_MAX_BUFFER_SIZE: 10485760
+      GOOGLE_APPLICATION_CREDENTIALS: /cred.json
     depends_on:
       - openwebui-database
     restart: always
@@ -37,7 +39,7 @@ services:
     restart: always
   litellm:
     container_name: litellm
-    image: ghcr.io/berriai/litellm:main-latest
+    image: ghcr.io/berriai/litellm:main-stable
     volumes:
       - ${PWD}/config.yaml:/app/config.yaml
       - ${PWD}/application_default_credentials.json:/cred.json
@@ -47,6 +49,7 @@ services:
       - GOOGLE_APPLICATION_CREDENTIALS=/cred.json
       - LITELLM_LOG=ERROR
       - LITELLM_MODE=PRODUCTION
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
     command: --config /app/config.yaml --detailed_debug
     restart: always
 volumes:
