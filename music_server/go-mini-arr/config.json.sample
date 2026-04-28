@@ -1,0 +1,11 @@
+{
+  "port": 8080,
+  "music_dir": "/music",
+  "download_dir": "/downloads",
+  "jackett_url": "http://jackett:9117",
+  "jackett_key": "YOUR_JACKETT_API_KEY",
+  "rdt_url": "http://rdtclient:6500",
+  "rdt_key": "YOUR_RDT_CLIENT_API_KEY",
+  "search_interval": "1h",
+  "db_path": "/config/mini-arr.db"
+}

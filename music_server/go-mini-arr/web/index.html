@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go-Mini-Arr</title>
+    <style>
+        body { font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f4f9; color: #333; }
+        h1 { color: #2c3e50; }
+        .section { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input { padding: 8px; width: 200px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 8px 16px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; }
+        th, td { text-align: left; padding: 10px; border-bottom: 1px solid #eee; }
+        
+        .col-artist { width: 15%; }
+        .col-album { width: 20%; }
+        .col-status { width: 10%; }
+        .col-activity { width: 40%; }
+        .col-action { width: 15%; }
+
+        .truncate {
+            display: block;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .activity-text { font-size: 0.85em; color: #666; }
+        .action-cell { white-space: nowrap; text-align: right; }
+        .error-link { color: #e74c3c; cursor: pointer; text-decoration: underline; font-weight: bold; }
+        .status-wanted { color: #f39c12; }
+        .status-downloading { color: #3498db; }
+        .status-completed { color: #27ae60; }
+    </style>
+</head>
+<body>
+    <h1>Go-Mini-Arr</h1>
+
+    <div class="section">
+        <h2>Add New Album</h2>
+        <input type="text" id="artistSearch" placeholder="Artist">
+        <input type="text" id="albumSearch" placeholder="Album">
+        <button onclick="searchMB()">Search MusicBrainz</button>
+        <div id="searchResults"></div>
+    </div>
+
+    <div class="section">
+        <h2>Wanted List</h2>
+        <button onclick="loadWanted()">Refresh</button>
+        <table id="wantedTable">
+            <thead>
+                <tr>
+                    <th class="col-artist">Artist</th>
+                    <th class="col-album">Album</th>
+                    <th class="col-status">Status</th>
+                    <th class="col-activity">Latest Activity</th>
+                    <th class="col-action">Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="torrentResults" class="section" style="display:none;">
+        <h2>Jackett Torrents</h2>
+        <button onclick="document.getElementById('torrentResults').style.display='none'">Close</button>
+        <div id="torrentTable"></div>
+    </div>
+
+    <script>
+        let searchResults = [];
+        let currentTorrentResults = [];
+
+        async function searchMB() {
+            const artist = document.getElementById('artistSearch').value;
+            const album = document.getElementById('albumSearch').value;
+            const btn = document.querySelector('button[onclick="searchMB()"]');
+            btn.disabled = true;
+            btn.innerText = 'Searching...';
+
+            try {
+                const res = await fetch(`/api/search?artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(album)}`);
+                searchResults = await res.json();
+                
+                let html = '<table><thead><tr><th>Artist</th><th>Album</th><th>Date</th><th>Country</th><th>Status</th><th>Action</th></tr></thead><tbody>';
+                (searchResults || []).slice(0, 10).forEach((r, index) => {
+                    const artistName = r['artist-credit'][0].artist.name;
+                    html += `<tr>
+                        <td>${escapeHtml(artistName)}</td>
+                        <td>${escapeHtml(r.title)}</td>
+                        <td>${r.date || 'N/A'}</td>
+                        <td>${r.country || 'N/A'}</td>
+                        <td>${r.status || 'N/A'}</td>
+                        <td><button onclick="addFromSearch(${index})">Add</button></td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+                document.getElementById('searchResults').innerHTML = html;
+            } catch (e) {
+                alert('Search failed: ' + e);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Search MusicBrainz';
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
+
+        async function addFromSearch(index) {
+            const r = searchResults[index];
+            const artist = r['artist-credit'][0].artist.name;
+            const album = r.title;
+            const mbid = r.id;
+
+            try {
+                const res = await fetch('/api/wanted', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ artist, album, mbid })
+                });
+                if (!res.ok) throw new Error(await res.text());
+                loadWanted();
+            } catch (e) {
+                alert('Add failed: ' + e.message);
+            }
+        }
+
+        async function loadWanted() {
+            try {
+                const res = await fetch('/api/wanted');
+                const data = await res.json();
+                const tbody = document.querySelector('#wantedTable tbody');
+                tbody.innerHTML = '';
+                
+                for (const item of (data || [])) {
+                    const tr = document.createElement('tr');
+                    tr.id = `item-${item.id}`;
+                    tr.innerHTML = `
+                        <td><div class="truncate">${escapeHtml(item.artist)}</div></td>
+                        <td><div class="truncate">${escapeHtml(item.album)}</div></td>
+                        <td class="status-${item.status}">${item.status}</td>
+                        <td class="col-activity">
+                            <div class="truncate activity-text latest-event">Loading...</div>
+                        </td>
+                        <td class="action-cell">
+                            <button onclick="searchTorrents(${item.id})">Torrents</button>
+                            <button onclick="deleteWanted(${item.id})">Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+
+                    fetch(`/api/wanted/${item.id}/events`)
+                        .then(r => r.json())
+                        .then(events => {
+                            const eventCell = tr.querySelector('.latest-event');
+                            if (events && events.length > 0) {
+                                const msg = events[0];
+                                // More aggressive error detection
+                                const isError = msg.toLowerCase().includes('error') || 
+                                                msg.toLowerCase().includes('failed') || 
+                                                msg.toLowerCase().includes('protocol scheme');
+
+                                if (isError) {
+                                    const span = document.createElement('span');
+                                    span.className = 'error-link';
+                                    span.innerText = '⚠️ Error (click for details)';
+                                    span.onclick = (e) => {
+                                        e.stopPropagation();
+                                        alert(msg);
+                                    };
+                                    eventCell.innerHTML = '';
+                                    eventCell.appendChild(span);
+                                } else {
+                                    eventCell.innerText = msg;
+                                }
+                                eventCell.parentElement.title = msg;
+                            } else {
+                                eventCell.innerText = 'No activity yet';
+                            }
+                        })
+                        .catch(err => {
+                            tr.querySelector('.latest-event').innerText = 'Error';
+                        });
+                }
+            } catch (e) {
+                console.error('LoadWanted failed:', e);
+            }
+        }
+
+        async function searchTorrents(id) {
+            const resultsDiv = document.getElementById('torrentResults');
+            const tableDiv = document.getElementById('torrentTable');
+            resultsDiv.style.display = 'block';
+            tableDiv.innerHTML = 'Searching...';
+
+            try {
+                const res = await fetch(`/api/wanted/${id}/torrents`);
+                currentTorrentResults = await res.json();
+                console.log('Torrent results:', currentTorrentResults);
+                
+                let html = '<table><thead><tr><th style="width:50%">Title</th><th style="width:15%">Indexer</th><th style="width:10%">Size</th><th style="width:10%">S/P</th><th style="width:15%">Action</th></tr></thead><tbody>';
+                let count = 0;
+                (currentTorrentResults || []).forEach((r, index) => {
+                    const title = r.title || r.description || 'Unknown Release';
+                    const link = r.link || (r.enclosure ? r.enclosure.url : '');
+                    if (!link) return;
+
+                    const sizeInBytes = r.size || (r.enclosure ? r.enclosure.length : 0);
+                    const size = sizeInBytes > 0 ? (sizeInBytes / 1024 / 1024 / 1024).toFixed(2) + ' GB' : 'N/A';
+                    
+                    let seeders = '0';
+                    let peers = '0';
+                    (r.attrs || []).forEach(a => {
+                        if (a.name === 'seeders') seeders = a.value;
+                        if (a.name === 'peers') peers = a.value;
+                    });
+
+                    // Quality Badge
+                    let qualityBadge = '';
+                    const lowerTitle = title.toLowerCase();
+                    if (lowerTitle.includes('dsd') || lowerTitle.includes('dsf')) qualityBadge = '<span style="background:#8e44ad;color:white;padding:2px 4px;border-radius:3px;font-size:0.8em;margin-right:5px;">💎 DSD</span>';
+                    else if (lowerTitle.includes('flac')) qualityBadge = '<span style="background:#2980b9;color:white;padding:2px 4px;border-radius:3px;font-size:0.8em;margin-right:5px;">🎧 FLAC</span>';
+                    else if (lowerTitle.includes('lossless')) qualityBadge = '<span style="background:#27ae60;color:white;padding:2px 4px;border-radius:3px;font-size:0.8em;margin-right:5px;">🎧 Lossless</span>';
+
+                    count++;
+                    
+                    html += `<tr>
+                        <td>
+                            <div class="truncate" style="font-size: 0.9em;" title="${escapeHtml(title)}">
+                                ${qualityBadge}${escapeHtml(title)}
+                            </div>
+                        </td>
+                        <td><span style="font-size:0.8em;color:#7f8c8d;">${escapeHtml(r.indexer || 'N/A')}</span></td>
+                        <td>${size}</td>
+                        <td><span style="color:#27ae60;">${seeders}</span> / <span style="color:#e67e22;">${peers}</span></td>
+                        <td><button onclick="addRelease(${id}, ${index})">Add This</button></td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+                if (count === 0) html = '<p>No results found with valid links.</p>';
+                tableDiv.innerHTML = html;
+            } catch (e) {
+                tableDiv.innerHTML = 'Error: ' + e;
+            }
+        }
+
+        async function addRelease(wantedId, index) {
+            const r = currentTorrentResults[index];
+            try {
+                const res = await fetch(`/api/wanted/${wantedId}/download`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: r.link })
+                });
+                if (!res.ok) throw new Error(await res.text());
+                document.getElementById('torrentResults').style.display = 'none';
+                loadWanted();
+            } catch (e) {
+                alert('Failed to set release: ' + e.message);
+            }
+        }
+
+        async function deleteWanted(id) {
+            await fetch(`/api/wanted/${id}`, { method: 'DELETE' });
+            loadWanted();
+        }
+
+        loadWanted();
+    </script>
+</body>
+</html>
